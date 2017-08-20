@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{554F039D-B3F3-4B3F-A488-CCE27A672D04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hivemind</RootNamespace>
+    <AssemblyName>Hivemind</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Contracts\BattleReport.cs" />
+    <Compile Include="Contracts\GangerBattleStats.cs" />
+    <Compile Include="Contracts\GangerInjuryReport.cs" />
+    <Compile Include="Contracts\GangerLevelUpReport.cs" />
+    <Compile Include="Contracts\GangLevelUpReport.cs" />
+    <Compile Include="Contracts\IncomeReport.cs" />
+    <Compile Include="Contracts\InjuryReport.cs" />
+    <Compile Include="Contracts\PostGameReport.cs" />
+    <Compile Include="Entities\Enums.cs" />
+    <Compile Include="Entities\Ganger.cs" />
+    <Compile Include="Entities\Injury.cs" />
+    <Compile Include="Entities\Skill.cs" />
+    <Compile Include="Entities\Territory.cs" />
+    <Compile Include="Entities\Weapon.cs" />
+    <Compile Include="Enums\GangerTitle.cs" />
+    <Compile Include="Enums\GangerType.cs" />
+    <Compile Include="Enums\GangHouse.cs" />
+    <Compile Include="Enums\InjuryEnum.cs" />
+    <Compile Include="Enums\SkillEnum.cs" />
+    <Compile Include="Enums\SkillType.cs" />
+    <Compile Include="Enums\WeaponAvailability.cs" />
+    <Compile Include="Enums\WeaponType.cs" />
+    <Compile Include="Exceptions\HivemindException.cs" />
+    <Compile Include="Factories\GangerFactory.cs" />
+    <Compile Include="Factories\IGangerFactory.cs" />
+    <Compile Include="Factories\IInjuryFactory.cs" />
+    <Compile Include="Factories\InjuryFactory.cs" />
+    <Compile Include="Factories\ISkillFactory.cs" />
+    <Compile Include="Factories\ITerritoryFactory.cs" />
+    <Compile Include="Factories\IWeaponFactory.cs" />
+    <Compile Include="Factories\SkillFactory.cs" />
+    <Compile Include="Factories\TerritoryFactory.cs" />
+    <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\GangerProvider.cs" />
+    <Compile Include="Providers\HivemindProvider.cs" />
+    <Compile Include="Providers\InjuryProvider.cs" />
+    <Compile Include="Services\IExperienceService.cs" />
+    <Compile Include="Services\IIncomeService..cs" />
+    <Compile Include="Services\IInjuryService.cs" />
+    <Compile Include="Services\InjuryService.cs" />
+    <Compile Include="Services\IPostGameService.cs" />
+    <Compile Include="Services\PostGameService.cs" />
+    <Compile Include="Utilities\DiceRoller.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

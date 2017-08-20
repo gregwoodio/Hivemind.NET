@@ -1,0 +1,5 @@
+D:\Source\Hivemind\Hivemind\Hivemind\bin\Debug\Hivemind.dll
+D:\Source\Hivemind\Hivemind\Hivemind\bin\Debug\Hivemind.pdb
+D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.dll
+D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.pdb
+D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.csprojResolveAssemblyReference.cache

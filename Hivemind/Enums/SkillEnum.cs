@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hivemind.Enums
+{
+    public enum SkillEnum
+    {
+        AGILITY_CATFALL = 1,
+        AGILITY_DODGE,
+        AGILITY_JUMP_BACK,
+        AGILITY_LEAP,
+        AGILITY_QUICK_DRAW,
+        AGILITY_SPRINT,
+        COMBAT_COMBAT_MASTER,
+        COMBAT_DISARM,
+        COMBAT_FEINT,
+        COMBAT_PARRY,
+        COMBAT_COUNTER_ATTACK,
+        COMBAT_STEP_ASIDE,
+        STEALTH_AMBUSH,
+        STEALTH_DIVE,
+        STEALTH_ESCAPE_ARTIST,
+        STEALTH_EVADE,
+        STEALTH_INFILTRATION,
+        STEALTH_SNEAK_UP,
+        MUSCLE_BODY_SLAM,
+        MUSCLE_BULGING_BICEPS,
+        MUSCLE_CRUSHING_BLOW,
+        MUSCLE_HEAD_BUTT,
+        MUSCLE_HURL_OPPONENT,
+        MUSCLE_IRON_JAW,
+        FEROCITY_BERSERK_CHARGE,
+        FEROCITY_IMPETUOUS,
+        FEROCITY_IRON_WILL,
+        FEROCITY_KILLER_REPUTATION,
+        FEROCITY_NERVES_OF_STEEL,
+        FEROCITY_TRUE_GRIT,
+        TECHNO_ARMOURER,
+        TECHNO_FIXER,
+        TECHNO_INVENTOR,
+        TECHNO_MEDIC,
+        TECHNO_SPECIALIST,
+        TECHNO_WEAPONSMITH,
+        SHOOTING_CRACK_SHOT,
+        SHOOTING_FAST_SHOT,
+        SHOOTING_GUNFIGHTER,
+        SHOOTING_HIP_SHOOTING,
+        SHOOTING_MARKSMAN,
+        SHOOTING_RAPID_FIRE
+    }
+}
