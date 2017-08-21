@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hivemind.Contracts;
+using Hivemind.Factories;
+using Hivemind.Entities;
+using Hivemind.Enums;
+using Hivemind.Utilities;
 
 namespace Hivemind.Services
 {
@@ -11,12 +15,44 @@ namespace Hivemind.Services
     {
         public GangLevelUpReport ProcessExperience(BattleReport battleReport)
         {
-            throw new NotImplementedException();
-            //var gang = 
-            //var underdogBonus = DetermineUnderdogBonus(battleReport.Gang)
+            var gangFactory = new GangFactory();
+            var gangerFactory = new GangerFactory();
+            var gang = gangFactory.GetGang(battleReport.GangId);
+            var underdogBonus = GetUnderdogBonus(gang.GangRating, battleReport.OpponentGangRating, battleReport.HasWon);
+
+            var advancements = new List<GangerLevelUpReport>();
+            foreach (var gangerStats in battleReport.GangBattleStats)
+            {
+                var ganger = gangerFactory.GetGanger(gangerStats.GangerId);
+                var experience = 0;
+                experience += GetLeaderBonus(ganger, battleReport.GameType, battleReport.HasWon, battleReport.IsAttacker);
+                experience += GetWoundingHitBonus(gangerStats.Kills);
+                experience += GetObjectivesBonus(gangerStats.Objectives, battleReport.GameType);
+                experience += GetWinningBonus(battleReport.HasWon, battleReport.GameType);
+                experience += GetSurvivalBonus();
+
+                advancements.Add(LevelUp(ganger, experience, gang.House));
+            }
+
+            return new GangLevelUpReport()
+            {
+                GangerAdvancements = advancements
+            };
         }
 
-        private int DetermineUnderdogBonus(int gangRating, int opponentGangRating, bool hasWon)
+        private GangerLevelUpReport LevelUp(Ganger ganger, int experience, GangHouse house)
+        {
+            var skillChoices = new List<SkillType>();
+
+            return new GangerLevelUpReport()
+            {
+                Description = "",
+                GangerId = ganger.GangerId,
+                NewSkillFromCategory = skillChoices
+            };
+        }
+
+        private int GetUnderdogBonus(int gangRating, int opponentGangRating, bool hasWon)
         {
             int diff = Math.Abs(opponentGangRating - gangRating);
             int bonus = 0;
@@ -61,6 +97,59 @@ namespace Hivemind.Services
                 bonus = hasWon ? 10 : 9;
             }
             return bonus;
+        }
+
+        private int GetLeaderBonus(Ganger ganger, GameType gameType, bool hasWon, bool isAttacker)
+        {
+            if (ganger.Type != GangerType.LEADER)
+            {
+                return 0;
+            }
+            
+            switch (gameType)
+            {
+                case GameType.GANG_FIGHT:
+                case GameType.SCAVENGERS:
+                case GameType.AMBUSH:
+                    return hasWon ? 10 : 0;
+                case GameType.RESCUE_MISSION:
+                    return hasWon && !isAttacker ? 10 : 0;
+                default:
+                    return 0;
+            }
+        }
+
+        private int GetWoundingHitBonus(int woundingHits)
+        {
+            return woundingHits * 5;
+        }
+
+        private int GetObjectivesBonus(int objectives, GameType gameType)
+        {
+            switch (gameType)
+            {
+                case GameType.SCAVENGERS:
+                    return objectives;
+                case GameType.THE_RAID:
+                case GameType.RESCUE_MISSION:
+                    return objectives * 5;
+                default:
+                    return 0;
+            }
+        }
+
+        private int GetWinningBonus(bool hasWon, GameType gameType)
+        {
+            if (gameType == GameType.HIT_AND_RUN && hasWon)
+            {
+                return 10;
+            }
+            return 0;
+        }
+
+        private int GetSurvivalBonus()
+        {
+            return DiceRoller.RollDie();
         }
     }
 }

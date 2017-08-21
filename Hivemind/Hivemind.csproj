@@ -66,7 +66,9 @@
     <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Exceptions\HivemindException.cs" />
     <Compile Include="Factories\GangerFactory.cs" />
+    <Compile Include="Factories\GangFactory.cs" />
     <Compile Include="Factories\IGangerFactory.cs" />
+    <Compile Include="Factories\IGangFactory.cs" />
     <Compile Include="Factories\IInjuryFactory.cs" />
     <Compile Include="Factories\InjuryFactory.cs" />
     <Compile Include="Factories\ISkillFactory.cs" />

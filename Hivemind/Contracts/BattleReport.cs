@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hivemind.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace Hivemind.Contracts
         public int GangId { get; set; }
         public IEnumerable<GangerBattleStats> GangBattleStats { get; set; }
         public bool HasWon { get; set; }
+        public bool IsAttacker { get; set; }
         public int OpponentGangRating { get; set; }
+        public GameType GameType { get; set; }
     }
 }
