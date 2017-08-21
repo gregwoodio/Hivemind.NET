@@ -18,12 +18,12 @@ namespace Hivemind.Services
         public InjuryReport ProcessInjuries(BattleReport battleReport)
         {
             //TODO: use injection
-            var gangerProvider = new GangerProvider();
+            var gangerFactory = new GangerFactory();
 
             // If a ganger is down, a roll less than three means they're injured.
             var injuries = battleReport.GangBattleStats
                 .Where(stats => stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
-                .Select(ganger => gangerProvider.GetByGangerId(ganger.GangerId))
+                .Select(ganger => gangerFactory.GetGanger(ganger.GangerId))
                 .Select(ganger => new GangerInjuryReport() { TheGanger = ganger, Injuries = DetermineInjury(null) });
 
             // apply injuries to Gangers
@@ -45,7 +45,7 @@ namespace Hivemind.Services
             // update gangers in db
             foreach (var report in injuredGangers)
             {
-                gangerProvider.UpdateGanger(report.TheGanger);
+                gangerFactory.UpdateGanger(report.TheGanger);
             }
 
             return new InjuryReport()

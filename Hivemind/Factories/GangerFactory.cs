@@ -1,5 +1,6 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Providers;
 using Hivemind.Utilities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,14 @@ namespace Hivemind.Factories
     {
         public Ganger GetGanger(int id)
         {
-            throw new NotImplementedException();
+            var provider = new GangerProvider();
+            return provider.GetByGangerId(id);
+        }
+
+        public Ganger UpdateGanger(Ganger ganger)
+        {
+            var provider = new GangerProvider();
+            return provider.UpdateGanger(ganger);
         }
 
         public Ganger CreateGanger(string name, GangerType type)

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Contracts\BattleReport.cs" />
+    <Compile Include="Entities\Gang.cs" />
     <Compile Include="Contracts\GangerBattleStats.cs" />
     <Compile Include="Contracts\GangerInjuryReport.cs" />
     <Compile Include="Contracts\GangerLevelUpReport.cs" />
@@ -76,8 +77,10 @@
     <Compile Include="Factories\WeaponFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\GangerProvider.cs" />
+    <Compile Include="Providers\GangProvider.cs" />
     <Compile Include="Providers\HivemindProvider.cs" />
     <Compile Include="Providers\InjuryProvider.cs" />
+    <Compile Include="Services\ExperienceService.cs" />
     <Compile Include="Services\IExperienceService.cs" />
     <Compile Include="Services\IIncomeService..cs" />
     <Compile Include="Services\IInjuryService.cs" />

@@ -74,7 +74,11 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@IsOneHanded", SqlDbType.Int).Value = ganger.IsOneHanded;
                     command.Parameters.Add("@RightHandFingers", SqlDbType.Int).Value = ganger.RightHandFingers;
                     command.Parameters.Add("@LeftHandFingers", SqlDbType.Int).Value = ganger.LeftHandFingers;
-                    command.Parameters.Add("@CausesFear", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasHorribleScars", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasImpressiveScars", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasHeadWound", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@IsCaptured", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasBitterEnmity", SqlDbType.Int).Value = ganger.HasHorribleScars;
 
                     command.ExecuteNonQuery();
 
