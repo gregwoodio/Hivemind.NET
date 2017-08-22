@@ -128,5 +128,48 @@ namespace Hivemind.Factories
                 Active = true
             };
         }
+
+        public Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval)
+        {
+            if (!interval.HasValue)
+            {
+                interval = 1;
+            }
+
+            switch (stat)
+            {
+                case GangerStatistics.MOVE:
+                    ganger.Move += interval.Value;
+                    break;
+                case GangerStatistics.WEAPON_SKILL:
+                    ganger.WeaponSkill += interval.Value;
+                    break;
+                case GangerStatistics.BALLISTIC_SKILL:
+                    ganger.BallisticSkill += interval.Value;
+                    break;
+                case GangerStatistics.STRENGTH:
+                    ganger.Strength += interval.Value;
+                    break;
+                case GangerStatistics.TOUGHNESS:
+                    ganger.Toughness += interval.Value;
+                    break;
+                case GangerStatistics.ATTACK:
+                    ganger.Attack += interval.Value;
+                    break;
+                case GangerStatistics.WOUNDS:
+                    ganger.Wounds += interval.Value;
+                    break;
+                case GangerStatistics.INITIATIVE:
+                    ganger.Initiative += interval.Value;
+                    break;
+                case GangerStatistics.LEADERSHIP:
+                    ganger.Leadership += interval.Value;
+                    break;
+                default:
+                    break;
+            }
+            UpdateGanger(ganger);
+            return ganger;
+        }
     }
 }

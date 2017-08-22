@@ -24,5 +24,10 @@ namespace Hivemind.Exceptions
         {
             throw new HivemindException($"No injury with name '{name}' found.");
         }
+
+        public static HivemindException NoSuchGangHouse()
+        {
+            throw new HivemindException("The specified gang house was not known.");
+        }
     }
 }

@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Contracts\BattleReport.cs" />
     <Compile Include="Entities\Gang.cs" />
     <Compile Include="Contracts\GangerBattleStats.cs" />
@@ -56,6 +55,7 @@
     <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\Territory.cs" />
     <Compile Include="Entities\Weapon.cs" />
+    <Compile Include="Enums\GameType.cs" />
     <Compile Include="Enums\GangerTitle.cs" />
     <Compile Include="Enums\GangerType.cs" />
     <Compile Include="Enums\GangHouse.cs" />
