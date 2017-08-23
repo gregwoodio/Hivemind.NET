@@ -62,6 +62,7 @@
     <Compile Include="Enums\InjuryEnum.cs" />
     <Compile Include="Enums\SkillEnum.cs" />
     <Compile Include="Enums\SkillType.cs" />
+    <Compile Include="Enums\GangerStatistics.cs" />
     <Compile Include="Enums\WeaponAvailability.cs" />
     <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Exceptions\HivemindException.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Services\IExperienceService.cs" />
     <Compile Include="Services\IIncomeService..cs" />
     <Compile Include="Services\IInjuryService.cs" />
+    <Compile Include="Services\IncomeService.cs" />
     <Compile Include="Services\InjuryService.cs" />
     <Compile Include="Services\IPostGameService.cs" />
     <Compile Include="Services\PostGameService.cs" />

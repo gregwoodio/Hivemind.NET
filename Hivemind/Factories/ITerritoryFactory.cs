@@ -10,5 +10,6 @@ namespace Hivemind.Factories
     interface ITerritoryFactory
     {
         Territory GetTerritory(int territoryId);
+        IEnumerable<Territory> GetTerritoriesByGangId(int gangId);
     }
 }

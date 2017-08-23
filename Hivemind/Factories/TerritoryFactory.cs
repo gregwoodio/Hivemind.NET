@@ -13,5 +13,10 @@ namespace Hivemind.Factories
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Territory> GetTerritoriesByGangId(int gangId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

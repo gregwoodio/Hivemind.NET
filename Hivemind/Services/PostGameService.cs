@@ -15,8 +15,8 @@ namespace Hivemind.Services
             return new PostGameReport()
             {
                 Injuries = new InjuryService().ProcessInjuries(battleReport),
-                //Experience = new ExperienceService().ProcessExperience(battleReport),
-                //Income = new IncomeService().ProcessIncome(battleReport)
+                Experience = new ExperienceService().ProcessExperience(battleReport),
+                Income = new IncomeService().ProcessIncome(battleReport)
             };
         }
     }

@@ -8,6 +8,9 @@ namespace Hivemind.Contracts
 {
     public class IncomeReport
     {
-        IEnumerable<string> Description { get; set; }
+        public int Gross { get; set; }
+        public int Deductions { get; set; }
+        public int GiantKillerBonus { get; set; }
+        public int Income { get; set; }
     }
 }

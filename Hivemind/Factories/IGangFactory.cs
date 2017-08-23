@@ -10,5 +10,6 @@ namespace Hivemind.Factories
     interface IGangFactory
     {
         Gang GetGang(int gangId);
+        Gang UpdateGang(Gang gang);
     }
 }
