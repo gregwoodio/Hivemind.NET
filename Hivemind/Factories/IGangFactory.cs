@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface IGangFactory
+    public interface IGangFactory
     {
         Gang GetGang(int gangId);
         Gang UpdateGang(Gang gang);

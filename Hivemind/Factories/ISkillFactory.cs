@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface ISkillFactory
+    public interface ISkillFactory
     {
         Skill GetSkill(int skillId);
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Services
 {
-    interface IInjuryService
+    public interface IInjuryService
     {
         InjuryReport ProcessInjuries(BattleReport battleReport);
     }

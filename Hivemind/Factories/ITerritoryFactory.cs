@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface ITerritoryFactory
+    public interface ITerritoryFactory
     {
         Territory GetTerritory(int territoryId);
         IEnumerable<Territory> GetTerritoriesByGangId(int gangId);
+        TerritoryEffect GetTerritoryEffect(int territoryId);
+        Territory UpdateGangTerritory(int gangId, Territory territory);
     }
 }

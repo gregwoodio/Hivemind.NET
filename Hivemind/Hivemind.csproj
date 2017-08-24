@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\BattleReport.cs" />
+    <Compile Include="Contracts\TerritoryIncomeReport.cs" />
+    <Compile Include="Contracts\TerritoryWorkStatus.cs" />
     <Compile Include="Entities\Gang.cs" />
     <Compile Include="Contracts\GangerBattleStats.cs" />
     <Compile Include="Contracts\GangerInjuryReport.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Enums\SkillEnum.cs" />
     <Compile Include="Enums\SkillType.cs" />
     <Compile Include="Enums\GangerStatistics.cs" />
+    <Compile Include="Enums\TerritoryEnum.cs" />
     <Compile Include="Enums\WeaponAvailability.cs" />
     <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Exceptions\HivemindException.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Providers\GangProvider.cs" />
     <Compile Include="Providers\HivemindProvider.cs" />
     <Compile Include="Providers\InjuryProvider.cs" />
+    <Compile Include="Providers\TerritoryProvider.cs" />
     <Compile Include="Services\ExperienceService.cs" />
     <Compile Include="Services\IExperienceService.cs" />
     <Compile Include="Services\IIncomeService..cs" />

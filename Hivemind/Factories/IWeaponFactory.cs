@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface IWeaponFactory
+    public interface IWeaponFactory
     {
         Weapon GetWeapon(int weaponId);
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface IInjuryFactory
+    public interface IInjuryFactory
     {
         Injury GetInjury(int injuryId);
 

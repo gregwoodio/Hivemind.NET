@@ -12,45 +12,70 @@ namespace Hivemind.Services
 {
     public class IncomeService : IIncomeService
     {
-        // TODO: use injection
-        GangFactory gangFactory = new GangFactory();
-        TerritoryFactory territoryFactory = new TerritoryFactory();
+        private IGangFactory _gangFactory;
+        private ITerritoryFactory _territoryFactory;
 
-        public IncomeReport ProcessIncome(BattleReport battleReport)
+        public IncomeService(IGangFactory gangFactory, ITerritoryFactory territoryFactory)
         {
-            var gang = gangFactory.GetGang(battleReport.GangId);
-            var territories = territoryFactory.GetTerritoriesByGangId(battleReport.GangId);
+            _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
+            _territoryFactory = territoryFactory ?? throw new ArgumentNullException(nameof(territoryFactory));
+        }
 
-            int gross = 0;
-            foreach (var territory in territories)
+        public IncomeReport ProcessIncome(BattleReport battleReport, int deaths)
+        {
+            var gang = _gangFactory.GetGang(battleReport.GangId);
+            var territories = _territoryFactory.GetTerritoriesByGangId(battleReport.GangId).ToList();
+
+            territories.Sort();
+            var gangers = GetGangers(battleReport.GangId).ToList();
+            var gross = new List<TerritoryIncomeReport>();
+
+            for (int i = 0; i < gangers.Count(); i++)
             {
-                gross += ParseDiceNomenclature(territory.Income);
+                var status = new TerritoryWorkStatus()
+                {
+                    Deaths = deaths,
+                    Ganger = gangers[i],
+                    GangId = battleReport.GangId,
+                    Objectives = battleReport.GangBattleStats.Select(stats => stats.Objectives).Sum(),
+                    PreviousBattleType = battleReport.GameType,
+                    Roll = ParseDiceNomenclature(territories[i].Income)
+                };
+                
+                gross.Add(territories[i].WorkTerritory(status));
             }
+
+            int territoryGross = gross.Select(territoryReport => territoryReport.Income).Sum();
             int giantKillerBonus = GetGiantKillerBonus(gang, battleReport.OpponentGangRating);
-            int upkeep = GetGangUpkeep(gang.GangId, gross + giantKillerBonus);
+            int upkeep = GetGangUpkeep(gang.GangId, territoryGross + giantKillerBonus);
 
             var report = new IncomeReport()
             {
                 Gross = gross,
                 GiantKillerBonus = giantKillerBonus,
-                Deductions = upkeep,
-                Income = gross + giantKillerBonus - upkeep
+                Upkeep = upkeep,
+                Income = territoryGross + giantKillerBonus - upkeep
             };
 
             gang.Credits += report.Income;
-            gangFactory.UpdateGang(gang);
+            _gangFactory.UpdateGang(gang);
 
             return report;
         }
 
         private int GetNumberOfGangMembers(int gangId)
         {
-            return gangFactory.GetGang(gangId).Gangers.Count();
+            return _gangFactory.GetGang(gangId).Gangers.Count();
         }
 
-        private int GetNumberOfGangers(int gangId)
+        /// <summary>
+        /// Only Gangers can work territories. Return a list of Gangers in the gang.
+        /// </summary>
+        /// <param name="gangId"></param>
+        /// <returns></returns>
+        private IEnumerable<Ganger> GetGangers(int gangId)
         {
-            return gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER).Count();
+            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER);
         }
 
         private int GetGangUpkeep(int gangId, int income)

@@ -77,6 +77,7 @@ namespace Hivemind.Entities
         public bool HasOldBattleWound { get; set; }
         public bool IsCaptured { get; set; }
         public bool HasBitterEnmity { get; set; }
+        public bool HasSporeSickness { get; set; }
 
         // private stats fields
         private int _move;
@@ -102,6 +103,7 @@ namespace Hivemind.Entities
             HasOldBattleWound = false;
             IsCaptured = false;
             HasBitterEnmity = false;
+            HasSporeSickness = false;
         }
 
         public Ganger(Ganger ganger)
@@ -126,6 +128,7 @@ namespace Hivemind.Entities
             HasOldBattleWound = ganger.HasOldBattleWound;
             IsCaptured = ganger.IsCaptured;
             HasBitterEnmity = ganger.HasBitterEnmity;
+            HasSporeSickness = ganger.HasSporeSickness;
         }
 
         private int MinimumValues(int value)

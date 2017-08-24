@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Services
 {
-    interface IIncomeService
+    public interface IIncomeService
     {
-        IncomeReport ProcessIncome(BattleReport battleReport);
+        IncomeReport ProcessIncome(BattleReport battleReport, int deaths);
     }
 }

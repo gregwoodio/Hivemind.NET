@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Factories
 {
-    interface IGangerFactory
+    public interface IGangerFactory
     {
         Ganger GetGanger(int id);
         Ganger CreateGanger(string name, GangerType type);
@@ -16,6 +16,7 @@ namespace Hivemind.Factories
         Ganger CreateGanger(string name);
         Ganger CreateHeavy(string name);
         Ganger CreateLeader(string name);
+        Ganger UpdateGanger(Ganger ganger);
         Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval);
     }
 }

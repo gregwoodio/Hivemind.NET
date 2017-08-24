@@ -24,6 +24,7 @@ namespace Hivemind.Enums
         CAPTURED,
         HORRIBLE_SCARS,
         IMPRESSIVE_SCARS,
-        SURVIVES_AGAINST_THE_ODDS
+        SURVIVES_AGAINST_THE_ODDS,
+        SPORE_SICKNESS
     }
 }
