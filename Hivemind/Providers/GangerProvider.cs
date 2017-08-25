@@ -164,8 +164,26 @@ namespace Hivemind.Providers
             value = reader.GetOrdinal("leftHandFingers");
             ganger.LeftHandFingers = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("causesFear");
+            value = reader.GetOrdinal("hasHorribleScars");
             ganger.HasHorribleScars = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("hasImpressiveScars");
+            ganger.HasImpressiveScars = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("hasHeadWound");
+            ganger.HasHeadWound = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("hasOldBattleWound");
+            ganger.HasOldBattleWound = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("isCaptured");
+            ganger.IsCaptured = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("hasBitterEnmity");
+            ganger.HasBitterEnmity = reader.GetByte(value) == 1 ? true : false;
+
+            value = reader.GetOrdinal("hasSporeSickness");
+            ganger.HasSporeSickness = reader.GetByte(value) == 1 ? true : false;
 
             return ganger;
         }

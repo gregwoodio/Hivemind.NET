@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Services
 {
-    interface IExperienceService
+    public interface IExperienceService
     {
         GangLevelUpReport ProcessExperience(BattleReport battleReport);
     }

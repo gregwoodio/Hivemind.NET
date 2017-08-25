@@ -2,6 +2,7 @@
 using Hivemind.Enums;
 using Hivemind.Exceptions;
 using Hivemind.Factories;
+using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
@@ -15,6 +16,13 @@ namespace Hivemind.Tests.Steps
         public Ganger gangerBefore;
         public Ganger ganger;
         public Injury injury;
+        private IInjuryFactory _injuryFactory;
+
+        public InjurySteps()
+        {
+            var container = Container.GetContainer();
+            _injuryFactory = container.Resolve<IInjuryFactory>();
+        }
 
         [Given(@"a ganger with stats as follows:")]
         public void GivenAGangerWithStatsAsFollows(Table table)
@@ -26,9 +34,7 @@ namespace Hivemind.Tests.Steps
         [When(@"the ganger gets the injury ""(.*)""")]
         public void WhenTheGangerGetsTheInjury(string injuryName)
         {
-            // TODO: replace with injection
-            var factory = new InjuryFactory();
-            injury = factory.GetInjury((int)GetEnumValue(injuryName));
+            injury = _injuryFactory.GetInjury((int)GetEnumValue(injuryName));
 
             injury.InjuryEffect(ganger);
         }

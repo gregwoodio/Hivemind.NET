@@ -1,6 +1,7 @@
 ﻿using Hivemind.Contracts;
 using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Providers;
 using Hivemind.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,27 +16,30 @@ namespace Hivemind.Factories
         private IInjuryFactory _injuryFactory;
         private IGangerFactory _gangerFactory;
         private IGangFactory _gangFactory;
+        private TerritoryProvider _territoryProvider;
 
-        public TerritoryFactory(IInjuryFactory injuryFactory, IGangerFactory gangerFactory, IGangFactory gangFactory)
+        public TerritoryFactory(IInjuryFactory injuryFactory, IGangerFactory gangerFactory, IGangFactory gangFactory, TerritoryProvider territoryProvider)
         {
             _injuryFactory = injuryFactory ?? throw new ArgumentNullException(nameof(injuryFactory));
             _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));
             _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
+            _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
         }
 
         public Territory GetTerritory(int territoryId)
         {
-            throw new NotImplementedException();
+            return _territoryProvider.GetTerritoryById(territoryId);
         }
 
         public IEnumerable<Territory> GetTerritoriesByGangId(int gangId)
         {
-            throw new NotImplementedException();
+            return _territoryProvider.GetTerritoryByGangId(gangId);
         }
 
         public Territory UpdateGangTerritory(int gangId, Territory territory)
         {
-            throw new NotImplementedException();
+            _territoryProvider.UpdateGangTerritory(gangId, territory);
+            return territory;
         }
 
         public TerritoryEffect GetTerritoryEffect(int territoryId)

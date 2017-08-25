@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Services
 {
-    interface IPostGameService
+    public interface IPostGameService
     {
         PostGameReport ProcessPostGame(BattleReport battleReport);
     }

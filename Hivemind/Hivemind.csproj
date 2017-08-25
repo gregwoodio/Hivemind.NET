@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\BattleReport.cs" />
+    <Compile Include="Contracts\PreGameReport.cs" />
     <Compile Include="Contracts\TerritoryIncomeReport.cs" />
     <Compile Include="Contracts\TerritoryWorkStatus.cs" />
     <Compile Include="Entities\Gang.cs" />
@@ -94,9 +95,13 @@
     <Compile Include="Services\IncomeService.cs" />
     <Compile Include="Services\InjuryService.cs" />
     <Compile Include="Services\IPostGameService.cs" />
+    <Compile Include="Services\IPreGameService.cs" />
     <Compile Include="Services\PostGameService.cs" />
+    <Compile Include="Services\PreGameService.cs" />
     <Compile Include="Utilities\DiceRoller.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TerritoryPro\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

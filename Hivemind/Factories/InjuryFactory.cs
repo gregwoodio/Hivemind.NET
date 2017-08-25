@@ -14,12 +14,16 @@ namespace Hivemind.Factories
     public class InjuryFactory : IInjuryFactory
     {
         public object HiveMindException { get; private set; }
+        private InjuryProvider _injuryProvider;
+
+        public InjuryFactory(InjuryProvider injuryProvider)
+        {
+            _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(injuryProvider));
+        }
 
         public Injury GetInjury(int injuryId)
         {
-            // TODO: Use injection
-            var injuryProvider = new InjuryProvider();
-            var injury = injuryProvider.GetInjuryById(injuryId);
+            var injury = _injuryProvider.GetInjuryById(injuryId);
             injury.InjuryEffect = GetInjuryEffect(injuryId);
 
             return injury;
@@ -27,15 +31,12 @@ namespace Hivemind.Factories
 
         public IEnumerable<Injury> GetAllInjuries()
         {
-            // TODO: Replace with injection
-            var injuryProvider = new InjuryProvider();
-            return injuryProvider.GetAllInjuries();
+            return _injuryProvider.GetAllInjuries();
         }
 
         public IEnumerable<Injury> GetInjuriesByGangId(int gangId)
         {
-            var injuryProvider = new InjuryProvider();
-            return injuryProvider.GetInjuriesByGangId(gangId);
+            return _injuryProvider.GetInjuriesByGangId(gangId);
         }
 
         public Effect GetInjuryEffect(int injuryId)

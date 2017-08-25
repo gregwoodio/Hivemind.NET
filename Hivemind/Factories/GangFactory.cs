@@ -10,17 +10,21 @@ namespace Hivemind.Factories
 {
     public class GangFactory : IGangFactory
     {
-        //TODO: Use injection.
-        GangProvider provider = new GangProvider();
+        private GangProvider _provider;
+
+        public GangFactory(GangProvider provider)
+        {
+            _provider = provider ?? throw new ArgumentNullException(nameof(provider));
+        }
 
         public Gang GetGang(int gangId)
         {
-            return provider.GetGangById(gangId);
+            return _provider.GetGangById(gangId);
         }
 
         public Gang UpdateGang(Gang gang)
         {
-            return provider.UpdateGang(gang);
+            return _provider.UpdateGang(gang);
         }
     }
 }

@@ -18,3 +18,12 @@ D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Newtonsoft.Json.xml
 D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\nunit.framework.xml
 D:\Source\Hivemind\Hivemind\Hivemind.Tests\obj\Debug\Hivemind.Tests.dll
 D:\Source\Hivemind\Hivemind\Hivemind.Tests\obj\Debug\Hivemind.Tests.pdb
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.xml
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\Source\Hivemind\Hivemind\Hivemind.Tests\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml

@@ -14,19 +14,24 @@ namespace Hivemind.Services
 {
     public class ExperienceService : IExperienceService
     {
-        GangerFactory gangerFactory = new GangerFactory();
+        private IGangerFactory _gangerFactory;
+        private IGangFactory _gangFactory;
+
+        public ExperienceService(IGangerFactory gangerFactory, IGangFactory gangFactory)
+        {
+            _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));
+            _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
+        }
 
         public GangLevelUpReport ProcessExperience(BattleReport battleReport)
         {
-            var gangFactory = new GangFactory();
-            
-            var gang = gangFactory.GetGang(battleReport.GangId);
+            var gang = _gangFactory.GetGang(battleReport.GangId);
             var underdogBonus = GetUnderdogBonus(gang.GangRating, battleReport.OpponentGangRating, battleReport.HasWon);
 
             var advancements = new List<GangerLevelUpReport>();
             foreach (var gangerStats in battleReport.GangBattleStats)
             {
-                var ganger = gangerFactory.GetGanger(gangerStats.GangerId);
+                var ganger = _gangerFactory.GetGanger(gangerStats.GangerId);
                 var experience = 0;
                 experience += GetLeaderBonus(ganger, battleReport.GameType, battleReport.HasWon, battleReport.IsAttacker);
                 experience += GetWoundingHitBonus(gangerStats.Kills);
@@ -42,7 +47,7 @@ namespace Hivemind.Services
                 }
 
                 ganger.Experience += experience;
-                gangerFactory.UpdateGanger(ganger);
+                _gangerFactory.UpdateGanger(ganger);
             }
 
             return new GangLevelUpReport()
@@ -186,7 +191,7 @@ namespace Hivemind.Services
                     };
                 case 5:
                     stat = (statToIncrease <= 3) ? GangerStatistics.STRENGTH : GangerStatistics.ATTACK;
-                    gangerFactory.IncreaseStat(ganger, stat, null);
+                    _gangerFactory.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
@@ -196,7 +201,7 @@ namespace Hivemind.Services
                 case 6:
                 case 8:
                     stat = (statToIncrease <= 3) ? GangerStatistics.WEAPON_SKILL : GangerStatistics.BALLISTIC_SKILL;
-                    gangerFactory.IncreaseStat(ganger, stat, null);
+                    _gangerFactory.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
@@ -205,7 +210,7 @@ namespace Hivemind.Services
                     };
                 case 7:
                     stat = (statToIncrease <= 3) ? GangerStatistics.INITIATIVE : GangerStatistics.LEADERSHIP;
-                    gangerFactory.IncreaseStat(ganger, stat, null);
+                    _gangerFactory.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
@@ -214,7 +219,7 @@ namespace Hivemind.Services
                     };
                 case 9:
                     stat = (statToIncrease <= 3) ? GangerStatistics.WOUNDS : GangerStatistics.ATTACK;
-                    gangerFactory.IncreaseStat(ganger, stat, null);
+                    _gangerFactory.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
