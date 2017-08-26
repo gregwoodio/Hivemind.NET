@@ -33,7 +33,20 @@ namespace Hivemind.Tests.Steps
         {
             Result = DiceRoller.RollD66();
         }
-        
+
+        [When(@"I parse the dice string '(.*)'")]
+        public void WhenIParseTheDiceString(string diceString)
+        {
+            Result = DiceRoller.ParseDiceString(diceString);
+        }
+
+        [Then(@"the result should be (.*)")]
+        public void ThenTheResultShouldBe(int value)
+        {
+            Assert.AreEqual(value, Result);
+        }
+
+
         [Then(@"the result should be between (.*) and (.*)")]
         public void ThenTheResultShouldBeBetweenAnd(int low, int high)
         {

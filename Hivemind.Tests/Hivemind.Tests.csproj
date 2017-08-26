@@ -76,23 +76,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Experience.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\IncomeService.feature.cs">
+    <Compile Include="Features\Income.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IncomeService.feature</DependentUpon>
+      <DependentUpon>Income.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Injury.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Injury.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\TerritoryFactory.feature.cs">
+    <Compile Include="Features\Territory.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TerritoryFactory.feature</DependentUpon>
+      <DependentUpon>Territory.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\DiceRollerSteps.cs" />
+    <Compile Include="Steps\IncomeSteps.cs" />
     <Compile Include="Steps\InjurySteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,17 +109,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Experience.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\IncomeService.feature">
+    <None Include="Features\Income.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>IncomeService.feature.cs</LastGenOutput>
+      <LastGenOutput>Income.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Injury.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Injury.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\TerritoryFactory.feature">
+    <None Include="Features\Territory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>TerritoryFactory.feature.cs</LastGenOutput>
+      <LastGenOutput>Territory.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

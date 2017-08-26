@@ -103,7 +103,7 @@ namespace Hivemind.Utilities
 
         private static int ParseDieString(string die)
         {
-            var parts = die.Split('D');
+            var parts = die.Split(new[] { 'D' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length == 1)
             {

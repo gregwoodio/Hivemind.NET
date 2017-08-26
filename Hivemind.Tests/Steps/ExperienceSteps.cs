@@ -21,7 +21,6 @@ namespace Hivemind.Tests.Steps
         int opponentGangRating;
         int downedOpponents;
         int objectives;
-        int experience;
         GameType gameType;
         private IExperienceService _experienceService;
 

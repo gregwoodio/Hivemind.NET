@@ -15,3 +15,18 @@ Scenario: Roll D66
 	Given no setup
 	When I roll D66
 	Then the result should be between valid for a D66.
+
+Scenario: Parse dice string D6*10
+	Given no setup
+	When I parse the dice string 'D6*10'
+	Then the result should be between 10 and 60
+
+Scenario: Parse dice string 10
+	Given no setup
+	When I parse the dice string '10'
+	Then the result should be 10
+
+Scenario: Parse dice string 2D6*10
+	Given no setup
+	When I parse the dice string '2D6*10'
+	Then the result should be between 20 and 120

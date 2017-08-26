@@ -39,22 +39,21 @@ namespace Hivemind.Services
                     GangId = battleReport.GangId,
                     Objectives = battleReport.GangBattleStats.Select(stats => stats.Objectives).Sum(),
                     PreviousBattleType = battleReport.GameType,
-                    Roll = ParseDiceNomenclature(territories[i].Income)
+                    Roll = DiceRoller.ParseDiceString(territories[i].Income)
                 };
                 
                 gross.Add(territories[i].WorkTerritory(status));
             }
 
             int territoryGross = gross.Select(territoryReport => territoryReport.Income).Sum();
-            int giantKillerBonus = GetGiantKillerBonus(gang, battleReport.OpponentGangRating);
-            int upkeep = GetGangUpkeep(gang.GangId, territoryGross + giantKillerBonus);
+            int giantKillerBonus = GetGiantKillerBonus(gang.GangRating, battleReport.OpponentGangRating);
+            int incomeAfterUpkeep = GetGangUpkeep(GetNumberOfGangMembers(battleReport.GangId), territoryGross + giantKillerBonus);
 
             var report = new IncomeReport()
             {
                 Gross = gross,
                 GiantKillerBonus = giantKillerBonus,
-                Upkeep = upkeep,
-                Income = territoryGross + giantKillerBonus - upkeep
+                Income = incomeAfterUpkeep
             };
 
             gang.Credits += report.Income;
@@ -63,24 +62,8 @@ namespace Hivemind.Services
             return report;
         }
 
-        private int GetNumberOfGangMembers(int gangId)
+        public int GetGangUpkeep(int gangSize, int income)
         {
-            return _gangFactory.GetGang(gangId).Gangers.Count();
-        }
-
-        /// <summary>
-        /// Only Gangers can work territories. Return a list of Gangers in the gang.
-        /// </summary>
-        /// <param name="gangId"></param>
-        /// <returns></returns>
-        private IEnumerable<Ganger> GetGangers(int gangId)
-        {
-            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER);
-        }
-
-        private int GetGangUpkeep(int gangId, int income)
-        {
-            int gangSize = GetNumberOfGangMembers(gangId);
             int col = 0;
             int row = 0;
             int[,] deductionTable = new int[,] {
@@ -176,14 +159,14 @@ namespace Hivemind.Services
             return deductionTable[row, col];
         }
 
-        private int GetGiantKillerBonus(Gang gang, int opponentGangRating)
+        public int GetGiantKillerBonus(int gangRating, int opponentGangRating)
         {
-            if (gang.GangRating < opponentGangRating)
+            if (gangRating > opponentGangRating)
             {
                 return 0;
             }
 
-            int difference = gang.GangRating - opponentGangRating;
+            int difference = opponentGangRating - gangRating;
             if (difference < 50)
             {
                 return 5;
@@ -226,62 +209,19 @@ namespace Hivemind.Services
             }
         }
 
-        /// <summary>
-        /// Parse dice strings like 2D6, D6*10 into rolled values.
-        /// </summary>
-        /// <param name="dice"></param>
-        /// <returns></returns>
-        private int ParseDiceNomenclature(string dice)
+        private int GetNumberOfGangMembers(int gangId)
         {
-            int output;
-            //income will be in the form D6*10, or 10, or 2D6
-            String[] calc = dice.Split('*');
-            if (calc.Length == 1)
-            {
-                if (calc[0][0] == '2')
-                { //must be 2D6
-                    return DiceRoller.RollDice(6, 2);
-                }
-                else
-                {
-                    //not a die, must be a number
-                    if (Int32.TryParse(calc[0], out output))
-                    {
-                        return output;
-                    }
-                    else
-                    {
-                        //laziness
-                        return 10;
-                    }
-                }
-            }
-            else if (calc.Length == 2)
-            {
-                if (calc[0][0] == '2')
-                { //2D6 * __
-                    if (Int32.TryParse(calc[1], out output))
-                    {
-                        return output * DiceRoller.RollDice(6, 2);
-                    }
-                    else
-                    {
-                        return 10 * DiceRoller.RollDice(6, 2);
-                    }
-                }
-                else if (calc[0][0] == 'D')
-                { //D6 * __
-                    if (Int32.TryParse(calc[1], out output))
-                    {
-                        return output * DiceRoller.RollDie();
-                    }
-                    else
-                    {
-                        return 10 * DiceRoller.RollDie();
-                    }
-                }
-            }
-            return 0;
+            return _gangFactory.GetGang(gangId).Gangers.Count();
+        }
+
+        /// <summary>
+        /// Only Gangers can work territories. Return a list of Gangers in the gang.
+        /// </summary>
+        /// <param name="gangId"></param>
+        /// <returns></returns>
+        private IEnumerable<Ganger> GetGangers(int gangId)
+        {
+            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER);
         }
     }
 }
