@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind", "Hivemind\Hivemi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Tests", "Hivemind.Tests\Hivemind.Tests.csproj", "{FAC98301-5B76-44B6-836A-C4CC3F2E71D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{42E52BB8-8676-4210-9D88-148AB2184B0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FAC98301-5B76-44B6-836A-C4CC3F2E71D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAC98301-5B76-44B6-836A-C4CC3F2E71D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAC98301-5B76-44B6-836A-C4CC3F2E71D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

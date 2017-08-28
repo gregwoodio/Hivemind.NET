@@ -13,6 +13,15 @@ namespace Hivemind.Providers
 {
     public class GangProvider: HivemindProvider
     {
+        private GangerProvider _gangerProvider;
+        private TerritoryProvider _territoryProvider;
+
+        public GangProvider(GangerProvider gangerProvider, TerritoryProvider territoryProvider)
+        {
+            _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
+            _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
+        }
+
         public Gang GetGangById(int gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -53,22 +62,23 @@ namespace Hivemind.Providers
         private Gang GetGangFromReader(SqlDataReader reader)
         {
             var gang = new Gang();
-            reader.Read();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("gangId");
+                gang.GangId = reader.GetInt32(value);
 
-            var value = reader.GetOrdinal("gangId");
-            gang.GangId = reader.GetInt32(value);
+                value = reader.GetOrdinal("gangName");
+                gang.Name = reader.GetString(value);
 
-            value = reader.GetOrdinal("gangName");
-            gang.Name = reader.GetString(value);
+                value = reader.GetOrdinal("house");
+                gang.House = (GangHouse)reader.GetInt32(value);
 
-            value = reader.GetOrdinal("house");
-            gang.House = (GangHouse)reader.GetInt32(value);
+                value = reader.GetOrdinal("credits");
+                gang.Credits = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("credits");
-            gang.Credits = reader.GetInt32(value);
-
-            gang.Gangers = new GangerProvider().GetByGangId(gang.GangId);
-
+                gang.Gangers = _gangerProvider.GetByGangId(gang.GangId);
+                gang.Territories = _territoryProvider.GetTerritoryByGangId(gang.GangId);
+            }
             return gang;
         }
     }

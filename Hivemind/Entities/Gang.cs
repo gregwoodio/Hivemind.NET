@@ -11,6 +11,8 @@ namespace Hivemind.Entities
         public int Credits { get; set; }
         public GangHouse House { get; set; }
         public IEnumerable<Ganger> Gangers { get; set; }
+        public IEnumerable<Territory> Territories { get; set; }
+
         public int GangRating
         {
             get

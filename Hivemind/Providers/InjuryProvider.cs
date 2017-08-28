@@ -103,16 +103,17 @@ namespace Hivemind.Providers
         private Injury GetInjuryFromReader(SqlDataReader reader)
         {
             var injury = new Injury();
-            reader.Read();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("injuryId");
+                injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
 
-            var value = reader.GetOrdinal("injuryId");
-            injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
+                value = reader.GetOrdinal("injuryName");
+                injury.Name = reader.GetString(value);
 
-            value = reader.GetOrdinal("injuryName");
-            injury.Name = reader.GetString(value);
-
-            value = reader.GetOrdinal("description");
-            injury.Description = reader.GetString(value);
+                value = reader.GetOrdinal("description");
+                injury.Description = reader.GetString(value);
+            }
 
             return injury;
         }

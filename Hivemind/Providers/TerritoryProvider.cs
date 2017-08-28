@@ -76,19 +76,20 @@ namespace Hivemind.Providers
         private Territory GetTerritoryFromReader(SqlDataReader reader)
         {
             var territory = new Territory();
-            reader.Read();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("name");
+                territory.Name = reader.GetString(value);
 
-            var value = reader.GetOrdinal("name");
-            territory.Name = reader.GetString(value);
+                value = reader.GetOrdinal("territoryId");
+                territory.TerritoryId = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("territoryId");
-            territory.TerritoryId = reader.GetInt32(value);
+                value = reader.GetOrdinal("description");
+                territory.Description = reader.GetString(value);
 
-            value = reader.GetOrdinal("description");
-            territory.Description = reader.GetString(value);
-
-            value = reader.GetOrdinal("income");
-            territory.Income = reader.GetString(value);
+                value = reader.GetOrdinal("income");
+                territory.Income = reader.GetString(value);
+            }
 
             return territory;
         }

@@ -102,89 +102,89 @@ namespace Hivemind.Providers
         private Ganger GetGangerFromReader(SqlDataReader reader)
         {
             var ganger = new Ganger();
-            reader.Read();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("gangerId");
+                ganger.GangerId = reader.GetInt32(value);
 
-            var value = reader.GetOrdinal("gangerId");
-            ganger.GangerId = reader.GetInt32(value);
+                value = reader.GetOrdinal("gangId");
+                ganger.GangId = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("gangId");
-            ganger.GangId = reader.GetInt32(value);
+                value = reader.GetOrdinal("name");
+                ganger.Name = reader.GetString(value);
 
-            value = reader.GetOrdinal("name");
-            ganger.Name = reader.GetString(value);
+                value = reader.GetOrdinal("type");
+                ganger.Type = (GangerType)reader.GetInt32(value);
 
-            value = reader.GetOrdinal("type");
-            ganger.Type = (GangerType)reader.GetInt32(value);
+                value = reader.GetOrdinal("move");
+                ganger.Move = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("move");
-            ganger.Move = reader.GetInt32(value);
+                value = reader.GetOrdinal("weaponSkill");
+                ganger.WeaponSkill = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("weaponSkill");
-            ganger.WeaponSkill = reader.GetInt32(value);
+                value = reader.GetOrdinal("ballisticSkill");
+                ganger.BallisticSkill = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("ballisticSkill");
-            ganger.BallisticSkill = reader.GetInt32(value);
+                value = reader.GetOrdinal("strength");
+                ganger.Strength = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("strength");
-            ganger.Strength = reader.GetInt32(value);
+                value = reader.GetOrdinal("toughness");
+                ganger.Toughness = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("toughness");
-            ganger.Toughness = reader.GetInt32(value);
+                value = reader.GetOrdinal("wounds");
+                ganger.Wounds = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("wounds");
-            ganger.Wounds = reader.GetInt32(value);
+                value = reader.GetOrdinal("initiative");
+                ganger.Initiative = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("initiative");
-            ganger.Initiative = reader.GetInt32(value);
+                value = reader.GetOrdinal("attack");
+                ganger.Attack = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("attack");
-            ganger.Attack = reader.GetInt32(value);
+                value = reader.GetOrdinal("leadership");
+                ganger.Leadership = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("leadership");
-            ganger.Leadership = reader.GetInt32(value);
+                value = reader.GetOrdinal("experience");
+                ganger.Experience = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("experience");
-            ganger.Experience = reader.GetInt32(value);
+                value = reader.GetOrdinal("active");
+                ganger.Active = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("active");
-            ganger.Active = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("isOneEyed");
+                ganger.IsOneEyed = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("isOneEyed");
-            ganger.IsOneEyed = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("isDeafened");
+                ganger.IsDeafened = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("isDeafened");
-            ganger.IsDeafened = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("isOneHanded");
+                ganger.IsOneHanded = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("isOneHanded");
-            ganger.IsOneHanded = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("rightHandFingers");
+                ganger.RightHandFingers = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("rightHandFingers");
-            ganger.RightHandFingers = reader.GetInt32(value);
+                value = reader.GetOrdinal("leftHandFingers");
+                ganger.LeftHandFingers = reader.GetInt32(value);
 
-            value = reader.GetOrdinal("leftHandFingers");
-            ganger.LeftHandFingers = reader.GetInt32(value);
+                value = reader.GetOrdinal("hasHorribleScars");
+                ganger.HasHorribleScars = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("hasHorribleScars");
-            ganger.HasHorribleScars = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("hasImpressiveScars");
+                ganger.HasImpressiveScars = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("hasImpressiveScars");
-            ganger.HasImpressiveScars = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("hasHeadWound");
+                ganger.HasHeadWound = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("hasHeadWound");
-            ganger.HasHeadWound = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("hasOldBattleWound");
+                ganger.HasOldBattleWound = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("hasOldBattleWound");
-            ganger.HasOldBattleWound = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("isCaptured");
+                ganger.IsCaptured = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("isCaptured");
-            ganger.IsCaptured = reader.GetByte(value) == 1 ? true : false;
+                value = reader.GetOrdinal("hasBitterEnmity");
+                ganger.HasBitterEnmity = reader.GetByte(value) == 1 ? true : false;
 
-            value = reader.GetOrdinal("hasBitterEnmity");
-            ganger.HasBitterEnmity = reader.GetByte(value) == 1 ? true : false;
-
-            value = reader.GetOrdinal("hasSporeSickness");
-            ganger.HasSporeSickness = reader.GetByte(value) == 1 ? true : false;
-
+                value = reader.GetOrdinal("hasSporeSickness");
+                ganger.HasSporeSickness = reader.GetByte(value) == 1 ? true : false;
+            }
             return ganger;
         }
     }
