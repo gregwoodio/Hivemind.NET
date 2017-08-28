@@ -27,8 +27,7 @@ namespace Hivemind.Tests
             container.RegisterType<IExperienceService, ExperienceService>();
             container.RegisterType<IIncomeService, IncomeService>();
             container.RegisterType<IInjuryService, InjuryService>();
-            container.RegisterType<IPostGameService, PostGameService>();
-            container.RegisterType<IPreGameService, PreGameService>();
+            container.RegisterType<IGameService, GameService>();
 
             return container;
         }

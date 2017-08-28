@@ -51,3 +51,6 @@ D:\Source\Hivemind\Hivemind\WebApi\bin\System.Web.Http.WebHost.xml
 D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.csprojResolveAssemblyReference.cache
 D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.dll
 D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.pdb
+D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Source\Hivemind\Hivemind\WebApi\bin\Swashbuckle.Core.dll
+D:\Source\Hivemind\Hivemind\WebApi\bin\WebActivatorEx.dll

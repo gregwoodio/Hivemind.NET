@@ -94,10 +94,8 @@
     <Compile Include="Services\IInjuryService.cs" />
     <Compile Include="Services\IncomeService.cs" />
     <Compile Include="Services\InjuryService.cs" />
-    <Compile Include="Services\IPostGameService.cs" />
-    <Compile Include="Services\IPreGameService.cs" />
-    <Compile Include="Services\PostGameService.cs" />
-    <Compile Include="Services\PreGameService.cs" />
+    <Compile Include="Services\IGameService.cs" />
+    <Compile Include="Services\GameService.cs" />
     <Compile Include="Utilities\DiceRoller.cs" />
   </ItemGroup>
   <ItemGroup>
