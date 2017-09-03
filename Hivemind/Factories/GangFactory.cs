@@ -22,6 +22,11 @@ namespace Hivemind.Factories
             return _provider.GetGangById(gangId);
         }
 
+        public Gang AddGang(Gang gang)
+        {
+            return _provider.AddGang(gang);
+        }
+
         public Gang UpdateGang(Gang gang)
         {
             return _provider.UpdateGang(gang);

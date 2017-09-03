@@ -1,5 +1,6 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Factories;
+using System;
 using System.Web.Http;
 
 namespace WebApi.Controllers
@@ -10,6 +11,10 @@ namespace WebApi.Controllers
 
         public GangsController(GangFactory gangFactory)
         {
+            if (gangFactory == null)
+            {
+                throw new ArgumentNullException(nameof(gangFactory));
+            }
             _gangFactory = gangFactory;
         }
 
@@ -17,6 +22,18 @@ namespace WebApi.Controllers
         public Gang GetGang(int id)
         {
             return _gangFactory.GetGang(id);
+        }
+
+        [HttpPost]
+        public Gang AddGang(Gang gang)
+        {
+            return _gangFactory.AddGang(gang);
+        }
+
+        [HttpPut]
+        public Gang UpdateGang(Gang gang)
+        {
+            return _gangFactory.UpdateGang(gang);
         }
     }
 }

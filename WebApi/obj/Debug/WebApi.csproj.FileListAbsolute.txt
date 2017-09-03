@@ -1,3 +1,4 @@
+D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.csprojResolveAssemblyReference.cache
 D:\Source\Hivemind\Hivemind\WebApi\bin\roslyn\csc.exe
 D:\Source\Hivemind\Hivemind\WebApi\bin\roslyn\csc.exe.config
 D:\Source\Hivemind\Hivemind\WebApi\bin\roslyn\csc.rsp
@@ -33,10 +34,13 @@ D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Practices.ServiceLocation.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Practices.Unity.Configuration.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Practices.Unity.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Web.Infrastructure.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\Newtonsoft.Json.dll
+D:\Source\Hivemind\Hivemind\WebApi\bin\Swashbuckle.Core.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Net.Http.Formatting.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Web.Http.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Web.Http.WebHost.dll
+D:\Source\Hivemind\Hivemind\WebApi\bin\WebActivatorEx.dll
 D:\Source\Hivemind\Hivemind\WebApi\bin\Hivemind.pdb
 D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Practices.ServiceLocation.pdb
@@ -48,9 +52,5 @@ D:\Source\Hivemind\Hivemind\WebApi\bin\Newtonsoft.Json.xml
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Net.Http.Formatting.xml
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Web.Http.xml
 D:\Source\Hivemind\Hivemind\WebApi\bin\System.Web.Http.WebHost.xml
-D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.csprojResolveAssemblyReference.cache
 D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.dll
 D:\Source\Hivemind\Hivemind\WebApi\obj\Debug\WebApi.pdb
-D:\Source\Hivemind\Hivemind\WebApi\bin\Microsoft.Web.Infrastructure.dll
-D:\Source\Hivemind\Hivemind\WebApi\bin\Swashbuckle.Core.dll
-D:\Source\Hivemind\Hivemind\WebApi\bin\WebActivatorEx.dll

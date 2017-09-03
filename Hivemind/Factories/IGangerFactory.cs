@@ -18,5 +18,6 @@ namespace Hivemind.Factories
         Ganger CreateLeader(string name);
         Ganger UpdateGanger(Ganger ganger);
         Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval);
+        Ganger AddGanger(Ganger ganger);
     }
 }

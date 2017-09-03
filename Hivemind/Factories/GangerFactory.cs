@@ -12,16 +12,21 @@ namespace Hivemind.Factories
 {
     public class GangerFactory : IGangerFactory
     {
+        private GangerProvider _gangerProvider;
+
+        public GangerFactory(GangerProvider gangerProvider)
+        {
+            _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
+        }
+
         public Ganger GetGanger(int id)
         {
-            var provider = new GangerProvider();
-            return provider.GetByGangerId(id);
+            return _gangerProvider.GetByGangerId(id);
         }
 
         public Ganger UpdateGanger(Ganger ganger)
         {
-            var provider = new GangerProvider();
-            return provider.UpdateGanger(ganger);
+            return _gangerProvider.UpdateGanger(ganger);
         }
 
         public Ganger CreateGanger(string name, GangerType type)
@@ -170,6 +175,11 @@ namespace Hivemind.Factories
             }
             UpdateGanger(ganger);
             return ganger;
+        }
+
+        public Ganger AddGanger(Ganger ganger)
+        {
+            return _gangerProvider.AddGanger(ganger);
         }
     }
 }

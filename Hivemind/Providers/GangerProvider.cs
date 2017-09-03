@@ -45,6 +45,51 @@ namespace Hivemind.Providers
             }
         }
 
+        public Ganger AddGanger(Ganger ganger)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Gangers_AddGanger", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var gangerId = command.Parameters.Add("@GangerId", SqlDbType.Int);
+                    gangerId.Direction = ParameterDirection.Output;
+                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = ganger.GangId;
+                    command.Parameters.Add("@Name", SqlDbType.VarChar).Value = ganger.Name;
+                    command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.Type;
+                    command.Parameters.Add("@Move", SqlDbType.Int).Value = ganger.Move;
+                    command.Parameters.Add("@WeaponSkill", SqlDbType.Int).Value = ganger.WeaponSkill;
+                    command.Parameters.Add("@BallisticSkill", SqlDbType.Int).Value = ganger.BallisticSkill;
+                    command.Parameters.Add("@Strength", SqlDbType.Int).Value = ganger.Strength;
+                    command.Parameters.Add("@Toughness", SqlDbType.Int).Value = ganger.Toughness;
+                    command.Parameters.Add("@Wounds", SqlDbType.Int).Value = ganger.Wounds;
+                    command.Parameters.Add("@Initiative", SqlDbType.Int).Value = ganger.Initiative;
+                    command.Parameters.Add("@Attack", SqlDbType.Int).Value = ganger.Attack;
+                    command.Parameters.Add("@Leadership", SqlDbType.Int).Value = ganger.Leadership;
+                    command.Parameters.Add("@Experience", SqlDbType.Int).Value = ganger.Experience;
+                    command.Parameters.Add("@Active", SqlDbType.Int).Value = ganger.Active;
+                    command.Parameters.Add("@IsOneEyed", SqlDbType.Int).Value = ganger.IsOneEyed;
+                    command.Parameters.Add("@IsDeafened", SqlDbType.Int).Value = ganger.IsDeafened;
+                    command.Parameters.Add("@IsOneHanded", SqlDbType.Int).Value = ganger.IsOneHanded;
+                    command.Parameters.Add("@RightHandFingers", SqlDbType.Int).Value = ganger.RightHandFingers;
+                    command.Parameters.Add("@LeftHandFingers", SqlDbType.Int).Value = ganger.LeftHandFingers;
+                    command.Parameters.Add("@HasHorribleScars", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasImpressiveScars", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasOldBattleWound", SqlDbType.Int).Value = ganger.HasOldBattleWound;
+                    command.Parameters.Add("@HasHeadWound", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@IsCaptured", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasBitterEnmity", SqlDbType.Int).Value = ganger.HasHorribleScars;
+
+                    command.ExecuteNonQuery();
+                    ganger.GangerId = (int)gangerId.Value;
+
+                    return ganger;
+                }
+            }
+        }
+
         public Ganger UpdateGanger(Ganger ganger)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -90,10 +135,11 @@ namespace Hivemind.Providers
         private IEnumerable<Ganger> GetGangerListFromReader(SqlDataReader reader)
         {
             var gangers = new List<Ganger>();
+            Ganger ganger;
 
-            while (reader.Read())
+            while ((ganger = GetGangerFromReader(reader)) != null)
             {
-                gangers.Add(GetGangerFromReader(reader));
+                gangers.Add(ganger);
             }
 
             return gangers;
@@ -184,6 +230,10 @@ namespace Hivemind.Providers
 
                 value = reader.GetOrdinal("hasSporeSickness");
                 ganger.HasSporeSickness = reader.GetByte(value) == 1 ? true : false;
+            }
+            else
+            {
+                return null;
             }
             return ganger;
         }

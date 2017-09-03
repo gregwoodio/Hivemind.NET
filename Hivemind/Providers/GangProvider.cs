@@ -34,7 +34,38 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
                     var reader = command.ExecuteReader();
 
-                    return GetGangFromReader(reader);
+                    var gang = GetGangFromReader(reader);
+                    gang.Gangers = _gangerProvider.GetByGangId(gangId);
+                    gang.Territories = _territoryProvider.GetTerritoryByGangId(gangId);
+
+                    return gang;
+                }
+            }
+        }
+
+        public Gang AddGang(Gang gang)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Gangs_AddGang", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var gangId = command.Parameters.Add("@GangId", SqlDbType.Int);
+                    gangId.Direction = ParameterDirection.Output;
+                    command.Parameters.Add("@GangName", SqlDbType.NVarChar).Value = gang.Name;
+                    command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
+                    command.ExecuteNonQuery();
+
+                    gang.GangId = (int)gangId.Value;
+
+                    foreach (var ganger in gang.Gangers)
+                    {
+                        _gangerProvider.AddGanger(ganger);
+                    }
+
+                    return gang;
                 }
             }
         }

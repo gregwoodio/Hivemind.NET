@@ -108,6 +108,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\GangersController.cs" />
     <Compile Include="UnityResolver.cs" />
     <Compile Include="Controllers\GangsController.cs" />
     <Compile Include="Global.asax.cs">

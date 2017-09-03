@@ -11,5 +11,6 @@ namespace Hivemind.Factories
     {
         Gang GetGang(int gangId);
         Gang UpdateGang(Gang gang);
+        Gang AddGang(Gang gang);
     }
 }
