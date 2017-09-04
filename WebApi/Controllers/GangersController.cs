@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public Ganger GetGanger(int gangerId)
+        public Ganger GetGanger(string gangerId)
         {
             return _gangerFactory.GetGanger(gangerId);
         }

@@ -36,7 +36,7 @@ namespace Hivemind.Factories
             return _territoryProvider.GetAllTerritories();
         }
 
-        public IEnumerable<GangTerritory> GetTerritoriesByGangId(int gangId)
+        public IEnumerable<GangTerritory> GetTerritoriesByGangId(string gangId)
         {
             return _territoryProvider.GetGangTerritoryByGangId(gangId);
         }

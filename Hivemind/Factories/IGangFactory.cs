@@ -9,7 +9,7 @@ namespace Hivemind.Factories
 {
     public interface IGangFactory
     {
-        Gang GetGang(int gangId);
+        Gang GetGang(string gangId);
         Gang UpdateGang(Gang gang);
         Gang AddGang(Gang gang);
     }

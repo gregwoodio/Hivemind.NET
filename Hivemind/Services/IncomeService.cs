@@ -209,7 +209,7 @@ namespace Hivemind.Services
             }
         }
 
-        private int GetNumberOfGangMembers(int gangId)
+        private int GetNumberOfGangMembers(string gangId)
         {
             return _gangFactory.GetGang(gangId).Gangers.Count();
         }
@@ -219,7 +219,7 @@ namespace Hivemind.Services
         /// </summary>
         /// <param name="gangId"></param>
         /// <returns></returns>
-        private IEnumerable<Ganger> GetGangers(int gangId)
+        private IEnumerable<Ganger> GetGangers(string gangId)
         {
             return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER);
         }

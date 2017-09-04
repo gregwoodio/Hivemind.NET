@@ -22,7 +22,7 @@ namespace Hivemind.Providers
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
         }
 
-        public Gang GetGangById(int gangId)
+        public Gang GetGangById(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -31,7 +31,7 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
                     var reader = command.ExecuteReader();
 
                     var gang = GetGangFromReader(reader);
@@ -52,14 +52,14 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    var gangId = command.Parameters.Add("@GangId", SqlDbType.Int);
+                    var gangId = command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100);
                     gangId.Direction = ParameterDirection.Output;
                     command.Parameters.Add("@GangName", SqlDbType.NVarChar).Value = gang.Name;
                     command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
                     command.Parameters.Add("@Credits", SqlDbType.Int).Value = (int)gang.Credits;
                     command.ExecuteNonQuery();
 
-                    gang.GangId = (int)gangId.Value;
+                    gang.GangId = (string)gangId.Value;
 
                     foreach (var ganger in gang.Gangers)
                     {
@@ -80,7 +80,7 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gang.GangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gang.GangId;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = gang.Name;
                     command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
                     command.Parameters.Add("@Credits", SqlDbType.Int).Value = gang.Credits;
@@ -97,7 +97,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("gangId");
-                gang.GangId = reader.GetInt32(value);
+                gang.GangId = reader.GetString(value);
 
                 value = reader.GetOrdinal("gangName");
                 gang.Name = reader.GetString(value);

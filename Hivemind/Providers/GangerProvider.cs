@@ -12,7 +12,7 @@ namespace Hivemind.Providers
 {
     public class GangerProvider : HivemindProvider
     {
-        public Ganger GetByGangerId(int gangerId)
+        public Ganger GetByGangerId(string gangerId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -21,7 +21,7 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangerId", SqlDbType.Int).Value = gangerId;
+                    command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
                     var reader = command.ExecuteReader();
 
                     return GetGangerFromReader(reader);
@@ -29,7 +29,7 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<Ganger> GetByGangId(int gangId)
+        public IEnumerable<Ganger> GetByGangId(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -38,7 +38,7 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
                     var reader = command.ExecuteReader();
                     return GetGangerListFromReader(reader);
                 }
@@ -54,9 +54,9 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    var gangerId = command.Parameters.Add("@GangerId", SqlDbType.Int);
+                    var gangerId = command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100);
                     gangerId.Direction = ParameterDirection.Output;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = ganger.GangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = ganger.GangId;
                     command.Parameters.Add("@Name", SqlDbType.VarChar).Value = ganger.Name;
                     command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.Type;
                     command.Parameters.Add("@Move", SqlDbType.Int).Value = ganger.Move;
@@ -83,7 +83,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@HasBitterEnmity", SqlDbType.Int).Value = ganger.HasHorribleScars;
 
                     command.ExecuteNonQuery();
-                    ganger.GangerId = (int)gangerId.Value;
+                    ganger.GangerId = (string)gangerId.Value;
 
                     return ganger;
                 }
@@ -99,8 +99,8 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangerId", SqlDbType.Int).Value = ganger.GangerId;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = ganger.GangId;
+                    command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = ganger.GangerId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = ganger.GangId;
                     command.Parameters.Add("@Name", SqlDbType.VarChar).Value = ganger.Name;
                     command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.Type;
                     command.Parameters.Add("@Move", SqlDbType.Int).Value = ganger.Move;
@@ -124,6 +124,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@HasHeadWound", SqlDbType.Int).Value = ganger.HasHorribleScars;
                     command.Parameters.Add("@IsCaptured", SqlDbType.Int).Value = ganger.HasHorribleScars;
                     command.Parameters.Add("@HasBitterEnmity", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@HasOldBattleWound", SqlDbType.TinyInt).Value = ganger.HasOldBattleWound;
 
                     command.ExecuteNonQuery();
 
@@ -151,10 +152,10 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("gangerId");
-                ganger.GangerId = reader.GetInt32(value);
+                ganger.GangerId = reader.GetString(value);
 
                 value = reader.GetOrdinal("gangId");
-                ganger.GangId = reader.GetInt32(value);
+                ganger.GangId = reader.GetString(value);
 
                 value = reader.GetOrdinal("name");
                 ganger.Name = reader.GetString(value);

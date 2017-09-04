@@ -9,8 +9,8 @@ namespace Hivemind.Entities
 {
     public class Ganger
     {
-        public int GangerId { get; set; }
-        public int GangId { get; set; }
+        public string GangerId { get; set; }
+        public string GangId { get; set; }
         public string Name { get; set; }
         public GangerType Type { get; set; }
         public int Move

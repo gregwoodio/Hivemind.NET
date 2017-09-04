@@ -13,7 +13,7 @@ namespace Hivemind.Contracts
     /// </summary>
     public class BattleReport
     {
-        public int GangId { get; set; }
+        public string GangId { get; set; }
         public IEnumerable<GangerBattleStats> GangBattleStats { get; set; }
         public bool HasWon { get; set; }
         public bool IsAttacker { get; set; }

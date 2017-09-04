@@ -10,7 +10,7 @@ namespace Hivemind.Factories
 {
     public interface IGangerFactory
     {
-        Ganger GetGanger(int id);
+        Ganger GetGanger(string id);
         Ganger CreateGanger(string name, GangerType type);
         Ganger CreateJuve(string name);
         Ganger CreateGanger(string name);

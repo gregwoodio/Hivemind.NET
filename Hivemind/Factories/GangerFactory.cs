@@ -19,7 +19,7 @@ namespace Hivemind.Factories
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
         }
 
-        public Ganger GetGanger(int id)
+        public Ganger GetGanger(string id)
         {
             return _gangerProvider.GetByGangerId(id);
         }

@@ -9,7 +9,7 @@ namespace Hivemind.Entities
     public class GangTerritory
     {
         public string GangTerritoryId { get; set; }
-        public int GangId { get; set; }
+        public string GangId { get; set; }
         public Territory Territory { get; set; }
 
         public GangTerritory()

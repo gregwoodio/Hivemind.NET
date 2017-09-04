@@ -1,4 +1,5 @@
 ﻿using Hivemind.Entities;
+using Hivemind.Enums;
 using Hivemind.Factories;
 using System;
 using System.Web.Http;
@@ -19,14 +20,19 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public Gang GetGang(int id)
+        public Gang GetGang(string id)
         {
             return _gangFactory.GetGang(id);
         }
 
         [HttpPost]
-        public Gang AddGang(Gang gang)
+        public Gang AddGang([FromUri] string gangName, [FromUri] GangHouse house)
         {
+            var gang = new Gang()
+            {
+                Name = gangName,
+                House = house,
+            };
             return _gangFactory.AddGang(gang);
         }
 

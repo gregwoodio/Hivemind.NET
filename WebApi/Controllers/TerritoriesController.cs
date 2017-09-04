@@ -30,13 +30,13 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("{gangId}")]
-        public IEnumerable<GangTerritory> GetGangTerritoryById([FromUri] int gangId)
+        public IEnumerable<GangTerritory> GetGangTerritoryById([FromUri] string gangId)
         {
             return _territoryFactory.GetTerritoriesByGangId(gangId);
         }
 
         [HttpPost]
-        public GangTerritory AddGangTerritory(int gangId, Territory territory)
+        public GangTerritory AddGangTerritory(string gangId, Territory territory)
         {
             var gangTerritory = new GangTerritory()
             {

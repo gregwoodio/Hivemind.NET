@@ -6,7 +6,7 @@ namespace Hivemind.Entities
 {
     public class Gang
     {
-        public int GangId { get; set; }
+        public string GangId { get; set; }
         public string Name { get; set; }
         public int Credits { get; set; }
         public GangHouse House { get; set; }

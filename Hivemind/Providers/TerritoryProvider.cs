@@ -50,7 +50,7 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<GangTerritory> GetGangTerritoryByGangId(int gangId)
+        public IEnumerable<GangTerritory> GetGangTerritoryByGangId(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -59,7 +59,7 @@ namespace Hivemind.Providers
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
                     var reader = command.ExecuteReader();
 
                     return GetGangTerritoryListFromReader(reader);
@@ -79,7 +79,7 @@ namespace Hivemind.Providers
                     var gangTerritoryId = command.Parameters.Add("@GangTerritoryId", SqlDbType.NVarChar, 100);
                     gangTerritoryId.Direction = ParameterDirection.Output;
                     gangTerritoryId.Value = string.Empty;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangTerritory.GangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangTerritory.GangId;
                     command.Parameters.Add("@TerritoryId", SqlDbType.Int).Value = gangTerritory.Territory.TerritoryId;
 
                     command.ExecuteNonQuery();
@@ -122,7 +122,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("gangId");
-                gangTerritory.GangId = reader.GetInt32(value);
+                gangTerritory.GangId = reader.GetString(value);
 
                 value = reader.GetOrdinal("gangTerritoryId");
                 gangTerritory.GangTerritoryId = reader.GetString(value);

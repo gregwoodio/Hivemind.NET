@@ -8,7 +8,7 @@ namespace Hivemind.Contracts
 {
     public class GangerBattleStats
     {
-        public int GangerId { get; set; }
+        public string GangerId { get; set; }
         public int Kills { get; set; }
         public int Objectives { get; set; }
         public bool Down { get; set; }

@@ -17,7 +17,7 @@ namespace Hivemind.Factories
             _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
-        public Gang GetGang(int gangId)
+        public Gang GetGang(string gangId)
         {
             return _provider.GetGangById(gangId);
         }
