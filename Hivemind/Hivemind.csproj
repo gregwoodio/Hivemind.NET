@@ -54,6 +54,7 @@
     <Compile Include="Contracts\PostGameReport.cs" />
     <Compile Include="Entities\Enums.cs" />
     <Compile Include="Entities\Ganger.cs" />
+    <Compile Include="Entities\GangTerritory.cs" />
     <Compile Include="Entities\Injury.cs" />
     <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\Territory.cs" />

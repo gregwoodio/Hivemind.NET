@@ -31,15 +31,24 @@ namespace Hivemind.Factories
             return _territoryProvider.GetTerritoryById(territoryId);
         }
 
-        public IEnumerable<Territory> GetTerritoriesByGangId(int gangId)
+        public IEnumerable<Territory> GetAllTerritories()
         {
-            return _territoryProvider.GetTerritoryByGangId(gangId);
+            return _territoryProvider.GetAllTerritories();
         }
 
-        public Territory UpdateGangTerritory(int gangId, Territory territory)
+        public IEnumerable<GangTerritory> GetTerritoriesByGangId(int gangId)
         {
-            _territoryProvider.UpdateGangTerritory(gangId, territory);
-            return territory;
+            return _territoryProvider.GetGangTerritoryByGangId(gangId);
+        }
+
+        public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
+        {
+            return _territoryProvider.AddGangTerritory(gangTerritory);
+        }
+
+        public void RemoveGangTerritory(string gangTerritoryId)
+        {
+            _territoryProvider.RemoveGangTerritory(gangTerritoryId);
         }
 
         public TerritoryEffect GetTerritoryEffect(int territoryId)

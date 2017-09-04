@@ -12,16 +12,15 @@ namespace Hivemind.Providers
 {
     public class TerritoryProvider: HivemindProvider
     {
-        public IEnumerable<Territory> GetTerritoryByGangId(int gangId)
+        public IEnumerable<Territory> GetAllTerritories()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                using (var command = new SqlCommand("Territories_GetByGangId", connection))
+                using (var command = new SqlCommand("Territories_GetAll", connection))
                 {
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
                     var reader = command.ExecuteReader();
 
                     return GetTerritoryListFromReader(reader);
@@ -51,23 +50,111 @@ namespace Hivemind.Providers
             }
         }
 
-        public void UpdateGangTerritory(int gangId, Territory territory)
+        public IEnumerable<GangTerritory> GetGangTerritoryByGangId(int gangId)
         {
-            // TODO:
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Territories_GetByGangId", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
+                    var reader = command.ExecuteReader();
+
+                    return GetGangTerritoryListFromReader(reader);
+                }
+            }
         }
 
-        public void InsertGangTerritory(int gangId, Territory territory)
+        public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
         {
-            // TODO
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("GangTerritories_Add", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var gangTerritoryId = command.Parameters.Add("@GangTerritoryId", SqlDbType.NVarChar, 100);
+                    gangTerritoryId.Direction = ParameterDirection.Output;
+                    gangTerritoryId.Value = string.Empty;
+                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangTerritory.GangId;
+                    command.Parameters.Add("@TerritoryId", SqlDbType.Int).Value = gangTerritory.Territory.TerritoryId;
+
+                    command.ExecuteNonQuery();
+                    gangTerritory.GangTerritoryId = (string)gangTerritoryId.Value;
+                    return gangTerritory;
+                }
+            }
+        }
+
+        public void RemoveGangTerritory(string gangTerritoryId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("GangTerritories_Remove", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@GangTerritoryId", SqlDbType.NVarChar, 100).Value = gangTerritoryId;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private IEnumerable<GangTerritory> GetGangTerritoryListFromReader(SqlDataReader reader)
+        {
+            var territories = new List<GangTerritory>();
+            GangTerritory territory;
+            while ((territory = GetGangTerritoryFromReader(reader)) != null)
+            {
+                territories.Add(territory);
+            }
+
+            return territories;
+        }
+
+        private GangTerritory GetGangTerritoryFromReader(SqlDataReader reader)
+        {
+            var gangTerritory = new GangTerritory();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("gangId");
+                gangTerritory.GangId = reader.GetInt32(value);
+
+                value = reader.GetOrdinal("gangTerritoryId");
+                gangTerritory.GangTerritoryId = reader.GetString(value);
+
+                value = reader.GetOrdinal("description");
+                gangTerritory.Territory.Description = reader.GetString(value);
+
+                value = reader.GetOrdinal("name");
+                gangTerritory.Territory.Name = reader.GetString(value);
+
+                value = reader.GetOrdinal("income");
+                gangTerritory.Territory.Income = reader.GetString(value);
+
+                value = reader.GetOrdinal("territoryId");
+                gangTerritory.Territory.TerritoryId = reader.GetInt32(value);
+            }
+            else
+            {
+                return null;
+            }
+
+            return gangTerritory;
         }
 
         private IEnumerable<Territory> GetTerritoryListFromReader(SqlDataReader reader)
         {
             var territories = new List<Territory>();
+            Territory territory;
 
-            while (reader.Read())
+            while ((territory = GetTerritoryFromReader(reader)) != null)
             {
-                territories.Add(GetTerritoryFromReader(reader));
+                territories.Add(territory);
             }
 
             return territories;
@@ -89,6 +176,10 @@ namespace Hivemind.Providers
 
                 value = reader.GetOrdinal("income");
                 territory.Income = reader.GetString(value);
+            }
+            else
+            {
+                return null;
             }
 
             return territory;

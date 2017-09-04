@@ -36,7 +36,7 @@ namespace Hivemind.Providers
 
                     var gang = GetGangFromReader(reader);
                     gang.Gangers = _gangerProvider.GetByGangId(gangId);
-                    gang.Territories = _territoryProvider.GetTerritoryByGangId(gangId);
+                    gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gangId);
 
                     return gang;
                 }
@@ -56,6 +56,7 @@ namespace Hivemind.Providers
                     gangId.Direction = ParameterDirection.Output;
                     command.Parameters.Add("@GangName", SqlDbType.NVarChar).Value = gang.Name;
                     command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
+                    command.Parameters.Add("@Credits", SqlDbType.Int).Value = (int)gang.Credits;
                     command.ExecuteNonQuery();
 
                     gang.GangId = (int)gangId.Value;
@@ -108,7 +109,7 @@ namespace Hivemind.Providers
                 gang.Credits = reader.GetInt32(value);
 
                 gang.Gangers = _gangerProvider.GetByGangId(gang.GangId);
-                gang.Territories = _territoryProvider.GetTerritoryByGangId(gang.GangId);
+                gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gang.GangId);
             }
             return gang;
         }
