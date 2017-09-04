@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/game")]
     public class GameController : ApiController
     {
         private IGameService _gameService;

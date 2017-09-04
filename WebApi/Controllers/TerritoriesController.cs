@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/territories")]
     public class TerritoriesController : ApiController
     {
         private ITerritoryFactory _territoryFactory;

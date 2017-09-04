@@ -110,6 +110,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GangersController.cs" />
     <Compile Include="Controllers\TerritoriesController.cs" />
+    <Compile Include="Controllers\WeaponsController.cs" />
     <Compile Include="UnityResolver.cs" />
     <Compile Include="Controllers\GangsController.cs" />
     <Compile Include="Global.asax.cs">

@@ -8,7 +8,9 @@ namespace Hivemind.Enums
 {
     public enum WeaponType
     {
-        BASIC = 1,
+        HAND_TO_HAND = 1,
+        PISTOLS,
+        BASIC,
         SPECIAL,
         HEAVY,
         GRENADES,

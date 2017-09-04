@@ -2,21 +2,29 @@
 using Hivemind.Enums;
 using Hivemind.Factories;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/gangs")]
     public class GangsController : ApiController
     {
-        private GangFactory _gangFactory;
+        private IGangFactory _gangFactory;
+        private IWeaponFactory _weaponFactory;
 
-        public GangsController(GangFactory gangFactory)
+        public GangsController(IGangFactory gangFactory, IWeaponFactory weaponFactory)
         {
             if (gangFactory == null)
             {
                 throw new ArgumentNullException(nameof(gangFactory));
             }
+            if (weaponFactory == null)
+            {
+                throw new ArgumentNullException(nameof(weaponFactory));
+            }
             _gangFactory = gangFactory;
+            _weaponFactory = weaponFactory;
         }
 
         [HttpGet]
@@ -40,6 +48,33 @@ namespace WebApi.Controllers
         public Gang UpdateGang(Gang gang)
         {
             return _gangFactory.UpdateGang(gang);
+        }
+
+        // weapon routes
+        [HttpGet]
+        [Route("{gangId}/weapons")]
+        public IEnumerable<GangWeapon> GetWeapons([FromUri] string gangId)
+        {
+            return _weaponFactory.GetGangWeapons(gangId);
+        }
+
+        [HttpPost]
+        [Route("{gangId}/weapons")]
+        public GangWeapon AddGangWeapon([FromUri] string gangId, Weapon weapon)
+        {
+            var gangWeapon = new GangWeapon()
+            {
+                Weapon = weapon,
+                GangId = gangId
+            };
+            return _weaponFactory.AddGangWeapon(gangWeapon);
+        }
+
+        [HttpDelete]
+        [Route("{gangId}/weapons/{gangWeaponId}")]
+        public void RemoveGangWeapon([FromUri] string gangId, string gangWeaponId)
+        {
+            _weaponFactory.RemoveGangWeapon(gangWeaponId);
         }
     }
 }

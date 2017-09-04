@@ -9,17 +9,24 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/gangers")]
     public class GangersController : ApiController
     {
         private IGangerFactory _gangerFactory;
+        private IWeaponFactory _weaponFactory;
 
-        public GangersController(IGangerFactory gangerFactory)
+        public GangersController(IGangerFactory gangerFactory, IWeaponFactory weaponFactory)
         {
             if (gangerFactory == null)
             {
                 throw new ArgumentNullException(nameof(gangerFactory));
             }
+            if (weaponFactory == null)
+            {
+                throw new ArgumentNullException(nameof(weaponFactory));
+            }
             _gangerFactory = gangerFactory;
+            _weaponFactory = weaponFactory;
         }
 
         [HttpPost]
@@ -38,6 +45,33 @@ namespace WebApi.Controllers
         public Ganger UpdateGanger(Ganger ganger)
         {
             return _gangerFactory.UpdateGanger(ganger);
+        }
+
+        // weapon routes
+        [HttpGet]
+        [Route("{gangerId}/weapons")]
+        public IEnumerable<GangerWeapon> GetWeapons([FromUri] string gangerId)
+        {
+            return _weaponFactory.GetGangerWeapons(gangerId);
+        }
+
+        [HttpPost]
+        [Route("{gangerId}/weapons")]
+        public GangerWeapon AddGangerWeapon([FromUri] string gangerId, Weapon weapon)
+        {
+            var gangerWeapon = new GangerWeapon()
+            {
+                Weapon = weapon,
+                GangerId = gangerId
+            };
+            return _weaponFactory.AddGangerWeapon(gangerWeapon);
+        }
+
+        [HttpDelete]
+        [Route("{gangerId}/weapons/{gangerWeaponId}")]
+        public void RemoveGangerWeapon([FromUri] string gangerId, string gangerWeaponId)
+        {
+            _weaponFactory.RemoveGangerWeapon(gangerWeaponId);
         }
     }
 }
