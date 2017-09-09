@@ -61,6 +61,42 @@ namespace Hivemind {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose.
+        /// </summary>
+        internal static string lbl_choose {
+            get {
+                return ResourceManager.GetString("lbl_choose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2D6.
+        /// </summary>
+        internal static string lbl_dice_2d6 {
+            get {
+                return ResourceManager.GetString("lbl_dice_2d6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2D6*10.
+        /// </summary>
+        internal static string lbl_dice_2d6x10 {
+            get {
+                return ResourceManager.GetString("lbl_dice_2d6x10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D6*10.
+        /// </summary>
+        internal static string lbl_dice_d6x10 {
+            get {
+                return ResourceManager.GetString("lbl_dice_d6x10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The fighter has smashed one arm. Although he recovers from his injury his strength is permanently reduced as a result. The fighter’s Strength characteristic is reduced by -1 when using that arm. Randomly determine which arm has been hit. Bear in mind that some hand-to-hand weapons use the fighter’s own Strength, eg swords..
         /// </summary>
         internal static string lbl_injury_arm_wound_description {
@@ -385,6 +421,339 @@ namespace Hivemind {
         internal static string lbl_injury_survives_against_the_odss_description {
             get {
                 return ResourceManager.GetString("lbl_injury_survives_against_the_odss_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your gang has discovered a hidden entrance into a small unexplored dome. A ganger can collect remnants of ancient technical devices which can be sold for 2D6x10 credits.
+        ///So long as your gang is careful not to sell too many items at once no one will suspect that you have discovered a new dome. No risk is incurred by collecting 2D6x10 credits. However, if you want to work the dome more intensely you can do so. A ganger can collect 3D6x10, 4D6x10, 5D6x10 or even 6D6x10 from the hoard, but if he rolls any doub [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_archeotech_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_archeotech_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archeotech.
+        /// </summary>
+        internal static string lbl_territory_archeotech_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_archeotech_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An extensive and highly dangerous chemical pit lies nearby. The pit is a source of constantly changing chemicals, sulphurous deposits, and all kinds of poisonous and corrosive substances. If you want to collect chemicals from the pit you gain 2D6 credits.
+        ///The work is extremely hazardous. If you roll a double or a 6 when working out your credits then the ganger falls into the chem pit but manages to haul himself free. He struggles back to base horrifically scarred, his skin covered with blisters. His appear [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_chem_pit_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_chem_pit_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chem Pit.
+        /// </summary>
+        internal static string lbl_territory_chem_pit_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_chem_pit_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your gang leader has inherited an old drinking hole in payment of an outstanding gambling debt. The hole earns a small sum and also provides the gang with a convenient base in the local settlement. You can visit the drinking hole to collect your share of D6x10 credits..
+        /// </summary>
+        internal static string lbl_territory_drinking_hole_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_drinking_hole_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drinking Hole.
+        /// </summary>
+        internal static string lbl_territory_drinking_hole_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_drinking_hole_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One of the local medical practitioners has offered to patch up your wounded fighters at favourable rates in return for blood and tissue donations from your gangers. If a ganger wants to part with a few pints of blood or some other renewable tissue you gain D6x10 credits. The Doc will also give you D6x5 credits for the body of any of your fighters who dies in combat, providing him with a useful supply of organs and limbs for transplant..
+        /// </summary>
+        internal static string lbl_territory_friendly_doc_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_friendly_doc_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friendly Doc.
+        /// </summary>
+        internal static string lbl_territory_friendly_doc_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_friendly_doc_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your gang runs a gambling den in an old disused hole in your settlement. Although the income from running a game is good, it is a risky business because Underhivers are notorious cheats and bad losers too. If you decide to run a gambling session you receive 2D6x10 credits. However, if you roll a double you lose that number of credits from that turn’s income instead – eg, double 4 you lose 80 credits.
+        ///Note that losses are deducted from your income before making reductions for basic running costs. If a gang  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_gambling_den_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_gambling_den_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gambling Den.
+        /// </summary>
+        internal static string lbl_territory_gambling_den_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_gambling_den_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You befriend a group of settlers who have migrated from Hive City to the Underhive to start a new life. Possibly your gang has chanced upon the settlers lost or dying in the wastes. Maybe they are relatives or friends of one of your gang fighters who have deliberately sought him out. Thanks to your contacts and influence you are able to give the green hivers a good start, and naturally they are grateful for your assistance and only too pleased to help in the future. You may choose any type of territory from [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_green_hivers_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_green_hivers_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Hivers.
+        /// </summary>
+        internal static string lbl_territory_green_hivers_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_green_hivers_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A local Guilder has offered you favourable rates in return for your business. As a result you are able to increase your income substantially. If you wish to deal with your Guilder contact you gain an extra D6x10 credits.
+        ///If you recover any loot during a fight you can trade it in to your Guilder contact for an extra +5 credits income for each item..
+        /// </summary>
+        internal static string lbl_territory_guilder_contract_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_guilder_contract_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guilder Contract.
+        /// </summary>
+        internal static string lbl_territory_guilder_contract_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_guilder_contract_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One of the gang fighters comes from a holestead out in the wastes. The hole produces a crop of nutritious slime which the ganger can help his family carry to the local trade post in return for D6x10 credits’ cut of the proceeds..
+        /// </summary>
+        internal static string lbl_territory_holestead_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_holestead_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Holestead.
+        /// </summary>
+        internal static string lbl_territory_holestead_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_holestead_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In a secret location in the wastes your gang has discovered a mine. The excavations yield carnotite gems or some other valuable ores or stones. Friends of the fighters are already working in return for a slice of the proceeds. You can collect D6x10 credits as your share of the profits to date.
+        ///If you capture an enemy fighter then you can put him to work in your mine instead of selling him to slavers. Each captive worker adds +1 to your D6 dice roll for income from the mine..
+        /// </summary>
+        internal static string lbl_territory_mine_workings_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_mine_workings_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mine Workings.
+        /// </summary>
+        internal static string lbl_territory_mine_workings_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_mine_workings_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not far from your settlement there is an outcrop of mineral wastes where a ganger can collect valuable sparstones, adonite crystals, igneous adamantorite, or one of the many other kinds of mineral gems that are formed in the Underhive. You will earn D6x10 credits by searching the outcrop for precious stones..
+        /// </summary>
+        internal static string lbl_territory_mineral_outcrop_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_mineral_outcrop_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mineral Outcrop.
+        /// </summary>
+        internal static string lbl_territory_mineral_outcrop_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_mineral_outcrop_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is an exposed area of ancient ruins not far from your settlement. If a ganger searches through the ruins he may find scrap pieces of archeotech, bits of old metal, or interesting old curios – enough to sell for 10 credits..
+        /// </summary>
+        internal static string lbl_territory_old_ruins_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_old_ruins_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Ruins.
+        /// </summary>
+        internal static string lbl_territory_old_ruins_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_old_ruins_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The families of your gang fighters own holes or workshops inside the settlement where the gang is based. These holdings help to support the gang by providing food, shelter, and a vital link with the local traders.
+        ///If a ganger visits his family he collects 30 credits. In addition, whether the territory is used or not, there is a chance of a young relative leaving the settlement to join your gang. Roll a D6 after each game. On the roll of a 6 you may recruit a juve for free. You will have to pay for his weap [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_settlement_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_settlement_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settlement.
+        /// </summary>
+        internal static string lbl_territory_settlement_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_settlement_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Near your settlement there is an extensive network of tunnels and crawlholes full of iron slag and other solidified chemical wastes. A ganger can work the slag by breaking it up ready to sell to the local Guilders for 15 credits..
+        /// </summary>
+        internal static string lbl_territory_slag_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_slag_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slag.
+        /// </summary>
+        internal static string lbl_territory_slag_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_slag_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your gang has discovered a hidden cave where many kinds of rare fungi grow, such as pearl spore and iron mould. A ganger can harvest the fungi and sell it to local traders for 2D6x10 credits.
+        ///If you roll double 1 when harvesting fungus the collecting ganger has contracted Spore Sickness. This is a fungal disease in which plump and colourful fungi sprout from all over the victim’s body. Spore Sickness is not lethal and recovery is automatic, but the ganger will not be able to take part in future battles unt [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lbl_territory_spore_cave_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_spore_cave_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spore Cave.
+        /// </summary>
+        internal static string lbl_territory_spore_cave_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_spore_cave_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your gang has found a buried entrance to a labyrinth of ancient service ducts beneath the dome floor. When the gang fights a battle it can use these ducts to position up to three fighters anywhere on the battlefield at ground level.
+        ///Models are set up at the end of the player’s first turn and cannot be placed within 8&quot; of enemy models. This represents the fighters working their way behind the enemy using their secret tunnels..
+        /// </summary>
+        internal static string lbl_territory_tunnels_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_tunnels_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tunnels.
+        /// </summary>
+        internal static string lbl_territory_tunnels_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_tunnels_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The gang has found a concealed entrance into a network of ancient ventilation shafts. When the gang fights a battle it can use these vents to position up to three fighters anywhere on the battlefield above ground level. Models are set up at the end of the player’s first turn and cannot be placed within 8&quot; of enemy models. This represents the fighters working their way over and around the enemy using their secret air shafts..
+        /// </summary>
+        internal static string lbl_territory_vents_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_vents_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vents.
+        /// </summary>
+        internal static string lbl_territory_vents_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_vents_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The gang has discovered and renovated an old water still out in the wastes. The still is worked by the family or friends of one of the gangers. Guilder slave trains carry the water to local settlers making the gang a share of the proceeds amounting to D6x10 credits..
+        /// </summary>
+        internal static string lbl_territory_water_still_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_water_still_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Still.
+        /// </summary>
+        internal static string lbl_territory_water_still_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_water_still_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The family or friends of one of your gang fighters runs a workshop in the local settlement. You can trade in bits of scrap or other odds and ends in return for cheap repair work or cash. If you want to visit the workshop you earn D6x10 credits.
+        ///In addition, thanks to your workshop’s meticulous care, you always ignore the first Ammo test during a battle. It is assumed you pass the test and no dice are rolled. Note that this only applies to the first test, not to subsequent ones..
+        /// </summary>
+        internal static string lbl_territory_workshop_description {
+            get {
+                return ResourceManager.GetString("lbl_territory_workshop_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workshop.
+        /// </summary>
+        internal static string lbl_territory_workshop_name {
+            get {
+                return ResourceManager.GetString("lbl_territory_workshop_name", resourceCulture);
             }
         }
     }
