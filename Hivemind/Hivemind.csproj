@@ -103,8 +103,6 @@
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Utilities\DiceRoller.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TerritoryPro\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,84 @@
+2017-09-09 11:53:55 AM	This log contains information about the import schema operation into project 'Database' on computer 'TOMBSTONE' by user 'Greg'.
+2017-09-09 11:53:55 AM	Import of database schema has started.
+2017-09-09 11:54:04 AM	Gathering database credentials
+2017-09-09 11:54:04 AM	Gathering database options
+2017-09-09 11:54:04 AM	Gathering users
+2017-09-09 11:54:04 AM	Gathering roles
+2017-09-09 11:54:04 AM	Gathering application roles
+2017-09-09 11:54:04 AM	Gathering role memberships
+2017-09-09 11:54:04 AM	Gathering filegroups
+2017-09-09 11:54:04 AM	Gathering full-text catalogs
+2017-09-09 11:54:04 AM	Gathering assemblies
+2017-09-09 11:54:04 AM	Gathering certificates
+2017-09-09 11:54:04 AM	Gathering asymmetric keys
+2017-09-09 11:54:04 AM	Gathering symmetric keys
+2017-09-09 11:54:04 AM	Gathering encrypted symmetric keys
+2017-09-09 11:54:04 AM	Gathering schemas
+2017-09-09 11:54:04 AM	Gathering XML schema collections
+2017-09-09 11:54:04 AM	Gathering user-defined data types
+2017-09-09 11:54:04 AM	Gathering user-defined types
+2017-09-09 11:54:04 AM	Gathering table types
+2017-09-09 11:54:04 AM	Gathering unique keys for table types
+2017-09-09 11:54:04 AM	Gathering primary keys for table types
+2017-09-09 11:54:04 AM	Gathering indexes for table types
+2017-09-09 11:54:04 AM	Gathering check constraints for table types
+2017-09-09 11:54:04 AM	Gathering default constraints for table types
+2017-09-09 11:54:04 AM	Gathering partition functions
+2017-09-09 11:54:04 AM	Gathering partition schemes
+2017-09-09 11:54:04 AM	Gathering functions
+2017-09-09 11:54:04 AM	Gathering encrypted functions
+2017-09-09 11:54:04 AM	Gathering aggregates
+2017-09-09 11:54:04 AM	Gathering procedures
+2017-09-09 11:54:04 AM	Gathering encrypted procedures
+2017-09-09 11:54:04 AM	Gathering tables
+2017-09-09 11:54:04 AM	Gathering primary keys
+2017-09-09 11:54:04 AM	Gathering unique constraints
+2017-09-09 11:54:04 AM	Gathering foreign keys
+2017-09-09 11:54:04 AM	Gathering default constraints
+2017-09-09 11:54:04 AM	Gathering check constraints
+2017-09-09 11:54:04 AM	Gathering views
+2017-09-09 11:54:04 AM	Gathering encrypted views
+2017-09-09 11:54:04 AM	Gathering indexes
+2017-09-09 11:54:04 AM	Gathering statistics
+2017-09-09 11:54:04 AM	Gathering full-text index stoplists
+2017-09-09 11:54:04 AM	Gathering search property lists
+2017-09-09 11:54:04 AM	Gathering search properties
+2017-09-09 11:54:04 AM	Gathering full-text indexes
+2017-09-09 11:54:04 AM	Gathering column store indexes
+2017-09-09 11:54:04 AM	Gathering spatial indexes
+2017-09-09 11:54:04 AM	Gathering XML indexes
+2017-09-09 11:54:11 AM	Gathering Selective XML indexes
+2017-09-09 11:54:11 AM	Gathering encrypted triggers
+2017-09-09 11:54:11 AM	Gathering triggers
+2017-09-09 11:54:11 AM	Gathering encrypted and clr ddl triggers
+2017-09-09 11:54:11 AM	Gathering ddl triggers
+2017-09-09 11:54:11 AM	Gathering synonyms
+2017-09-09 11:54:11 AM	Gathering defaults
+2017-09-09 11:54:11 AM	Gathering data constraint uddt bindings
+2017-09-09 11:54:11 AM	Gathering rules
+2017-09-09 11:54:11 AM	Gathering data constraint uddt bindings
+2017-09-09 11:54:11 AM	Gathering message types
+2017-09-09 11:54:11 AM	Gathering queues
+2017-09-09 11:54:11 AM	Gathering contracts
+2017-09-09 11:54:11 AM	Gathering services
+2017-09-09 11:54:11 AM	Gathering event notifications
+2017-09-09 11:54:11 AM	Gathering remote service bindings
+2017-09-09 11:54:11 AM	Gathering broker priorities
+2017-09-09 11:54:11 AM	Gathering signatures
+2017-09-09 11:54:11 AM	Gathering data compression options
+2017-09-09 11:54:11 AM	Gathering sequence types
+2017-09-09 11:54:11 AM	Gathering security policies
+2017-09-09 11:54:11 AM	Gather column encryption keys
+2017-09-09 11:54:11 AM	Gathering column master keys
+2017-09-09 11:54:11 AM	Gathering external data sources
+2017-09-09 11:54:11 AM	Gathering external file formats
+2017-09-09 11:54:11 AM	Gathering external tables
+2017-09-09 11:54:11 AM	Gathering extended properties
+2017-09-09 11:54:12 AM	Gathering credentials
+2017-09-09 11:54:12 AM	Gathering logins
+2017-09-09 11:54:12 AM	Gathering server audits
+2017-09-09 11:54:12 AM	Scanning project for duplicate elements
+2017-09-09 11:54:12 AM	Finished duplicate element processing
+2017-09-09 11:54:13 AM	Finished importing database.
+2017-09-09 11:54:13 AM	A summary of the import was saved to the following location: D:\Source\Hivemind\Hivemind\Database\Import Schema Logs\Database_20170909035355.log
+2017-09-09 11:54:13 AM	Click Finish to continue...

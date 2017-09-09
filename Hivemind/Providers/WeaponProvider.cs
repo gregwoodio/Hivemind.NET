@@ -228,7 +228,7 @@ namespace Hivemind.Providers
                 }
 
                 value = reader.GetOrdinal("type");
-                weapon.Type = (WeaponType)reader.GetInt32(value);
+                weapon.WeaponType = (WeaponType)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("cost");
                 weapon.Cost = reader.GetString(value);
@@ -236,7 +236,7 @@ namespace Hivemind.Providers
                 value = reader.GetOrdinal("availability");
                 if (!reader.IsDBNull(value))
                 {
-                    weapon.Availability = (WeaponAvailability)reader.GetInt32(value);
+                    weapon.WeaponAvailability = (WeaponAvailability)reader.GetInt32(value);
                 }
 
                 value = reader.GetOrdinal("description");
@@ -323,7 +323,7 @@ namespace Hivemind.Providers
                 }
 
                 value = reader.GetOrdinal("type");
-                gangWeapon.Weapon.Type = (WeaponType)reader.GetInt32(value);
+                gangWeapon.Weapon.WeaponType = (WeaponType)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("cost");
                 gangWeapon.Weapon.Cost = reader.GetString(value);
@@ -331,7 +331,7 @@ namespace Hivemind.Providers
                 value = reader.GetOrdinal("availability");
                 if (!reader.IsDBNull(value))
                 {
-                    gangWeapon.Weapon.Availability = (WeaponAvailability)reader.GetInt32(value);
+                    gangWeapon.Weapon.WeaponAvailability = (WeaponAvailability)reader.GetInt32(value);
                 }
 
                 value = reader.GetOrdinal("description");
@@ -424,7 +424,7 @@ namespace Hivemind.Providers
                 }
 
                 value = reader.GetOrdinal("type");
-                gangerWeapon.Weapon.Type = (WeaponType)reader.GetInt32(value);
+                gangerWeapon.Weapon.WeaponType = (WeaponType)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("cost");
                 gangerWeapon.Weapon.Cost = reader.GetString(value);
@@ -432,7 +432,7 @@ namespace Hivemind.Providers
                 value = reader.GetOrdinal("availability");
                 if (!reader.IsDBNull(value))
                 {
-                    gangerWeapon.Weapon.Availability = (WeaponAvailability)reader.GetInt32(value);
+                    gangerWeapon.Weapon.WeaponAvailability = (WeaponAvailability)reader.GetInt32(value);
                 }
 
                 value = reader.GetOrdinal("description");

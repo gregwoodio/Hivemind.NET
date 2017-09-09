@@ -8,8 +8,8 @@ namespace Hivemind.Entities
     {
         public WeaponEnum WeaponId { get; set; }
         public string Name { get; set; }
-        public WeaponType Type { get; set; }
-        public WeaponAvailability Availability { get; set; }
+        public WeaponType WeaponType { get; set; }
+        public WeaponAvailability WeaponAvailability { get; set; }
         public string ShortRange { get; set; }
         public string LongRange { get; set; }
         public string HitShort { get; set; }
