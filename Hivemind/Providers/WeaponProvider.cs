@@ -59,7 +59,7 @@ namespace Hivemind.Providers
 
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangWeapon.GangId;
-                    command.Parameters.Add("@WeaponId", SqlDbType.Int).Value = gangWeapon.Weapon.WeaponId;
+                    command.Parameters.Add("@WeaponId", SqlDbType.Int).Value = gangWeapon.Weapon.WeaponEnum;
                     var gangWeaponId = command.Parameters.Add("@GangWeaponId", SqlDbType.NVarChar, 100);
                     gangWeaponId.Direction = ParameterDirection.Output;
 
@@ -113,7 +113,7 @@ namespace Hivemind.Providers
 
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerWeapon.GangerId;
-                    command.Parameters.Add("@WeaponId", SqlDbType.Int).Value = gangerWeapon.Weapon.WeaponId;
+                    command.Parameters.Add("@WeaponId", SqlDbType.Int).Value = gangerWeapon.Weapon.WeaponEnum;
                     var gangerWeaponId = command.Parameters.Add("@GangerWeaponId", SqlDbType.NVarChar, 100);
                     gangerWeaponId.Direction = ParameterDirection.Output;
 
@@ -174,7 +174,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("weaponId");
-                weapon.WeaponId = (WeaponEnum)reader.GetInt32(value);
+                weapon.WeaponEnum = (WeaponEnum)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("weaponName");
                 weapon.Name = reader.GetString(value);
@@ -269,7 +269,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("weaponId");
-                gangWeapon.Weapon.WeaponId = (WeaponEnum)reader.GetInt32(value);
+                gangWeapon.Weapon.WeaponEnum = (WeaponEnum)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("weaponName");
                 gangWeapon.Weapon.Name = reader.GetString(value);
@@ -370,7 +370,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("weaponId");
-                gangerWeapon.Weapon.WeaponId = (WeaponEnum)reader.GetInt32(value);
+                gangerWeapon.Weapon.WeaponEnum = (WeaponEnum)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("weaponName");
                 gangerWeapon.Weapon.Name = reader.GetString(value);

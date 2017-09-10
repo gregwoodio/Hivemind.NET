@@ -42,7 +42,7 @@ namespace Hivemind.Services
                 var advanceRolls = GetNumberOfAdvanceRolls(ganger, experience);
                 while (advanceRolls > 0)
                 {
-                    advancements.Add(DoAdvanceRoll(ganger, gang.House));
+                    advancements.Add(DoAdvanceRoll(ganger, gang.GangHouse));
                     advanceRolls--;
                 }
 
@@ -213,7 +213,7 @@ namespace Hivemind.Services
 
         public int GetLeaderBonus(Ganger ganger, GameType gameType, bool hasWon, bool isAttacker)
         {
-            if (ganger.Type != GangerType.LEADER)
+            if (ganger.GangerType != GangerType.LEADER)
             {
                 return 0;
             }
@@ -402,7 +402,7 @@ namespace Hivemind.Services
                     {
                         Description = "New gang skill",
                         GangerName = ganger.Name,
-                        NewSkillFromCategory = GetGangSkill(ganger.Type, house)
+                        NewSkillFromCategory = GetGangSkill(ganger.GangerType, house)
                     };
                 case 5:
                     stat = (statToIncrease <= 3) ? GangerStatistics.STRENGTH : GangerStatistics.ATTACK;

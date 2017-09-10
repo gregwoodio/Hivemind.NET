@@ -36,7 +36,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public Ganger GetGanger(string gangerId)
+        [Route("{gangerId}")]
+        public Ganger GetGanger([FromUri] string gangerId)
         {
             return _gangerFactory.GetGanger(gangerId);
         }

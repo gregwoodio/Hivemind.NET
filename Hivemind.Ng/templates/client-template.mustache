@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+{{#imports}}
+import { {{import}} } from '../entities/{{import}}';
+{{/imports}}
+
+@Injectable()
+export class {{name}} {
+
+    constructor(private _http: HttpClient) {}
+
+    {{#methods}}
+    public {{methodName}}(
+        {{#pathParams}}
+        {{name}}{{required}}: {{type}},
+        {{/pathParams}}
+        {{#bodyParams}}
+        {{name}}{{required}}: {{type}},
+        {{/bodyParams}}
+    ): Observable<{{returns}}> {
+        {{#bodyParams}}
+        let body = {{name}};
+        {{/bodyParams}}
+
+        return this._http.{{httpMethod}}(
+            'http://localhost:61774/{{{path}}}'
+            {{#bodyParams}}
+            , body
+            {{/bodyParams}}
+        );
+    }
+
+    {{/methods}}
+}

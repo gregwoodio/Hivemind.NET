@@ -9,7 +9,7 @@ namespace Hivemind.Entities
         public string GangId { get; set; }
         public string Name { get; set; }
         public int Credits { get; set; }
-        public GangHouse House { get; set; }
+        public GangHouse GangHouse { get; set; }
         public IEnumerable<Ganger> Gangers { get; set; }
         public IEnumerable<GangTerritory> Territories { get; set; }
 

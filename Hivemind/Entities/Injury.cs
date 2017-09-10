@@ -11,7 +11,7 @@ namespace Hivemind.Entities
 
     public class Injury
     {
-        public InjuryEnum InjuryId { get; set; }
+        public InjuryEnum InjuryEnum { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Effect InjuryEffect { get; set; }

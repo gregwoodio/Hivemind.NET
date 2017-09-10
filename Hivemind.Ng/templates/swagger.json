@@ -83,6 +83,38 @@
         }
       }
     },
+    "/api/gangers/{gangerId}": {
+      "get": {
+        "tags": [
+          "Gangers"
+        ],
+        "operationId": "Gangers_GetGanger",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "gangerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Ganger"
+            }
+          }
+        }
+      }
+    },
     "/api/gangers/{gangerId}/weapons": {
       "get": {
         "tags": [
@@ -193,36 +225,6 @@
       }
     },
     "/api/Gangers": {
-      "get": {
-        "tags": [
-          "Gangers"
-        ],
-        "operationId": "Gangers_GetGanger",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "text/html",
-          "application/xml",
-          "text/xml"
-        ],
-        "parameters": [
-          {
-            "name": "gangerId",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Ganger"
-            }
-          }
-        }
-      },
       "put": {
         "tags": [
           "Gangers"
@@ -297,6 +299,93 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Ganger"
+            }
+          }
+        }
+      }
+    },
+    "/api/gangs/{gangId}": {
+      "get": {
+        "tags": [
+          "Gangs"
+        ],
+        "operationId": "Gangs_GetGang",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "gangId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Gang"
+            }
+          }
+        }
+      }
+    },
+    "/api/gangs/{gangName}": {
+      "post": {
+        "tags": [
+          "Gangs"
+        ],
+        "operationId": "Gangs_AddGang",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "gangName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "house",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "enum": [
+                "CAWDOR",
+                "ESCHER",
+                "GOLIATH",
+                "VAN_SAAR",
+                "ORLOCK",
+                "DELAQUE"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Gang"
             }
           }
         }
@@ -411,38 +500,6 @@
         }
       }
     },
-    "/api/Gangs/{id}": {
-      "get": {
-        "tags": [
-          "Gangs"
-        ],
-        "operationId": "Gangs_GetGang",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "text/html",
-          "application/xml",
-          "text/xml"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Gang"
-            }
-          }
-        }
-      }
-    },
     "/api/Gangs": {
       "put": {
         "tags": [
@@ -472,50 +529,6 @@
             "schema": {
               "$ref": "#/definitions/Gang"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Gang"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Gangs"
-        ],
-        "operationId": "Gangs_AddGang",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "text/html",
-          "application/xml",
-          "text/xml"
-        ],
-        "parameters": [
-          {
-            "name": "gangName",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "house",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "CAWDOR",
-              "ESCHER",
-              "GOLIATH",
-              "VAN_SAAR",
-              "ORLOCK",
-              "DELAQUE"
-            ]
           }
         ],
         "responses": {
@@ -561,6 +574,74 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Territories"
+        ],
+        "operationId": "Territories_AddGangTerritory",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "gangId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "territory",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Territory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GangTerritory"
+            }
+          }
+        }
+      }
+    },
+    "/api/territories/{gangTerritoryId}": {
+      "delete": {
+        "tags": [
+          "Territories"
+        ],
+        "operationId": "Territories_RemoveGangTerritory",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "gangTerritoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
       }
     },
     "/api/Territories": {
@@ -586,72 +667,6 @@
                 "$ref": "#/definitions/Territory"
               }
             }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Territories"
-        ],
-        "operationId": "Territories_AddGangTerritory",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "text/html",
-          "application/xml",
-          "text/xml",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json",
-          "text/html",
-          "application/xml",
-          "text/xml"
-        ],
-        "parameters": [
-          {
-            "name": "gangId",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "territory",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Territory"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/GangTerritory"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Territories"
-        ],
-        "operationId": "Territories_RemoveGangTerritory",
-        "consumes": [],
-        "produces": [],
-        "parameters": [
-          {
-            "name": "gangTerritoryId",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
           }
         }
       }
@@ -899,7 +914,7 @@
         "Name": {
           "type": "string"
         },
-        "Type": {
+        "GangerType": {
           "enum": [
             "JUVE",
             "GANGER",
@@ -1019,7 +1034,7 @@
     "Injury": {
       "type": "object",
       "properties": {
-        "InjuryId": {
+        "InjuryEnum": {
           "enum": [
             "DEAD",
             "MULTIPLE_INJURIES",
@@ -1070,7 +1085,7 @@
     "Weapon": {
       "type": "object",
       "properties": {
-        "WeaponId": {
+        "WeaponEnum": {
           "enum": [
             "MASSIVE_AXE",
             "CLUB",
@@ -1078,14 +1093,16 @@
             "CHAINSWORD",
             "SWORD",
             "POWER_SWORD",
-            "POWER_AXE",
+            "POWER_AXE_ONE_HANDED",
+            "POWER_AXE_TWO_HANDED",
             "POWER_FIST",
             "POWER_MAUL",
             "AUTOPISTOL",
             "BOLT_PISTOL",
             "LASPISTOL",
             "NEEDLE_PISTOL",
-            "PLASMA_PISTOL",
+            "PLASMA_PISTOL_LOW_POWER",
+            "PLASMA_PISTOL_HIGH_POWER",
             "STUB_GUN",
             "WEB_PISTOL",
             "HAND_FLAMER",
@@ -1105,7 +1122,8 @@
             "PLASMA_GUN_HIGH_ENERGY",
             "AUTOCANNON",
             "HEAVY_BOLTER",
-            "HEAVY_PLASMA_GUN",
+            "HEAVY_PLASMA_GUN_LOW_ENERGY",
+            "HEAVY_PLASMA_GUN_HIGH_ENERGY",
             "HEAVY_STUBBER",
             "LASCANNON",
             "MISSILE_LAUNCHER_KRAK_MISSILE",
@@ -1113,7 +1131,9 @@
             "KRAK_GRENADE",
             "FRAG_GRENADE",
             "MELTA_BOMB",
-            "GAS_GRENADE",
+            "CHOKE_GAS_GRENADE",
+            "HALLUCINOGEN_GAS_GRENADE",
+            "SCARE_GAS_GRENADE",
             "PLASMA_GRENADE",
             "PHOTON_FLASH_FLARE",
             "SMOKE_GRENADE",
@@ -1158,7 +1178,7 @@
         "Name": {
           "type": "string"
         },
-        "Type": {
+        "WeaponType": {
           "enum": [
             "HAND_TO_HAND",
             "PISTOLS",
@@ -1173,7 +1193,7 @@
           ],
           "type": "string"
         },
-        "Availability": {
+        "WeaponAvailability": {
           "enum": [
             "COMMON",
             "RARE"
@@ -1215,20 +1235,6 @@
         }
       }
     },
-    "GangWeapon": {
-      "type": "object",
-      "properties": {
-        "GangWeaponId": {
-          "type": "string"
-        },
-        "GangId": {
-          "type": "string"
-        },
-        "Weapon": {
-          "$ref": "#/definitions/Weapon"
-        }
-      }
-    },
     "Gang": {
       "type": "object",
       "properties": {
@@ -1242,7 +1248,7 @@
           "format": "int32",
           "type": "integer"
         },
-        "House": {
+        "GangHouse": {
           "enum": [
             "CAWDOR",
             "ESCHER",
@@ -1304,6 +1310,20 @@
         },
         "WorkTerritory": {
           "type": "object"
+        }
+      }
+    },
+    "GangWeapon": {
+      "type": "object",
+      "properties": {
+        "GangWeaponId": {
+          "type": "string"
+        },
+        "GangId": {
+          "type": "string"
+        },
+        "Weapon": {
+          "$ref": "#/definitions/Weapon"
         }
       }
     }

@@ -6,7 +6,7 @@ namespace Hivemind.Entities
 
     public class Weapon
     {
-        public WeaponEnum WeaponId { get; set; }
+        public WeaponEnum WeaponEnum { get; set; }
         public string Name { get; set; }
         public WeaponType WeaponType { get; set; }
         public WeaponAvailability WeaponAvailability { get; set; }

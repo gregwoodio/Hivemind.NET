@@ -28,18 +28,20 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public Gang GetGang(string id)
+        [Route("{gangId}")]
+        public Gang GetGang([FromUri] string gangId)
         {
-            return _gangFactory.GetGang(id);
+            return _gangFactory.GetGang(gangId);
         }
 
         [HttpPost]
-        public Gang AddGang([FromUri] string gangName, [FromUri] GangHouse house)
+        [Route("{gangName}")]
+        public Gang AddGang([FromUri] string gangName, [FromBody] GangHouse house)
         {
             var gang = new Gang()
             {
                 Name = gangName,
-                House = house,
+                GangHouse = house,
             };
             return _gangFactory.AddGang(gang);
         }

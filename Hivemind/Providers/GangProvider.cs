@@ -55,7 +55,7 @@ namespace Hivemind.Providers
                     var gangId = command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100);
                     gangId.Direction = ParameterDirection.Output;
                     command.Parameters.Add("@GangName", SqlDbType.NVarChar).Value = gang.Name;
-                    command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
+                    command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.GangHouse;
                     command.Parameters.Add("@Credits", SqlDbType.Int).Value = (int)gang.Credits;
                     command.ExecuteNonQuery();
 
@@ -82,7 +82,7 @@ namespace Hivemind.Providers
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gang.GangId;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = gang.Name;
-                    command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.House;
+                    command.Parameters.Add("@House", SqlDbType.Int).Value = (int)gang.GangHouse;
                     command.Parameters.Add("@Credits", SqlDbType.Int).Value = gang.Credits;
                     command.ExecuteNonQuery();
 
@@ -103,7 +103,7 @@ namespace Hivemind.Providers
                 gang.Name = reader.GetString(value);
 
                 value = reader.GetOrdinal("house");
-                gang.House = (GangHouse)reader.GetInt32(value);
+                gang.GangHouse = (GangHouse)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("credits");
                 gang.Credits = reader.GetInt32(value);

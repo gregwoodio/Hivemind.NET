@@ -51,7 +51,7 @@ namespace Hivemind.Factories
             return new Ganger()
             {
                 Name = name,
-                Type = GangerType.JUVE,
+                GangerType = GangerType.JUVE,
                 Move = 4,
                 WeaponSkill = 2,
                 BallisticSkill = 2,
@@ -73,7 +73,7 @@ namespace Hivemind.Factories
             return new Ganger()
             {
                 Name = name,
-                Type = GangerType.GANGER,
+                GangerType = GangerType.GANGER,
                 Move = 4,
                 WeaponSkill = 3,
                 BallisticSkill = 3,
@@ -95,7 +95,7 @@ namespace Hivemind.Factories
             return new Ganger()
             {
                 Name = name,
-                Type = GangerType.HEAVY,
+                GangerType = GangerType.HEAVY,
                 Move = 4,
                 WeaponSkill = 3,
                 BallisticSkill = 3,
@@ -117,7 +117,7 @@ namespace Hivemind.Factories
             return new Ganger()
             {
                 Name = name,
-                Type = GangerType.LEADER,
+                GangerType = GangerType.LEADER,
                 Move = 4,
                 WeaponSkill = 4,
                 BallisticSkill = 4,

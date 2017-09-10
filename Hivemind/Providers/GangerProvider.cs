@@ -58,7 +58,7 @@ namespace Hivemind.Providers
                     gangerId.Direction = ParameterDirection.Output;
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = ganger.GangId;
                     command.Parameters.Add("@Name", SqlDbType.VarChar).Value = ganger.Name;
-                    command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.Type;
+                    command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.GangerType;
                     command.Parameters.Add("@Move", SqlDbType.Int).Value = ganger.Move;
                     command.Parameters.Add("@WeaponSkill", SqlDbType.Int).Value = ganger.WeaponSkill;
                     command.Parameters.Add("@BallisticSkill", SqlDbType.Int).Value = ganger.BallisticSkill;
@@ -102,7 +102,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = ganger.GangerId;
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = ganger.GangId;
                     command.Parameters.Add("@Name", SqlDbType.VarChar).Value = ganger.Name;
-                    command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.Type;
+                    command.Parameters.Add("@Type", SqlDbType.Int).Value = (int)ganger.GangerType;
                     command.Parameters.Add("@Move", SqlDbType.Int).Value = ganger.Move;
                     command.Parameters.Add("@WeaponSkill", SqlDbType.Int).Value = ganger.WeaponSkill;
                     command.Parameters.Add("@BallisticSkill", SqlDbType.Int).Value = ganger.BallisticSkill;
@@ -161,7 +161,7 @@ namespace Hivemind.Providers
                 ganger.Name = reader.GetString(value);
 
                 value = reader.GetOrdinal("type");
-                ganger.Type = (GangerType)reader.GetInt32(value);
+                ganger.GangerType = (GangerType)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("move");
                 ganger.Move = reader.GetInt32(value);

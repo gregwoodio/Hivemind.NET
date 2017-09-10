@@ -221,7 +221,7 @@ namespace Hivemind.Services
         /// <returns></returns>
         private IEnumerable<Ganger> GetGangers(string gangId)
         {
-            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.Type == Enums.GangerType.GANGER);
+            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.GangerType == Enums.GangerType.GANGER);
         }
     }
 }

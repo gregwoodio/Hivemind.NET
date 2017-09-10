@@ -12,7 +12,7 @@ namespace Hivemind.Entities
         public int SkillId;
         public string Name;
         public string Description;
-        public SkillType Category;
+        public SkillType SkillType;
         public GangerType[] RestrictedTypes { get; set; }
     }
 }

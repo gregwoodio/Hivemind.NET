@@ -47,7 +47,7 @@ namespace Hivemind.Providers
                             var injury = new Injury();
 
                             var value = reader.GetOrdinal("injuryId");
-                            injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
+                            injury.InjuryEnum = (InjuryEnum)reader.GetInt32(value);
 
                             value = reader.GetOrdinal("injuryName");
                             injury.Name = reader.GetString(value);
@@ -83,7 +83,7 @@ namespace Hivemind.Providers
                             var injury = new Injury();
 
                             var value = reader.GetOrdinal("injuryId");
-                            injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
+                            injury.InjuryEnum = (InjuryEnum)reader.GetInt32(value);
 
                             value = reader.GetOrdinal("injuryName");
                             injury.Name = reader.GetString(value);
@@ -106,7 +106,7 @@ namespace Hivemind.Providers
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("injuryId");
-                injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
+                injury.InjuryEnum = (InjuryEnum)reader.GetInt32(value);
 
                 value = reader.GetOrdinal("injuryName");
                 injury.Name = reader.GetString(value);

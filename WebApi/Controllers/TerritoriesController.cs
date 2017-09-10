@@ -37,7 +37,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public GangTerritory AddGangTerritory(string gangId, Territory territory)
+        [Route("{gangId}")]
+        public GangTerritory AddGangTerritory([FromUri]string gangId, Territory territory)
         {
             var gangTerritory = new GangTerritory()
             {
@@ -48,7 +49,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        public void RemoveGangTerritory(string gangTerritoryId)
+        [Route("{gangTerritoryId}")]
+        public void RemoveGangTerritory([FromUri] string gangTerritoryId)
         {
             _territoryFactory.RemoveGangTerritory(gangTerritoryId);
         }

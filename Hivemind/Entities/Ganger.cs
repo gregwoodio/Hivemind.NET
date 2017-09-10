@@ -12,7 +12,7 @@ namespace Hivemind.Entities
         public string GangerId { get; set; }
         public string GangId { get; set; }
         public string Name { get; set; }
-        public GangerType Type { get; set; }
+        public GangerType GangerType { get; set; }
         public int Move
         {
             get => _move;
