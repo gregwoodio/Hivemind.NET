@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lbl_as_user" xml:space="preserve">
+    <value>As user</value>
+  </data>
+  <data name="lbl_as_user_plus_1" xml:space="preserve">
+    <value>As user +1</value>
+  </data>
+  <data name="lbl_as_user_plus_2" xml:space="preserve">
+    <value>As user +2</value>
+  </data>
+  <data name="lbl_CC" xml:space="preserve">
+    <value>CC</value>
+  </data>
   <data name="lbl_choose" xml:space="preserve">
     <value>Choose</value>
   </data>
@@ -357,5 +369,23 @@ In addition, thanks to your workshop’s meticulous care, you always ignore the 
   </data>
   <data name="lbl_territory_workshop_name" xml:space="preserve">
     <value>Workshop</value>
+  </data>
+  <data name="lbl_auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="lbl_blast" xml:space="preserve">
+    <value>Blast</value>
+  </data>
+  <data name="lbl_half_weapon_base_cost" xml:space="preserve">
+    <value>Half Weapon base cost</value>
+  </data>
+  <data name="lbl_special" xml:space="preserve">
+    <value>Special</value>
+  </data>
+  <data name="lbl_template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="lbl_weapon_times_2" xml:space="preserve">
+    <value>Weapon x2</value>
   </data>
 </root>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Tests", "Hivemind.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{42E52BB8-8676-4210-9D88-148AB2184B0F}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{D1936024-B655-403A-B83F-7FAE6B1909C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E52BB8-8676-4210-9D88-148AB2184B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1936024-B655-403A-B83F-7FAE6B1909C0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

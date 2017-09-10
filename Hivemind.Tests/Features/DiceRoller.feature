@@ -30,3 +30,8 @@ Scenario: Parse dice string 2D6*10
 	Given no setup
 	When I parse the dice string '2D6*10'
 	Then the result should be between 20 and 120
+
+Scenario: Parse dice string 35+3D6
+	Given no setup
+	When I parse the dice string '35+3D6'
+	Then the result should be between 36 and 53

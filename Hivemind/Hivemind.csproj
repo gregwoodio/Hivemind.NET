@@ -93,6 +93,11 @@
     <Compile Include="Providers\HivemindProvider.cs" />
     <Compile Include="Providers\InjuryProvider.cs" />
     <Compile Include="Providers\TerritoryProvider.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\ExperienceService.cs" />
     <Compile Include="Services\IExperienceService.cs" />
     <Compile Include="Services\IIncomeService..cs" />
@@ -103,6 +108,11 @@
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Utilities\DiceRoller.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

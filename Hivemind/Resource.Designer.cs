@@ -61,6 +61,60 @@ namespace Hivemind {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to As user.
+        /// </summary>
+        internal static string lbl_as_user {
+            get {
+                return ResourceManager.GetString("lbl_as_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As user +1.
+        /// </summary>
+        internal static string lbl_as_user_plus_1 {
+            get {
+                return ResourceManager.GetString("lbl_as_user_plus_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As user +2.
+        /// </summary>
+        internal static string lbl_as_user_plus_2 {
+            get {
+                return ResourceManager.GetString("lbl_as_user_plus_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        internal static string lbl_auto {
+            get {
+                return ResourceManager.GetString("lbl_auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blast.
+        /// </summary>
+        internal static string lbl_blast {
+            get {
+                return ResourceManager.GetString("lbl_blast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CC.
+        /// </summary>
+        internal static string lbl_CC {
+            get {
+                return ResourceManager.GetString("lbl_CC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose.
         /// </summary>
         internal static string lbl_choose {
@@ -93,6 +147,15 @@ namespace Hivemind {
         internal static string lbl_dice_d6x10 {
             get {
                 return ResourceManager.GetString("lbl_dice_d6x10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Half Weapon base cost.
+        /// </summary>
+        internal static string lbl_half_weapon_base_cost {
+            get {
+                return ResourceManager.GetString("lbl_half_weapon_base_cost", resourceCulture);
             }
         }
         
@@ -421,6 +484,24 @@ namespace Hivemind {
         internal static string lbl_injury_survives_against_the_odss_description {
             get {
                 return ResourceManager.GetString("lbl_injury_survives_against_the_odss_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        internal static string lbl_special {
+            get {
+                return ResourceManager.GetString("lbl_special", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        internal static string lbl_template {
+            get {
+                return ResourceManager.GetString("lbl_template", resourceCulture);
             }
         }
         
@@ -754,6 +835,15 @@ namespace Hivemind {
         internal static string lbl_territory_workshop_name {
             get {
                 return ResourceManager.GetString("lbl_territory_workshop_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weapon x2.
+        /// </summary>
+        internal static string lbl_weapon_times_2 {
+            get {
+                return ResourceManager.GetString("lbl_weapon_times_2", resourceCulture);
             }
         }
     }
