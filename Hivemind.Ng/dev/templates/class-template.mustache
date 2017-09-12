@@ -1,0 +1,9 @@
+{{#imports}}
+import { {{import}} } from './{{import}}';
+{{/imports}}
+
+export class {{name}} {
+    {{#properties}}
+    public {{name}}: {{type}};
+    {{/properties}}
+}
