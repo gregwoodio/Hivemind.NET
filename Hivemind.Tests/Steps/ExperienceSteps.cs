@@ -7,21 +7,13 @@ using Microsoft.Practices.Unity;
 using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using Hivemind.Contracts;
 
 namespace Hivemind.Tests.Steps
 {
     [Binding]
     public class ExperienceSteps
     {
-        bool hasWon;
-        bool isAttacker;
-        public int Result;
-        public Ganger ganger;
-        int myGangRating;
-        int opponentGangRating;
-        int downedOpponents;
-        int objectives;
-        GameType gameType;
         private IExperienceService _experienceService;
 
         public ExperienceSteps()
@@ -30,112 +22,101 @@ namespace Hivemind.Tests.Steps
             _experienceService = container.Resolve<IExperienceService>();
         }
 
-        [Given(@"my gang has a rating of (.*) and the opponent has a rating of (.*)")]
-        public void GivenMyGangHasARatingOfAndTheOpponentHasARatingOf(int myGangRating, int opponentGangRating)
+        [Given(@"my gang has a rating of (.*)")]
+        public void GivenMyGangHasARatingOf(int myGangRating)
         {
-            this.myGangRating = myGangRating;
-            this.opponentGangRating = opponentGangRating;
+            ScenarioContext.Current.Add("GangRating", myGangRating);
         }
-        
-        [Given(@"my gang won the match")]
-        public void GivenMyGangWonTheMatch()
-        {
-            hasWon = true;
-        }
-        
-        [Given(@"my gang lost the match")]
-        public void GivenMyGangLostTheMatch()
-        {
-            hasWon = false;
-        }
-        
+
         [Given(@"a ganger has downed (.*) opponents")]
         public void GivenAGangerHasDownedOpponents(int downed)
         {
-            this.downedOpponents = downed;
-        }
-        
-        [Given(@"the game type was '(.*)'")]
-        public void GivenTheGameTypeWas(string gameType)
-        {
-            this.gameType = ParseGameTypeString(gameType);
-        }
-        
-        [Given(@"my gang was not the attacker")]
-        public void GivenMyGangWasNotTheAttacker()
-        {
-            isAttacker = false;
+            ScenarioContext.Current.Add("DownedOpponents", downed);
         }
         
         [Given(@"a ganger collects (.*) objectives")]
         public void GivenAGangerCollectsObjectives(int objectives)
         {
-            this.objectives = objectives;
+            ScenarioContext.Current.Add("Objectives", objectives);
         }
-        
-        [Given(@"a ganger participated in the battle")]
-        public void GivenAGangerParticipatedInTheBattle()
+
+        [Given(@"a battle report as follows:")]
+        public void GivenABattleReportAsFollows(Table table)
         {
-            // nothing to do
+            var battleReport = table.CreateInstance<BattleReport>();
+            ScenarioContext.Current.Add("BattleReport", battleReport);
         }
 
         [Given(@"a ganger with experience as follows:")]
         public void GivenAGangerWithExperienceAsFollows(Table table)
         {
-            ganger = table.CreateInstance<Ganger>();
+            var ganger = table.CreateInstance<Ganger>();
+            ScenarioContext.Current.Add("Ganger", ganger);
         }
 
         [When(@"I calculate the underdog bonus")]
         public void WhenICalculateTheUnderdogBonus()
         {
-            Result = _experienceService.GetUnderdogBonus(myGangRating, opponentGangRating, hasWon); 
+            var battleReport = ScenarioContext.Current.Get<BattleReport>("BattleReport");
+            var gangRating = ScenarioContext.Current.Get<int>("GangRating");
+            var result = _experienceService.GetUnderdogBonus(gangRating, battleReport.OpponentGangRating, battleReport.HasWon);
+
+            ScenarioContext.Current.Add("Result", result);
         }
         
         [When(@"I calculate the wounding hit bonus")]
         public void WhenICalculateTheWoundingHitBonus()
         {
-            Result = _experienceService.GetWoundingHitBonus(downedOpponents);
+            var downedOpponents = ScenarioContext.Current.Get<int>("DownedOpponents");
+            ScenarioContext.Current.Add("Result", _experienceService.GetWoundingHitBonus(downedOpponents));
         }
         
         [When(@"I calculate the leader's bonus")]
         public void WhenICalculateTheLeaderSBonus()
         {
-            Result = _experienceService.GetLeaderBonus(ganger, gameType, hasWon, isAttacker);
+            var ganger = ScenarioContext.Current.Get<Ganger>("Ganger");
+            var battleReport = ScenarioContext.Current.Get<BattleReport>("BattleReport");
+            ScenarioContext.Current.Add("Result", _experienceService.GetLeaderBonus(ganger, battleReport.GameType, battleReport.HasWon, battleReport.IsAttacker));
         }
         
         [When(@"the ganger gets (.*) experience")]
         public void WhenTheGangerGetsExperience(int experience)
         {
-            this.Result = _experienceService.GetNumberOfAdvanceRolls(ganger, experience);
+            var ganger = ScenarioContext.Current.Get<Ganger>("Ganger");
+            ScenarioContext.Current.Add("Result", _experienceService.GetNumberOfAdvanceRolls(ganger, experience));
         }
         
         [When(@"I calculate the objective bonus")]
         public void WhenICalculateTheObjectiveBonus()
         {
-            Result = _experienceService.GetObjectivesBonus(objectives, gameType);
+            var objectives = ScenarioContext.Current.Get<int>("Objectives");
+            var battleReport = ScenarioContext.Current.Get<BattleReport>("BattleReport");
+            ScenarioContext.Current.Add("Result", _experienceService.GetObjectivesBonus(objectives, battleReport.GameType));
         }
 
         [When(@"I calculate the winning bonus")]
         public void WhenICalculateTheWinningBonus()
         {
-            Result = _experienceService.GetWinningBonus(hasWon, gameType);
+            var battleReport = ScenarioContext.Current.Get<BattleReport>("BattleReport");
+            ScenarioContext.Current.Add("Result", _experienceService.GetWinningBonus(battleReport.HasWon, battleReport.GameType));
         }
 
         [Then(@"the experience result should be (.*)")]
         public void ThenTheExperienceResultShouldBe(int value)
         {
-            Assert.AreEqual(value, Result);
+            var result = ScenarioContext.Current.Get<int>("Result");
+            Assert.AreEqual(value, result);
         }
 
-        private GameType ParseGameTypeString(string gameType)
-        {
-            GameType value;
-            Enum.TryParse(gameType.ToUpperInvariant(), out value);
-            if (value == 0)
-            {
-                HivemindException.NoSuchInjuryException(gameType);
-            }
-            return value;
-        }
+        ////private GameType ParseGameTypeString(string gameType)
+        ////{
+        ////    GameType value;
+        ////    Enum.TryParse(gameType.ToUpperInvariant(), out value);
+        ////    if (value == 0)
+        ////    {
+        ////        HivemindException.NoSuchInjuryException(gameType);
+        ////    }
+        ////    return value;
+        ////}
     }
 }

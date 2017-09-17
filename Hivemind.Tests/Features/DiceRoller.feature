@@ -14,7 +14,7 @@ Scenario: Roll 2D6
 Scenario: Roll D66
 	Given no setup
 	When I roll D66
-	Then the result should be between valid for a D66.
+	Then the result should be valid for a D66.
 
 Scenario: Parse dice string D6*10
 	Given no setup

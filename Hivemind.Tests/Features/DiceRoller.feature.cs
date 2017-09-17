@@ -111,7 +111,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I roll D66", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
- testRunner.Then("the result should be between valid for a D66.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be valid for a D66.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

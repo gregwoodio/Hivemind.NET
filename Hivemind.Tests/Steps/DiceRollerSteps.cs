@@ -8,42 +8,40 @@ namespace Hivemind.Tests.Steps
     [Binding]
     public class DiceRollerSteps
     {
-        public int Result;
-
         [Given(@"no setup")]
         public void GivenNoSetup()
         {
             // nothing to do
         }
-        
+
         [When(@"I roll a die")]
         public void WhenIRollADie()
         {
-            Result = DiceRoller.RollDie();
+            ScenarioContext.Current.Add("Result", DiceRoller.RollDie());
         }
         
         [When(@"I roll (.*) dice with (.*) sides")]
         public void WhenIRollDiceWithSides(int number, int sides)
         {
-            Result = DiceRoller.RollDice(sides, number);
+            ScenarioContext.Current.Add("Result", DiceRoller.RollDice(sides, number));
         }
         
         [When(@"I roll D(.*)")]
         public void WhenIRollD(int d66)
         {
-            Result = DiceRoller.RollD66();
+            ScenarioContext.Current.Add("Result", DiceRoller.RollD66());
         }
 
         [When(@"I parse the dice string '(.*)'")]
         public void WhenIParseTheDiceString(string diceString)
         {
-            Result = DiceRoller.ParseDiceString(diceString);
+            ScenarioContext.Current.Add("Result", DiceRoller.ParseDiceString(diceString));
         }
 
         [Then(@"the result should be (.*)")]
         public void ThenTheResultShouldBe(int value)
         {
-            Assert.AreEqual(value, Result);
+            Assert.AreEqual(value, ScenarioContext.Current.Get<int>("Result"));
         }
 
 
@@ -54,17 +52,19 @@ namespace Hivemind.Tests.Steps
             {
                 throw new ArgumentException("First argument should be less than second argument");
             }
-            Assert.IsTrue(Result >= low && Result <= high);
+            var result = ScenarioContext.Current.Get<int>("Result");
+            Assert.IsTrue(result >= low && result <= high);
         }
 
-        [Then(@"the result should be between valid for a D(.*)\.")]
+        [Then(@"the result should be valid for a D(.*)\.")]
         public void ThenTheResultShouldBeBetweenValidForAD_(int d66)
         {
             // D66 means the first roll is the 10s column, and second is 1s. So results will
             // be between 11-16, 21-26, 31-36, etc. We'll check that the two rolls are within
             // those bounds.
-            Assert.IsTrue(Result / 10 >= 1 && Result / 10 <= 6);
-            Assert.IsTrue(Result % 10 >= 1 && Result % 10 <= 6);
+            var result = ScenarioContext.Current.Get<int>("Result");
+            Assert.IsTrue(result / 10 >= 1 && result / 10 <= 6);
+            Assert.IsTrue(result % 10 >= 1 && result % 10 <= 6);
         }
     }
 }

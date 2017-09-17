@@ -73,12 +73,19 @@ namespace Hivemind.Tests.Features
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Given("my gang has a rating of 1000 and the opponent has a rating of 1050", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("my gang has a rating of 1000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "OpponentGangRating",
+                        "HasWon"});
+            table1.AddRow(new string[] {
+                        "1050",
+                        "true"});
 #line 6
- testRunner.And("my gang won the match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
+ testRunner.And("a battle report as follows:", ((string)(null)), table1, "And ");
+#line 9
  testRunner.When("I calculate the underdog bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 10
  testRunner.Then("the experience result should be 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -89,15 +96,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheUnderdogBonusAfterLosingWithALargeDifference()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the underdog bonus after losing with a large difference", ((string[])(null)));
-#line 10
-this.ScenarioSetup(scenarioInfo);
-#line 11
- testRunner.Given("my gang has a rating of 1000 and the opponent has a rating of 2501", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.And("my gang lost the match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.When("I calculate the underdog bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("my gang has a rating of 1000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "OpponentGangRating",
+                        "HasWon"});
+            table2.AddRow(new string[] {
+                        "2501",
+                        "false"});
 #line 14
+ testRunner.And("a battle report as follows:", ((string)(null)), table2, "And ");
+#line 17
+ testRunner.When("I calculate the underdog bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
  testRunner.Then("the experience result should be 9", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -108,13 +122,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateTheWoundingHitBonus()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate the wounding hit bonus", ((string[])(null)));
-#line 16
+#line 20
 this.ScenarioSetup(scenarioInfo);
-#line 17
+#line 21
  testRunner.Given("a ganger has downed 3 opponents", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 22
  testRunner.When("I calculate the wounding hit bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 23
  testRunner.Then("the experience result should be 15", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -125,26 +139,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetLeadersBonusForWinningAGangFight()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get leader\'s bonus for winning a gang fight", ((string[])(null)));
-#line 21
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
-                        "Type",
+                        "GangerType",
                         "Experience"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "Leader",
                         "LEADER",
                         "61"});
-#line 22
- testRunner.Given("a ganger with experience as follows:", ((string)(null)), table1, "Given ");
-#line 25
- testRunner.And("my gang won the match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
- testRunner.And("the game type was \'GANG_FIGHT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+ testRunner.Given("a ganger with experience as follows:", ((string)(null)), table3, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HasWon",
+                        "GameType"});
+            table4.AddRow(new string[] {
+                        "true",
+                        "GANG_FIGHT"});
+#line 29
+ testRunner.And("a battle report as follows:", ((string)(null)), table4, "And ");
+#line 32
  testRunner.When("I calculate the leader\'s bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 28
+#line 33
  testRunner.Then("the experience result should be 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -155,28 +174,33 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetLeadersBonusForWinningTheDefenseOfARescueMission()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get leader\'s bonus for winning the defense of a rescue mission", ((string[])(null)));
-#line 30
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
-                        "Type",
+                        "GangerType",
                         "Experience"});
-            table2.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Leader",
                         "LEADER",
                         "61"});
-#line 31
- testRunner.Given("a ganger with experience as follows:", ((string)(null)), table2, "Given ");
-#line 34
- testRunner.And("my gang won the match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
- testRunner.And("the game type was \'RESCUE_MISSION\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
- testRunner.And("my gang was not the attacker", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
+ testRunner.Given("a ganger with experience as follows:", ((string)(null)), table5, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HasWon",
+                        "IsAttacker",
+                        "GameType"});
+            table6.AddRow(new string[] {
+                        "true",
+                        "false",
+                        "RESCUE_MISSION"});
+#line 39
+ testRunner.And("a battle report as follows:", ((string)(null)), table6, "And ");
+#line 42
  testRunner.When("I calculate the leader\'s bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 43
  testRunner.Then("the experience result should be 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -187,22 +211,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheAppropriateNumberOfAdvanceRollsForAJuve_()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the appropriate number of advance rolls for a Juve.", ((string[])(null)));
-#line 40
+#line 45
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
-                        "Type",
+                        "GangerType",
                         "Experience"});
-            table3.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Juve",
                         "JUVE",
                         "0"});
-#line 41
- testRunner.Given("a ganger with experience as follows:", ((string)(null)), table3, "Given ");
-#line 44
+#line 46
+ testRunner.Given("a ganger with experience as follows:", ((string)(null)), table7, "Given ");
+#line 49
  testRunner.When("the ganger gets 16 experience", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 45
+#line 50
  testRunner.Then("the experience result should be 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -213,22 +237,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheAppropriateNumberOfAdvanceRollsForAGanger()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the appropriate number of advance rolls for a Ganger", ((string[])(null)));
-#line 47
+#line 52
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
                         "Type",
                         "Experience"});
-            table4.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Ganger",
                         "GANGER",
                         "40"});
-#line 48
- testRunner.Given("a ganger with experience as follows:", ((string)(null)), table4, "Given ");
-#line 51
+#line 53
+ testRunner.Given("a ganger with experience as follows:", ((string)(null)), table8, "Given ");
+#line 56
  testRunner.When("the ganger gets 5 experience", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 52
+#line 57
  testRunner.Then("the experience result should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -239,15 +263,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheCorrectExperienceForCollectingObjectivesInARescueMission()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the correct experience for collecting objectives in a rescue mission", ((string[])(null)));
-#line 54
+#line 59
 this.ScenarioSetup(scenarioInfo);
-#line 55
+#line 60
  testRunner.Given("a ganger collects 3 objectives", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 56
- testRunner.And("the game type was \'RESCUE_MISSION\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HasWon",
+                        "GameType"});
+            table9.AddRow(new string[] {
+                        "true",
+                        "RESCUE_MISSION"});
+#line 61
+ testRunner.And("a battle report as follows:", ((string)(null)), table9, "And ");
+#line 64
  testRunner.When("I calculate the objective bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
+#line 65
  testRunner.Then("the experience result should be 15", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -258,13 +289,20 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheCorrectExperienceForCollectingObjectivesInAGangFight()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the correct experience for collecting objectives in a gang fight", ((string[])(null)));
-#line 60
+#line 67
 this.ScenarioSetup(scenarioInfo);
-#line 61
- testRunner.Given("the game type was \'GANG_FIGHT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 62
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "GameType"});
+            table10.AddRow(new string[] {
+                        "GANG_FIGHT"});
+#line 68
+ testRunner.Given("a battle report as follows:", ((string)(null)), table10, "Given ");
+#line 71
+ testRunner.And("a ganger collects 0 objectives", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
  testRunner.When("I calculate the objective bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 63
+#line 73
  testRunner.Then("the experience result should be 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -275,15 +313,20 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetBonusForWinningAHitAndRunScenario()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get bonus for winning a hit and run scenario", ((string[])(null)));
-#line 65
+#line 75
 this.ScenarioSetup(scenarioInfo);
-#line 66
- testRunner.Given("the game type was \'HIT_AND_RUN\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 67
- testRunner.And("my gang won the match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "HasWon",
+                        "GameType"});
+            table11.AddRow(new string[] {
+                        "true",
+                        "HIT_AND_RUN"});
+#line 76
+ testRunner.Given("a battle report as follows:", ((string)(null)), table11, "Given ");
+#line 79
  testRunner.When("I calculate the winning bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 69
+#line 80
  testRunner.Then("the experience result should be 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

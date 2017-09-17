@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I calculate the gang\'s upkeep", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("the upkeep should be 45", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be 45", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -99,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I calculate the gang\'s upkeep", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
- testRunner.Then("the upkeep should be 80", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be 80", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -113,12 +113,17 @@ this.ScenarioSetup(scenarioInfo);
 this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.Given("my gang has a rating of 1000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "OpponentGangRating"});
+            table1.AddRow(new string[] {
+                        "1150"});
 #line 21
- testRunner.And("an opponent gang rating of 1150", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+ testRunner.And("a battle report as follows:", ((string)(null)), table1, "And ");
+#line 24
  testRunner.When("I calculate the giant killer bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
- testRunner.Then("the bonus should be 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+ testRunner.Then("the result should be 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -128,16 +133,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetTheCorrectGiantKillerBonus2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get the correct giant killer bonus 2", ((string[])(null)));
-#line 25
-this.ScenarioSetup(scenarioInfo);
-#line 26
- testRunner.Given("my gang has a rating of 1000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
- testRunner.And("an opponent gang rating of 2501", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 28
- testRunner.When("I calculate the giant killer bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("my gang has a rating of 1000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "OpponentGangRating"});
+            table2.AddRow(new string[] {
+                        "2501"});
 #line 29
- testRunner.Then("the bonus should be 250", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("a battle report as follows:", ((string)(null)), table2, "And ");
+#line 32
+ testRunner.When("I calculate the giant killer bonus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.Then("the result should be 250", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
