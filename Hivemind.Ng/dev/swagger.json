@@ -9,13 +9,20 @@
     "http"
   ],
   "paths": {
-    "/api/Game/{id}": {
+    "/api/game/pre": {
       "post": {
         "tags": [
           "Game"
         ],
         "operationId": "Game_ProcessPreGame",
-        "consumes": [],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
         "produces": [
           "application/json",
           "text/json",
@@ -26,10 +33,12 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "body",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -42,7 +51,7 @@
         }
       }
     },
-    "/api/Game": {
+    "/api/game/post": {
       "post": {
         "tags": [
           "Game"

@@ -24,11 +24,15 @@ namespace WebApi.Controllers
             _gameService = gameService;
         }
 
-        public PreGameReport ProcessPreGame(int id)
+        [HttpPost]
+        [Route("pre")]
+        public PreGameReport ProcessPreGame([FromBody] int id)
         {
             return _gameService.ProcessPreGame(id);
         }
 
+        [HttpPost]
+        [Route("post")]
         public PostGameReport ProcessPostGame(BattleReport battleReport)
         {
             return _gameService.ProcessPostGame(battleReport);

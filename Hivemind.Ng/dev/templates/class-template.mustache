@@ -6,4 +6,12 @@ export class {{name}} {
     {{#properties}}
     public {{name}}: {{type}};
     {{/properties}}
+
+    public constructor(partial: Partial<{{name}}>) {
+        {{#properties}}
+        if (partial.{{name}}) {
+            this.{{name}} = partial.{{name}};
+        }
+        {{/properties}}
+    }
 }

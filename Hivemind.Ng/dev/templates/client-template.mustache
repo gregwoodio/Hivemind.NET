@@ -23,8 +23,8 @@ export class {{name}} {
         let body = {{name}};
         {{/bodyParams}}
 
-        return this._http.{{httpMethod}}(
-            'http://localhost:61774/{{{path}}}'
+        return this._http.{{httpMethod}}<{{returns}}>(
+            'http://localhost:61774{{{path}}}'
             {{#bodyParams}}
             , body
             {{/bodyParams}}
