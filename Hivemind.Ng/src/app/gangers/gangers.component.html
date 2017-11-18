@@ -1,0 +1,41 @@
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>M</th>
+      <th>WS</th>
+      <th>BS</th>
+      <th>S</th>
+      <th>T</th>
+      <th>W</th>
+      <th>I</th>
+      <th>A</th>
+      <th>Ld</th>
+      <th>Equipment</th>
+      <th>Skills</th>
+      <th>Injuries</th>
+      <th>Cost</th>
+      <th>Exp.</th>
+    </tr>
+  </thead>
+  <tr *ngFor='let ganger of gangers' [hidden]='!ganger.active'>
+    <td>
+      <div><strong>{{ganger.name}}</strong></div>
+      <div>{{ganger.type}}</div>
+    </td>
+    <td>{{ganger.move}}</td>
+    <td>{{ganger.weaponSkill}}</td>
+    <td>{{ganger.ballisticSkill}}</td>
+    <td>{{ganger.strength}}</td>
+    <td>{{ganger.toughness}}</td>
+    <td>{{ganger.wounds}}</td>
+    <td>{{ganger.initiative}}</td>
+    <td>{{ganger.attack}}</td>
+    <td>{{ganger.leadership}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>{{ganger.cost}}</td>
+    <td>{{ganger.experience}}</td>
+  </tr>
+</table>

@@ -1,5 +1,45 @@
 <div>
-  <div *ngFor="let ganger of gangers">
-    <ganger [ganger]="ganger"></ganger>
+  <div class="gangName">{{gang.name}}</div>
+  <div class="house">{{gang.gangHouse}}</div>
+  <div class="gangRating">{{gang.gangRating}}</div>
+
+  <div class="tabs is-boxed">
+    <ul>
+      <li>
+        <a [routerLink]="['./gangers']">
+          <span class="icon is-small"><i class="fa fa-users"></i></span>
+          <span>Gangers</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./weapons']">
+          <span class="icon is-small"><i class="fa fa-bullseye"></i></span>
+          <span>Weapons</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./territories']">
+          <span class="icon is-small"><i class="fa fa-building"></i></span>
+          <span>Territories</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./statistics']">
+          <span class="icon is-small"><i class="fa fa-line-chart"></i></span>
+          <span>Statistics</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./store']">
+          <span class="icon is-small"><i class="fa fa-money"></i></span>
+          <span>Store</span>
+        </a>
+      </li>
+    </ul>
   </div>
+  
+  <router-outlet></router-outlet>
+  <!-- <gangers [gangers]="gangers"></gangers>
+
+  <territories [territories]="territories"></territories> -->
 </div>

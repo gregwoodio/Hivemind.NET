@@ -1,0 +1,12 @@
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Territory</th>
+      <th>Credits</th>
+    </tr>
+  </thead>
+  <tr *ngFor='let gangTerritory of territories'>
+    <td>{{gangTerritory.territory.name}}</td>
+    <td>{{gangTerritory.territory.income}}</td>
+  </tr>
+</table>
