@@ -17,6 +17,7 @@ export class GangComponent {
   @Input() public gang: Gang;
   public gangers: Ganger[];
   public territories: GangTerritory[];
+  public activeTab = 1;
 
   constructor() {
     this.gangers = [

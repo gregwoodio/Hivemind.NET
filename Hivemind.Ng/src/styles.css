@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+    background: /*url("../img/concrete-wall-2.png"),*/
+        repeating-linear-gradient(40deg, #cc8855 0px, #cc8855 100px, #222222 100px, #222222 200px);
+    background-attachment: fixed;
+    font-family: Arial;
+    font-size: 11pt;
+}
