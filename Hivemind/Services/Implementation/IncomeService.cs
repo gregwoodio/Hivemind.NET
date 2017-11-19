@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hivemind.Contracts;
-using Hivemind.Factories;
+using Hivemind.Managers;
 using Hivemind.Entities;
 using Hivemind.Utilities;
 
-namespace Hivemind.Services
+namespace Hivemind.Services.Implementation
 {
     public class IncomeService : IIncomeService
     {
-        private IGangFactory _gangFactory;
-        private ITerritoryFactory _territoryFactory;
+        private IGangManager _gangManager;
+        private ITerritoryManager _territoryManager;
 
-        public IncomeService(IGangFactory gangFactory, ITerritoryFactory territoryFactory)
+        public IncomeService(IGangManager gangManager, ITerritoryManager territoryManager)
         {
-            _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
-            _territoryFactory = territoryFactory ?? throw new ArgumentNullException(nameof(territoryFactory));
+            _gangManager = gangManager ?? throw new ArgumentNullException(nameof(gangManager));
+            _territoryManager = territoryManager ?? throw new ArgumentNullException(nameof(territoryManager));
         }
 
         public IncomeReport ProcessIncome(BattleReport battleReport, int deaths)
         {
-            var gang = _gangFactory.GetGang(battleReport.GangId);
-            var territories = _territoryFactory.GetTerritoriesByGangId(battleReport.GangId).ToList();
+            var gang = _gangManager.GetGang(battleReport.GangId);
+            var territories = _territoryManager.GetTerritoriesByGangId(battleReport.GangId).ToList();
 
             territories.Sort();
             var gangers = GetGangers(battleReport.GangId).ToList();
@@ -57,7 +57,7 @@ namespace Hivemind.Services
             };
 
             gang.Credits += report.Income;
-            _gangFactory.UpdateGang(gang);
+            _gangManager.UpdateGang(gang);
 
             return report;
         }
@@ -211,7 +211,7 @@ namespace Hivemind.Services
 
         private int GetNumberOfGangMembers(string gangId)
         {
-            return _gangFactory.GetGang(gangId).Gangers.Count();
+            return _gangManager.GetGang(gangId).Gangers.Count();
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Hivemind.Services
         /// <returns></returns>
         private IEnumerable<Ganger> GetGangers(string gangId)
         {
-            return _gangFactory.GetGang(gangId).Gangers.Where(ganger => ganger.GangerType == Enums.GangerType.GANGER);
+            return _gangManager.GetGang(gangId).Gangers.Where(ganger => ganger.GangerType == Enums.GangerType.GANGER);
         }
     }
 }

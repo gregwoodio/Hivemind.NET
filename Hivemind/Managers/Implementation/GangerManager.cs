@@ -8,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class GangerFactory : IGangerFactory
+    public class GangerManager : IGangerManager
     {
         private GangerProvider _gangerProvider;
 
-        public GangerFactory(GangerProvider gangerProvider)
+        public GangerManager(GangerProvider gangerProvider)
         {
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
         }

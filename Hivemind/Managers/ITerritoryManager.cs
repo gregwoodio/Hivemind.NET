@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public interface ITerritoryFactory
+    public interface ITerritoryManager
     {
         Territory GetTerritory(int territoryId);
         IEnumerable<Territory> GetAllTerritories();

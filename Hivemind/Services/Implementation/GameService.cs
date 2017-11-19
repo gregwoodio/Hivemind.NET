@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Hivemind.Enums;
 
-namespace Hivemind.Services
+namespace Hivemind.Services.Implementation
 {
     public class GameService : IGameService
     {

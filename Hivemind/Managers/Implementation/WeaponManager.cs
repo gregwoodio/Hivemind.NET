@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class WeaponFactory : IWeaponFactory
+    public class WeaponManager : IWeaponManager
     {
         private WeaponProvider _weaponProvider;
 
-        public WeaponFactory(WeaponProvider weaponProvider)
+        public WeaponManager(WeaponProvider weaponProvider)
         {
             _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
         }

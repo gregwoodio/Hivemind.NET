@@ -1,5 +1,5 @@
 ﻿using Hivemind.Entities;
-using Hivemind.Factories;
+using Hivemind.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,40 +12,40 @@ namespace WebApi.Controllers
     [RoutePrefix("api/gangers")]
     public class GangersController : ApiController
     {
-        private IGangerFactory _gangerFactory;
-        private IWeaponFactory _weaponFactory;
+        private IGangerManager _gangerManager;
+        private IWeaponManager _weaponFactory;
 
-        public GangersController(IGangerFactory gangerFactory, IWeaponFactory weaponFactory)
+        public GangersController(IGangerManager gangerManager, IWeaponManager weaponManager)
         {
-            if (gangerFactory == null)
+            if (gangerManager == null)
             {
-                throw new ArgumentNullException(nameof(gangerFactory));
+                throw new ArgumentNullException(nameof(gangerManager));
             }
-            if (weaponFactory == null)
+            if (weaponManager == null)
             {
-                throw new ArgumentNullException(nameof(weaponFactory));
+                throw new ArgumentNullException(nameof(weaponManager));
             }
-            _gangerFactory = gangerFactory;
-            _weaponFactory = weaponFactory;
+            _gangerManager = gangerManager;
+            _weaponFactory = weaponManager;
         }
 
         [HttpPost]
         public Ganger AddGanger(Ganger ganger)
         {
-            return _gangerFactory.AddGanger(ganger);
+            return _gangerManager.AddGanger(ganger);
         }
 
         [HttpGet]
         [Route("{gangerId}")]
         public Ganger GetGanger([FromUri] string gangerId)
         {
-            return _gangerFactory.GetGanger(gangerId);
+            return _gangerManager.GetGanger(gangerId);
         }
 
         [HttpPut]
         public Ganger UpdateGanger(Ganger ganger)
         {
-            return _gangerFactory.UpdateGanger(ganger);
+            return _gangerManager.UpdateGanger(ganger);
         }
 
         // weapon routes

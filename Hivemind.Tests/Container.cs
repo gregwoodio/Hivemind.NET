@@ -1,5 +1,6 @@
-﻿using Hivemind.Factories;
+﻿using Hivemind.Managers;
 using Hivemind.Services;
+using Hivemind.Services.Implementation;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,13 @@ namespace Hivemind.Tests
         {
             UnityContainer container = new UnityContainer();
 
-            // factories and managers
-            container.RegisterType<IGangerFactory, GangerFactory>();
-            container.RegisterType<IGangFactory, GangFactory>();
-            container.RegisterType<IInjuryFactory, InjuryFactory>();
-            container.RegisterType<ISkillFactory, SkillFactory>();
-            container.RegisterType<IWeaponFactory, WeaponFactory>();
-            container.RegisterType<ITerritoryFactory, TerritoryFactory>();
+            // managers
+            container.RegisterType<IGangerManager, GangerManager>();
+            container.RegisterType<IGangManager, GangManager>();
+            container.RegisterType<IInjuryManager, InjuryManager>();
+            container.RegisterType<ISkillManager, SkillManager>();
+            container.RegisterType<IWeaponManager, WeaponManager>();
+            container.RegisterType<ITerritoryManager, TerritoryManager>();
 
             // services
             container.RegisterType<IExperienceService, ExperienceService>();

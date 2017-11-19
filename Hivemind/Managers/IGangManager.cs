@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public interface IGangFactory
+    public interface IGangManager
     {
         Gang GetGang(string gangId);
         Gang UpdateGang(Gang gang);

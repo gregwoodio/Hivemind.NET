@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class SkillFactory : ISkillFactory
+    public class SkillManager : ISkillManager
     {
         public Skill GetSkill(int skillId)
         {

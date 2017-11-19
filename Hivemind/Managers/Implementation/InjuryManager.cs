@@ -9,14 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class InjuryFactory : IInjuryFactory
+    public class InjuryManager : IInjuryManager
     {
         public object HiveMindException { get; private set; }
         private InjuryProvider _injuryProvider;
 
-        public InjuryFactory(InjuryProvider injuryProvider)
+        public InjuryManager(InjuryProvider injuryProvider)
         {
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(injuryProvider));
         }

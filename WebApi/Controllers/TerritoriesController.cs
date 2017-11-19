@@ -1,5 +1,5 @@
 ﻿using Hivemind.Entities;
-using Hivemind.Factories;
+using Hivemind.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +12,28 @@ namespace WebApi.Controllers
     [RoutePrefix("api/territories")]
     public class TerritoriesController : ApiController
     {
-        private ITerritoryFactory _territoryFactory;
+        private ITerritoryManager _territoryManager;
 
-        public TerritoriesController(ITerritoryFactory territoryFactory)
+        public TerritoriesController(ITerritoryManager territoryManager)
         {
-            if (territoryFactory == null)
+            if (territoryManager == null)
             {
-                throw new ArgumentNullException(nameof(territoryFactory));
+                throw new ArgumentNullException(nameof(territoryManager));
             }
-            _territoryFactory = territoryFactory;
+            _territoryManager = territoryManager;
         }
 
         [HttpGet]
         public IEnumerable<Territory> GetAllTerritories()
         {
-            return _territoryFactory.GetAllTerritories();
+            return _territoryManager.GetAllTerritories();
         }
 
         [HttpGet]
         [Route("{gangId}")]
         public IEnumerable<GangTerritory> GetGangTerritoryById([FromUri] string gangId)
         {
-            return _territoryFactory.GetTerritoriesByGangId(gangId);
+            return _territoryManager.GetTerritoriesByGangId(gangId);
         }
 
         [HttpPost]
@@ -45,14 +45,14 @@ namespace WebApi.Controllers
                 Territory = territory,
                 GangId = gangId
             };
-            return _territoryFactory.AddGangTerritory(gangTerritory);
+            return _territoryManager.AddGangTerritory(gangTerritory);
         }
 
         [HttpDelete]
         [Route("{gangTerritoryId}")]
         public void RemoveGangTerritory([FromUri] string gangTerritoryId)
         {
-            _territoryFactory.RemoveGangTerritory(gangTerritoryId);
+            _territoryManager.RemoveGangTerritory(gangTerritoryId);
         }
     }
 }

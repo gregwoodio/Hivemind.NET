@@ -1,5 +1,5 @@
 ﻿using Hivemind.Entities;
-using Hivemind.Factories;
+using Hivemind.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +12,28 @@ namespace WebApi.Controllers
     [RoutePrefix("api/weapons")]
     public class WeaponsController : ApiController
     {
-        private IWeaponFactory _weaponFactory;
+        private IWeaponManager _weaponManager;
 
-        public WeaponsController(IWeaponFactory weaponFactory)
+        public WeaponsController(IWeaponManager weaponManager)
         {
-            if (weaponFactory == null)
+            if (weaponManager == null)
             {
-                throw new ArgumentNullException(nameof(weaponFactory));
+                throw new ArgumentNullException(nameof(weaponManager));
             }
-            _weaponFactory = weaponFactory;
+            _weaponManager = weaponManager;
         }
 
         [HttpGet]
         [Route("{weaponId}")]
         public Weapon GetWeapon([FromUri] int weaponId)
         {
-            return _weaponFactory.GetWeapon(weaponId);
+            return _weaponManager.GetWeapon(weaponId);
         }
 
         [HttpGet]
         public IEnumerable<Weapon> GetAllWeapons()
         {
-            return _weaponFactory.GetAllWeapons();
+            return _weaponManager.GetAllWeapons();
         }
     }
 }

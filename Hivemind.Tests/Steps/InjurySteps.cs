@@ -1,7 +1,7 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Exceptions;
-using Hivemind.Factories;
+using Hivemind.Managers;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using System;
@@ -16,12 +16,12 @@ namespace Hivemind.Tests.Steps
         public Ganger gangerBefore;
         public Ganger ganger;
         public Injury injury;
-        private IInjuryFactory _injuryFactory;
+        private IInjuryManager _injuryFactory;
 
         public InjurySteps()
         {
             var container = Container.GetContainer();
-            _injuryFactory = container.Resolve<IInjuryFactory>();
+            _injuryFactory = container.Resolve<IInjuryManager>();
         }
 
         [Given(@"a ganger with stats as follows:")]

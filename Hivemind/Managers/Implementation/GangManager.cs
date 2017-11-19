@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using Hivemind.Entities;
 using Hivemind.Providers;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class GangFactory : IGangFactory
+    public class GangManager : IGangManager
     {
         private GangProvider _provider;
 
-        public GangFactory(GangProvider provider)
+        public GangManager(GangProvider provider)
         {
             _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }

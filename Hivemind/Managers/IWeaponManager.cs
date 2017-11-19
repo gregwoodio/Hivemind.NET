@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public interface IWeaponFactory
+    public interface IWeaponManager
     {
         Weapon GetWeapon(int weaponId);
         IEnumerable<Weapon> GetAllWeapons();

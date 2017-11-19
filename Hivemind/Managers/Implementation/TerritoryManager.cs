@@ -9,16 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public class TerritoryFactory : ITerritoryFactory
+    public class TerritoryManager : ITerritoryManager
     {
-        private IInjuryFactory _injuryFactory;
-        private IGangerFactory _gangerFactory;
-        private IGangFactory _gangFactory;
+        private IInjuryManager _injuryFactory;
+        private IGangerManager _gangerFactory;
+        private IGangManager _gangFactory;
         private TerritoryProvider _territoryProvider;
 
-        public TerritoryFactory(IInjuryFactory injuryFactory, IGangerFactory gangerFactory, IGangFactory gangFactory, TerritoryProvider territoryProvider)
+        public TerritoryManager(IInjuryManager injuryFactory, IGangerManager gangerFactory, IGangManager gangFactory, TerritoryProvider territoryProvider)
         {
             _injuryFactory = injuryFactory ?? throw new ArgumentNullException(nameof(injuryFactory));
             _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));

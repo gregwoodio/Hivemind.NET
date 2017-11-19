@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Factories
+namespace Hivemind.Managers
 {
-    public interface IGangerFactory
+    public interface IGangerManager
     {
         Ganger GetGanger(string id);
         Ganger CreateGanger(string name, GangerType type);
