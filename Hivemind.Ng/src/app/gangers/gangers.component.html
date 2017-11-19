@@ -1,4 +1,4 @@
-<table class="table is-striped">
+<table class="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,7 +21,7 @@
   <tr *ngFor='let ganger of gangers' [hidden]='!ganger.active'>
     <td>
       <div><strong>{{ganger.name}}</strong></div>
-      <div>{{ganger.type}}</div>
+      <div class="is-small">{{ganger.type}}</div>
     </td>
     <td>{{ganger.move}}</td>
     <td>{{ganger.weaponSkill}}</td>

@@ -1,8 +1,26 @@
 <div>
-  <h1 class="title">{{gang.name}}</h1>
-  <div class="house">{{gang.gangHouse}}</div>
-  <div class="gangRating">{{gang.gangRating}}</div>
-
+  <div class="columns">
+    <div class="column is-three-fifths">
+      <section>
+        <h1 class="title">{{gang.name}}</h1>
+        <div><strong>House: </strong>{{gang.gangHouse}}</div>
+        <div><strong>Gang Rating:</strong> {{gang.gangRating}}</div>
+      </section>
+    </div>
+    <div class="column">
+      <div class="is-pulled-right">
+        <div class="select">
+          <select>
+            <option>Choose another gang</option>
+            <option *ngFor="let userGang of userGangs"></option>
+          </select>
+        </div>
+        <button class="button is-link">New Gang</button>
+        <button *ngIf="!isGameInProgress" (click)="startGame()" class="button is-primary">Start Game</button>
+        <button *ngIf="isGameInProgress" (click)="cancelGame()" class="button is-danger">Cancel Game</button>
+      </div>
+    </div>
+  </div>
   <div class="tabs is-boxed">
     <ul>
       <li [ngClass]="{'is-active': activeTab == 1}">

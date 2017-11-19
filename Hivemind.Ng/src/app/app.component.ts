@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   
   public title: string = "Hivemind NG";
+  public showSignUpDialog: boolean = false;
   public gang: Gang;
   
   constructor(private _gangService: GangService) {

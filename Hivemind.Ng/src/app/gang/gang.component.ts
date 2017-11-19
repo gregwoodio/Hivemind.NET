@@ -18,6 +18,7 @@ export class GangComponent {
   public gangers: Ganger[];
   public territories: GangTerritory[];
   public activeTab = 1;
+  public isGameInProgress: boolean;
 
   constructor() {
     this.gangers = [
@@ -142,5 +143,13 @@ export class GangComponent {
     this.territories = this.gang.territories;
 
     console.log(this.gang);
+  }
+
+  public startGame() {
+    this.isGameInProgress = true;
+  }
+
+  public cancelGame() {
+    this.isGameInProgress = false;
   }
 }
