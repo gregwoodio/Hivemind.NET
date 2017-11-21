@@ -30,6 +30,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{gangId}")]
         public Gang GetGang([FromUri] string gangId)
         {
@@ -37,20 +38,17 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("{gangName}")]
-        public Gang AddGang([FromUri] string gangName, [FromBody] GangHouse house)
+        [Route("")]
+        public Gang AddGang([FromBody] Gang gang)
         {
-            var gang = new Gang()
-            {
-                Name = gangName,
-                GangHouse = house,
-            };
+            // TODO: validate request
             return _gangManager.AddGang(gang);
         }
 
         [HttpPut]
         public Gang UpdateGang(Gang gang)
         {
+            // TODO: validate request
             return _gangManager.UpdateGang(gang);
         }
 

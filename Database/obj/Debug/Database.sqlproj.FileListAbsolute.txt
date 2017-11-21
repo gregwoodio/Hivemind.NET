@@ -3,3 +3,7 @@ D:\Source\Hivemind\Hivemind\Database\bin\Debug\Database.dll
 D:\Source\Hivemind\Hivemind\Database\bin\Debug\Database.pdb
 D:\Source\Hivemind\Hivemind\Database\obj\Debug\Database.dll
 D:\Source\Hivemind\Hivemind\Database\obj\Debug\Database.pdb
+D:\Source\Hivemind\Hivemind\Database\obj\Debug\Model.xml
+D:\Source\Hivemind\Hivemind\Database\obj\Debug\refactor.xml
+D:\Source\Hivemind\Hivemind\Database\obj\Debug\postdeploy.sql
+D:\Source\Hivemind\Hivemind\Database\obj\Debug\predeploy.sql

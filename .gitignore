@@ -6,3 +6,16 @@ Hivemind.Ng/node_modules/*
 **/*.suo
 **/*.cache
 **/*.tmp
+
+# nuget packages
+packages/**/*
+
+# binaries
+Database/bin/**/*
+Database/obj/**/*
+Hivemind/bin/**/*
+Hivemind/obj/**/*
+Hivemind.Tests/bin/**/*
+Hivemind.Tests/obj/**/*
+WebApi/bin/**/*
+WebApi/obj/**/*
