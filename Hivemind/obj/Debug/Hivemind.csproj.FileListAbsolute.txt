@@ -1,7 +1,0 @@
-D:\Source\Hivemind\Hivemind\Hivemind\bin\Debug\Hivemind.dll
-D:\Source\Hivemind\Hivemind\Hivemind\bin\Debug\Hivemind.pdb
-D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.csprojResolveAssemblyReference.cache
-D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.Resource.resources
-D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.csproj.GenerateResource.Cache
-D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.dll
-D:\Source\Hivemind\Hivemind\Hivemind\obj\Debug\Hivemind.pdb
