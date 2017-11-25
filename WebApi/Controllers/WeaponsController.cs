@@ -23,6 +23,7 @@ namespace WebApi.Controllers
             _weaponManager = weaponManager;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{weaponId}")]
         public Weapon GetWeapon([FromUri] int weaponId)
@@ -30,6 +31,7 @@ namespace WebApi.Controllers
             return _weaponManager.GetWeapon(weaponId);
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<Weapon> GetAllWeapons()
         {

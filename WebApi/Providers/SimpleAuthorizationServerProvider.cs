@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -30,24 +31,25 @@ namespace WebApi.Providers
 
             try
             {
-                userManager.Login(new User()
+                var user = userManager.Login(new User()
                 {
                     Email = context.UserName,
                     Password = context.Password
                 });
+
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim("sub", user.Email));
+                identity.AddClaim(new Claim("userId", user.UserGUID));
+                identity.AddClaim(new Claim("role", "user"));
+
+                // Generate a token
+                context.Validated(identity);
             }
             catch (HivemindException)
             {
                 context.SetError("invalid_grant", "The username or password is incorrect.");
                 return;
             }
-
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            // Generate a token
-            context.Validated(identity);
         }
     }
 }

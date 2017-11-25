@@ -19,6 +19,13 @@ namespace Hivemind.Managers
         Contracts.User Login(Entities.User user);
 
         /// <summary>
+        /// Gets user by GUID.
+        /// </summary>
+        /// <param name="userGuid"></param>
+        /// <returns></returns>
+        Contracts.User GetUser(string userGuid);
+
+        /// <summary>
         /// Gets the gang IDs of a given user.
         /// </summary>
         /// <param name="userGuid"></param>

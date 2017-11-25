@@ -23,12 +23,14 @@ namespace WebApi.Controllers
             _territoryManager = territoryManager;
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<Territory> GetAllTerritories()
         {
             return _territoryManager.GetAllTerritories();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{gangId}")]
         public IEnumerable<GangTerritory> GetGangTerritoryById([FromUri] string gangId)
@@ -36,6 +38,7 @@ namespace WebApi.Controllers
             return _territoryManager.GetTerritoriesByGangId(gangId);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("{gangId}")]
         public GangTerritory AddGangTerritory([FromUri]string gangId, Territory territory)
@@ -48,6 +51,7 @@ namespace WebApi.Controllers
             return _territoryManager.AddGangTerritory(gangTerritory);
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("{gangTerritoryId}")]
         public void RemoveGangTerritory([FromUri] string gangTerritoryId)

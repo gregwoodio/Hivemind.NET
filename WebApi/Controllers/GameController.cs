@@ -24,6 +24,7 @@ namespace WebApi.Controllers
             _gameService = gameService;
         }
 
+        [Authorize]
         [HttpPost]
         [Route("pre")]
         public PreGameReport ProcessPreGame([FromBody] int id)
@@ -31,6 +32,7 @@ namespace WebApi.Controllers
             return _gameService.ProcessPreGame(id);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("post")]
         public PostGameReport ProcessPostGame(BattleReport battleReport)

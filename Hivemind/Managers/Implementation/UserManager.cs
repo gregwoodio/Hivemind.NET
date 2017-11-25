@@ -46,6 +46,19 @@ namespace Hivemind.Managers.Implementation
             return user.ToContract();
         }
 
+        public Contracts.User GetUser(string userGuid)
+        {
+            if (string.IsNullOrEmpty(userGuid))
+            {
+                HivemindException.InvalidUsernameOrPassword();
+            }
+
+            var user = _userProvider.GetUserByGuid(userGuid);
+            var userContract = user.ToContract();
+            GetUserGangs(ref userContract);
+
+            return userContract;
+        }
 
         public IEnumerable<string> GetUserGangs(string userGuid)
         {

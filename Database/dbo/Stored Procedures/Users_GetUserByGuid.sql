@@ -13,5 +13,5 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT u.userId, u.username, u.password, u.userGUID FROM [dbo].[Users] u WHERE u.userGUID = @UserGUID;
+	SELECT u.userId, u.email, u.password, u.userGUID FROM [dbo].[Users] u WHERE u.userGUID = @UserGUID;
 END

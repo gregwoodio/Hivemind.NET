@@ -37,7 +37,7 @@ namespace Hivemind.Providers
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                using (var command = new SqlCommand("Users_GetByGuid", connection))
+                using (var command = new SqlCommand("Users_GetUserByGuid", connection))
                 {
                     connection.Open();
 

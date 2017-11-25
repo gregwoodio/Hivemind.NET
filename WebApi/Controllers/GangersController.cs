@@ -29,12 +29,14 @@ namespace WebApi.Controllers
             _weaponFactory = weaponManager;
         }
 
+        [Authorize]
         [HttpPost]
         public Ganger AddGanger(Ganger ganger)
         {
             return _gangerManager.AddGanger(ganger);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{gangerId}")]
         public Ganger GetGanger([FromUri] string gangerId)
@@ -42,6 +44,7 @@ namespace WebApi.Controllers
             return _gangerManager.GetGanger(gangerId);
         }
 
+        [Authorize]
         [HttpPut]
         public Ganger UpdateGanger(Ganger ganger)
         {
@@ -49,6 +52,7 @@ namespace WebApi.Controllers
         }
 
         // weapon routes
+        [Authorize]
         [HttpGet]
         [Route("{gangerId}/weapons")]
         public IEnumerable<GangerWeapon> GetWeapons([FromUri] string gangerId)
@@ -56,6 +60,7 @@ namespace WebApi.Controllers
             return _weaponFactory.GetGangerWeapons(gangerId);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("{gangerId}/weapons")]
         public GangerWeapon AddGangerWeapon([FromUri] string gangerId, Weapon weapon)
@@ -68,6 +73,7 @@ namespace WebApi.Controllers
             return _weaponFactory.AddGangerWeapon(gangerWeapon);
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("{gangerId}/weapons/{gangerWeaponId}")]
         public void RemoveGangerWeapon([FromUri] string gangerId, string gangerWeaponId)

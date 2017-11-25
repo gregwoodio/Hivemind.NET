@@ -28,23 +28,25 @@ namespace WebApi.Controllers
             _gangManager = gangManager;
             _weaponManager = weaponManager;
         }
-
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         [Route("{gangId}")]
         public Gang GetGang([FromUri] string gangId)
         {
             return _gangManager.GetGang(gangId);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("")]
         public Gang AddGang([FromBody] Gang gang)
         {
             // TODO: validate request
+            // TODO: Assign gang to principal
             return _gangManager.AddGang(gang);
         }
 
+        [Authorize]
         [HttpPut]
         public Gang UpdateGang(Gang gang)
         {
@@ -53,6 +55,7 @@ namespace WebApi.Controllers
         }
 
         // weapon routes
+        [Authorize]
         [HttpGet]
         [Route("{gangId}/weapons")]
         public IEnumerable<GangWeapon> GetWeapons([FromUri] string gangId)
@@ -60,6 +63,7 @@ namespace WebApi.Controllers
             return _weaponManager.GetGangWeapons(gangId);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("{gangId}/weapons")]
         public GangWeapon AddGangWeapon([FromUri] string gangId, Weapon weapon)
@@ -72,6 +76,7 @@ namespace WebApi.Controllers
             return _weaponManager.AddGangWeapon(gangWeapon);
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("{gangId}/weapons/{gangWeaponId}")]
         public void RemoveGangWeapon([FromUri] string gangId, string gangWeaponId)

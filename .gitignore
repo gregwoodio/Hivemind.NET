@@ -7,6 +7,8 @@ Hivemind.Ng/node_modules/*
 **/*.cache
 **/*.tmp
 
+Database/Database.dbmdl
+
 # nuget packages
 packages/**/*
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace WebApi.Controllers
@@ -31,10 +32,18 @@ namespace WebApi.Controllers
         
         [Authorize]
         [HttpGet]
-        [Route("{userId}/gangs")]
-        public IEnumerable<Hivemind.Contracts.User> GetUserGangs([FromUri] string userId)
+        [Route("")]
+        public Hivemind.Contracts.User GetUser()
         {
-            throw new NotImplementedException();
+            var user = Request.GetRequestContext().Principal as ClaimsPrincipal;
+            var id = user.Claims.FirstOrDefault(claim => claim.Type == "userId").Value;
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+
+            return _userManager.GetUser(id);
         }
     }
 }
