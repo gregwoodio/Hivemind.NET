@@ -5,6 +5,7 @@ using System.Web.Http.Dependencies;
 using System;
 using System.Collections.Generic;
 using Hivemind.Services.Implementation;
+using Hivemind.Managers.Implementation;
 
 namespace WebApi
 {
@@ -66,13 +67,14 @@ namespace WebApi
         {
             UnityContainer container = new UnityContainer();
 
-            // factories and managers
+            // managers
             container.RegisterType<IGangerManager, GangerManager>();
             container.RegisterType<IGangManager, GangManager>();
             container.RegisterType<IInjuryManager, InjuryManager>();
             container.RegisterType<ISkillManager, SkillManager>();
             container.RegisterType<IWeaponManager, WeaponManager>();
             container.RegisterType<ITerritoryManager, TerritoryManager>();
+            container.RegisterType<IUserManager, UserManager>();
 
             // services
             container.RegisterType<IExperienceService, ExperienceService>();

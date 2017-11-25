@@ -29,5 +29,10 @@ namespace Hivemind.Exceptions
         {
             throw new HivemindException("The specified gang house was not known.");
         }
+
+        public static HivemindException InvalidUsernameOrPassword()
+        {
+            throw new HivemindException("Invalid username or password.");
+        }
     }
 }

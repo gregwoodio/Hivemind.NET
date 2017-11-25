@@ -105,9 +105,9 @@
     <Build Include="dbo\Stored Procedures\Weapons_Populate.sql" />
     <Build Include="dbo\Tables\UserGangs.sql" />
     <Build Include="dbo\Stored Procedures\Users_GetUserByGuid.sql" />
-    <Build Include="dbo\Stored Procedures\Users_GetByUsername.sql" />
     <Build Include="dbo\Stored Procedures\Users_Add.sql" />
     <Build Include="dbo\Stored Procedures\UserGangs_GetByUserGuid.sql" />
+    <Build Include="dbo\Stored Procedures\Users_GetByEmail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticValues\Injuries.csv" />

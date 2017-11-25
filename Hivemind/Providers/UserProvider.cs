@@ -15,15 +15,15 @@ namespace Hivemind.Providers
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                using (var command = new SqlCommand("Gangs_AddGang", connection))
+                using (var command = new SqlCommand("Users_Add", connection))
                 {
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
                     var userGuid = command.Parameters.Add("@UserGUID", SqlDbType.NVarChar, 100);
                     userGuid.Direction = ParameterDirection.Output;
-                    command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
-                    command.Parameters.Add("@Password", SqlDbType.Int).Value = user.Password;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = user.Email;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = user.Password;
                     command.ExecuteNonQuery();
 
                     user.UserGUID = (string)userGuid.Value;
@@ -50,16 +50,16 @@ namespace Hivemind.Providers
             }
         }
 
-        public User GetUserByUsername(string username)
+        public User GetUserByEmail(string email)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                using (var command = new SqlCommand("Users_GetByUsername", connection))
+                using (var command = new SqlCommand("Users_GetByEmail", connection))
                 {
                     connection.Open();
 
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@Username", SqlDbType.NVarChar, 100).Value = username;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = email;
                     var reader = command.ExecuteReader();
 
                     return GetUserFromReader(reader);
@@ -99,8 +99,8 @@ namespace Hivemind.Providers
                 var value = reader.GetOrdinal("userId");
                 user.UserId = reader.GetInt32(value);
 
-                value = reader.GetOrdinal("username");
-                user.Username = reader.GetString(value);
+                value = reader.GetOrdinal("email");
+                user.Email = reader.GetString(value);
 
                 value = reader.GetOrdinal("password");
                 user.Password = reader.GetString(value);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Hivemind.Entities;
 using Hivemind.Providers;
 
-namespace Hivemind.Managers
+namespace Hivemind.Managers.Implementation
 {
     public class GangManager : IGangManager
     {

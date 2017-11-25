@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -76,14 +79,17 @@
     <Compile Include="Enums\WeaponEnum.cs" />
     <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Exceptions\HivemindException.cs" />
+    <Compile Include="Managers\Extensions\UserExtensions.cs" />
     <Compile Include="Managers\Implementation\GangerManager.cs" />
     <Compile Include="Managers\Implementation\GangManager.cs" />
     <Compile Include="Managers\IGangerManager.cs" />
     <Compile Include="Managers\IGangManager.cs" />
     <Compile Include="Managers\IInjuryManager.cs" />
     <Compile Include="Managers\Implementation\InjuryManager.cs" />
+    <Compile Include="Managers\Implementation\UserManager.cs" />
     <Compile Include="Managers\ISkillManager.cs" />
     <Compile Include="Managers\ITerritoryManager.cs" />
+    <Compile Include="Managers\IUserManager.cs" />
     <Compile Include="Managers\IWeaponManager.cs" />
     <Compile Include="Managers\Implementation\SkillManager.cs" />
     <Compile Include="Managers\Implementation\TerritoryManager.cs" />
@@ -116,6 +122,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Hivemind.Entities;
+using Hivemind.Exceptions;
+using Hivemind.Managers;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +25,22 @@ namespace WebApi.Providers
             // Allow CORS for middleware.
             //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            // Context should include a username and password. Add logic here to validate, or set an error:
-            //  context.SetError("invalid_grant", "The username or password is incorrect.");
-            //  return;
-            var user = context.UserName;
-            var pass = context.Password;
+            var container = new UnityResolver();
+            var userManager = (IUserManager)container.GetService(typeof (IUserManager));
+
+            try
+            {
+                userManager.Login(new User()
+                {
+                    Email = context.UserName,
+                    Password = context.Password
+                });
+            }
+            catch (HivemindException)
+            {
+                context.SetError("invalid_grant", "The username or password is incorrect.");
+                return;
+            }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));

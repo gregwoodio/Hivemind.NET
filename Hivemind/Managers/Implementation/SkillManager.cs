@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hivemind.Managers
+namespace Hivemind.Managers.Implementation
 {
     public class SkillManager : ISkillManager
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hivemind.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,20 +8,27 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("user")]
+    [RoutePrefix("api/user")]
     public class UsersController : ApiController
     {
-        public UsersController()
+        private IUserManager _userManager;
+
+        public UsersController(IUserManager userManager)
         {
-
+            if (userManager == null)
+            {
+                throw new ArgumentNullException(nameof(userManager));
+            }
+            _userManager = userManager;
         }
-
+        
         [HttpPost]
+        [Route("")]
         public Hivemind.Contracts.User Register(Hivemind.Entities.User user)
         {
-            throw new NotImplementedException();
+            return _userManager.RegisterUser(user);
         }
-
+        
         [Authorize]
         [HttpGet]
         [Route("{userId}/gangs")]

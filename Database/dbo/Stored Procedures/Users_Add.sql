@@ -5,7 +5,7 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[Users_Add] 
 	-- Add the parameters for the stored procedure here
-	@Username NVARCHAR(255),
+	@Email NVARCHAR(255),
 	@Password NVARCHAR(100),
 	@UserGUID NVARCHAR(100) OUTPUT
 AS
@@ -17,7 +17,7 @@ BEGIN
 	SET @UserGUID = NEWID();
 
     -- Insert statements for procedure here
-	INSERT INTO dbo.Users (userGuid, username, password) VALUES (@UserGUID, @Username, @Password);
+	INSERT INTO dbo.Users (userGuid, email, password) VALUES (@UserGUID, @Email, @Password);
 
 	RETURN 0;
 END

@@ -1,4 +1,5 @@
 ﻿using Hivemind.Managers;
+using Hivemind.Managers.Implementation;
 using Hivemind.Services;
 using Hivemind.Services.Implementation;
 using Microsoft.Practices.Unity;
