@@ -2,23 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/tokenService/token.service';
-import { PreGameReport } from '../entities/PreGameReport';
-import { PostGameReport } from '../entities/PostGameReport';
-import { BattleReport } from '../entities/BattleReport';
+import { User } from '../entities/User';
+import { Login } from '../entities/Login';
 
 @Injectable()
-export class GameClient {
+export class UsersClient {
 
     constructor(private _http: HttpClient, private _tokenService: TokenService) {}
 
-    public ProcessPreGame(
-        id: number,
-    ): Observable<PreGameReport> {
-        let body = id;
+    public GetUser(
+    ): Observable<User> {
 
-        return this._http.post<PreGameReport>(
-            'http://localhost:61774/api/game/pre'
-            , body
+        return this._http.get<User>(
+            'http://localhost:61774/api/user'
             , {
                 headers: new HttpHeaders({
                     'Authorize': 'Bearer ' + this._tokenService.token
@@ -27,13 +23,13 @@ export class GameClient {
         );
     }
 
-    public ProcessPostGame(
-        battleReport: BattleReport,
-    ): Observable<PostGameReport> {
-        let body = battleReport;
+    public Register(
+        user: Login,
+    ): Observable<User> {
+        let body = user;
 
-        return this._http.post<PostGameReport>(
-            'http://localhost:61774/api/game/post'
+        return this._http.post<User>(
+            'http://localhost:61774/api/user'
             , body
             , {
                 headers: new HttpHeaders({

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { TokenService } from './../../app/tokenService/token.service';
 import { Weapon } from '../entities/Weapon';
 
 @Injectable()
 export class WeaponsClient {
 
-    constructor(private _http: HttpClient) {}
+    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
 
     public GetWeapon(
         weaponId: number,
@@ -14,6 +15,11 @@ export class WeaponsClient {
 
         return this._http.get<Weapon>(
             'http://localhost:61774/api/weapons/' + weaponId + ''
+            , {
+                headers: new HttpHeaders({
+                    'Authorize': 'Bearer ' + this._tokenService.token
+                })
+            }
         );
     }
 
@@ -22,6 +28,11 @@ export class WeaponsClient {
 
         return this._http.get<Weapon[]>(
             'http://localhost:61774/api/Weapons'
+            , {
+                headers: new HttpHeaders({
+                    'Authorize': 'Bearer ' + this._tokenService.token
+                })
+            }
         );
     }
 

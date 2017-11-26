@@ -1,4 +1,4 @@
-export enum Title {
+export enum title {
     GREEN_JUVE = 1,
     JUVE,
     TOP_JUVE,

@@ -11,7 +11,7 @@ export class GangService {
     constructor(private ngRedux: NgRedux<IAppState>, private _gangsClient: GangsClient) {}
 
     public addGang(gang: Gang) {
-        this._gangsClient.AddGang(gang.name, gang.gangHouse).subscribe((addedGang: Gang) => {
+        this._gangsClient.AddGang(gang).subscribe((addedGang: Gang) => {
             this.ngRedux.dispatch({
                 type: ADD_GANG,
                 payload: addedGang

@@ -6,8 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './gangers.component.html',
   styleUrls: ['./gangers.component.css']
 })
-export class GangersComponent {
+export class GangersComponent implements OnInit {
 
   @Input() public gangers: Ganger;
 
+  public ngOnInit() {
+    
+  }
 }

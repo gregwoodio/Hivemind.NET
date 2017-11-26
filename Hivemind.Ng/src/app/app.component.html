@@ -7,7 +7,7 @@
         <span class="navbar-end">
             <a class="navbar-item"><span class="fa fa-github"></span></a>
             <a class="navbar-item" (click)="showSignUpDialog = true;">Sign up</a>
-            <a class="navbar-item">Login</a>
+            <a class="navbar-item" (click)="showLoginDialog = true;">Login</a>
         </span>
     </div>
 </nav>
@@ -27,6 +27,7 @@
                 <h3 class="title">Sign up</h3>
             </header>
             <section class="modal-card-body">
+                <!--
                 You can sign up for Hivemind here, or use your existing Google or GitHub account.
                 <hr>
                 <section>
@@ -45,13 +46,14 @@
                     </div>
                 </section>
                 <hr>
+                -->
                 <section>
                     <div>
                         <h5 class="subtitle">Sign up with Hivemind</h5>
                     </div>
                     <div>
                         <div class="field">
-                            <label class="label">Username</label>
+                            <label class="label">Email</label>
                             <div class="control">
                                 <input class="input" type="text">
                             </div>
@@ -75,4 +77,37 @@
         </div>
     </div>
     <button class="modal-close is-large" aria-label="close" (click)="showSignUpDialog = false;"></button>
+</div>
+
+
+<!-- sign up modal dialog -->
+<div class="modal" *ngIf="showLoginDialog" [ngClass]="{'is-active': showLoginDialog}">
+    <div class="modal-background" (click)="showLoginDialog = false;"></div>
+    <div class="modal-content">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <h3 class="title">Login to Hivemind</h3>
+            </header>
+            <section class="modal-card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+                    <div>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                <input class="input" type="text" [formControl]="loginForm.controls['email']">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" type="password" [formControl]="loginForm.controls['password']">
+                            </div>
+                        </div>
+                        <button type="submit" class="button is-primary">Submit</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="showLoginDialog = false;"></button>
 </div>

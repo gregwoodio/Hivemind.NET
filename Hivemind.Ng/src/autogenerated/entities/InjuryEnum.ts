@@ -1,4 +1,4 @@
-export enum InjuryEnum {
+export enum injuryEnum {
     DEAD = 1,
     MULTIPLE_INJURIES,
     CHEST_WOUND,

@@ -345,7 +345,7 @@
         }
       }
     },
-    "/api/gangs/{gangName}": {
+    "/api/gangs": {
       "post": {
         "tags": [
           "Gangs"
@@ -368,25 +368,11 @@
         ],
         "parameters": [
           {
-            "name": "gangName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "house",
+            "name": "gang",
             "in": "body",
             "required": true,
             "schema": {
-              "enum": [
-                "CAWDOR",
-                "ESCHER",
-                "GOLIATH",
-                "VAN_SAAR",
-                "ORLOCK",
-                "DELAQUE"
-              ],
-              "type": "string"
+              "$ref": "#/definitions/Gang"
             }
           }
         ],
@@ -680,6 +666,69 @@
         }
       }
     },
+    "/api/user": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetUser",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Register",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
     "/api/weapons/{weaponId}": {
       "get": {
         "tags": [
@@ -749,26 +798,26 @@
     "BattleReport": {
       "type": "object",
       "properties": {
-        "GangId": {
+        "gangId": {
           "type": "string"
         },
-        "GangBattleStats": {
+        "gangBattleStats": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GangerBattleStats"
           }
         },
-        "HasWon": {
+        "hasWon": {
           "type": "boolean"
         },
-        "IsAttacker": {
+        "isAttacker": {
           "type": "boolean"
         },
-        "OpponentGangRating": {
+        "opponentGangRating": {
           "format": "int32",
           "type": "integer"
         },
-        "GameType": {
+        "gameType": {
           "enum": [
             "GANG_FIGHT",
             "SCAVENGERS",
@@ -785,21 +834,21 @@
     "GangerBattleStats": {
       "type": "object",
       "properties": {
-        "GangerId": {
+        "gangerId": {
           "type": "string"
         },
-        "Kills": {
+        "kills": {
           "format": "int32",
           "type": "integer"
         },
-        "Objectives": {
+        "objectives": {
           "format": "int32",
           "type": "integer"
         },
-        "Down": {
+        "down": {
           "type": "boolean"
         },
-        "OutOfAction": {
+        "outOfAction": {
           "type": "boolean"
         }
       }
@@ -807,13 +856,13 @@
     "PostGameReport": {
       "type": "object",
       "properties": {
-        "Injuries": {
+        "injuries": {
           "$ref": "#/definitions/InjuryReport"
         },
-        "Experience": {
+        "experience": {
           "$ref": "#/definitions/GangLevelUpReport"
         },
-        "Income": {
+        "income": {
           "$ref": "#/definitions/IncomeReport"
         }
       }
@@ -821,7 +870,7 @@
     "InjuryReport": {
       "type": "object",
       "properties": {
-        "Injuries": {
+        "injuries": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GangerInjuryReport"
@@ -832,7 +881,7 @@
     "GangLevelUpReport": {
       "type": "object",
       "properties": {
-        "GangerAdvancements": {
+        "gangerAdvancements": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GangerLevelUpReport"
@@ -843,17 +892,17 @@
     "IncomeReport": {
       "type": "object",
       "properties": {
-        "Gross": {
+        "gross": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TerritoryIncomeReport"
           }
         },
-        "GiantKillerBonus": {
+        "giantKillerBonus": {
           "format": "int32",
           "type": "integer"
         },
-        "Income": {
+        "income": {
           "format": "int32",
           "type": "integer"
         }
@@ -862,10 +911,10 @@
     "GangerInjuryReport": {
       "type": "object",
       "properties": {
-        "TheGanger": {
+        "theGanger": {
           "$ref": "#/definitions/Ganger"
         },
-        "Injuries": {
+        "injuries": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Injury"
@@ -876,13 +925,13 @@
     "GangerLevelUpReport": {
       "type": "object",
       "properties": {
-        "GangerName": {
+        "gangerName": {
           "type": "string"
         },
-        "Description": {
+        "description": {
           "type": "string"
         },
-        "NewSkillFromCategory": {
+        "newSkillFromCategory": {
           "type": "array",
           "items": {
             "enum": [
@@ -902,10 +951,10 @@
     "TerritoryIncomeReport": {
       "type": "object",
       "properties": {
-        "Description": {
+        "description": {
           "type": "string"
         },
-        "Income": {
+        "income": {
           "format": "int32",
           "type": "integer"
         }
@@ -914,16 +963,16 @@
     "Ganger": {
       "type": "object",
       "properties": {
-        "GangerId": {
+        "gangerId": {
           "type": "string"
         },
-        "GangId": {
+        "gangId": {
           "type": "string"
         },
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "GangerType": {
+        "gangerType": {
           "enum": [
             "JUVE",
             "GANGER",
@@ -932,62 +981,62 @@
           ],
           "type": "string"
         },
-        "Move": {
+        "move": {
           "format": "int32",
           "type": "integer"
         },
-        "WeaponSkill": {
+        "weaponSkill": {
           "format": "int32",
           "type": "integer"
         },
-        "BallisticSkill": {
+        "ballisticSkill": {
           "format": "int32",
           "type": "integer"
         },
-        "Strength": {
+        "strength": {
           "format": "int32",
           "type": "integer"
         },
-        "Toughness": {
+        "toughness": {
           "format": "int32",
           "type": "integer"
         },
-        "Wounds": {
+        "wounds": {
           "format": "int32",
           "type": "integer"
         },
-        "Initiative": {
+        "initiative": {
           "format": "int32",
           "type": "integer"
         },
-        "Attack": {
+        "attack": {
           "format": "int32",
           "type": "integer"
         },
-        "Leadership": {
+        "leadership": {
           "format": "int32",
           "type": "integer"
         },
-        "Experience": {
+        "experience": {
           "format": "int32",
           "type": "integer"
         },
-        "Cost": {
+        "cost": {
           "format": "int32",
           "type": "integer"
         },
-        "Skills": {
+        "skills": {
           "format": "int64",
           "type": "integer"
         },
-        "Injuries": {
+        "injuries": {
           "format": "int64",
           "type": "integer"
         },
-        "Active": {
+        "active": {
           "type": "boolean"
         },
-        "Title": {
+        "title": {
           "enum": [
             "GREEN_JUVE",
             "JUVE",
@@ -1000,42 +1049,42 @@
           ],
           "type": "string"
         },
-        "IsOneEyed": {
+        "isOneEyed": {
           "type": "boolean"
         },
-        "IsDeafened": {
+        "isDeafened": {
           "type": "boolean"
         },
-        "IsOneHanded": {
+        "isOneHanded": {
           "type": "boolean"
         },
-        "RightHandFingers": {
+        "rightHandFingers": {
           "format": "int32",
           "type": "integer"
         },
-        "LeftHandFingers": {
+        "leftHandFingers": {
           "format": "int32",
           "type": "integer"
         },
-        "HasHorribleScars": {
+        "hasHorribleScars": {
           "type": "boolean"
         },
-        "HasImpressiveScars": {
+        "hasImpressiveScars": {
           "type": "boolean"
         },
-        "HasHeadWound": {
+        "hasHeadWound": {
           "type": "boolean"
         },
-        "HasOldBattleWound": {
+        "hasOldBattleWound": {
           "type": "boolean"
         },
-        "IsCaptured": {
+        "isCaptured": {
           "type": "boolean"
         },
-        "HasBitterEnmity": {
+        "hasBitterEnmity": {
           "type": "boolean"
         },
-        "HasSporeSickness": {
+        "hasSporeSickness": {
           "type": "boolean"
         }
       }
@@ -1043,7 +1092,7 @@
     "Injury": {
       "type": "object",
       "properties": {
-        "InjuryEnum": {
+        "injuryEnum": {
           "enum": [
             "DEAD",
             "MULTIPLE_INJURIES",
@@ -1066,13 +1115,13 @@
           ],
           "type": "string"
         },
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "Description": {
+        "description": {
           "type": "string"
         },
-        "InjuryEffect": {
+        "injuryEffect": {
           "type": "object"
         }
       }
@@ -1080,13 +1129,13 @@
     "GangerWeapon": {
       "type": "object",
       "properties": {
-        "GangerWeaponId": {
+        "gangerWeaponId": {
           "type": "string"
         },
-        "GangerId": {
+        "gangerId": {
           "type": "string"
         },
-        "Weapon": {
+        "weapon": {
           "$ref": "#/definitions/Weapon"
         }
       }
@@ -1094,7 +1143,7 @@
     "Weapon": {
       "type": "object",
       "properties": {
-        "WeaponEnum": {
+        "weaponEnum": {
           "enum": [
             "MASSIVE_AXE",
             "CLUB",
@@ -1184,10 +1233,10 @@
           ],
           "type": "string"
         },
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "WeaponType": {
+        "weaponType": {
           "enum": [
             "HAND_TO_HAND",
             "PISTOLS",
@@ -1202,44 +1251,44 @@
           ],
           "type": "string"
         },
-        "WeaponAvailability": {
+        "weaponAvailability": {
           "enum": [
             "COMMON",
             "RARE"
           ],
           "type": "string"
         },
-        "ShortRange": {
+        "shortRange": {
           "type": "string"
         },
-        "LongRange": {
+        "longRange": {
           "type": "string"
         },
-        "HitShort": {
+        "hitShort": {
           "type": "string"
         },
-        "HitLong": {
+        "hitLong": {
           "type": "string"
         },
-        "Strength": {
+        "strength": {
           "type": "string"
         },
-        "Damage": {
+        "damage": {
           "type": "string"
         },
-        "SaveMod": {
+        "saveMod": {
           "type": "string"
         },
-        "AmmoRoll": {
+        "ammoRoll": {
           "type": "string"
         },
-        "Cost": {
+        "cost": {
           "type": "string"
         },
-        "SpecialRules": {
+        "specialRules": {
           "type": "string"
         },
-        "Effect": {
+        "effect": {
           "type": "object"
         }
       }
@@ -1247,17 +1296,17 @@
     "Gang": {
       "type": "object",
       "properties": {
-        "GangId": {
+        "gangId": {
           "type": "string"
         },
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "Credits": {
+        "credits": {
           "format": "int32",
           "type": "integer"
         },
-        "GangHouse": {
+        "gangHouse": {
           "enum": [
             "CAWDOR",
             "ESCHER",
@@ -1268,19 +1317,19 @@
           ],
           "type": "string"
         },
-        "Gangers": {
+        "gangers": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Ganger"
           }
         },
-        "Territories": {
+        "territories": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GangTerritory"
           }
         },
-        "GangRating": {
+        "gangRating": {
           "format": "int32",
           "type": "integer",
           "readOnly": true
@@ -1290,13 +1339,13 @@
     "GangTerritory": {
       "type": "object",
       "properties": {
-        "GangTerritoryId": {
+        "gangTerritoryId": {
           "type": "string"
         },
-        "GangId": {
+        "gangId": {
           "type": "string"
         },
-        "Territory": {
+        "territory": {
           "$ref": "#/definitions/Territory"
         }
       }
@@ -1304,20 +1353,20 @@
     "Territory": {
       "type": "object",
       "properties": {
-        "TerritoryId": {
+        "territoryId": {
           "format": "int32",
           "type": "integer"
         },
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "Description": {
+        "description": {
           "type": "string"
         },
-        "Income": {
+        "income": {
           "type": "string"
         },
-        "WorkTerritory": {
+        "workTerritory": {
           "type": "object"
         }
       }
@@ -1325,14 +1374,49 @@
     "GangWeapon": {
       "type": "object",
       "properties": {
-        "GangWeaponId": {
+        "gangWeaponId": {
           "type": "string"
         },
-        "GangId": {
+        "gangId": {
           "type": "string"
         },
-        "Weapon": {
+        "weapon": {
           "$ref": "#/definitions/Weapon"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "userGUID": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "userGUID": {
+          "type": "string"
+        },
+        "userGangIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

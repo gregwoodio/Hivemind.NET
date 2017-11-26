@@ -106,7 +106,7 @@ function parseClasses() {
                         let referencedObjectName = _.last(property.items.$ref.split('/'));
                         type = referencedObjectName + '[]';
                         obj.imports[referencedObjectName] = referencedObjectName;
-                    } else if (property.items.enum) {
+                    } else {
                         type = 'any';
                     }
                     break;

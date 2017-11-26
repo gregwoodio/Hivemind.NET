@@ -1,4 +1,4 @@
-export enum WeaponType {
+export enum weaponType {
     HAND_TO_HAND = 1,
     PISTOLS,
     BASIC,

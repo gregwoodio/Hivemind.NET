@@ -1,4 +1,4 @@
-export enum GangHouse {
+export enum gangHouse {
     CAWDOR = 1,
     ESCHER,
     GOLIATH,

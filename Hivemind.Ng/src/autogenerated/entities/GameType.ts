@@ -1,4 +1,4 @@
-export enum GameType {
+export enum gameType {
     GANG_FIGHT = 1,
     SCAVENGERS,
     HIT_AND_RUN,

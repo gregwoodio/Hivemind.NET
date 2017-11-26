@@ -1,4 +1,4 @@
-export enum GangerType {
+export enum gangerType {
     JUVE = 1,
     GANGER,
     HEAVY,

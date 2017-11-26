@@ -16,6 +16,8 @@ namespace WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             // Order matters for OWIN pipeline, set OAuth config first.
             ConfigureOAuth(app);
 
@@ -23,8 +25,7 @@ namespace WebApi
             WebApiConfig.Register(config);
 
             app.UseWebApi(config);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
+            
             SwaggerConfig.Register(config);
         }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { TokenService } from './../../app/tokenService/token.service';
 {{#imports}}
 import { {{import}} } from '../entities/{{import}}';
 {{/imports}}
@@ -8,7 +9,7 @@ import { {{import}} } from '../entities/{{import}}';
 @Injectable()
 export class {{name}} {
 
-    constructor(private _http: HttpClient) {}
+    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
 
     {{#methods}}
     public {{methodName}}(
@@ -28,6 +29,11 @@ export class {{name}} {
             {{#bodyParams}}
             , body
             {{/bodyParams}}
+            , {
+                headers: new HttpHeaders({
+                    'Authorize': 'Bearer ' + this._tokenService.token
+                })
+            }
         );
     }
 

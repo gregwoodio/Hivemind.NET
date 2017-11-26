@@ -1,4 +1,4 @@
-export enum WeaponEnum {
+export enum weaponEnum {
     MASSIVE_AXE = 1,
     CLUB,
     CHAINS,
