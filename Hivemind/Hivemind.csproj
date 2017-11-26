@@ -64,7 +64,7 @@
     <Compile Include="Entities\Injury.cs" />
     <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\Territory.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Weapon.cs" />
     <Compile Include="Enums\GameType.cs" />
     <Compile Include="Enums\GangerTitle.cs" />

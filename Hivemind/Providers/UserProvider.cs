@@ -11,7 +11,7 @@ namespace Hivemind.Providers
 {
     public class UserProvider : HivemindProvider
     {
-        public User AddUser(User user)
+        public Login AddUser(Login login)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -22,18 +22,18 @@ namespace Hivemind.Providers
                     command.CommandType = CommandType.StoredProcedure;
                     var userGuid = command.Parameters.Add("@UserGUID", SqlDbType.NVarChar, 100);
                     userGuid.Direction = ParameterDirection.Output;
-                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = user.Email;
-                    command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = user.Password;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = login.Email;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = login.Password;
                     command.ExecuteNonQuery();
 
-                    user.UserGUID = (string)userGuid.Value;
+                    login.UserGUID = (string)userGuid.Value;
 
-                    return user;
+                    return login;
                 }
             }
         }
 
-        public User GetUserByGuid(string guid)
+        public Login GetUserByGuid(string guid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -50,7 +50,7 @@ namespace Hivemind.Providers
             }
         }
 
-        public User GetUserByEmail(string email)
+        public Login GetUserByEmail(string email)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -91,9 +91,9 @@ namespace Hivemind.Providers
             }
         }
 
-        private User GetUserFromReader(SqlDataReader reader)
+        private Login GetUserFromReader(SqlDataReader reader)
         {
-            var user = new User();
+            var user = new Login();
             if (reader.Read())
             {
                 var value = reader.GetOrdinal("userId");

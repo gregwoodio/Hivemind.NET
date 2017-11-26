@@ -8,7 +8,7 @@ namespace Hivemind.Managers.Extensions
 {
     public static class UserExtensions
     {
-        public static Contracts.User ToContract(this Entities.User user)
+        public static Contracts.User ToContract(this Entities.Login user)
         {
             return new Contracts.User()
             {

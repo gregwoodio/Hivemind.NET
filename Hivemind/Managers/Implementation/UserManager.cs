@@ -20,7 +20,7 @@ namespace Hivemind.Managers.Implementation
             _userProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
         }
 
-        public Contracts.User Login(Entities.User user)
+        public Contracts.User Login(Entities.Login user)
         {
             ValidateInput(user);
 
@@ -35,7 +35,7 @@ namespace Hivemind.Managers.Implementation
             return userContract;
         }
 
-        public Contracts.User RegisterUser(Entities.User user)
+        public Contracts.User RegisterUser(Entities.Login user)
         {
             ValidateInput(user);
 
@@ -65,7 +65,7 @@ namespace Hivemind.Managers.Implementation
             return _userProvider.GetGangsByUserGuid(userGuid);
         }
 
-        private void AuthenticateUser(Entities.User user, Entities.User userFromDatabase)
+        private void AuthenticateUser(Entities.Login user, Entities.Login userFromDatabase)
         {
             if (user == null || user.Email == null || userFromDatabase == null)
             {
@@ -78,7 +78,7 @@ namespace Hivemind.Managers.Implementation
             }
         }
 
-        private void ValidateInput(Entities.User user)
+        private void ValidateInput(Entities.Login user)
         {
             if (string.IsNullOrEmpty(user.Email))
             {

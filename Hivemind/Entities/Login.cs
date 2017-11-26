@@ -1,6 +1,6 @@
 ﻿namespace Hivemind.Entities
 {
-    public class User
+    public class Login
     {
         public int UserId { get; set; }
         public string Email { get; set; }

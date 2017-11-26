@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         
         [HttpPost]
         [Route("")]
-        public Hivemind.Contracts.User Register(Hivemind.Entities.User user)
+        public Hivemind.Contracts.User Register(Hivemind.Entities.Login user)
         {
             return _userManager.RegisterUser(user);
         }

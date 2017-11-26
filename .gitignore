@@ -21,3 +21,4 @@ Hivemind.Tests/bin/**/*
 Hivemind.Tests/obj/**/*
 WebApi/bin/**/*
 WebApi/obj/**/*
+/.vs/Hivemind/v15/Server/sqlite3

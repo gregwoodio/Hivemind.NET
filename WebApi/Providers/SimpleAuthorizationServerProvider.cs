@@ -31,7 +31,7 @@ namespace WebApi.Providers
 
             try
             {
-                var user = userManager.Login(new User()
+                var user = userManager.Login(new Login()
                 {
                     Email = context.UserName,
                     Password = context.Password

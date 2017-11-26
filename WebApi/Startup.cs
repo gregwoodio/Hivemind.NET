@@ -24,6 +24,8 @@ namespace WebApi
 
             app.UseWebApi(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
+            SwaggerConfig.Register(config);
         }
 
         public void ConfigureOAuth(IAppBuilder app)

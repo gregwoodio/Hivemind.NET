@@ -9,14 +9,14 @@ namespace Hivemind.Managers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Contracts.User RegisterUser(Entities.User user);
+        Contracts.User RegisterUser(Entities.Login user);
 
         /// <summary>
         /// Login an existing user.
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Contracts.User Login(Entities.User user);
+        Contracts.User Login(Entities.Login user);
 
         /// <summary>
         /// Gets user by GUID.
