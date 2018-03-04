@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { TokenService } from './../../app/tokenService/token.service';
+import { TokenService } from './../../app/redux/TokenService';
 import { PreGameReport } from '../entities/PreGameReport';
 import { PostGameReport } from '../entities/PostGameReport';
 import { BattleReport } from '../entities/BattleReport';
