@@ -19,9 +19,6 @@ namespace WebApi
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            // Enable CORS for testing
-            config.EnableCors();
-
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             config.Routes.MapHttpRoute(

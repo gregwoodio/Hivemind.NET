@@ -22,7 +22,8 @@ export class TerritoriesClient {
             'http://localhost:61774/api/territories/' + gangId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -39,7 +40,8 @@ export class TerritoriesClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -53,7 +55,8 @@ export class TerritoriesClient {
             'http://localhost:61774/api/territories/' + gangTerritoryId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -66,7 +69,8 @@ export class TerritoriesClient {
             'http://localhost:61774/api/Territories'
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );

@@ -8,11 +8,14 @@ import { ADD_GANG, CHANGE_GANG, SET_TOKEN } from './GangState';
 @Injectable()
 export class GangService {
 
-    constructor(private ngRedux: NgRedux<IAppState>, private _gangsClient: GangsClient) {}
+    constructor(
+        private _ngRedux: NgRedux<IAppState>,
+        private _gangsClient: GangsClient) {
+    }
 
     public addGang(gang: Gang) {
         this._gangsClient.AddGang(gang).subscribe((addedGang: Gang) => {
-            this.ngRedux.dispatch({
+            this._ngRedux.dispatch({
                 type: ADD_GANG,
                 payload: addedGang
             });
@@ -21,7 +24,7 @@ export class GangService {
 
     public getGang(id: string) {
         this._gangsClient.GetGang(id).subscribe((gang: Gang) => {
-            this.ngRedux.dispatch({
+            this._ngRedux.dispatch({
                 type: CHANGE_GANG,
                 payload: gang
             });

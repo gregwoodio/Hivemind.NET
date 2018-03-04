@@ -6,12 +6,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TokenService {
 
-  public token: string;
+  private _token: string;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  public get token(): string {
+    return this._token;
+  }
+
+  constructor(private _ngRedux: NgRedux<IAppState>) {
+
+  }
 
   public setToken(token: string) {
-    this.ngRedux.dispatch({
+    this._token = token;
+    this._ngRedux.dispatch({
         type: SET_TOKEN,
         payload: token
     });

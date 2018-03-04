@@ -22,14 +22,14 @@ namespace WebApi.Controllers
             }
             _userManager = userManager;
         }
-        
+
         [HttpPost]
         [Route("")]
         public Hivemind.Contracts.User Register(Hivemind.Entities.Login user)
         {
             return _userManager.RegisterUser(user);
         }
-        
+
         [Authorize]
         [HttpGet]
         [Route("")]

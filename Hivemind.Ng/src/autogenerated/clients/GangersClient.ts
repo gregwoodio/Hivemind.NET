@@ -23,7 +23,8 @@ export class GangersClient {
             'http://localhost:61774/api/gangers/' + gangerId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -37,7 +38,8 @@ export class GangersClient {
             'http://localhost:61774/api/gangers/' + gangerId + '/weapons'
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -54,7 +56,8 @@ export class GangersClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -69,7 +72,8 @@ export class GangersClient {
             'http://localhost:61774/api/gangers/' + gangerId + '/weapons/' + gangerWeaponId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -85,7 +89,8 @@ export class GangersClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -101,7 +106,8 @@ export class GangersClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );

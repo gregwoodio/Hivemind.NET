@@ -6,6 +6,7 @@ import { LoginResponse } from './LoginResponse';
 import 'rxjs/add/observable/of';
 import { Subject } from 'rxjs/Subject';
 import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
+import { UserService } from './../../app/redux/UserService';
 
 @Injectable()
 export class LoginClient {
@@ -16,6 +17,7 @@ export class LoginClient {
     constructor(
         private _http: HttpClient,
         private _tokenService: TokenService,
+        private _userService: UserService
     ) {
         this._loginSubject = new Subject<LoginResponse>();
     }
@@ -32,9 +34,9 @@ export class LoginClient {
 
         this._http.post(this._loginUrl, body.toString(), { 'headers': headers }).subscribe((data: any) => {
             if (data && data.access_token) {
-                this._tokenService.token = data.access_token;
-                // TODO: Call user service, get user info and gangs.
-                // Call getGang of first gang, or create an empty gang.
+                this._tokenService.setToken(data.access_token);
+
+                this._userService.getUser();
 
                 this._loginSubject.next(new LoginResponse({
                     success: true

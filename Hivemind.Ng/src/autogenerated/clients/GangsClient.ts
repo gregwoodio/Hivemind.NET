@@ -23,7 +23,8 @@ export class GangsClient {
             'http://localhost:61774/api/gangs/' + gangId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -39,7 +40,8 @@ export class GangsClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -53,7 +55,8 @@ export class GangsClient {
             'http://localhost:61774/api/gangs/' + gangId + '/weapons'
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -70,7 +73,8 @@ export class GangsClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -85,7 +89,8 @@ export class GangsClient {
             'http://localhost:61774/api/gangs/' + gangId + '/weapons/' + gangWeaponId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -101,7 +106,8 @@ export class GangsClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );

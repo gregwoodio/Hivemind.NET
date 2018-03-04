@@ -4,12 +4,11 @@ using Hivemind.Managers;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace WebApi.Controllers
 {
     [RoutePrefix("api/gangs")]
-    [EnableCors(origins: "http://localhost:4200", headers:"*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers:"*", methods: "*")]
     public class GangsController : ApiController
     {
         private IGangManager _gangManager;

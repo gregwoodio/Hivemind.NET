@@ -21,7 +21,8 @@ export class UsersClient {
             'http://localhost:61774/api/user'
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -37,7 +38,8 @@ export class UsersClient {
             , body
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );

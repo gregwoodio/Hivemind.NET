@@ -26,11 +26,12 @@ import { LoginClient } from 'app/clients/LoginClient';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 
 const initialState: IAppState = {
+  user: null,
   gang: null,
   token: ''
 };
 
-export const createAppStore = () => {
+export const createAppStore = (): Store<IAppState> => {
   return createStore<IAppState>(reduce, initialState);
 };
 

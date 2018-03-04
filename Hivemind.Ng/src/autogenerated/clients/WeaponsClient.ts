@@ -21,7 +21,8 @@ export class WeaponsClient {
             'http://localhost:61774/api/weapons/' + weaponId + ''
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
@@ -34,7 +35,8 @@ export class WeaponsClient {
             'http://localhost:61774/api/Weapons'
             , {
                 headers: new HttpHeaders({
-                    'Authorize': 'Bearer ' + this._tokenService.token
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 })
             }
         );
