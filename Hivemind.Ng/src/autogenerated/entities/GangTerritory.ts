@@ -3,6 +3,7 @@
  */
 
 import { Territory } from './Territory';
+import { HttpParams } from '@angular/common/http';
 
 export class GangTerritory {
     public gangTerritoryId: string;
@@ -19,5 +20,31 @@ export class GangTerritory {
         if (partial.territory) {
             this.territory = partial.territory;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('gangTerritoryId', this.gangTerritoryId !== undefined ? this.gangTerritoryId.toString() : '')
+        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
+        //    .set('territory', this.territory !== undefined ? this.territory.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.gangTerritoryId) {
+            properties.push('gangTerritoryId');
+        }
+        if (this.gangId) {
+            properties.push('gangId');
+        }
+        if (this.territory) {
+            properties.push('territory');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

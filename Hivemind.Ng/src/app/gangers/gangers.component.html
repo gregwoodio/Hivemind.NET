@@ -1,4 +1,4 @@
-<table class="table is-striped is-fullwidth">
+<table class="table is-striped is-fullwidth" *ngIf="gangers.length > 0">
   <thead>
     <tr>
       <th>Name</th>
@@ -18,10 +18,10 @@
       <th>Exp.</th>
     </tr>
   </thead>
-  <tr *ngFor='let ganger of gangers' [hidden]='!ganger.active'>
+  <tr *ngFor="let ganger of gangers" [hidden]="!ganger.active">
     <td>
       <div><strong>{{ganger.name}}</strong></div>
-      <div class="is-small">{{ganger.type}}</div>
+      <div class="is-small">{{ganger.gangerType}}</div>
     </td>
     <td>{{ganger.move}}</td>
     <td>{{ganger.weaponSkill}}</td>
@@ -39,3 +39,4 @@
     <td>{{ganger.experience}}</td>
   </tr>
 </table>
+<div *ngIf="gangers.length == 0">You don't have any gangers in your gang yet. Add them in the store.</div>

@@ -33,11 +33,11 @@ export class GangsClient {
     public AddGang(
         gang: Gang,
     ): Observable<Gang> {
-        let body = gang;
+        let body = gang.toHttpParams();
 
         return this._http.post<Gang>(
             'http://localhost:61774/api/gangs'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -66,11 +66,11 @@ export class GangsClient {
         gangId: string,
         weapon: Weapon,
     ): Observable<GangWeapon> {
-        let body = weapon;
+        let body = weapon.toHttpParams();
 
         return this._http.post<GangWeapon>(
             'http://localhost:61774/api/gangs/' + gangId + '/weapons'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -99,11 +99,11 @@ export class GangsClient {
     public UpdateGang(
         gang: Gang,
     ): Observable<Gang> {
-        let body = gang;
+        let body = gang.toHttpParams();
 
         return this._http.put<Gang>(
             'http://localhost:61774/api/Gangs'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

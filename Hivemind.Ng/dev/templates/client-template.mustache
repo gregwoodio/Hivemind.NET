@@ -25,13 +25,13 @@ export class {{name}} {
         {{/bodyParams}}
     ): Observable<{{returns}}> {
         {{#bodyParams}}
-        let body = {{name}};
+        let body = {{name}}.toHttpParams();
         {{/bodyParams}}
 
         return this._http.{{httpMethod}}<{{returns}}>(
             'http://localhost:61774{{{path}}}'
             {{#bodyParams}}
-            , body
+            , body.toString()
             {{/bodyParams}}
             , {
                 headers: new HttpHeaders({

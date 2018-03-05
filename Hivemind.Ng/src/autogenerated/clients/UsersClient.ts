@@ -31,11 +31,11 @@ export class UsersClient {
     public Register(
         user: Login,
     ): Observable<User> {
-        let body = user;
+        let body = user.toHttpParams();
 
         return this._http.post<User>(
             'http://localhost:61774/api/user'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

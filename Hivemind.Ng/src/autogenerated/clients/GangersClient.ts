@@ -49,11 +49,11 @@ export class GangersClient {
         gangerId: string,
         weapon: Weapon,
     ): Observable<GangerWeapon> {
-        let body = weapon;
+        let body = weapon.toHttpParams();
 
         return this._http.post<GangerWeapon>(
             'http://localhost:61774/api/gangers/' + gangerId + '/weapons'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -82,11 +82,11 @@ export class GangersClient {
     public UpdateGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
-        let body = ganger;
+        let body = ganger.toHttpParams();
 
         return this._http.put<Ganger>(
             'http://localhost:61774/api/Gangers'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -99,11 +99,11 @@ export class GangersClient {
     public AddGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
-        let body = ganger;
+        let body = ganger.toHttpParams();
 
         return this._http.post<Ganger>(
             'http://localhost:61774/api/Gangers'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

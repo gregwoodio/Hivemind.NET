@@ -4,6 +4,7 @@
 
 import { Ganger } from './Ganger';
 import { Injury } from './Injury';
+import { HttpParams } from '@angular/common/http';
 
 export class GangerInjuryReport {
     public theGanger: Ganger;
@@ -16,5 +17,27 @@ export class GangerInjuryReport {
         if (partial.injuries) {
             this.injuries = partial.injuries;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('theGanger', this.theGanger !== undefined ? this.theGanger.toString() : '')
+        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.theGanger) {
+            properties.push('theGanger');
+        }
+        if (this.injuries) {
+            properties.push('injuries');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

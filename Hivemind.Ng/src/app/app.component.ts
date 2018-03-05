@@ -22,6 +22,7 @@ export class AppComponent {
   public title = 'Hivemind NG';
   public showSignUpDialog = false;
   public user: User;
+  public isLoggedIn: boolean;
   public gang: Gang;
   @ViewChild('loginModal') loginModal: LoginModalComponent;
   private _loginUrl = 'http://localhost:61774/api/login';
@@ -30,11 +31,12 @@ export class AppComponent {
     private _tokenService: TokenService,
     private _userService: UserService,
     private _loginClient: LoginClient,
-    private redux: NgRedux<IAppState>
+    private _ngRedux: NgRedux<IAppState>
     ) {
-    redux.subscribe(() => {
-      const state = redux.getState();
+      _ngRedux.subscribe(() => {
+      const state = _ngRedux.getState();
       this.user = state.user;
+      this.isLoggedIn = !!state.user;
       this.gang = state.gang;
     });
   }

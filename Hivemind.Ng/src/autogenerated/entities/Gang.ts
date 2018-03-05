@@ -4,6 +4,7 @@
 
 import { Ganger } from './Ganger';
 import { GangTerritory } from './GangTerritory';
+import { HttpParams } from '@angular/common/http';
 
 export class Gang {
     public gangId: string;
@@ -36,5 +37,47 @@ export class Gang {
         if (partial.gangRating) {
             this.gangRating = partial.gangRating;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
+        //    .set('name', this.name !== undefined ? this.name.toString() : '')
+        //    .set('credits', this.credits !== undefined ? this.credits.toString() : '')
+        //    .set('gangHouse', this.gangHouse !== undefined ? this.gangHouse.toString() : '')
+        //    .set('gangers', this.gangers !== undefined ? this.gangers.toString() : '')
+        //    .set('territories', this.territories !== undefined ? this.territories.toString() : '')
+        //    .set('gangRating', this.gangRating !== undefined ? this.gangRating.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.gangId) {
+            properties.push('gangId');
+        }
+        if (this.name) {
+            properties.push('name');
+        }
+        if (this.credits) {
+            properties.push('credits');
+        }
+        if (this.gangHouse) {
+            properties.push('gangHouse');
+        }
+        if (this.gangers) {
+            properties.push('gangers');
+        }
+        if (this.territories) {
+            properties.push('territories');
+        }
+        if (this.gangRating) {
+            properties.push('gangRating');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

@@ -6,15 +6,21 @@
         <span class="navbar-start"></span>
         <span class="navbar-end">
             <a class="navbar-item"><span class="fa fa-github"></span></a>
-            <a class="navbar-item" (click)="showSignUpDialog = true;">Sign up</a>
-            <a class="navbar-item" (click)="showLoginModalDialog()">Login</a>
+            <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showSignUpDialog = true;">Sign up</a>
+            <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showLoginModalDialog()">Login</a>
+            <a class="navbar-item" *ngIf="isLoggedIn">{{user.email}}</a>
         </span>
     </div>
 </nav>
 
 <section class="section">
     <div class="container">
-        <gang></gang>
+        <gang *ngIf="isLoggedIn"></gang>
+        <div *ngIf="!isLoggedIn">
+            <h1 class="title">Hivemind</h1>
+            <p>Hivemind is an application for tracking your gangs in Games Workshop's Necromunda.</p>
+            <p>Sign up or login above.</p>
+        </div>
     </div>
 </section>
 

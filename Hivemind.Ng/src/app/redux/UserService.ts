@@ -17,11 +17,6 @@ export class UserService {
 
   public getUser() {
     this._usersClient.GetUser().subscribe((user: User) => {
-      this._ngRedux.dispatch({
-        type: SET_USER,
-        payload: user
-      });
-
       const gangs = user.userGangIds as string[];
 
       if (gangs.length > 0) {
@@ -29,6 +24,12 @@ export class UserService {
       } else {
         // add new gang
       }
+
+      this._ngRedux.dispatch({
+        type: SET_USER,
+        payload: user
+      });
+      
     }, err => {
       console.log(err);
     });

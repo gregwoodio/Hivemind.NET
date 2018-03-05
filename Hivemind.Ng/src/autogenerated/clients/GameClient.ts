@@ -18,11 +18,11 @@ export class GameClient {
     public ProcessPreGame(
         id: number,
     ): Observable<PreGameReport> {
-        let body = id;
+        let body = id.toHttpParams();
 
         return this._http.post<PreGameReport>(
             'http://localhost:61774/api/game/pre'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -35,11 +35,11 @@ export class GameClient {
     public ProcessPostGame(
         battleReport: BattleReport,
     ): Observable<PostGameReport> {
-        let body = battleReport;
+        let body = battleReport.toHttpParams();
 
         return this._http.post<PostGameReport>(
             'http://localhost:61774/api/game/post'
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

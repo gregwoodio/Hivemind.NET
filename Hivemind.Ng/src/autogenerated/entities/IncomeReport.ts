@@ -3,6 +3,7 @@
  */
 
 import { TerritoryIncomeReport } from './TerritoryIncomeReport';
+import { HttpParams } from '@angular/common/http';
 
 export class IncomeReport {
     public gross: TerritoryIncomeReport[];
@@ -19,5 +20,31 @@ export class IncomeReport {
         if (partial.income) {
             this.income = partial.income;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('gross', this.gross !== undefined ? this.gross.toString() : '')
+        //    .set('giantKillerBonus', this.giantKillerBonus !== undefined ? this.giantKillerBonus.toString() : '')
+        //    .set('income', this.income !== undefined ? this.income.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.gross) {
+            properties.push('gross');
+        }
+        if (this.giantKillerBonus) {
+            properties.push('giantKillerBonus');
+        }
+        if (this.income) {
+            properties.push('income');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

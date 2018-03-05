@@ -3,6 +3,7 @@
  */
 
 import { GangerInjuryReport } from './GangerInjuryReport';
+import { HttpParams } from '@angular/common/http';
 
 export class InjuryReport {
     public injuries: GangerInjuryReport[];
@@ -11,5 +12,23 @@ export class InjuryReport {
         if (partial.injuries) {
             this.injuries = partial.injuries;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.injuries) {
+            properties.push('injuries');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

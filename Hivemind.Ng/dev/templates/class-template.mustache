@@ -5,6 +5,7 @@
 {{#imports}}
 import { {{import}} } from './{{import}}';
 {{/imports}}
+import { HttpParams } from '@angular/common/http';
 
 export class {{name}} {
     {{#properties}}
@@ -17,5 +18,27 @@ export class {{name}} {
             this.{{name}} = partial.{{name}};
         }
         {{/properties}}
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        {{#properties}}
+        //    .set('{{name}}', this.{{name}} !== undefined ? this.{{name}}.toString() : '')
+        {{/properties}}
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        {{#properties}}
+        if (this.{{name}}) {
+            properties.push('{{name}}');
+        }
+        {{/properties}}
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

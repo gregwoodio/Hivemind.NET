@@ -3,6 +3,7 @@
  */
 
 import { Weapon } from './Weapon';
+import { HttpParams } from '@angular/common/http';
 
 export class GangerWeapon {
     public gangerWeaponId: string;
@@ -19,5 +20,31 @@ export class GangerWeapon {
         if (partial.weapon) {
             this.weapon = partial.weapon;
         }
+    }
+
+    public toHttpParams(): HttpParams {
+        //return new HttpParams()
+        //    .set('gangerWeaponId', this.gangerWeaponId !== undefined ? this.gangerWeaponId.toString() : '')
+        //    .set('gangerId', this.gangerId !== undefined ? this.gangerId.toString() : '')
+        //    .set('weapon', this.weapon !== undefined ? this.weapon.toString() : '')
+        //      ;
+
+        let params = new HttpParams();
+        let properties = [];
+        if (this.gangerWeaponId) {
+            properties.push('gangerWeaponId');
+        }
+        if (this.gangerId) {
+            properties.push('gangerId');
+        }
+        if (this.weapon) {
+            properties.push('weapon');
+        }
+
+        properties.forEach(prop => {
+            params = params.set(prop, this[prop]);
+        });
+
+        return params;
     }
 }

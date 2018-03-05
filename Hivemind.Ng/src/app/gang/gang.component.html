@@ -3,8 +3,10 @@
     <div class="column is-three-fifths">
       <section>
         <h1 class="title">{{gang.name}}</h1>
-        <div><strong>House: </strong>{{gang.gangHouse}}</div>
-        <div><strong>Gang Rating:</strong> {{gang.gangRating}}</div>
+        <div>
+          <strong>House: </strong>{{gang.gangHouse}}</div>
+        <div>
+          <strong>Gang Rating:</strong> {{gang.gangRating}}</div>
       </section>
     </div>
     <div class="column">
@@ -15,7 +17,7 @@
             <option *ngFor="let userGang of userGangs"></option>
           </select>
         </div>
-        <button class="button is-link">New Gang</button>
+        <button class="button is-link" (click)="showAddNewGangModal = true">New Gang</button>
         <button *ngIf="!isGameInProgress" (click)="startGame()" class="button is-primary">Start Game</button>
         <button *ngIf="isGameInProgress" (click)="cancelGame()" class="button is-danger">Cancel Game</button>
       </div>
@@ -25,39 +27,88 @@
     <ul>
       <li [ngClass]="{'is-active': activeTab == 1}">
         <a [routerLink]="['./gangers']" (click)="activeTab = 1">
-          <span class="icon is-small"><i class="fa fa-users"></i></span>
+          <span class="icon is-small">
+            <i class="fa fa-users"></i>
+          </span>
           <span>Gangers</span>
         </a>
       </li>
       <li [ngClass]="{'is-active': activeTab == 2}">
         <a [routerLink]="['./weapons']" (click)="activeTab = 2">
-          <span class="icon is-small"><i class="fa fa-bullseye"></i></span>
+          <span class="icon is-small">
+            <i class="fa fa-bullseye"></i>
+          </span>
           <span>Weapons</span>
         </a>
       </li>
       <li [ngClass]="{'is-active': activeTab == 3}">
         <a [routerLink]="['./territories']" (click)="activeTab = 3">
-          <span class="icon is-small"><i class="fa fa-building"></i></span>
+          <span class="icon is-small">
+            <i class="fa fa-building"></i>
+          </span>
           <span>Territories</span>
         </a>
       </li>
       <li [ngClass]="{'is-active': activeTab == 4}">
         <a [routerLink]="['./statistics']" (click)="activeTab = 4">
-          <span class="icon is-small"><i class="fa fa-line-chart"></i></span>
+          <span class="icon is-small">
+            <i class="fa fa-line-chart"></i>
+          </span>
           <span>Statistics</span>
         </a>
       </li>
       <li [ngClass]="{'is-active': activeTab == 5}">
         <a [routerLink]="['./store']" (click)="activeTab = 5">
-          <span class="icon is-small"><i class="fa fa-money"></i></span>
+          <span class="icon is-small">
+            <i class="fa fa-money"></i>
+          </span>
           <span>Store</span>
         </a>
       </li>
     </ul>
   </div>
-  
+
   <router-outlet></router-outlet>
   <!-- <gangers [gangers]="gangers"></gangers>
 
   <territories [territories]="territories"></territories> -->
+</div>
+
+<!-- Add new gang modal -->
+<div class="modal" *ngIf="showAddNewGangModal" [ngClass]="{'is-active': showAddNewGangModal}">
+  <div class="modal-background" (click)="showAddNewGangModal = false;"></div>
+  <div class="modal-content">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <h3 class="title">Add New Gang</h3>
+      </header>
+      <section class="modal-card-body">
+        <form [formGroup]="addGangForm" (ngSubmit)="addNewGang()">
+          <div>
+            <div class="field">
+              <label class="label">Gang Name</label>
+              <div class="control">
+                <input class="input" type="text" [formControl]="addGangForm.controls['gangName']">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Gang House</label>
+              <div class="select">
+                <select [formControl]="addGangForm.controls['gangHouse']">
+                  <option>Cawdor</option>
+                  <option>Escher</option>
+                  <option>Goliath</option>
+                  <option>Van Saar</option>
+                  <option>Orlock</option>
+                  <option>Delaque</option>
+                </select>
+              </div>
+            </div>
+            <button class="button is-primary">Submit</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="showAddNewGangModal = false;"></button>
 </div>

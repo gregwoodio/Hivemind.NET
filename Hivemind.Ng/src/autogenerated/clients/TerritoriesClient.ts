@@ -33,11 +33,11 @@ export class TerritoriesClient {
         gangId: string,
         territory: Territory,
     ): Observable<GangTerritory> {
-        let body = territory;
+        let body = territory.toHttpParams();
 
         return this._http.post<GangTerritory>(
             'http://localhost:61774/api/territories/' + gangId + ''
-            , body
+            , body.toString()
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
