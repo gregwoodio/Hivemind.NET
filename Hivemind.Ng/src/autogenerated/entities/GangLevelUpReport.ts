@@ -15,10 +15,6 @@ export class GangLevelUpReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangerAdvancements', this.gangerAdvancements !== undefined ? this.gangerAdvancements.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangerAdvancements) {

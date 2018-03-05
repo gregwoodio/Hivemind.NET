@@ -3,9 +3,10 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Users_GetByEmail]
+CREATE PROCEDURE [dbo].[UserGangs_AssociateGangToUser]
 	-- Add the parameters for the stored procedure here
-	@Email NVARCHAR(255)
+	@UserGUID nvarchar(100),
+	@GangId nvarchar(100)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -13,7 +14,5 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT email, password, userGUID 
-	FROM dbo.Users
-	WHERE email = @Email;
+	INSERT INTO dbo.UserGangs (userId, gangId) VALUES (@UserGUID, @GangId);
 END

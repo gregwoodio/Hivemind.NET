@@ -1,8 +1,11 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Exceptions;
 using Hivemind.Managers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace WebApi.Controllers
@@ -42,7 +45,18 @@ namespace WebApi.Controllers
         {
             // TODO: validate request
             // TODO: Assign gang to principal
-            return _gangManager.AddGang(gang);
+            var principal = User as ClaimsPrincipal;
+            var userId = principal.Claims.FirstOrDefault(claim => claim.Type == "userId");
+            if (userId == null)
+            {
+                throw new HivemindException("User does not have a user ID");
+            }
+            
+            var gangEntity = _gangManager.AddGang(gang);
+
+            _gangManager.AssociateGangToUser(gang.GangId, userId.Value);
+
+            return gangEntity;
         }
 
         [Authorize]

@@ -23,12 +23,6 @@ export class GangWeapon {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangWeaponId', this.gangWeaponId !== undefined ? this.gangWeaponId.toString() : '')
-        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
-        //    .set('weapon', this.weapon !== undefined ? this.weapon.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangWeaponId) {

@@ -15,10 +15,6 @@ export class InjuryReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.injuries) {

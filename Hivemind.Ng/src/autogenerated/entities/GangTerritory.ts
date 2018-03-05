@@ -23,12 +23,6 @@ export class GangTerritory {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangTerritoryId', this.gangTerritoryId !== undefined ? this.gangTerritoryId.toString() : '')
-        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
-        //    .set('territory', this.territory !== undefined ? this.territory.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangTerritoryId) {

@@ -1412,10 +1412,10 @@
         "userGUID": {
           "type": "string"
         },
-        "userGangIds": {
+        "userGangs": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/Gang"
           }
         }
       }

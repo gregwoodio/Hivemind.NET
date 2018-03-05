@@ -10,9 +10,6 @@ export class PreGameReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
 

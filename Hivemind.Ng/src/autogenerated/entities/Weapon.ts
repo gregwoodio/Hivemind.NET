@@ -70,24 +70,6 @@ export class Weapon {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('weaponEnum', this.weaponEnum !== undefined ? this.weaponEnum.toString() : '')
-        //    .set('name', this.name !== undefined ? this.name.toString() : '')
-        //    .set('weaponType', this.weaponType !== undefined ? this.weaponType.toString() : '')
-        //    .set('weaponAvailability', this.weaponAvailability !== undefined ? this.weaponAvailability.toString() : '')
-        //    .set('shortRange', this.shortRange !== undefined ? this.shortRange.toString() : '')
-        //    .set('longRange', this.longRange !== undefined ? this.longRange.toString() : '')
-        //    .set('hitShort', this.hitShort !== undefined ? this.hitShort.toString() : '')
-        //    .set('hitLong', this.hitLong !== undefined ? this.hitLong.toString() : '')
-        //    .set('strength', this.strength !== undefined ? this.strength.toString() : '')
-        //    .set('damage', this.damage !== undefined ? this.damage.toString() : '')
-        //    .set('saveMod', this.saveMod !== undefined ? this.saveMod.toString() : '')
-        //    .set('ammoRoll', this.ammoRoll !== undefined ? this.ammoRoll.toString() : '')
-        //    .set('cost', this.cost !== undefined ? this.cost.toString() : '')
-        //    .set('specialRules', this.specialRules !== undefined ? this.specialRules.toString() : '')
-        //    .set('effect', this.effect !== undefined ? this.effect.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.weaponEnum) {

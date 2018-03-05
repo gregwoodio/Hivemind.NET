@@ -23,12 +23,6 @@ export class IncomeReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gross', this.gross !== undefined ? this.gross.toString() : '')
-        //    .set('giantKillerBonus', this.giantKillerBonus !== undefined ? this.giantKillerBonus.toString() : '')
-        //    .set('income', this.income !== undefined ? this.income.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gross) {

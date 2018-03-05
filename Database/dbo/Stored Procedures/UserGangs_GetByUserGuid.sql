@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE dbo.UserGangs_GetByUserGuid
+CREATE PROCEDURE [dbo].[UserGangs_GetByUserGuid]
 	-- Add the parameters for the stored procedure here
 	@UserGUID nvarchar(100)
 AS
@@ -17,6 +17,6 @@ BEGIN
 	INNER JOIN dbo.UserGangs ug
 	ON ug.gangId = g.gangId
 	INNER JOIN dbo.Users u
-	ON u.userId = ug.userId
+	ON u.userGUID = ug.userId
 	WHERE u.userGUID = @UserGUID;
 END

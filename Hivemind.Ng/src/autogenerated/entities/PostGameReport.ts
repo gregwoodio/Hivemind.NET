@@ -25,12 +25,6 @@ export class PostGameReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
-        //    .set('experience', this.experience !== undefined ? this.experience.toString() : '')
-        //    .set('income', this.income !== undefined ? this.income.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.injuries) {

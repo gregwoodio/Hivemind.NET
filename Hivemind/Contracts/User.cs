@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hivemind.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Hivemind.Contracts
@@ -7,11 +8,11 @@ namespace Hivemind.Contracts
     {
         public string Email { get; set; }
         public string UserGUID { get; set; }
-        public IEnumerable<string> UserGangIds { get; set; }
+        public IEnumerable<Gang> UserGangs { get; set; }
 
         public User()
         {
-            UserGangIds = new string[0];
+            UserGangs = new Gang[0];
         }
     }
 }

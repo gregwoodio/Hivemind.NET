@@ -18,7 +18,7 @@ export class GangComponent {
 
   @Input() public gang: Gang;
   public gangers: Ganger[];
-  public userGangs: string[];
+  public userGangs: Gang[];
   public territories: GangTerritory[];
   public activeTab = 1;
   public isGameInProgress: boolean;
@@ -36,7 +36,7 @@ export class GangComponent {
       this.gang = state.gang;
       this.gangers = state.gang.gangers;
       this.territories = state.gang.territories;
-      this.userGangs = state.user.userGangIds; // TODO: fix this
+      this.userGangs = state.user.userGangs;
     });
 
     this.addGangForm = _formBuilder.group({

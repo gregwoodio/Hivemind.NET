@@ -20,11 +20,6 @@ export class GangerInjuryReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('theGanger', this.theGanger !== undefined ? this.theGanger.toString() : '')
-        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.theGanger) {

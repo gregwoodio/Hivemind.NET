@@ -43,6 +43,22 @@ namespace Hivemind.Providers
             }
         }
 
+        public void AssociateGangToUser(string gangId, string userId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("UserGangs_AssociateGangToUser", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar).Value = gangId;
+                    command.Parameters.Add("@UserGUID", SqlDbType.NVarChar).Value = userId;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public Gang AddGang(Gang gang)
         {
             using (var connection = new SqlConnection(_connectionString))

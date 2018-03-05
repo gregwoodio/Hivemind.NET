@@ -12,5 +12,6 @@ namespace Hivemind.Managers
         Gang GetGang(string gangId);
         Gang UpdateGang(Gang gang);
         Gang AddGang(Gang gang);
+        void AssociateGangToUser(string gangId, string value);
     }
 }

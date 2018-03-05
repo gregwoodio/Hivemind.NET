@@ -67,7 +67,7 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<string> GetGangsByUserGuid(string guid)
+        public IEnumerable<Gang> GetGangsByUserGuid(string guid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -79,11 +79,18 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@UserGUID", SqlDbType.NVarChar, 100).Value = guid.ToString();
                     var reader = command.ExecuteReader();
 
-                    var gangList = new List<string>();
+                    var gangList = new List<Gang>();
                     while (reader.Read())
                     {
+                        var gang = new Gang();
+
                         var value = reader.GetOrdinal("gangId");
-                        gangList.Add(reader.GetString(value));
+                        gang.GangId = reader.GetString(value);
+
+                        value = reader.GetOrdinal("gangName");
+                        gang.Name = reader.GetString(value);
+
+                        gangList.Add(gang);
                     }
 
                     return gangList;
@@ -96,10 +103,7 @@ namespace Hivemind.Providers
             var user = new Login();
             if (reader.Read())
             {
-                var value = reader.GetOrdinal("userId");
-                user.UserId = reader.GetInt32(value);
-
-                value = reader.GetOrdinal("email");
+                var value = reader.GetOrdinal("email");
                 user.Email = reader.GetString(value);
 
                 value = reader.GetOrdinal("password");

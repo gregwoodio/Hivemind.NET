@@ -30,14 +30,6 @@ export class Territory {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('territoryId', this.territoryId !== undefined ? this.territoryId.toString() : '')
-        //    .set('name', this.name !== undefined ? this.name.toString() : '')
-        //    .set('description', this.description !== undefined ? this.description.toString() : '')
-        //    .set('income', this.income !== undefined ? this.income.toString() : '')
-        //    .set('workTerritory', this.workTerritory !== undefined ? this.workTerritory.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.territoryId) {

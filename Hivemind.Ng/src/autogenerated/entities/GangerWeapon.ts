@@ -23,12 +23,6 @@ export class GangerWeapon {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangerWeaponId', this.gangerWeaponId !== undefined ? this.gangerWeaponId.toString() : '')
-        //    .set('gangerId', this.gangerId !== undefined ? this.gangerId.toString() : '')
-        //    .set('weapon', this.weapon !== undefined ? this.weapon.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangerWeaponId) {

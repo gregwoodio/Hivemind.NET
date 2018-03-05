@@ -31,5 +31,10 @@ namespace Hivemind.Managers.Implementation
         {
             return _provider.UpdateGang(gang);
         }
+
+        public void AssociateGangToUser(string gangId, string userId)
+        {
+            _provider.AssociateGangToUser(gangId, userId);
+        }
     }
 }

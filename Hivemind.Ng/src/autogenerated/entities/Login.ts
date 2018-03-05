@@ -26,13 +26,6 @@ export class Login {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('userId', this.userId !== undefined ? this.userId.toString() : '')
-        //    .set('email', this.email !== undefined ? this.email.toString() : '')
-        //    .set('password', this.password !== undefined ? this.password.toString() : '')
-        //    .set('userGuid', this.userGuid !== undefined ? this.userGuid.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.userId) {

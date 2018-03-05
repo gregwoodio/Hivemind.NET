@@ -18,11 +18,6 @@ export class TerritoryIncomeReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('description', this.description !== undefined ? this.description.toString() : '')
-        //    .set('income', this.income !== undefined ? this.income.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.description) {

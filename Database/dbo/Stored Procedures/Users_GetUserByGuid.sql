@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE dbo.Users_GetUserByGuid 
+CREATE PROCEDURE [dbo].[Users_GetUserByGuid] 
 	-- Add the parameters for the stored procedure here
 	@UserGUID NVARCHAR(100)
 AS
@@ -13,5 +13,5 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT u.userId, u.email, u.password, u.userGUID FROM [dbo].[Users] u WHERE u.userGUID = @UserGUID;
+	SELECT u.email, u.password, u.userGUID FROM [dbo].[Users] u WHERE u.userGUID = @UserGUID;
 END

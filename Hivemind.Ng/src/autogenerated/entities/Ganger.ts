@@ -134,40 +134,6 @@ export class Ganger {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangerId', this.gangerId !== undefined ? this.gangerId.toString() : '')
-        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
-        //    .set('name', this.name !== undefined ? this.name.toString() : '')
-        //    .set('gangerType', this.gangerType !== undefined ? this.gangerType.toString() : '')
-        //    .set('move', this.move !== undefined ? this.move.toString() : '')
-        //    .set('weaponSkill', this.weaponSkill !== undefined ? this.weaponSkill.toString() : '')
-        //    .set('ballisticSkill', this.ballisticSkill !== undefined ? this.ballisticSkill.toString() : '')
-        //    .set('strength', this.strength !== undefined ? this.strength.toString() : '')
-        //    .set('toughness', this.toughness !== undefined ? this.toughness.toString() : '')
-        //    .set('wounds', this.wounds !== undefined ? this.wounds.toString() : '')
-        //    .set('initiative', this.initiative !== undefined ? this.initiative.toString() : '')
-        //    .set('attack', this.attack !== undefined ? this.attack.toString() : '')
-        //    .set('leadership', this.leadership !== undefined ? this.leadership.toString() : '')
-        //    .set('experience', this.experience !== undefined ? this.experience.toString() : '')
-        //    .set('cost', this.cost !== undefined ? this.cost.toString() : '')
-        //    .set('skills', this.skills !== undefined ? this.skills.toString() : '')
-        //    .set('injuries', this.injuries !== undefined ? this.injuries.toString() : '')
-        //    .set('active', this.active !== undefined ? this.active.toString() : '')
-        //    .set('title', this.title !== undefined ? this.title.toString() : '')
-        //    .set('isOneEyed', this.isOneEyed !== undefined ? this.isOneEyed.toString() : '')
-        //    .set('isDeafened', this.isDeafened !== undefined ? this.isDeafened.toString() : '')
-        //    .set('isOneHanded', this.isOneHanded !== undefined ? this.isOneHanded.toString() : '')
-        //    .set('rightHandFingers', this.rightHandFingers !== undefined ? this.rightHandFingers.toString() : '')
-        //    .set('leftHandFingers', this.leftHandFingers !== undefined ? this.leftHandFingers.toString() : '')
-        //    .set('hasHorribleScars', this.hasHorribleScars !== undefined ? this.hasHorribleScars.toString() : '')
-        //    .set('hasImpressiveScars', this.hasImpressiveScars !== undefined ? this.hasImpressiveScars.toString() : '')
-        //    .set('hasHeadWound', this.hasHeadWound !== undefined ? this.hasHeadWound.toString() : '')
-        //    .set('hasOldBattleWound', this.hasOldBattleWound !== undefined ? this.hasOldBattleWound.toString() : '')
-        //    .set('isCaptured', this.isCaptured !== undefined ? this.isCaptured.toString() : '')
-        //    .set('hasBitterEnmity', this.hasBitterEnmity !== undefined ? this.hasBitterEnmity.toString() : '')
-        //    .set('hasSporeSickness', this.hasSporeSickness !== undefined ? this.hasSporeSickness.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangerId) {

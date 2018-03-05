@@ -35,15 +35,6 @@ export class BattleReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangId', this.gangId !== undefined ? this.gangId.toString() : '')
-        //    .set('gangBattleStats', this.gangBattleStats !== undefined ? this.gangBattleStats.toString() : '')
-        //    .set('hasWon', this.hasWon !== undefined ? this.hasWon.toString() : '')
-        //    .set('isAttacker', this.isAttacker !== undefined ? this.isAttacker.toString() : '')
-        //    .set('opponentGangRating', this.opponentGangRating !== undefined ? this.opponentGangRating.toString() : '')
-        //    .set('gameType', this.gameType !== undefined ? this.gameType.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangId) {

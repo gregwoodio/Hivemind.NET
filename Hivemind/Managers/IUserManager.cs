@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Hivemind.Entities;
+using System.Collections.Generic;
 
 namespace Hivemind.Managers
 {
@@ -30,6 +31,6 @@ namespace Hivemind.Managers
         /// </summary>
         /// <param name="userGuid"></param>
         /// <returns></returns>
-        IEnumerable<string> GetUserGangs(string userGuid);
+        IEnumerable<Gang> GetUserGangs(string userGuid);
     }
 }

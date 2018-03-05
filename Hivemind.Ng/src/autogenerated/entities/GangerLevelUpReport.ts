@@ -22,12 +22,6 @@ export class GangerLevelUpReport {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangerName', this.gangerName !== undefined ? this.gangerName.toString() : '')
-        //    .set('description', this.description !== undefined ? this.description.toString() : '')
-        //    .set('newSkillFromCategory', this.newSkillFromCategory !== undefined ? this.newSkillFromCategory.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangerName) {

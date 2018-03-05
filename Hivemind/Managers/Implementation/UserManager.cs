@@ -60,7 +60,7 @@ namespace Hivemind.Managers.Implementation
             return userContract;
         }
 
-        public IEnumerable<string> GetUserGangs(string userGuid)
+        public IEnumerable<Gang> GetUserGangs(string userGuid)
         {
             return _userProvider.GetGangsByUserGuid(userGuid);
         }
@@ -93,7 +93,7 @@ namespace Hivemind.Managers.Implementation
 
         private void GetUserGangs(ref Contracts.User user)
         {
-            user.UserGangIds = _userProvider.GetGangsByUserGuid(user.UserGUID);
+            user.UserGangs = _userProvider.GetGangsByUserGuid(user.UserGUID);
         }
     }
 }

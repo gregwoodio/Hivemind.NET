@@ -26,13 +26,6 @@ export class Injury {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('injuryEnum', this.injuryEnum !== undefined ? this.injuryEnum.toString() : '')
-        //    .set('name', this.name !== undefined ? this.name.toString() : '')
-        //    .set('description', this.description !== undefined ? this.description.toString() : '')
-        //    .set('injuryEffect', this.injuryEffect !== undefined ? this.injuryEffect.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.injuryEnum) {

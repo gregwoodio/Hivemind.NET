@@ -30,14 +30,6 @@ export class GangerBattleStats {
     }
 
     public toHttpParams(): HttpParams {
-        //return new HttpParams()
-        //    .set('gangerId', this.gangerId !== undefined ? this.gangerId.toString() : '')
-        //    .set('kills', this.kills !== undefined ? this.kills.toString() : '')
-        //    .set('objectives', this.objectives !== undefined ? this.objectives.toString() : '')
-        //    .set('down', this.down !== undefined ? this.down.toString() : '')
-        //    .set('outOfAction', this.outOfAction !== undefined ? this.outOfAction.toString() : '')
-        //      ;
-
         let params = new HttpParams();
         let properties = [];
         if (this.gangerId) {
