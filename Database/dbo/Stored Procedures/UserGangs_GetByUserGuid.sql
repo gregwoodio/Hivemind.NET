@@ -13,7 +13,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT g.gangId FROM dbo.Gangs g 
+	SELECT g.gangId, g.gangName FROM dbo.Gangs g 
 	INNER JOIN dbo.UserGangs ug
 	ON ug.gangId = g.gangId
 	INNER JOIN dbo.Users u

@@ -33,6 +33,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public Ganger AddGanger(Ganger ganger)
         {
+            // TODO: Add validation (can gang afford new ganger?)
             return _gangerManager.AddGanger(ganger);
         }
 

@@ -1,5 +1,6 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Exceptions;
 using Hivemind.Providers;
 using Hivemind.Utilities;
 using System;
@@ -42,7 +43,7 @@ namespace Hivemind.Managers.Implementation
                 case GangerType.JUVE:
                     return CreateJuve(name);
                 default:
-                    return null;
+                    throw new HivemindException($"Invalid GangerType provided: ${type}");
             }
         }
 
@@ -179,7 +180,9 @@ namespace Hivemind.Managers.Implementation
 
         public Ganger AddGanger(Ganger ganger)
         {
-            return _gangerProvider.AddGanger(ganger);
+            var gangerWithStats = CreateGanger(ganger.Name, ganger.GangerType);
+            gangerWithStats.GangId = ganger.GangId;
+            return _gangerProvider.AddGanger(gangerWithStats);
         }
     }
 }

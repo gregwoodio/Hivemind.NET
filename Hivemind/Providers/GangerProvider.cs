@@ -81,6 +81,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@HasHeadWound", SqlDbType.Int).Value = ganger.HasHorribleScars;
                     command.Parameters.Add("@IsCaptured", SqlDbType.Int).Value = ganger.HasHorribleScars;
                     command.Parameters.Add("@HasBitterEnmity", SqlDbType.Int).Value = ganger.HasHorribleScars;
+                    command.Parameters.Add("@Cost", SqlDbType.Int).Value = ganger.Cost;
 
                     command.ExecuteNonQuery();
                     ganger.GangerId = (string)gangerId.Value;

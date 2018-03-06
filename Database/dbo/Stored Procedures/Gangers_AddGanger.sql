@@ -30,7 +30,8 @@ CREATE PROCEDURE [dbo].[Gangers_AddGanger]
 	@HasOldBattleWound TINYINT,
 	@HasHeadWound TINYINT,
 	@IsCaptured TINYINT,
-	@HasBitterEnmity TINYINT
+	@HasBitterEnmity TINYINT,
+	@Cost INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -49,6 +50,10 @@ BEGIN
 	@Wounds, @Initiative, @Attack, @Leadership, @Experience, @Active, @IsOneEyed,
 	@IsDeafened, @IsOneHanded, @RightHandFingers, @LeftHandFingers, @HasHorribleScars,
 	@HasImpressiveScars, @HasHeadWound, @IsCaptured, @HasBitterEnmity);
+
+	UPDATE Gangs 
+	SET credits = (SELECT credits FROM Gangs WHERE gangId = @GangId) - @Cost
+	WHERE gangId = @GangId;
 
 	RETURN 0;
 END

@@ -24,6 +24,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { HttpClient } from '@angular/common/http';
 import { LoginClient } from 'app/clients/LoginClient';
 import { LoginModalComponent } from './login-modal/login-modal.component';
+import { GangerService } from 'app/redux/GangerService';
 
 const initialState: IAppState = {
   user: null,
@@ -69,6 +70,7 @@ const routes: Routes = [
     UserService,
     GangService,
     GangsClient,
+    GangerService,
     GangersClient,
     UsersClient,
     LoginClient
