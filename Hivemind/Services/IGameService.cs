@@ -9,7 +9,7 @@ namespace Hivemind.Services
 {
     public interface IGameService
     {
-        PreGameReport ProcessPreGame(int gangId);
+        PreGameReport ProcessPreGame(string gangId);
         PostGameReport ProcessPostGame(BattleReport battleReport);
     }
 }

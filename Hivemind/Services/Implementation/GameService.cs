@@ -21,7 +21,7 @@ namespace Hivemind.Services.Implementation
             _experienceService = experienceService ?? throw new ArgumentNullException(nameof(experienceService));
         }
 
-        public PreGameReport ProcessPreGame(int gangId)
+        public PreGameReport ProcessPreGame(string gangId)
         {
             throw new NotImplementedException();
         }

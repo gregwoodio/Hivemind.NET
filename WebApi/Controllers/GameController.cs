@@ -1,4 +1,5 @@
 ﻿using Hivemind.Contracts;
+using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Services;
 using System;
@@ -27,9 +28,9 @@ namespace WebApi.Controllers
         [Authorize]
         [HttpPost]
         [Route("pre")]
-        public PreGameReport ProcessPreGame([FromBody] int id)
+        public PreGameReport ProcessPreGame([FromBody] Gang gang)
         {
-            return _gameService.ProcessPreGame(id);
+            return _gameService.ProcessPreGame(gang.GangId);
         }
 
         [Authorize]

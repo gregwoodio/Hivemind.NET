@@ -32,12 +32,11 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "gang",
             "in": "body",
             "required": true,
             "schema": {
-              "format": "int32",
-              "type": "integer"
+              "$ref": "#/definitions/Gang"
             }
           }
         ],
@@ -791,6 +790,213 @@
     }
   },
   "definitions": {
+    "Gang": {
+      "type": "object",
+      "properties": {
+        "gangId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "credits": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "gangHouse": {
+          "enum": [
+            "CAWDOR",
+            "ESCHER",
+            "GOLIATH",
+            "VAN_SAAR",
+            "ORLOCK",
+            "DELAQUE"
+          ],
+          "type": "string"
+        },
+        "gangers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ganger"
+          }
+        },
+        "territories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GangTerritory"
+          }
+        },
+        "gangRating": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "Ganger": {
+      "type": "object",
+      "properties": {
+        "gangerId": {
+          "type": "string"
+        },
+        "gangId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gangerType": {
+          "enum": [
+            "JUVE",
+            "GANGER",
+            "HEAVY",
+            "LEADER"
+          ],
+          "type": "string"
+        },
+        "move": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "weaponSkill": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ballisticSkill": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "strength": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "toughness": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "wounds": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "initiative": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "attack": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "leadership": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "experience": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "cost": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "skills": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "injuries": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "title": {
+          "enum": [
+            "GREEN_JUVE",
+            "JUVE",
+            "TOP_JUVE",
+            "NEW_GANGER",
+            "GANGER",
+            "GANG_CHAMPION",
+            "GANG_HERO",
+            "MIGHTY_GANGER"
+          ],
+          "type": "string"
+        },
+        "isOneEyed": {
+          "type": "boolean"
+        },
+        "isDeafened": {
+          "type": "boolean"
+        },
+        "isOneHanded": {
+          "type": "boolean"
+        },
+        "rightHandFingers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "leftHandFingers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasHorribleScars": {
+          "type": "boolean"
+        },
+        "hasImpressiveScars": {
+          "type": "boolean"
+        },
+        "hasHeadWound": {
+          "type": "boolean"
+        },
+        "hasOldBattleWound": {
+          "type": "boolean"
+        },
+        "isCaptured": {
+          "type": "boolean"
+        },
+        "hasBitterEnmity": {
+          "type": "boolean"
+        },
+        "hasSporeSickness": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GangTerritory": {
+      "type": "object",
+      "properties": {
+        "gangTerritoryId": {
+          "type": "string"
+        },
+        "gangId": {
+          "type": "string"
+        },
+        "territory": {
+          "$ref": "#/definitions/Territory"
+        }
+      }
+    },
+    "Territory": {
+      "type": "object",
+      "properties": {
+        "territoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "income": {
+          "type": "string"
+        },
+        "workTerritory": {
+          "type": "object"
+        }
+      }
+    },
     "PreGameReport": {
       "type": "object",
       "properties": {}
@@ -957,135 +1163,6 @@
         "income": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "Ganger": {
-      "type": "object",
-      "properties": {
-        "gangerId": {
-          "type": "string"
-        },
-        "gangId": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "gangerType": {
-          "enum": [
-            "JUVE",
-            "GANGER",
-            "HEAVY",
-            "LEADER"
-          ],
-          "type": "string"
-        },
-        "move": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "weaponSkill": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "ballisticSkill": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "strength": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "toughness": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "wounds": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "initiative": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "attack": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "leadership": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "experience": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "cost": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "skills": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "injuries": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "active": {
-          "type": "boolean"
-        },
-        "title": {
-          "enum": [
-            "GREEN_JUVE",
-            "JUVE",
-            "TOP_JUVE",
-            "NEW_GANGER",
-            "GANGER",
-            "GANG_CHAMPION",
-            "GANG_HERO",
-            "MIGHTY_GANGER"
-          ],
-          "type": "string"
-        },
-        "isOneEyed": {
-          "type": "boolean"
-        },
-        "isDeafened": {
-          "type": "boolean"
-        },
-        "isOneHanded": {
-          "type": "boolean"
-        },
-        "rightHandFingers": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "leftHandFingers": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "hasHorribleScars": {
-          "type": "boolean"
-        },
-        "hasImpressiveScars": {
-          "type": "boolean"
-        },
-        "hasHeadWound": {
-          "type": "boolean"
-        },
-        "hasOldBattleWound": {
-          "type": "boolean"
-        },
-        "isCaptured": {
-          "type": "boolean"
-        },
-        "hasBitterEnmity": {
-          "type": "boolean"
-        },
-        "hasSporeSickness": {
-          "type": "boolean"
         }
       }
     },
@@ -1289,84 +1366,6 @@
           "type": "string"
         },
         "effect": {
-          "type": "object"
-        }
-      }
-    },
-    "Gang": {
-      "type": "object",
-      "properties": {
-        "gangId": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "credits": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "gangHouse": {
-          "enum": [
-            "CAWDOR",
-            "ESCHER",
-            "GOLIATH",
-            "VAN_SAAR",
-            "ORLOCK",
-            "DELAQUE"
-          ],
-          "type": "string"
-        },
-        "gangers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Ganger"
-          }
-        },
-        "territories": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GangTerritory"
-          }
-        },
-        "gangRating": {
-          "format": "int32",
-          "type": "integer",
-          "readOnly": true
-        }
-      }
-    },
-    "GangTerritory": {
-      "type": "object",
-      "properties": {
-        "gangTerritoryId": {
-          "type": "string"
-        },
-        "gangId": {
-          "type": "string"
-        },
-        "territory": {
-          "$ref": "#/definitions/Territory"
-        }
-      }
-    },
-    "Territory": {
-      "type": "object",
-      "properties": {
-        "territoryId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "income": {
-          "type": "string"
-        },
-        "workTerritory": {
           "type": "object"
         }
       }
