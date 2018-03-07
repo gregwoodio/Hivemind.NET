@@ -17,7 +17,7 @@
     <div class="column">
       <div class="is-pulled-right">
         <div class="select">
-          <select>
+          <select (change)="chooseGang($event.target.value)">
             <option>Choose another gang</option>
             <option *ngFor="let userGang of userGangs" value="{{userGang.gangId}}">{{userGang.name}}</option>
           </select>
