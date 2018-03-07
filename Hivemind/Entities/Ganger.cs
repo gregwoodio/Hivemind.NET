@@ -64,6 +64,7 @@ namespace Hivemind.Entities
         public long Injuries { get; set; }
         public bool Active { get; set; }
         public GangerTitle Title { get; set; }
+        public IEnumerable<Weapon> Weapons { get; set; }
 
         // injury properties
         public bool IsOneEyed { get; set; }
@@ -104,6 +105,7 @@ namespace Hivemind.Entities
             IsCaptured = false;
             HasBitterEnmity = false;
             HasSporeSickness = false;
+            Weapons = new Weapon[0];
         }
 
         public Ganger(Ganger ganger)
@@ -129,6 +131,7 @@ namespace Hivemind.Entities
             IsCaptured = ganger.IsCaptured;
             HasBitterEnmity = ganger.HasBitterEnmity;
             HasSporeSickness = ganger.HasSporeSickness;
+            Weapons = ganger.Weapons;
         }
 
         private int MinimumValues(int value)

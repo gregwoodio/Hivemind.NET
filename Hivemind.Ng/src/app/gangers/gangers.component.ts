@@ -56,4 +56,18 @@ export class GangersComponent {
     this._gangerService.addGanger(ganger);
     this.showAddGangerDialog = false;
   }
+
+  public parseGangerEquipment(ganger: Ganger): string {
+    let out = '';
+
+    for (let i = 0; i < ganger.weapons.length; i++) {
+      out += ganger.weapons[i].name;
+
+      if (i + 1 < ganger.weapons.length) {
+        out += ', ';
+      }
+    }
+
+    return out;
+  }
 }
