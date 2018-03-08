@@ -34,14 +34,23 @@ export class AppComponent {
     private _ngRedux: NgRedux<IAppState>
     ) {
       _ngRedux.subscribe(() => {
-      const state = _ngRedux.getState();
-      this.user = state.user;
-      this.isLoggedIn = !!state.user;
-      this.gang = state.gang;
-    });
+        const state = _ngRedux.getState();
+        this.user = state.user;
+        this.isLoggedIn = !!state.user;
+        this.gang = state.gang;
+      });
+
+      if (this._tokenService.token) {
+        this._userService.getUser();
+      }
   }
 
   public showLoginModalDialog() {
     this.loginModal.display();
+  }
+
+  public logout() {
+    this._tokenService.setToken('');
+    this._userService.logout();
   }
 }

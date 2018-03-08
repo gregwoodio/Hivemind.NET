@@ -13,7 +13,12 @@
             </div>
             <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showSignUpDialog = true;">Sign up</a>
             <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showLoginModalDialog()">Login</a>
-            <a class="navbar-item" *ngIf="isLoggedIn">{{user.email}}</a>
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="isLoggedIn">
+                <a class="navbar-link">{{user.email}}</a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item is-light" (click)="logout()">Logout</a>
+                </div>
+            </div>
         </span>
     </div>
 </nav>

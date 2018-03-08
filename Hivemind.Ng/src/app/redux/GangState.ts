@@ -39,7 +39,6 @@ export const reduce: Reducer<IAppState> = (state: IAppState = initialState, acti
                 return state;
             } 
             newState = Object.assign({}, state, { gang: action.payload });
-            console.log(newState);
             return newState;
 
         case ADD_GANG:
