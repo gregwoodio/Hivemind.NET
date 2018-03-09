@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './gangers.component.html',
   styleUrls: ['./gangers.component.css']
 })
-export class GangersComponent {
+export class GangersComponent implements OnInit {
   public gangers: Ganger[];
   public gang: Gang;
   public addGangerForm: FormGroup;
@@ -22,8 +22,8 @@ export class GangersComponent {
     private _gangerService: GangerService,
     private _ngRedux: NgRedux<IAppState>
   ) {
-    _ngRedux.subscribe(() => {
-      const state = _ngRedux.getState();
+    this._ngRedux.subscribe(() => {
+      const state = this._ngRedux.getState();
       this.gang = state.gang;
       this.gangers = state.gang.gangers;
     });
@@ -34,6 +34,14 @@ export class GangersComponent {
     });
 
     this.gangers = new Array<Ganger>();
+  }
+
+  public ngOnInit() {
+    const state = this._ngRedux.getState();
+    this.gang = state.gang;
+    if (state.gang && state.gang.gangers) {
+      this.gangers = state.gang.gangers;
+    }
   }
 
   public displayAddGangerDialog() {

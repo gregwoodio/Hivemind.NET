@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './gang.component.html',
   styleUrls: ['./gang.component.css']
 })
-export class GangComponent {
+export class GangComponent implements OnInit {
 
   public gang: Gang;
   public gangers: Ganger[];
@@ -32,9 +32,15 @@ export class GangComponent {
     private _gangService: GangService,
     private _router: Router
   ) {
+    this.addGangForm = _formBuilder.group({
+      'gangName': ['', Validators.required],
+      'gangHouse': ['', Validators.required]
+    });
 
-    _ngRedux.subscribe(() => {
-      const state = _ngRedux.getState();
+    this._router.navigate(['gangers']);
+
+    this._ngRedux.subscribe(() => {
+      const state = this._ngRedux.getState();
       this.gang = state.gang;
       this.gangers = state.gang.gangers;
       this.territories = state.gang.territories;
@@ -43,14 +49,18 @@ export class GangComponent {
       }
     });
 
-    this.addGangForm = _formBuilder.group({
-      'gangName': ['', Validators.required],
-      'gangHouse': ['', Validators.required]
+    this.gang = new Gang({
+      name: '',
+      gangHouse: ''
     });
+  }
 
-    this._router.navigate(['gangers']);
-
-    this.gang = new Gang({});
+  public ngOnInit() {
+    const state = this._ngRedux.getState();
+    this.gang = state.gang;
+    if (this.gang && this.gang.gangers) {
+      this.gang.gangers = state.gang.gangers;
+    }
   }
 
   public addNewGang() {
