@@ -12,16 +12,7 @@ using System.Threading.Tasks;
 namespace Hivemind.Providers
 {
     public class GangProvider: HivemindProvider
-    {
-        private GangerProvider _gangerProvider;
-        private TerritoryProvider _territoryProvider;
-
-        public GangProvider(GangerProvider gangerProvider, TerritoryProvider territoryProvider)
-        {
-            _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
-            _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
-        }
-
+    { 
         public Gang GetGangById(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -34,11 +25,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
                     var reader = command.ExecuteReader();
 
-                    var gang = GetGangFromReader(reader);
-                    gang.Gangers = _gangerProvider.GetByGangId(gangId);
-                    gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gangId);
-
-                    return gang;
+                    return GetGangFromReader(reader);
                 }
             }
         }
@@ -76,11 +63,6 @@ namespace Hivemind.Providers
                     command.ExecuteNonQuery();
 
                     gang.GangId = (string)gangId.Value;
-
-                    foreach (var ganger in gang.Gangers)
-                    {
-                        _gangerProvider.AddGanger(ganger);
-                    }
 
                     return gang;
                 }
@@ -123,9 +105,6 @@ namespace Hivemind.Providers
 
                 value = reader.GetOrdinal("credits");
                 gang.Credits = reader.GetInt32(value);
-
-                gang.Gangers = _gangerProvider.GetByGangId(gang.GangId);
-                gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gang.GangId);
             }
             return gang;
         }

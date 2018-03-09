@@ -49,6 +49,24 @@ namespace Hivemind.Providers
             }
         }
 
+        public IEnumerable<GangerWeapon> GetByGangId(string gangId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("GangerWeapons_GetByGangId", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
+
+                    var reader = command.ExecuteReader();
+
+                    return GetGangerWeaponListFromReader(reader, GetGangerWeaponLimitedInformationFromReader);
+                }
+            }
+        }
+
         public GangWeapon AddGangWeapon(GangWeapon gangWeapon)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -152,7 +170,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
 
                     var reader = command.ExecuteReader();
-                    return GetGangerWeaponListFromReader(reader);
+                    return GetGangerWeaponListFromReader(reader, GetGangerWeaponFromReader);
                 }
             }
         }
@@ -353,11 +371,11 @@ namespace Hivemind.Providers
             return gangWeapon;
         }
 
-        private IEnumerable<GangerWeapon> GetGangerWeaponListFromReader(SqlDataReader reader)
+        private IEnumerable<GangerWeapon> GetGangerWeaponListFromReader(SqlDataReader reader, Func<SqlDataReader, GangerWeapon> parsingFunction)
         {
             var gangerWeapons = new List<GangerWeapon>();
             GangerWeapon weapon;
-            while ((weapon = GetGangerWeaponFromReader(reader)) != null)
+            while ((weapon = parsingFunction(reader)) != null)
             {
                 gangerWeapons.Add(weapon);
             }
@@ -451,6 +469,31 @@ namespace Hivemind.Providers
             {
                 return null;
             }
+            return gangerWeapon;
+        }
+
+        /// <summary>
+        /// Gets a list of GangerWeapon from a SQL reader, but with only the weapon name returned.
+        /// This is used with the GetGang call where the specific weapon information is unused.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private GangerWeapon GetGangerWeaponLimitedInformationFromReader(SqlDataReader reader)
+        {
+            var gangerWeapon = new GangerWeapon();
+            if (reader.Read())
+            {
+                var value = reader.GetOrdinal("gangerId");
+                gangerWeapon.GangerId = reader.GetString(value);
+
+                value = reader.GetOrdinal("weaponName");
+                gangerWeapon.Weapon.Name = reader.GetString(value);
+            }
+            else
+            {
+                return null;
+            }
+
             return gangerWeapon;
         }
     }

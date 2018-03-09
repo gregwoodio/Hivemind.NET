@@ -32,7 +32,13 @@ export class UserService {
       });
 
     }, err => {
-      console.log(err);
+    });
+  }
+
+  public logout() {
+    this._ngRedux.dispatch({
+      type: SET_USER,
+      payload: undefined
     });
   }
 }

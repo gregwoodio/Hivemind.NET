@@ -10,31 +10,59 @@ namespace Hivemind.Managers.Implementation
 {
     public class GangManager : IGangManager
     {
-        private GangProvider _provider;
+        private readonly GangProvider _gangProvider;
+        private readonly GangerProvider _gangerProvider;
+        private readonly TerritoryProvider _territoryProvider;
+        private readonly WeaponProvider _weaponProvider;
 
-        public GangManager(GangProvider provider)
+        public GangManager(
+            GangProvider gangProvider, 
+            GangerProvider gangerProvider, 
+            TerritoryProvider territoryProvider,
+            WeaponProvider weaponProvider)
         {
-            _provider = provider ?? throw new ArgumentNullException(nameof(provider));
+            _gangProvider = gangProvider ?? throw new ArgumentNullException(nameof(gangProvider));
+            _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
+            _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
+            _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
         }
 
         public Gang GetGang(string gangId)
         {
-            return _provider.GetGangById(gangId);
+            var gang = _gangProvider.GetGangById(gangId);
+            gang.Gangers = _gangerProvider.GetByGangId(gangId);
+            gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gangId);
+
+            var weapons = _weaponProvider.GetByGangId(gangId);
+            foreach (var ganger in gang.Gangers)
+            {
+                ganger.Weapons = weapons
+                    .Where(gw => gw.GangerId == ganger.GangerId)
+                    .Select(gw => gw.Weapon);
+            }
+
+            return gang;
         }
 
         public Gang AddGang(Gang gang)
         {
-            return _provider.AddGang(gang);
+            var addedGang = _gangProvider.AddGang(gang);
+            foreach (var ganger in addedGang.Gangers)
+            {
+                _gangerProvider.AddGanger(ganger);
+            }
+
+            return addedGang;
         }
 
         public Gang UpdateGang(Gang gang)
         {
-            return _provider.UpdateGang(gang);
+            return _gangProvider.UpdateGang(gang);
         }
 
         public void AssociateGangToUser(string gangId, string userId)
         {
-            _provider.AssociateGangToUser(gangId, userId);
+            _gangProvider.AssociateGangToUser(gangId, userId);
         }
     }
 }

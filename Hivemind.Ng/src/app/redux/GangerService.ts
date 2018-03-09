@@ -25,7 +25,6 @@ export class GangerService {
             this._gangService.getGang(addedGanger.gangId);
             
         }, err => {
-            console.log(err);
         });
     }
 }

@@ -48,7 +48,6 @@ export class LoginClient {
                 }));
             }
         }, err => {
-            console.log(err);
             let errorMessage;
 
             if (err.error) {
