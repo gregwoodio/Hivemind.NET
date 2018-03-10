@@ -10,7 +10,8 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT 
 		g.gangerId, 
-		w.weaponName
+		w.weaponName,
+		gw.cost
 	FROM Gangers g
 	JOIN GangerWeapons gw ON g.gangerId = gw.gangerId
 	JOIN Weapons w ON gw.weaponId = w.weaponId

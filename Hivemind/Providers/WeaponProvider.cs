@@ -490,7 +490,7 @@ namespace Hivemind.Providers
         }
 
         /// <summary>
-        /// Gets a list of GangerWeapon from a SQL reader, but with only the weapon name returned.
+        /// Gets a list of GangerWeapon from a SQL reader, but with only the weapon name and cost returned.
         /// This is used with the GetGang call where the specific weapon information is unused.
         /// </summary>
         /// <param name="reader"></param>
@@ -505,6 +505,9 @@ namespace Hivemind.Providers
 
                 value = reader.GetOrdinal("weaponName");
                 gangerWeapon.Weapon.Name = reader.GetString(value);
+
+                value = reader.GetOrdinal("cost");
+                gangerWeapon.Cost = (int)reader.GetInt32(value);
             }
             else
             {

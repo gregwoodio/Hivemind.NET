@@ -36,9 +36,16 @@ namespace Hivemind.Managers.Implementation
             var weapons = _weaponProvider.GetByGangId(gangId);
             foreach (var ganger in gang.Gangers)
             {
-                ganger.Weapons = weapons
-                    .Where(gw => gw.GangerId == ganger.GangerId)
-                    .Select(gw => gw.Weapon);
+                var gangerWeapons = weapons.Where(gw => gw.GangerId == ganger.GangerId);
+
+                foreach (var gangerWeapon in gangerWeapons)
+                {
+                    gangerWeapon.Weapon.Cost = gangerWeapon.Cost.ToString();
+                }
+                
+                ganger.Weapons = gangerWeapons.Select(gw => gw.Weapon);
+
+                ganger.GetCost();
             }
 
             return gang;

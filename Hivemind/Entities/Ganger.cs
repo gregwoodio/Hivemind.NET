@@ -1,4 +1,5 @@
 ﻿using Hivemind.Enums;
+using Hivemind.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,6 +142,37 @@ namespace Hivemind.Entities
                 value = 1;
             }
             return value;
+        }
+
+        public void GetCost()
+        {
+            Cost = 0;
+            
+            switch (GangerType)
+            {
+                case GangerType.JUVE:
+                    Cost += 25;
+                    break;
+                case GangerType.GANGER:
+                    Cost += 50;
+                    break;
+                case GangerType.HEAVY:
+                    Cost += 60;
+                    break;
+                case GangerType.LEADER:
+                    Cost += 120;
+                    break;
+                default:
+                    throw new HivemindException("Invalid ganger type specified.");
+            }
+
+            foreach (var weapon in Weapons)
+            {
+                if (int.TryParse(weapon.Cost, out int weaponCost))
+                {
+                    Cost += weaponCost;
+                }
+            }
         }
     }
 }
