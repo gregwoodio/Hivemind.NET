@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
-import { GangTerritory } from '../entities/GangTerritory';
 import { Territory } from '../entities/Territory';
+import { GangTerritory } from '../entities/GangTerritory';
 
 @Injectable()
 export class TerritoriesClient {
@@ -16,9 +16,9 @@ export class TerritoriesClient {
 
     public GetGangTerritoryById(
         gangId: string,
-    ): Observable<GangTerritory[]> {
+    ): Observable<Territory[]> {
 
-        return this._http.get<GangTerritory[]>(
+        return this._http.get<Territory[]>(
             'http://localhost:61774/api/territories/' + gangId + ''
             , {
                 headers: new HttpHeaders({

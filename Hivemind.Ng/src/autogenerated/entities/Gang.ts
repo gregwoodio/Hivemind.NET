@@ -3,7 +3,7 @@
  */
 
 import { Ganger } from './Ganger';
-import { GangTerritory } from './GangTerritory';
+import { Territory } from './Territory';
 import { HttpParams } from '@angular/common/http';
 
 export class Gang {
@@ -12,7 +12,7 @@ export class Gang {
     public credits: number;
     public gangHouse: string;
     public gangers: Ganger[];
-    public territories: GangTerritory[];
+    public territories: Territory[];
     public gangRating: number;
 
     public constructor(partial: Partial<Gang>) {

@@ -31,7 +31,7 @@ namespace Hivemind.Managers.Implementation
         {
             var gang = _gangProvider.GetGangById(gangId);
             gang.Gangers = _gangerProvider.GetByGangId(gangId);
-            gang.Territories = _territoryProvider.GetGangTerritoryByGangId(gangId);
+            gang.Territories = _territoryProvider.GetTerritoryByGangId(gangId);
 
             var weapons = _weaponProvider.GetByGangId(gangId);
             foreach (var ganger in gang.Gangers)

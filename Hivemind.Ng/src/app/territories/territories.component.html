@@ -1,12 +1,15 @@
-<table class="table is-striped">
+<table class="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Territory</th>
       <th>Credits</th>
     </tr>
   </thead>
-  <tr *ngFor='let gangTerritory of territories'>
-    <td>{{gangTerritory.territory.name}}</td>
-    <td>{{gangTerritory.territory.income}}</td>
+  <tr *ngFor='let territory of territories'>
+    <td>
+      <p><strong>{{territory?.name}}</strong></p>
+      <p><em>{{territory?.description}}</em></p>
+    </td>
+    <td>¢{{territory?.income}}</td>
   </tr>
 </table>

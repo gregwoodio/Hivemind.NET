@@ -17,9 +17,7 @@ BEGIN
 	t.territoryId,
 	t.name,
 	t.income,
-	t.description,
-	gt.gangId,
-	gt.gangTerritoryId
+	t.description
 	FROM Territories t
 	JOIN GangTerritories gt ON t.territoryId = gt.territoryId
 	WHERE gt.gangId = @GangId;

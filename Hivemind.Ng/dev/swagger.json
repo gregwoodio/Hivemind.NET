@@ -563,7 +563,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/GangTerritory"
+                "$ref": "#/definitions/Territory"
               }
             }
           }
@@ -823,7 +823,7 @@
         "territories": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GangTerritory"
+            "$ref": "#/definitions/Territory"
           }
         },
         "gangRating": {
@@ -968,17 +968,24 @@
         }
       }
     },
-    "GangTerritory": {
+    "Territory": {
       "type": "object",
       "properties": {
-        "gangTerritoryId": {
+        "territoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
           "type": "string"
         },
-        "gangId": {
+        "description": {
           "type": "string"
         },
-        "territory": {
-          "$ref": "#/definitions/Territory"
+        "income": {
+          "type": "string"
+        },
+        "workTerritory": {
+          "type": "object"
         }
       }
     },
@@ -1131,27 +1138,6 @@
           "type": "string"
         },
         "effect": {
-          "type": "object"
-        }
-      }
-    },
-    "Territory": {
-      "type": "object",
-      "properties": {
-        "territoryId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "income": {
-          "type": "string"
-        },
-        "workTerritory": {
           "type": "object"
         }
       }
@@ -1387,6 +1373,20 @@
         },
         "weapon": {
           "$ref": "#/definitions/Weapon"
+        }
+      }
+    },
+    "GangTerritory": {
+      "type": "object",
+      "properties": {
+        "gangTerritoryId": {
+          "type": "string"
+        },
+        "gangId": {
+          "type": "string"
+        },
+        "territory": {
+          "$ref": "#/definitions/Territory"
         }
       }
     },

@@ -39,10 +39,10 @@ namespace Hivemind.Services.Implementation
                     GangId = battleReport.GangId,
                     Objectives = battleReport.GangBattleStats.Select(stats => stats.Objectives).Sum(),
                     PreviousBattleType = battleReport.GameType,
-                    Roll = DiceRoller.ParseDiceString(territories[i].Territory.Income)
+                    Roll = DiceRoller.ParseDiceString(territories[i].Income)
                 };
                 
-                gross.Add(territories[i].Territory.WorkTerritory(status));
+                gross.Add(territories[i].WorkTerritory(status));
             }
 
             int territoryGross = gross.Select(territoryReport => territoryReport.Income).Sum();

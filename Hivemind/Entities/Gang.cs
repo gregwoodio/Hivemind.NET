@@ -11,13 +11,13 @@ namespace Hivemind.Entities
         public int Credits { get; set; }
         public GangHouse GangHouse { get; set; }
         public IEnumerable<Ganger> Gangers { get; set; }
-        public IEnumerable<GangTerritory> Territories { get; set; }
+        public IEnumerable<Territory> Territories { get; set; }
 
         public Gang()
         {
             Credits = 1000;
             Gangers = new List<Ganger>();
-            Territories = new List<GangTerritory>();
+            Territories = new List<Territory>();
         }
 
         public int GangRating

@@ -11,7 +11,7 @@ namespace Hivemind.Managers
     {
         Territory GetTerritory(int territoryId);
         IEnumerable<Territory> GetAllTerritories();
-        IEnumerable<GangTerritory> GetTerritoriesByGangId(string gangId);
+        IEnumerable<Territory> GetTerritoriesByGangId(string gangId);
         TerritoryEffect GetTerritoryEffect(int territoryId);
         GangTerritory AddGangTerritory(GangTerritory territory);
         void RemoveGangTerritory(string gangTerritoryId);

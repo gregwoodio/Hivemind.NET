@@ -50,7 +50,7 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<GangTerritory> GetGangTerritoryByGangId(string gangId)
+        public IEnumerable<Territory> GetTerritoryByGangId(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -62,7 +62,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
                     var reader = command.ExecuteReader();
 
-                    return GetGangTerritoryListFromReader(reader);
+                    return GetTerritoryListFromReader(reader);
                 }
             }
         }

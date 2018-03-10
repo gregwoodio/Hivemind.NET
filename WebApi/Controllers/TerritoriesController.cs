@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         [Authorize]
         [HttpGet]
         [Route("{gangId}")]
-        public IEnumerable<GangTerritory> GetGangTerritoryById([FromUri] string gangId)
+        public IEnumerable<Territory> GetGangTerritoryById([FromUri] string gangId)
         {
             return _territoryManager.GetTerritoriesByGangId(gangId);
         }
