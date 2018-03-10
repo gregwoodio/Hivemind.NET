@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Weapons_GetByGangId]
+CREATE PROCEDURE [dbo].[Weapons_GetGangStash]
 	-- Add the parameters for the stored procedure here
 	@GangId NVARCHAR(100)
 AS
@@ -14,7 +14,6 @@ BEGIN
 
     SELECT
 	w.weaponId,
-	gw.gangId,
 	weaponName,
 	shortRange,
 	longRange,

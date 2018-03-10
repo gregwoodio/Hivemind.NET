@@ -30,6 +30,7 @@ namespace WebApi.Controllers
             _gangManager = gangManager;
             _weaponManager = weaponManager;
         }
+
         [Authorize]
         [HttpGet]
         [Route("{gangId}")]
@@ -67,13 +68,18 @@ namespace WebApi.Controllers
             return _gangManager.UpdateGang(gang);
         }
 
-        // weapon routes
+        #region weapon routes
+        /// <summary>
+        /// Gets the gang's stash of weapons (unequipped to a ganger).
+        /// </summary>
+        /// <param name="gangId"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         [Route("{gangId}/weapons")]
-        public IEnumerable<GangWeapon> GetWeapons([FromUri] string gangId)
+        public IEnumerable<Weapon> GetGangStash([FromUri] string gangId)
         {
-            return _weaponManager.GetGangWeapons(gangId);
+            return _weaponManager.GetGangStash(gangId);
         }
 
         [Authorize]
@@ -96,5 +102,19 @@ namespace WebApi.Controllers
         {
             _weaponManager.RemoveGangWeapon(gangWeaponId);
         }
+
+        /// <summary>
+        /// Gets all of the weapons for a gang that are equipped to a ganger.
+        /// </summary>
+        /// <param name="gangId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("{gangId}/weapons/gangers")]
+        public IEnumerable<Weapon> GetGangerWeapons([FromUri] string gangId)
+        {
+            return _weaponManager.GetGangerWeaponsByGangId(gangId);
+        }
+        #endregion
     }
 }

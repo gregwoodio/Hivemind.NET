@@ -37,9 +37,14 @@ namespace Hivemind.Managers.Implementation
             _weaponProvider.RemoveGangWeapon(gangWeaponId);
         }
 
-        public IEnumerable<GangWeapon> GetGangWeapons(string gangId)
+        public IEnumerable<Weapon> GetGangStash(string gangId)
         {
-            return _weaponProvider.GetGangWeapons(gangId);
+            return _weaponProvider.GetGangStash(gangId);
+        }
+
+        public IEnumerable<Weapon> GetGangerWeaponsByGangId(string gangId)
+        {
+            return _weaponProvider.GetGangerWeaponsByGangId(gangId);
         }
 
         public GangerWeapon AddGangerWeapon(GangerWeapon gangerWeapon)

@@ -390,7 +390,7 @@
         "tags": [
           "Gangs"
         ],
-        "operationId": "Gangs_GetWeapons",
+        "operationId": "Gangs_GetGangStash",
         "consumes": [],
         "produces": [
           "application/json",
@@ -413,7 +413,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/GangWeapon"
+                "$ref": "#/definitions/Weapon"
               }
             }
           }
@@ -490,6 +490,41 @@
         "responses": {
           "204": {
             "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/gangs/{gangId}/weapons/gangers": {
+      "get": {
+        "tags": [
+          "Gangs"
+        ],
+        "operationId": "Gangs_GetGangerWeapons",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "gangId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Weapon"
+              }
+            }
           }
         }
       }

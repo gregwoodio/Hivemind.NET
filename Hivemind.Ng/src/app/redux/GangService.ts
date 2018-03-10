@@ -1,3 +1,4 @@
+import { WeaponService } from './WeaponService';
 import { Injectable } from '@angular/core';
 import { IAppState } from './IAppState';
 import { NgRedux } from '@angular-redux/store';
@@ -10,6 +11,7 @@ export class GangService {
 
     constructor(
         private _ngRedux: NgRedux<IAppState>,
+        private _weaponService: WeaponService,
         private _gangsClient: GangsClient) {
     }
 
@@ -28,6 +30,9 @@ export class GangService {
                 type: CHANGE_GANG,
                 payload: gang
             });
+
+            this._weaponService.getGangerWeaponsByGangId(id);
+
             return gang;
         });
     }

@@ -11,7 +11,8 @@ namespace Hivemind.Managers
     {
         Weapon GetWeapon(int weaponId);
         IEnumerable<Weapon> GetAllWeapons();
-        IEnumerable<GangWeapon> GetGangWeapons(string gangId);
+        IEnumerable<Weapon> GetGangStash(string gangId);
+        IEnumerable<Weapon> GetGangerWeaponsByGangId(string gangId);
         IEnumerable<GangerWeapon> GetGangerWeapons(string gangerId);
         GangerWeapon AddGangerWeapon(GangerWeapon gangerWeapon);
         void RemoveGangerWeapon(string gangerWeaponId);

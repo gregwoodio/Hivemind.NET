@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { Gang } from '../entities/Gang';
-import { GangWeapon } from '../entities/GangWeapon';
 import { Weapon } from '../entities/Weapon';
+import { GangWeapon } from '../entities/GangWeapon';
 
 @Injectable()
 export class GangsClient {
@@ -47,11 +47,11 @@ export class GangsClient {
         );
     }
 
-    public GetWeapons(
+    public GetGangStash(
         gangId: string,
-    ): Observable<GangWeapon[]> {
+    ): Observable<Weapon[]> {
 
-        return this._http.get<GangWeapon[]>(
+        return this._http.get<Weapon[]>(
             'http://localhost:61774/api/gangs/' + gangId + '/weapons'
             , {
                 headers: new HttpHeaders({
@@ -87,6 +87,21 @@ export class GangsClient {
 
         return this._http.delete<string>(
             'http://localhost:61774/api/gangs/' + gangId + '/weapons/' + gangWeaponId + ''
+            , {
+                headers: new HttpHeaders({
+                    'Authorization': 'Bearer ' + this._tokenService.token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            }
+        );
+    }
+
+    public GetGangerWeapons(
+        gangId: string,
+    ): Observable<Weapon[]> {
+
+        return this._http.get<Weapon[]>(
+            'http://localhost:61774/api/gangs/' + gangId + '/weapons/gangers'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

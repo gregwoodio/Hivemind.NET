@@ -1,3 +1,28 @@
-<p>
-  weapons works!
-</p>
+<table class="table is-striped is-fullwidth">
+  <thead>
+    <tr>
+      <th>Weapon</th>
+      <th>Short Range</th>
+      <th>Long Range</th>
+      <th>To Hit Short</th>
+      <th>To Hit Long</th>
+      <th>Strength</th>
+      <th>Damage</th>
+      <th>Save Modifier</th>
+      <th>Ammo Roll</th>
+      <th>Special</th>
+    </tr>
+  </thead>
+  <tr *ngFor='let weapon of weapons'>
+    <td>{{weapon?.name}}</td>
+    <td>{{weapon?.shortRange}}</td>
+    <td>{{weapon?.longRange}}</td>
+    <td>{{weapon?.hitShort}}</td>
+    <td>{{weapon?.hitLong}}</td>
+    <td>{{weapon?.strength}}</td>
+    <td>{{weapon?.damage}}</td>
+    <td>{{weapon?.saveMod}}</td>
+    <td>{{weapon?.ammoRoll}}</td>
+    <td>{{weapon?.specialRules}}</td>    
+  </tr>
+</table>

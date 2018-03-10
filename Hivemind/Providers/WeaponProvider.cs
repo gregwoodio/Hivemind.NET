@@ -104,11 +104,11 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<GangWeapon> GetGangWeapons(string gangId)
+        public IEnumerable<Weapon> GetGangStash(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                using (var command = new SqlCommand("Weapons_GetByGangId", connection))
+                using (var command = new SqlCommand("Weapons_GetGangStash", connection))
                 {
                     connection.Open();
 
@@ -116,7 +116,24 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
 
                     var reader = command.ExecuteReader();
-                    return GetGangWeaponListFromReader(reader);
+                    return GetWeaponListFromReader(reader);
+                }
+            }
+        }
+
+        public IEnumerable<Weapon> GetGangerWeaponsByGangId(string gangId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Weapons_GetGangerWeaponsByGangId", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
+
+                    var reader = command.ExecuteReader();
+                    return GetWeaponListFromReader(reader);
                 }
             }
         }
