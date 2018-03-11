@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { Ganger } from '../entities/Ganger';
 import { GangerWeapon } from '../entities/GangerWeapon';
 import { Weapon } from '../entities/Weapon';
@@ -13,7 +14,11 @@ import { Weapon } from '../entities/Weapon';
 @Injectable()
 export class GangersClient {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     public GetGanger(
         gangerId: string,
@@ -49,11 +54,11 @@ export class GangersClient {
         gangerId: string,
         weapon: Weapon,
     ): Observable<GangerWeapon> {
-        let body = weapon.toHttpParams();
+        const body = this._formDataHelper.getFormData(weapon);
 
         return this._http.post<GangerWeapon>(
             'http://localhost:61774/api/gangers/' + gangerId + '/weapons'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -82,11 +87,11 @@ export class GangersClient {
     public UpdateGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
-        let body = ganger.toHttpParams();
+        const body = this._formDataHelper.getFormData(ganger);
 
         return this._http.put<Ganger>(
             'http://localhost:61774/api/Gangers'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -99,11 +104,11 @@ export class GangersClient {
     public AddGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
-        let body = ganger.toHttpParams();
+        const body = this._formDataHelper.getFormData(ganger);
 
         return this._http.post<Ganger>(
             'http://localhost:61774/api/Gangers'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

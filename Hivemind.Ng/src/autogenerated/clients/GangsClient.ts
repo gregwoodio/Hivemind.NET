@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { Gang } from '../entities/Gang';
 import { Weapon } from '../entities/Weapon';
 import { GangWeapon } from '../entities/GangWeapon';
@@ -13,7 +14,11 @@ import { GangWeapon } from '../entities/GangWeapon';
 @Injectable()
 export class GangsClient {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     public GetGang(
         gangId: string,
@@ -33,11 +38,11 @@ export class GangsClient {
     public AddGang(
         gang: Gang,
     ): Observable<Gang> {
-        let body = gang.toHttpParams();
+        const body = this._formDataHelper.getFormData(gang);
 
         return this._http.post<Gang>(
             'http://localhost:61774/api/gangs'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -66,11 +71,11 @@ export class GangsClient {
         gangId: string,
         weapon: Weapon,
     ): Observable<GangWeapon> {
-        let body = weapon.toHttpParams();
+        const body = this._formDataHelper.getFormData(weapon);
 
         return this._http.post<GangWeapon>(
             'http://localhost:61774/api/gangs/' + gangId + '/weapons'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -114,11 +119,11 @@ export class GangsClient {
     public UpdateGang(
         gang: Gang,
     ): Observable<Gang> {
-        let body = gang.toHttpParams();
+        const body = this._formDataHelper.getFormData(gang);
 
         return this._http.put<Gang>(
             'http://localhost:61774/api/Gangs'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

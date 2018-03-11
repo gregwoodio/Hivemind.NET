@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { PreGameReport } from '../entities/PreGameReport';
 import { Gang } from '../entities/Gang';
 import { PostGameReport } from '../entities/PostGameReport';
@@ -14,16 +15,20 @@ import { BattleReport } from '../entities/BattleReport';
 @Injectable()
 export class GameClient {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     public ProcessPreGame(
         gang: Gang,
     ): Observable<PreGameReport> {
-        let body = gang.toHttpParams();
+        const body = this._formDataHelper.getFormData(gang);
 
         return this._http.post<PreGameReport>(
             'http://localhost:61774/api/game/pre'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -36,11 +41,11 @@ export class GameClient {
     public ProcessPostGame(
         battleReport: BattleReport,
     ): Observable<PostGameReport> {
-        let body = battleReport.toHttpParams();
+        const body = this._formDataHelper.getFormData(battleReport);
 
         return this._http.post<PostGameReport>(
             'http://localhost:61774/api/game/post'
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

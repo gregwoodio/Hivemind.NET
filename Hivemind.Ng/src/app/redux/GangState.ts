@@ -15,6 +15,8 @@ export const EDIT_GANGER: string = 'GangState.EDIT_GANGER';
 export const BUY_WEAPON: string = 'GangState.BUY_WEAPON';
 export const EQUIP_WEAPON: string = 'GangState.EQUIP_WEAPON';
 export const SET_WEAPONS: string = 'GangState.SET_WEAPONS';
+export const START_GAME: string = 'GangState.START_GANG';
+export const CANCEL_GAME: string = 'GangState.CANCEL_GANG';
 
 // token actions
 export const SET_TOKEN: string = 'TokenState.SET_TOKEN';
@@ -23,7 +25,8 @@ const initialState: IAppState = {
     user: undefined,
     gang: undefined,
     weapons: undefined,
-    token: ''
+    token: '',
+    inGame: false
 };
 
 export const reduce: Reducer<IAppState> = (state: IAppState = initialState, action: AnyAction): IAppState => {
@@ -72,6 +75,12 @@ export const reduce: Reducer<IAppState> = (state: IAppState = initialState, acti
 
             newState = Object.assign({}, state, {weapons: action.payload });
             return newState;
+
+        case START_GAME:
+            return Object.assign({}, state, { inGame: true });
+
+        case CANCEL_GAME:
+            return Object.assign({}, state, { inGame: false });
 
         case SET_TOKEN:
             if ((action.payload as string) == null) {

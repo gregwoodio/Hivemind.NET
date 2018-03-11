@@ -1,4 +1,4 @@
-<div class="">
+<div class="" *ngIf="!isGameInProgress">
   <button class="button is-primary is-pulled-right" (click)="displayAddGangerDialog()">Add Ganger</button>
 </div>
 <div *ngIf="gangers.length == 0">You don't have any gangers in your gang yet. Add them above.</div>
@@ -6,6 +6,7 @@
 <table class="table is-striped is-fullwidth" *ngIf="gangers.length > 0">
   <thead>
     <tr>
+      <th *ngIf="!isGameInProgress"></th>
       <th>Name</th>
       <th>M</th>
       <th>WS</th>
@@ -21,9 +22,22 @@
       <th>Injuries</th>
       <th>Cost</th>
       <th>Exp.</th>
+      <th *ngIf="isGameInProgress">Fleshwound</th>
+      <th *ngIf="isGameInProgress">Kills</th>
+      <th *ngIf="isGameInProgress">Objectives</th>
+      <th *ngIf="isGameInProgress">Down</th>
+      <th *ngIf="isGameInProgress">Out of Action</th>
     </tr>
   </thead>
-  <tr *ngFor="let ganger of gangers" [hidden]="!ganger.active">
+  <tr 
+    *ngFor="let ganger of gangers; let i = index" 
+    [attr.data-index]="i" 
+    [hidden]="!ganger.isEnabled && isGameInProgress" 
+    [ngClass]="{'hasFleshWound': ganger.hasFleshWound }"
+  >
+    <td *ngIf="!isGameInProgress">
+      <input type="checkbox" checked="checked" (change)="ganger.isEnabled = !ganger.isEnabled" />
+    </td>
     <td>
       <div><strong>{{ganger.name}}</strong></div>
       <div class="is-small">{{ganger.gangerType}}</div>
@@ -42,8 +56,33 @@
     <td></td>
     <td>{{ganger.cost}}</td>
     <td>{{ganger.experience}}</td>
+    <td *ngIf="isGameInProgress">
+        <input type="checkbox" (click)="toggleFleshwound(ganger)" />
+    </td>
+    <td *ngIf="isGameInProgress">
+      <input type="number" class="input is-small" [formControl]="gangerBattleReportForm.controls['gangerReports'].controls[i].controls['kills']"/>
+    </td>
+    <td *ngIf="isGameInProgress">
+      <input type="number" class="input is-small" [formControl]="gangerBattleReportForm.controls['gangerReports'].controls[i].controls['objectives']"/>
+    </td>
+    <td *ngIf="isGameInProgress">
+      <input type="checkbox" [formControl]="gangerBattleReportForm.controls['gangerReports'].controls[i].controls['down']"/>
+    </td>
+    <td *ngIf="isGameInProgress">
+      <input type="checkbox" [formControl]="gangerBattleReportForm.controls['gangerReports'].controls[i].controls['outOfAction']" />
+    </td>    
   </tr>
 </table>
+
+<div>
+  <button 
+    class="button is-primary is-pulled-right"
+    *ngIf="isGameInProgress"
+    (click)="finishGame()"
+  >
+    Finish game
+  </button>
+</div>
 
 <div class="modal" *ngIf="showAddGangerDialog" [ngClass]="{'is-active': showAddGangerDialog}">
   <div class="modal-background" (click)="showAddGangerDialog = false;"></div>

@@ -6,13 +6,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { Territory } from '../entities/Territory';
 import { GangTerritory } from '../entities/GangTerritory';
 
 @Injectable()
 export class TerritoriesClient {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     public GetGangTerritoryById(
         gangId: string,
@@ -33,11 +38,11 @@ export class TerritoriesClient {
         gangId: string,
         territory: Territory,
     ): Observable<GangTerritory> {
-        let body = territory.toHttpParams();
+        const body = this._formDataHelper.getFormData(territory);
 
         return this._http.post<GangTerritory>(
             'http://localhost:61774/api/territories/' + gangId + ''
-            , body.toString()
+            , body
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

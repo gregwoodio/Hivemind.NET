@@ -25,7 +25,7 @@ BEGIN
 	saveMod,
 	ammoRoll,
 	type,
-	cost,
+	gw.cost,
 	availability,
 	description
 	FROM Weapons w

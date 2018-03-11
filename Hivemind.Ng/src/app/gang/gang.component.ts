@@ -1,3 +1,4 @@
+import { START_GAME, CANCEL_GAME } from './../redux/GangState';
 import { GangService } from './../redux/GangService';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from 'redux';
@@ -40,9 +41,12 @@ export class GangComponent implements OnInit {
       const state = this._ngRedux.getState();
       this.gang = state.gang;
       this.gangers = state.gang.gangers;
+
       if (state.user) {
         this.userGangs = state.user.userGangs;
       }
+
+      this.isGameInProgress = state.inGame;
     });
 
     this.gang = new Gang({
@@ -82,10 +86,15 @@ export class GangComponent implements OnInit {
   }
 
   public startGame() {
-    this.isGameInProgress = true;
+    this._ngRedux.dispatch({
+      type: START_GAME
+    });
   }
 
   public cancelGame() {
     this.isGameInProgress = false;
+    this._ngRedux.dispatch({
+      type: CANCEL_GAME
+    });
   }
 }

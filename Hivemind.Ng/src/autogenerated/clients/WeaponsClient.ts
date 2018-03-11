@@ -6,12 +6,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { Weapon } from '../entities/Weapon';
 
 @Injectable()
 export class WeaponsClient {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     public GetWeapon(
         weaponId: number,

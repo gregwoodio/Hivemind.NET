@@ -16,13 +16,13 @@
     </div>
     <div class="column">
       <div class="is-pulled-right">
-        <div class="select">
+        <div class="select" *ngIf="!isGameInProgress">
           <select (change)="chooseGang($event.target.value)">
             <option>Choose another gang</option>
             <option *ngFor="let userGang of userGangs" value="{{userGang.gangId}}">{{userGang.name}}</option>
           </select>
         </div>
-        <button class="button is-link" (click)="showAddNewGangModal = true">New Gang</button>
+        <button *ngIf="!isGameInProgress" class="button is-link" (click)="showAddNewGangModal = true">New Gang</button>
         <button *ngIf="!isGameInProgress" (click)="startGame()" class="button is-primary">Start Game</button>
         <button *ngIf="isGameInProgress" (click)="cancelGame()" class="button is-danger">Cancel Game</button>
       </div>

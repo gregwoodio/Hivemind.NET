@@ -7,4 +7,5 @@ export interface IAppState {
     gang: Gang;
     token: string;
     weapons: Weapon[];
+    inGame: boolean;
 }

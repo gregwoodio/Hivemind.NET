@@ -963,6 +963,9 @@
             "$ref": "#/definitions/Weapon"
           }
         },
+        "isEnabled": {
+          "type": "boolean"
+        },
         "isOneEyed": {
           "type": "boolean"
         },
@@ -999,6 +1002,9 @@
           "type": "boolean"
         },
         "hasSporeSickness": {
+          "type": "boolean"
+        },
+        "hasFleshWound": {
           "type": "boolean"
         }
       }
@@ -1394,6 +1400,10 @@
         },
         "weapon": {
           "$ref": "#/definitions/Weapon"
+        },
+        "cost": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },

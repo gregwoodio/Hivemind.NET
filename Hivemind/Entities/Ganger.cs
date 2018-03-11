@@ -63,11 +63,18 @@ namespace Hivemind.Entities
         public int Cost { get; set; }
         public long Skills { get; set; }
         public long Injuries { get; set; }
+        /// <summary>
+        /// Active represents whether the Ganger is an active member of the gang, or is retired/dead.
+        /// </summary>
         public bool Active { get; set; }
         public GangerTitle Title { get; set; }
         public IEnumerable<Weapon> Weapons { get; set; }
+        /// <summary>
+        /// Whether the ganger is enabled for the upcoming game.
+        /// </summary>
+        public bool IsEnabled { get; set; }
 
-        // injury properties
+        #region injury properties
         public bool IsOneEyed { get; set; }
         public bool IsDeafened { get; set; }
         public bool IsOneHanded { get; set; }
@@ -80,8 +87,10 @@ namespace Hivemind.Entities
         public bool IsCaptured { get; set; }
         public bool HasBitterEnmity { get; set; }
         public bool HasSporeSickness { get; set; }
+        public bool HasFleshWound { get; set; }
+        #endregion
 
-        // private stats fields
+        #region private stats fields
         private int _move;
         private int _weaponSkill;
         private int _ballisticSkill;
@@ -91,6 +100,7 @@ namespace Hivemind.Entities
         private int _initiative;
         private int _attack;
         private int _leadership;
+        #endregion
 
         public Ganger()
         {
@@ -107,6 +117,8 @@ namespace Hivemind.Entities
             HasBitterEnmity = false;
             HasSporeSickness = false;
             Weapons = new Weapon[0];
+            Active = true;
+            IsEnabled = true;
         }
 
         public Ganger(Ganger ganger)

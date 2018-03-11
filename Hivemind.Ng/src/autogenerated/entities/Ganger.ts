@@ -26,6 +26,7 @@ export class Ganger {
     public active: boolean;
     public title: string;
     public weapons: Weapon[];
+    public isEnabled: boolean;
     public isOneEyed: boolean;
     public isDeafened: boolean;
     public isOneHanded: boolean;
@@ -38,6 +39,7 @@ export class Ganger {
     public isCaptured: boolean;
     public hasBitterEnmity: boolean;
     public hasSporeSickness: boolean;
+    public hasFleshWound: boolean;
 
     public constructor(partial: Partial<Ganger>) {
         if (partial.gangerId) {
@@ -100,6 +102,9 @@ export class Ganger {
         if (partial.weapons) {
             this.weapons = partial.weapons;
         }
+        if (partial.isEnabled) {
+            this.isEnabled = partial.isEnabled;
+        }
         if (partial.isOneEyed) {
             this.isOneEyed = partial.isOneEyed;
         }
@@ -135,6 +140,9 @@ export class Ganger {
         }
         if (partial.hasSporeSickness) {
             this.hasSporeSickness = partial.hasSporeSickness;
+        }
+        if (partial.hasFleshWound) {
+            this.hasFleshWound = partial.hasFleshWound;
         }
     }
 
@@ -201,6 +209,9 @@ export class Ganger {
         if (this.weapons) {
             properties.push('weapons');
         }
+        if (this.isEnabled) {
+            properties.push('isEnabled');
+        }
         if (this.isOneEyed) {
             properties.push('isOneEyed');
         }
@@ -236,6 +247,9 @@ export class Ganger {
         }
         if (this.hasSporeSickness) {
             properties.push('hasSporeSickness');
+        }
+        if (this.hasFleshWound) {
+            properties.push('hasFleshWound');
         }
 
         properties.forEach(prop => {

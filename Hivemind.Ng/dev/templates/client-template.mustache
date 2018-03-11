@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
+import { FormDataHelper } from '../../app/clients/FormDataHelper';
 {{#imports}}
 import { {{import}} } from '../entities/{{import}}';
 {{/imports}}
@@ -13,7 +14,11 @@ import { {{import}} } from '../entities/{{import}}';
 @Injectable()
 export class {{name}} {
 
-    constructor(private _http: HttpClient, private _tokenService: TokenService) {}
+    constructor(
+        private _http: HttpClient, 
+        private _tokenService: TokenService,
+        private _formDataHelper: FormDataHelper
+    ) {}
 
     {{#methods}}
     public {{methodName}}(
@@ -25,13 +30,13 @@ export class {{name}} {
         {{/bodyParams}}
     ): Observable<{{returns}}> {
         {{#bodyParams}}
-        let body = {{name}}.toHttpParams();
+        const body = this._formDataHelper.getFormData({{name}});
         {{/bodyParams}}
 
         return this._http.{{httpMethod}}<{{returns}}>(
             'http://localhost:61774{{{path}}}'
             {{#bodyParams}}
-            , body.toString()
+            , body
             {{/bodyParams}}
             , {
                 headers: new HttpHeaders({
