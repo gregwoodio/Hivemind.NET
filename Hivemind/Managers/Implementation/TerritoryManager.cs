@@ -17,6 +17,7 @@ namespace Hivemind.Managers.Implementation
         private IGangerManager _gangerFactory;
         private IGangManager _gangFactory;
         private TerritoryProvider _territoryProvider;
+        private Dictionary<TerritoryEnum, TerritoryEffect> _territoryEffects;
 
         public TerritoryManager(IInjuryManager injuryFactory, IGangerManager gangerFactory, IGangManager gangFactory, TerritoryProvider territoryProvider)
         {
@@ -24,6 +25,28 @@ namespace Hivemind.Managers.Implementation
             _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));
             _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
+
+            _territoryEffects = new Dictionary<TerritoryEnum, TerritoryEffect>
+            {
+                { TerritoryEnum.CHEM_PIT, ChemPit },
+                { TerritoryEnum.OLD_RUINS, NoTerritoryEffect },
+                { TerritoryEnum.SLAG, NoTerritoryEffect },
+                { TerritoryEnum.MINERAL_OUTCROP, NoTerritoryEffect },
+                { TerritoryEnum.SETTLEMENT, Settlement },
+                { TerritoryEnum.MINE_WORKINGS, MineWorkings },
+                { TerritoryEnum.TUNNELS, NoTerritoryEffect },
+                { TerritoryEnum.VENTS, NoTerritoryEffect },
+                { TerritoryEnum.HOLESTEAD, NoTerritoryEffect },
+                { TerritoryEnum.WATER_STILL, NoTerritoryEffect },
+                { TerritoryEnum.DRINKING_HOLE, NoTerritoryEffect },
+                { TerritoryEnum.GUILDER_CONTRACT, GuilderContract },
+                { TerritoryEnum.FRIENDLY_DOC, FriendlyDoc },
+                { TerritoryEnum.WORKSHOP, NoTerritoryEffect },
+                { TerritoryEnum.GAMBLING_DEN, GamblingDen },
+                { TerritoryEnum.SPORE_CAVE, SporeCave },
+                { TerritoryEnum.ARCHEOTECH, Archeotech },
+                { TerritoryEnum.GREEN_HIVERS, NoTerritoryEffect }
+            };
         }
 
         public Territory GetTerritory(int territoryId)
@@ -38,7 +61,14 @@ namespace Hivemind.Managers.Implementation
 
         public IEnumerable<Territory> GetTerritoriesByGangId(string gangId)
         {
-            return _territoryProvider.GetTerritoryByGangId(gangId);
+            var territories = _territoryProvider.GetTerritoryByGangId(gangId);
+
+            foreach (var territory in territories)
+            {
+                territory.WorkTerritory = GetTerritoryEffect(territory.TerritoryId);
+            }
+
+            return territories;
         }
 
         public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
@@ -53,27 +83,7 @@ namespace Hivemind.Managers.Implementation
 
         public TerritoryEffect GetTerritoryEffect(int territoryId)
         {
-            switch ((TerritoryEnum)territoryId)
-            {
-                case TerritoryEnum.CHEM_PIT:
-                    return ChemPit;
-                case TerritoryEnum.SETTLEMENT:
-                    return Settlement;
-                case TerritoryEnum.MINE_WORKINGS:
-                    return MineWorkings;
-                case TerritoryEnum.GUILDER_CONTRACT:
-                    return GuilderContract;
-                case TerritoryEnum.FRIENDLY_DOC:
-                    return FriendlyDoc;
-                case TerritoryEnum.GAMBLING_DEN:
-                    return GamblingDen;
-                case TerritoryEnum.SPORE_CAVE:
-                    return SporeCave;
-                case TerritoryEnum.ARCHEOTECH:
-                    return Archeotech;
-                default:
-                    return NoTerritoryEffect;
-            }
+            return _territoryEffects[(TerritoryEnum)territoryId];
         }
 
         private TerritoryIncomeReport NoTerritoryEffect(TerritoryWorkStatus status)

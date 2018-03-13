@@ -94,7 +94,6 @@
     <Build Include="dbo\Stored Procedures\GangerWeapons_AddGangerWeapon.sql" />
     <Build Include="dbo\Stored Procedures\GangerWeapons_RemoveGangerWeapon.sql" />
     <Build Include="dbo\Stored Procedures\GangWeapons_RemoveGangWeapon.sql" />
-    <Build Include="dbo\Stored Procedures\Weapons_GetByGangId.sql" />
     <Build Include="dbo\Stored Procedures\Weapons_GetByGangerId.sql" />
     <Build Include="dbo\Stored Procedures\Territories_GetByGangId.sql" />
     <Build Include="dbo\Stored Procedures\Territories_GetById.sql" />

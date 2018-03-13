@@ -15,6 +15,8 @@ namespace Hivemind.Services.Implementation
         private IGangManager _gangManager;
         private ITerritoryManager _territoryManager;
 
+        private const int MaximumTerritoriesWorked = 10;
+
         public IncomeService(IGangManager gangManager, ITerritoryManager territoryManager)
         {
             _gangManager = gangManager ?? throw new ArgumentNullException(nameof(gangManager));
@@ -30,7 +32,7 @@ namespace Hivemind.Services.Implementation
             var gangers = GetGangers(battleReport.GangId).ToList();
             var gross = new List<TerritoryIncomeReport>();
 
-            for (int i = 0; i < gangers.Count(); i++)
+            for (int i = 0; i < gangers.Count() && i < territories.Count && i < MaximumTerritoriesWorked; i++)
             {
                 var status = new TerritoryWorkStatus()
                 {
