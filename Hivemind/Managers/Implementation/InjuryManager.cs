@@ -39,7 +39,7 @@ namespace Hivemind.Managers.Implementation
             return _injuryProvider.GetInjuriesByGangId(gangId);
         }
 
-        public Effect GetInjuryEffect(int injuryId)
+        public Func<Ganger, Ganger> GetInjuryEffect(int injuryId)
         {
             switch ((InjuryEnum)injuryId)
             {

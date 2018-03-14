@@ -17,7 +17,7 @@ namespace Hivemind.Managers.Implementation
         private IGangerManager _gangerFactory;
         private IGangManager _gangFactory;
         private TerritoryProvider _territoryProvider;
-        private Dictionary<TerritoryEnum, TerritoryEffect> _territoryEffects;
+        private Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>> _territoryEffects;
 
         public TerritoryManager(IInjuryManager injuryFactory, IGangerManager gangerFactory, IGangManager gangFactory, TerritoryProvider territoryProvider)
         {
@@ -26,7 +26,7 @@ namespace Hivemind.Managers.Implementation
             _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
 
-            _territoryEffects = new Dictionary<TerritoryEnum, TerritoryEffect>
+            _territoryEffects = new Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>>
             {
                 { TerritoryEnum.CHEM_PIT, ChemPit },
                 { TerritoryEnum.OLD_RUINS, NoTerritoryEffect },
@@ -81,7 +81,7 @@ namespace Hivemind.Managers.Implementation
             _territoryProvider.RemoveGangTerritory(gangTerritoryId);
         }
 
-        public TerritoryEffect GetTerritoryEffect(int territoryId)
+        public Func<TerritoryWorkStatus, TerritoryIncomeReport> GetTerritoryEffect(int territoryId)
         {
             return _territoryEffects[(TerritoryEnum)territoryId];
         }

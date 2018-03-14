@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Entities
 {
-    public delegate TerritoryIncomeReport TerritoryEffect(TerritoryWorkStatus status);
-
     public class Territory: IComparable
     {
         public int TerritoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Income { get; set; }
-        public TerritoryEffect WorkTerritory { get; set; }
+        public Func<TerritoryWorkStatus, TerritoryIncomeReport> WorkTerritory { get; set; }
 
 
         /// <summary>

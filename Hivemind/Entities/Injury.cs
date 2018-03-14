@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Hivemind.Entities
 {
-    public delegate Ganger Effect(Ganger ganger);
-
     public class Injury
     {
         public InjuryEnum InjuryEnum { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Effect InjuryEffect { get; set; }
+        public Func<Ganger, Ganger> InjuryEffect { get; set; }
     }
 }

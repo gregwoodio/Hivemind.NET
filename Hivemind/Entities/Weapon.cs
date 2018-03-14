@@ -1,9 +1,8 @@
-﻿using Hivemind.Enums;
+﻿using System;
+using Hivemind.Enums;
 
 namespace Hivemind.Entities
 {
-    public delegate Ganger WeaponEffect(Ganger ganger);
-
     public class Weapon
     {
         public WeaponEnum WeaponEnum { get; set; }
@@ -20,6 +19,6 @@ namespace Hivemind.Entities
         public string AmmoRoll { get; set; }
         public string Cost { get; set; }
         public string SpecialRules { get; set; }
-        public WeaponEffect Effect { get; set; }
+        public Func<Ganger, Ganger> Effect { get; set; }
     }
 }
