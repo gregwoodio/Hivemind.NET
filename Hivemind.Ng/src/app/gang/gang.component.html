@@ -23,8 +23,9 @@
           </select>
         </div>
         <button *ngIf="!isGameInProgress" class="button is-link" (click)="showAddNewGangModal = true">New Gang</button>
-        <button *ngIf="!isGameInProgress" (click)="startGame()" class="button is-primary">Start Game</button>
-        <button *ngIf="isGameInProgress" (click)="cancelGame()" class="button is-danger">Cancel Game</button>
+        <button *ngIf="!isGameInProgress" class="button is-primary" (click)="startGame()" >Start Game</button>
+        <button *ngIf="isGameInProgress" class="button is-primary is-pulled-right" (click)="displayFinishGameDialog()">Finish game</button>
+        <button *ngIf="isGameInProgress" class="button is-danger" (click)="cancelGame()">Cancel Game</button>
       </div>
     </div>
   </div>
@@ -117,3 +118,5 @@
   </div>
   <button class="modal-close is-large" aria-label="close" (click)="showAddNewGangModal = false;"></button>
 </div>
+
+<finish-game-modal #finishGameModal></finish-game-modal>

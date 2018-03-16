@@ -1,3 +1,4 @@
+import { FinishGameModalComponent } from './../finish-game-modal/finish-game-modal.component';
 import { START_GAME, CANCEL_GAME } from './../redux/GangState';
 import { GangService } from './../redux/GangService';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,6 +24,7 @@ export class GangComponent implements OnInit {
   public isGameInProgress: boolean;
   public showAddNewGangModal: boolean;
   public addGangForm: FormGroup;
+  @ViewChild('finishGameModal') finishGameModal: FinishGameModalComponent;
 
   constructor(
     private _ngRedux: NgRedux<IAppState>,
@@ -96,5 +98,9 @@ export class GangComponent implements OnInit {
     this._ngRedux.dispatch({
       type: CANCEL_GAME
     });
+  }
+
+  public displayFinishGameDialog() {
+    this.finishGameModal.display();
   }
 }
