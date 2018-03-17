@@ -934,12 +934,16 @@
           "type": "integer"
         },
         "skills": {
-          "format": "int64",
-          "type": "integer"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
         },
         "injuries": {
-          "format": "int64",
-          "type": "integer"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Injury"
+          }
         },
         "active": {
           "type": "boolean"
@@ -1026,6 +1030,82 @@
           "type": "string"
         },
         "workTerritory": {
+          "type": "object"
+        }
+      }
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "skillId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "skillType": {
+          "enum": [
+            "AGILITY",
+            "COMBAT",
+            "STEALTH",
+            "MUSCLE",
+            "FEROCITY",
+            "TECHNO",
+            "SHOOTING"
+          ],
+          "type": "string"
+        },
+        "restrictedTypes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "JUVE",
+              "GANGER",
+              "HEAVY",
+              "LEADER"
+            ],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Injury": {
+      "type": "object",
+      "properties": {
+        "injuryEnum": {
+          "enum": [
+            "DEAD",
+            "MULTIPLE_INJURIES",
+            "CHEST_WOUND",
+            "LEG_WOUND",
+            "ARM_WOUND",
+            "HEAD_WOUND",
+            "BLINDED_IN_ONE_EYE",
+            "PARTIALLY_DEAFENED",
+            "SHELL_SHOCK",
+            "HAND_INJURY",
+            "OLD_BATTLE_WOUND",
+            "FULL_RECOVERY",
+            "BITTER_ENMITY",
+            "CAPTURED",
+            "HORRIBLE_SCARS",
+            "IMPRESSIVE_SCARS",
+            "SURVIVES_AGAINST_THE_ODDS",
+            "SPORE_SICKNESS"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "injuryEffect": {
           "type": "object"
         }
       }
@@ -1349,43 +1429,6 @@
         "income": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "Injury": {
-      "type": "object",
-      "properties": {
-        "injuryEnum": {
-          "enum": [
-            "DEAD",
-            "MULTIPLE_INJURIES",
-            "CHEST_WOUND",
-            "LEG_WOUND",
-            "ARM_WOUND",
-            "HEAD_WOUND",
-            "BLINDED_IN_ONE_EYE",
-            "PARTIALLY_DEAFENED",
-            "SHELL_SHOCK",
-            "HAND_INJURY",
-            "OLD_BATTLE_WOUND",
-            "FULL_RECOVERY",
-            "BITTER_ENMITY",
-            "CAPTURED",
-            "HORRIBLE_SCARS",
-            "IMPRESSIVE_SCARS",
-            "SURVIVES_AGAINST_THE_ODDS",
-            "SPORE_SICKNESS"
-          ],
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "injuryEffect": {
-          "type": "object"
         }
       }
     },

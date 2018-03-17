@@ -51,9 +51,9 @@
     <td>{{ganger.initiative}}</td>
     <td>{{ganger.attack}}</td>
     <td>{{ganger.leadership}}</td>
-    <td>{{parseGangerEquipment(ganger)}}</td>
+    <td><small>{{parseGangerEquipment(ganger)}}</small></td>
     <td></td>
-    <td></td>
+    <td><small>{{parseGangerInjuries(ganger)}}</small></td>
     <td>{{ganger.cost}}</td>
     <td>{{ganger.experience}}</td>
     <td *ngIf="isGameInProgress">

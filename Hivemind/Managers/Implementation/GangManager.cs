@@ -14,23 +14,26 @@ namespace Hivemind.Managers.Implementation
         private readonly GangerProvider _gangerProvider;
         private readonly TerritoryProvider _territoryProvider;
         private readonly WeaponProvider _weaponProvider;
+        private readonly InjuryProvider _injuryProvider;
 
         public GangManager(
             GangProvider gangProvider, 
             GangerProvider gangerProvider, 
             TerritoryProvider territoryProvider,
-            WeaponProvider weaponProvider)
+            WeaponProvider weaponProvider,
+            InjuryProvider injuryProvider)
         {
             _gangProvider = gangProvider ?? throw new ArgumentNullException(nameof(gangProvider));
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
             _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
+            _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(InjuryProvider));
         }
 
         public Gang GetGang(string gangId)
         {
             var gang = _gangProvider.GetGangById(gangId);
-            gang.Gangers = _gangerProvider.GetByGangId(gangId);
+            gang.Gangers = _gangerProvider.GetByGangId(gangId).Where(ganger => ganger.Active);
             gang.Territories = _territoryProvider.GetTerritoryByGangId(gangId);
 
             var weapons = _weaponProvider.GetByGangId(gangId);
@@ -46,6 +49,14 @@ namespace Hivemind.Managers.Implementation
                 ganger.Weapons = gangerWeapons.Select(gw => gw.Weapon);
 
                 ganger.GetCost();
+            }
+
+            var injuries = _injuryProvider.GetInjuriesByGangId(gangId);
+            foreach (var ganger in gang.Gangers)
+            {
+                ganger.Injuries = injuries.Where(gi => gi.GangerId == ganger.GangerId)
+                                        .Select(gi => gi.Injury)
+                                        .ToList();
             }
 
             return gang;

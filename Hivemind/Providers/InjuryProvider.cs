@@ -64,34 +64,63 @@ namespace Hivemind.Providers
             }
         }
 
-        public IEnumerable<Injury> GetInjuriesByGangId(int gangId)
+        public IEnumerable<Injury> GetInjuriesByGangerId(string gangerId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("Injuries_GetByGangerId", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@GangerId", SqlDbType.Int).Value = gangerId;
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    var injuries = new List<Injury>();
+                    Injury injury;
+
+                    while ((injury = GetInjuryFromReader(reader)) != null)
+                    {
+                        injuries.Add(injury);
+                    }
+
+                    return injuries;
+                }
+            }
+        }
+
+        public IEnumerable<GangerInjury> GetInjuriesByGangId(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Injuries_GetByGangId", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@GangId", SqlDbType.Int).Value = gangId;
+                    command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
 
                     connection.Open();
                     using (var reader = command.ExecuteReader())
                     {
-                        var injuries = new List<Injury>();
+                        var injuries = new List<GangerInjury>();
+                        GangerInjury gangerInjury;
 
                         while (reader.Read())
                         {
-                            var injury = new Injury();
+                            gangerInjury = new GangerInjury();
+                            gangerInjury.Injury = new Injury();
 
                             var value = reader.GetOrdinal("injuryId");
-                            injury.InjuryEnum = (InjuryEnum)reader.GetInt32(value);
+                            gangerInjury.Injury.InjuryEnum = (InjuryEnum)reader.GetInt32(value);
 
                             value = reader.GetOrdinal("injuryName");
-                            injury.Name = reader.GetString(value);
+                            gangerInjury.Injury.Name = reader.GetString(value);
 
                             value = reader.GetOrdinal("description");
-                            injury.Description = reader.GetString(value);
+                            gangerInjury.Injury.Description = reader.GetString(value);
 
-                            injuries.Add(injury);
+                            value = reader.GetOrdinal("gangerId");
+                            gangerInjury.GangerId = reader.GetString(value);
+
+                            injuries.Add(gangerInjury);
                         }
 
                         return injuries;
@@ -113,6 +142,10 @@ namespace Hivemind.Providers
 
                 value = reader.GetOrdinal("description");
                 injury.Description = reader.GetString(value);
+            }
+            else
+            {
+                return null;
             }
 
             return injury;

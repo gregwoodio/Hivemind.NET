@@ -61,8 +61,17 @@ namespace Hivemind.Entities
         }
         public int Experience { get; set; }
         public int Cost { get; set; }
-        public long Skills { get; set; }
-        public long Injuries { get; set; }
+
+        /// <summary>
+        /// List of the ganger's skills.
+        /// </summary>
+        public IEnumerable<Skill> Skills { get; set; }
+
+        /// <summary>
+        /// List of the ganger's injuries.
+        /// </summary>
+        public IEnumerable<Injury> Injuries { get; set; }
+        
         /// <summary>
         /// Active represents whether the Ganger is an active member of the gang, or is retired/dead.
         /// </summary>

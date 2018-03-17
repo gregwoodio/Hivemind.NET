@@ -19,5 +19,6 @@ namespace Hivemind.Managers
         Ganger UpdateGanger(Ganger ganger);
         Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval);
         Ganger AddGanger(Ganger ganger);
+        void AddGangerInjury(string gangerId, InjuryEnum injuryEnum);
     }
 }

@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Injuries_GetByGangId]
+CREATE PROCEDURE [dbo].[Weapons_GetGangStash]
 	-- Add the parameters for the stored procedure here
 	@GangId NVARCHAR(100)
 AS
@@ -12,11 +12,23 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	SELECT i.injuryId, i.injuryName, i.description, g.gangerId 
-	FROM Injuries i 
-	JOIN GangerInjuries gi ON i.injuryId = gi.injuryId
-	JOIN Gangers g ON g.gangerId = gi.gangerId
-	JOIN Gangs ON Gangs.gangId = g.gangId
-	WHERE Gangs.gangId = @GangId;
+    SELECT
+	w.weaponId,
+	weaponName,
+	shortRange,
+	longRange,
+	hitShort,
+	hitLong,
+	strength,
+	damage,
+	saveMod,
+	ammoRoll,
+	type,
+	gw.cost,
+	availability,
+	description
+	FROM Weapons w
+	JOIN GangWeapons gw
+	ON w.weaponId = gw.weaponId
+	WHERE gw.gangId = @GangId;
 END

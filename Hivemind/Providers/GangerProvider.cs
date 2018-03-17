@@ -134,6 +134,25 @@ namespace Hivemind.Providers
             }
         }
 
+        public void AddGangerInjury(string gangerId, InjuryEnum injury)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("GangerInjuries_Add", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var gangerInjuryId = command.Parameters.Add("@GangerInjuryId", SqlDbType.NVarChar, 100);
+                    gangerInjuryId.Direction = ParameterDirection.Output;
+                    command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;;
+                    command.Parameters.Add("@InjuryId", SqlDbType.Int).Value = (int)injury;
+                    
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         private IEnumerable<Ganger> GetGangerListFromReader(SqlDataReader reader)
         {
             var gangers = new List<Ganger>();

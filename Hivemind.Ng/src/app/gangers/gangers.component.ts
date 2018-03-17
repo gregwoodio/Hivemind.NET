@@ -76,17 +76,11 @@ export class GangersComponent implements OnInit {
   }
 
   public parseGangerEquipment(ganger: Ganger): string {
-    let out = '';
+    return ganger.weapons.map(weapon => weapon.name).join(', ');
+  }
 
-    for (let i = 0; i < ganger.weapons.length; i++) {
-      out += ganger.weapons[i].name;
-
-      if (i + 1 < ganger.weapons.length) {
-        out += ', ';
-      }
-    }
-
-    return out;
+  public parseGangerInjuries(ganger: Ganger): string {
+    return ganger.injuries.map(injury => injury.name).join(', ');
   }
 
   public setDown(gangerId: string, event: MouseEvent) {

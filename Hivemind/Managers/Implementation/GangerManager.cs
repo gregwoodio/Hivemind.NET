@@ -184,5 +184,10 @@ namespace Hivemind.Managers.Implementation
             gangerWithStats.GangId = ganger.GangId;
             return _gangerProvider.AddGanger(gangerWithStats);
         }
+
+        public void AddGangerInjury(string gangerId, InjuryEnum injury)
+        {
+            _gangerProvider.AddGangerInjury(gangerId, injury);
+        }
     }
 }

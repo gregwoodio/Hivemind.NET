@@ -27,23 +27,36 @@ namespace Hivemind.Services.Implementation
         public InjuryReport ProcessInjuries(BattleReport battleReport)
         {
             // If a ganger is down, a roll less than three means they're injured.
-            var injuries = battleReport.GangBattleStats
-                .Where(stats => stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
-                .Select(ganger => _gangerManager.GetGanger(ganger.GangerId))
-                .Select(ganger => new GangerInjuryReport() { TheGanger = ganger, Injuries = DetermineInjury(null) });
+            var injuries = new List<GangerInjuryReport>();
+            foreach (var stats in battleReport.GangBattleStats)
+            {
+                if (stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
+                {
+                    injuries.Add(new GangerInjuryReport()
+                    {
+                        TheGanger = _gangerManager.GetGanger(stats.GangerId),
+                        Injuries = DetermineInjury(null)
+                    });
+                }
+            }
+            //var injuries = battleReport.GangBattleStats
+            //    .Where(stats => stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
+            //    .Select(ganger => _gangerManager.GetGanger(ganger.GangerId))
+            //    .Select(ganger => new GangerInjuryReport() { TheGanger = ganger, Injuries = DetermineInjury(null) })
+            //    .ToList();
 
             // apply injuries to Gangers
             var injuredGangers = new List<GangerInjuryReport>();
             for (int i = 0; i < injuries.Count(); i++)
             {
-                var ganger = injuries.ElementAt(i).TheGanger;
-                foreach (var injury in injuries.ElementAt(i).Injuries)
+                var ganger = injuries[i].TheGanger;
+                foreach (var injury in injuries[i].Injuries)
                 {
                     ganger = injury.InjuryEffect(ganger);
                 }
                 injuredGangers.Add(new GangerInjuryReport()
                 {
-                    Injuries = injuries.ElementAt(i).Injuries,
+                    Injuries = injuries[i].Injuries,
                     TheGanger = ganger
                 });
             }
@@ -52,6 +65,13 @@ namespace Hivemind.Services.Implementation
             foreach (var report in injuredGangers)
             {
                 _gangerManager.UpdateGanger(report.TheGanger);
+                foreach (var injury in report.Injuries)
+                {
+                    if (injury.InjuryEnum != InjuryEnum.FULL_RECOVERY)
+                    {
+                        _gangerManager.AddGangerInjury(report.TheGanger.GangerId, injury.InjuryEnum);
+                    }
+                }
             }
 
             return new InjuryReport()

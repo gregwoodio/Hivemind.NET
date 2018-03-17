@@ -13,6 +13,6 @@ namespace Hivemind.Managers
 
         IEnumerable<Injury> GetAllInjuries();
 
-        IEnumerable<Injury> GetInjuriesByGangId(int gangId);
+        IEnumerable<GangerInjury> GetInjuriesByGangId(string gangId);
     }
 }

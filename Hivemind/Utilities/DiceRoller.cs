@@ -8,6 +8,8 @@ namespace Hivemind.Utilities
 {
     public static class DiceRoller
     {
+        private static int _seed;
+
         public static int RollDie()
         {
             return RollDice(6, 1);
@@ -26,14 +28,17 @@ namespace Hivemind.Utilities
             if (numberOfDice < 1)
                 throw new ArgumentException("Must roll at least one die.");
 
-            var random = new Random();
+            var random = new Random(_seed);
+            _seed = random.Next();
 
             return new int[numberOfDice].Select(die => random.Next(numberOfSides) + 1).Sum();
         }
 
         public static int RollD66()
         {
-            var random = new Random();
+            var random = new Random(_seed);
+            _seed = random.Next();
+
             return (random.Next(6) + 1) * 10 + (random.Next(6) + 1);
         }
 

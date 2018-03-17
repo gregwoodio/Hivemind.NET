@@ -34,7 +34,7 @@ namespace Hivemind.Managers.Implementation
             return _injuryProvider.GetAllInjuries();
         }
 
-        public IEnumerable<Injury> GetInjuriesByGangId(int gangId)
+        public IEnumerable<GangerInjury> GetInjuriesByGangId(string gangId)
         {
             return _injuryProvider.GetInjuriesByGangId(gangId);
         }

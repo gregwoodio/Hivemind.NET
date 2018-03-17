@@ -3,20 +3,23 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Injuries_GetByGangId]
+CREATE PROCEDURE [dbo].[GangerInjuries_Add]
 	-- Add the parameters for the stored procedure here
-	@GangId NVARCHAR(100)
+	@GangerInjuryId NVARCHAR(100) OUTPUT,
+	@GangerId NVARCHAR(100),
+	@InjuryId INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
+	SET @GangerInjuryId = NEWID();
 
     -- Insert statements for procedure here
-	SELECT i.injuryId, i.injuryName, i.description, g.gangerId 
-	FROM Injuries i 
-	JOIN GangerInjuries gi ON i.injuryId = gi.injuryId
-	JOIN Gangers g ON g.gangerId = gi.gangerId
-	JOIN Gangs ON Gangs.gangId = g.gangId
-	WHERE Gangs.gangId = @GangId;
+	INSERT INTO dbo.GangerInjuries 
+	(gangerInjuryId, gangerId, injuryId)
+	VALUES
+	(@GangerInjuryId, @GangerId, @InjuryId);
+
+	RETURN 0;
 END
