@@ -37,7 +37,8 @@ const initialState: IAppState = {
   weapons: null,
   token: '',
   inGame: false,
-  battleReport: undefined
+  battleReport: undefined,
+  postGameReport: undefined
 };
 
 export const createAppStore = (): Store<IAppState> => {

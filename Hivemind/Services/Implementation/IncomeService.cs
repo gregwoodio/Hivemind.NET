@@ -36,6 +36,7 @@ namespace Hivemind.Services.Implementation
             {
                 var status = new TerritoryWorkStatus()
                 {
+                    TerritoryName = territories[i].Name,
                     Deaths = deaths,
                     Ganger = gangers[i],
                     GangId = battleReport.GangId,

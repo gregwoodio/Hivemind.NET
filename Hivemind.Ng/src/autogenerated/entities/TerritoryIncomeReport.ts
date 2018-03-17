@@ -5,10 +5,14 @@
 import { HttpParams } from '@angular/common/http';
 
 export class TerritoryIncomeReport {
+    public territoryName: string;
     public description: string;
     public income: number;
 
     public constructor(partial: Partial<TerritoryIncomeReport>) {
+        if (partial.territoryName) {
+            this.territoryName = partial.territoryName;
+        }
         if (partial.description) {
             this.description = partial.description;
         }
@@ -20,6 +24,9 @@ export class TerritoryIncomeReport {
     public toHttpParams(): HttpParams {
         let params = new HttpParams();
         let properties = [];
+        if (this.territoryName) {
+            properties.push('territoryName');
+        }
         if (this.description) {
             properties.push('description');
         }

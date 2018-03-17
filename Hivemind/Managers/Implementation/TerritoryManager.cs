@@ -90,6 +90,7 @@ namespace Hivemind.Managers.Implementation
         {
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -105,12 +106,14 @@ namespace Hivemind.Managers.Implementation
 
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = $"{status.Ganger.Name} has fallen into the chem pits and now has Horrible Scars. No income is collected.",
                     Income = 0
                 };
             }
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = 0
             };
         }
@@ -126,12 +129,14 @@ namespace Hivemind.Managers.Implementation
 
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = "After working in the settlement, your gang has recruited a new Juve for free.",
                     Income = status.Roll
                 };
             }
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -142,6 +147,7 @@ namespace Hivemind.Managers.Implementation
             // would also have to submit a PostGameReport on Hivemind.
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -153,12 +159,14 @@ namespace Hivemind.Managers.Implementation
                 int extraIncome = status.Objectives * 5;
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = $"You have sold some of your extra loot to guilders for {extraIncome} credits.",
                     Income = status.Roll + extraIncome
                 };
             }
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -170,12 +178,14 @@ namespace Hivemind.Managers.Implementation
                 int extraIncome = DiceRoller.RollDice(6, status.Deaths) * 5;
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = $"You have sold the bodies of your fallen gangers to the friendly doc for an extra {extraIncome} credits.",
                     Income = status.Roll + extraIncome
                 };
             }
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -191,6 +201,7 @@ namespace Hivemind.Managers.Implementation
             {
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = $"You've lost {income} credits at the gambling den.",
                     Income = income * -1
                 };
@@ -198,6 +209,7 @@ namespace Hivemind.Managers.Implementation
 
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = income
             };
         }
@@ -212,12 +224,14 @@ namespace Hivemind.Managers.Implementation
 
                 return new TerritoryIncomeReport()
                 {
+                    TerritoryName = status.TerritoryName,
                     Description = $"{status.Ganger.Name} has contracted Spore Sickness while harvesting in the Spore Cave.",
                     Income = status.Roll
                 };
             }
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }
@@ -228,6 +242,7 @@ namespace Hivemind.Managers.Implementation
             // If they roll any doubles, the archeotech becomes an old ruins.
             return new TerritoryIncomeReport()
             {
+                TerritoryName = status.TerritoryName,
                 Income = status.Roll
             };
         }

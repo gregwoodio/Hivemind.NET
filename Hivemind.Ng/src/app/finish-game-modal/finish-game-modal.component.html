@@ -1,7 +1,7 @@
 <div class="modal" *ngIf="showFinishGameModal" [ngClass]="{'is-active': showFinishGameModal}">
-  <div class="modal-background" (click)="showFinishGameModal = false;"></div>
+  <div class="modal-background" (click)="hideFinishGameModal()"></div>
   <div class="modal-content">
-      <div class="modal-card">
+      <div class="modal-card" *ngIf="!isPostGame">
           <header class="modal-card-head">
               <h3 class="title">Finish game</h3>
           </header>
@@ -12,11 +12,11 @@
                           <label class="label">Game won?</label>
                           <div class="control">
                             <label class="radio">
-                              <input type="radio" name="hasWon" value="true" [formControl]="finishGameForm.controls['hasWon']" />
+                              <input type="radio" name="hasWon" value="true" [formControl]="finishGameForm.controls['hasWon']" [checked]="finishGameForm.controls['hasWon'].value" />
                               Yes
                             </label>
                             <label class="radio">
-                              <input type="radio" name="hasWon" value="false" [formControl]="finishGameForm.controls['hasWon']" />
+                              <input type="radio" name="hasWon" value="false" [formControl]="finishGameForm.controls['hasWon']" [checked]="!finishGameForm.controls['hasWon'].value" />
                               No
                             </label>
                           </div>
@@ -25,11 +25,11 @@
                         <label class="label">Was attacker?</label>
                         <div class="control">
                           <label class="radio">
-                            <input type="radio" name="isAttacker" value="true" [formControl]="finishGameForm.controls['isAttacker']" />
+                            <input type="radio" name="isAttacker" value="true" [formControl]="finishGameForm.controls['isAttacker']" [checked]="finishGameForm.controls['isAttacker'].value" />
                             Yes
                           </label>
                           <label class="radio">
-                            <input class="radio" type="radio" name="isAttacker" value="false" [formControl]="finishGameForm.controls['isAttacker']" />
+                            <input class="radio" type="radio" name="isAttacker" value="false" [formControl]="finishGameForm.controls['isAttacker']" [checked]="!finishGameForm.controls['isAttacker'].value" />
                             No                              
                           </label>
                         </div>
@@ -37,14 +37,14 @@
                       <div class="field">
                         <label class="label">Opponent gang rating</label>
                         <div class="control">
-                            <input class="input" type="number" value="true" [formControl]="finishGameForm.controls['opponentGangRating']">
+                            <input class="input" type="number" [value]="1000" [formControl]="finishGameForm.controls['opponentGangRating']">
                         </div>
                       </div>
                       <div class="field">
                           <label class="label">Game Type</label>
                           <div class="select">
-                            <select [formControl]="finishGameForm.controls['gameType']">
-                              <option value="GANG_FIGHT" selected>lbl_gametype_gang_fight</option>
+                            <select [formControl]="finishGameForm.controls['gameType']" [selectedIndex]="0">
+                              <option value="GANG_FIGHT">lbl_gametype_gang_fight</option>
                               <option value="SCAVENGERS">lbl_gametype_scavengers</option>
                               <option value="HIT_AND_RUN">lbl_gametype_hit_and_run</option>
                               <option value="AMBUSH">lbl_gametype_ambush</option>
@@ -59,6 +59,56 @@
               </form>
           </section>
       </div>
+      <div class="modal-card" *ngIf="isPostGame">
+        <header class="modal-card-head">
+          <h3 class="title">Game results</h3>
+        </header>
+        <section class="modal-card-body content">
+          <div *ngIf="isPostGameLoading">
+            <a class="button is-loading is-fullwidth is-white"></a>
+          </div>
+          <section *ngIf="!isPostGameLoading">
+            <div *ngIf="postGameReport.injuries.injuries.length > 0">
+              <h3 class="subtitle is-3">Injuries</h3>
+              <div *ngFor="let gangerInjury of postGameReport.injuries.injuries">
+                <strong>{{gangerInjury.theGanger.name}}</strong> was injured:
+                <ul>
+                  <li *ngFor="let inj of gangerInjury.injuries">{{inj.name}}: <em>{{inj.description}}</em></li>
+                </ul>
+              </div>
+            </div>
+            <div *ngIf="postGameReport.experience.gangerAdvancements.length > 0">
+              <h3 class="subtitle is-3">Experience</h3>
+              <ul>
+                <li *ngFor="let advancement of postGameReport.experience.gangerAdvancements">
+                  <p><strong>{{advancement.gangerName}}</strong>: {{advancement.description}}</p>
+                  <div *ngIf="advancement.newSkillFromCategory && advancement.newSkillFromCategory.length > 0">
+                    <div class="select">
+                      <select>
+                        <option *ngFor="let newSkill of advancement.newSkillFromCategory" value="{{newSkill}}">{{newSkill}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="!!postGameReport.income">
+              <h3 class="subtitle is-3">Income</h3>
+              <ul>
+                <li *ngFor="let terr of postGameReport.income.gross">
+                  {{terr.territoryName}}: {{terr.income}}
+                  <div *ngIf="!!terr.description">{{terr.description}}</div>
+                </li>
+              </ul>
+              <p><strong>Giant Killer Bonus:</strong> {{postGameReport.income.giantKillerBonus}}</p>
+              <p><strong>Income:</strong> {{postGameReport.income.income}}</p>
+            </div>
+          </section>
+          <div class="is-pulled-right">
+            <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" (click)="submitUpgrades()">OK</button>
+          </div>
+        </section>
+      </div>
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="showFinishGameModal = false;"></button>
+  <button class="modal-close is-large" aria-label="close" (click)="hideFinishGameModal()"></button>
 </div>

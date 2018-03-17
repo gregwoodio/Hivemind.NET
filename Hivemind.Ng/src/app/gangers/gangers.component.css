@@ -1,3 +1,7 @@
 .hasFleshWound {
     background-color: yellow !important;
 }
+
+small {
+    word-wrap: break-all;
+}

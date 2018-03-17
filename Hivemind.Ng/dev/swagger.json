@@ -1423,6 +1423,9 @@
     "TerritoryIncomeReport": {
       "type": "object",
       "properties": {
+        "territoryName": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },

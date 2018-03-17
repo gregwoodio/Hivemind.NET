@@ -10,6 +10,7 @@ namespace Hivemind.Contracts
 {
     public class TerritoryWorkStatus
     {
+        public string TerritoryName;
         public string GangId;
         public Ganger Ganger;
         public GameType PreviousBattleType;
