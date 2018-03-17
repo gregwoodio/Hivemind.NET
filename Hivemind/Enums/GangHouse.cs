@@ -8,11 +8,11 @@ namespace Hivemind.Enums
 {
     public enum GangHouse
     {
-        CAWDOR = 1,
-        ESCHER,
-        GOLIATH,
-        VAN_SAAR,
-        ORLOCK,
-        DELAQUE
+        Cawdor = 1,
+        Escher,
+        Goliath,
+        VanSaar,
+        Orlock,
+        Delaque
     }
 }

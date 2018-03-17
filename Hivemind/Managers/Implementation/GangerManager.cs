@@ -34,13 +34,13 @@ namespace Hivemind.Managers.Implementation
         {
             switch (type)
             {
-                case GangerType.LEADER:
+                case GangerType.Leader:
                     return CreateLeader(name);
-                case GangerType.HEAVY:
+                case GangerType.Heavy:
                     return CreateHeavy(name);
-                case GangerType.GANGER:
+                case GangerType.Ganger:
                     return CreateGanger(name);
-                case GangerType.JUVE:
+                case GangerType.Juve:
                     return CreateJuve(name);
                 default:
                     throw new HivemindException($"Invalid GangerType provided: ${type}");
@@ -52,7 +52,7 @@ namespace Hivemind.Managers.Implementation
             return new Ganger()
             {
                 Name = name,
-                GangerType = GangerType.JUVE,
+                GangerType = GangerType.Juve,
                 Move = 4,
                 WeaponSkill = 2,
                 BallisticSkill = 2,
@@ -64,7 +64,7 @@ namespace Hivemind.Managers.Implementation
                 Leadership = 6,
                 Cost = 25,
                 Experience = 0,
-                Title = GangerTitle.GREEN_JUVE,
+                Title = GangerTitle.GreenJuve,
                 Active = true
             };
         }
@@ -74,7 +74,7 @@ namespace Hivemind.Managers.Implementation
             return new Ganger()
             {
                 Name = name,
-                GangerType = GangerType.GANGER,
+                GangerType = GangerType.Ganger,
                 Move = 4,
                 WeaponSkill = 3,
                 BallisticSkill = 3,
@@ -86,7 +86,7 @@ namespace Hivemind.Managers.Implementation
                 Leadership = 7,
                 Cost = 50,
                 Experience = 20 + DiceRoller.RollDie(),
-                Title = GangerTitle.NEW_GANGER,
+                Title = GangerTitle.NewGanger,
                 Active = true
             };
         }
@@ -96,7 +96,7 @@ namespace Hivemind.Managers.Implementation
             return new Ganger()
             {
                 Name = name,
-                GangerType = GangerType.HEAVY,
+                GangerType = GangerType.Heavy,
                 Move = 4,
                 WeaponSkill = 3,
                 BallisticSkill = 3,
@@ -108,7 +108,7 @@ namespace Hivemind.Managers.Implementation
                 Leadership = 7,
                 Cost = 60,
                 Experience = 60 + DiceRoller.RollDie(),
-                Title = GangerTitle.GANG_CHAMPION,
+                Title = GangerTitle.GangChampion,
                 Active = true
             };
         }
@@ -118,7 +118,7 @@ namespace Hivemind.Managers.Implementation
             return new Ganger()
             {
                 Name = name,
-                GangerType = GangerType.LEADER,
+                GangerType = GangerType.Leader,
                 Move = 4,
                 WeaponSkill = 4,
                 BallisticSkill = 4,
@@ -130,7 +130,7 @@ namespace Hivemind.Managers.Implementation
                 Leadership = 8,
                 Cost = 120,
                 Experience = 60 + DiceRoller.RollDie(),
-                Title = GangerTitle.GANG_CHAMPION,
+                Title = GangerTitle.GangChampion,
                 Active = true
             };
         }
@@ -144,31 +144,31 @@ namespace Hivemind.Managers.Implementation
 
             switch (stat)
             {
-                case GangerStatistics.MOVE:
+                case GangerStatistics.Move:
                     ganger.Move += interval.Value;
                     break;
-                case GangerStatistics.WEAPON_SKILL:
+                case GangerStatistics.WeaponSkill:
                     ganger.WeaponSkill += interval.Value;
                     break;
-                case GangerStatistics.BALLISTIC_SKILL:
+                case GangerStatistics.BallisticSkill:
                     ganger.BallisticSkill += interval.Value;
                     break;
-                case GangerStatistics.STRENGTH:
+                case GangerStatistics.Strength:
                     ganger.Strength += interval.Value;
                     break;
-                case GangerStatistics.TOUGHNESS:
+                case GangerStatistics.Toughness:
                     ganger.Toughness += interval.Value;
                     break;
-                case GangerStatistics.ATTACK:
+                case GangerStatistics.Attack:
                     ganger.Attack += interval.Value;
                     break;
-                case GangerStatistics.WOUNDS:
+                case GangerStatistics.Wounds:
                     ganger.Wounds += interval.Value;
                     break;
-                case GangerStatistics.INITIATIVE:
+                case GangerStatistics.Initiative:
                     ganger.Initiative += interval.Value;
                     break;
-                case GangerStatistics.LEADERSHIP:
+                case GangerStatistics.Leadership:
                     ganger.Leadership += interval.Value;
                     break;
                 default:

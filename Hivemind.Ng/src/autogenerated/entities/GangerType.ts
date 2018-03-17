@@ -3,8 +3,8 @@
  */
 
 export enum gangerType {
-    JUVE = 1,
-    GANGER,
-    HEAVY,
-    LEADER,
+    Juve = 1,
+    Ganger,
+    Heavy,
+    Leader,
 }

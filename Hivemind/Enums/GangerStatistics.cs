@@ -8,14 +8,14 @@ namespace Hivemind.Enums
 {
     public enum GangerStatistics
     {
-        MOVE,
-        WEAPON_SKILL,
-        BALLISTIC_SKILL,
-        STRENGTH,
-        TOUGHNESS,
-        ATTACK,
-        WOUNDS,
-        INITIATIVE,
-        LEADERSHIP
+        Move,
+        WeaponSkill,
+        BallisticSkill,
+        Strength,
+        Toughness,
+        Attack,
+        Wounds,
+        Initiative,
+        Leadership
     }
 }

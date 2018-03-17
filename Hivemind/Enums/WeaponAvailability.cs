@@ -8,7 +8,7 @@ namespace Hivemind.Enums
 {
     public enum WeaponAvailability
     {
-        COMMON = 1,
-        RARE
+        Common = 1,
+        Rare
     }
 }

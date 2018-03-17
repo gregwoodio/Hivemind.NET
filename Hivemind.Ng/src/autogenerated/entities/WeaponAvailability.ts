@@ -3,6 +3,6 @@
  */
 
 export enum weaponAvailability {
-    COMMON = 1,
-    RARE,
+    Common = 1,
+    Rare,
 }

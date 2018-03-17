@@ -43,39 +43,39 @@ namespace Hivemind.Managers.Implementation
         {
             switch ((InjuryEnum)injuryId)
             {
-                case InjuryEnum.DEAD:
+                case InjuryEnum.Dead:
                     return HasDied;
-                case InjuryEnum.MULTIPLE_INJURIES:
+                case InjuryEnum.MultipleInjuries:
                     return NoStatsEffect;
-                case InjuryEnum.CHEST_WOUND:
+                case InjuryEnum.ChestWound:
                     return HasChestWound;
-                case InjuryEnum.LEG_WOUND:
+                case InjuryEnum.LegWound:
                     return HasLegWound;
-                case InjuryEnum.ARM_WOUND:
+                case InjuryEnum.ArmWound:
                     return HasArmWound;
-                case InjuryEnum.HEAD_WOUND:
+                case InjuryEnum.HeadWound:
                     return HasHeadWound;
-                case InjuryEnum.BLINDED_IN_ONE_EYE:
+                case InjuryEnum.BlindedInOneEye:
                     return HasBlindedInOneEye;
-                case InjuryEnum.PARTIALLY_DEAFENED:
+                case InjuryEnum.PartiallyDeafened:
                     return HasPartiallyDeafened;
-                case InjuryEnum.SHELL_SHOCK:
+                case InjuryEnum.ShellShock:
                     return HasShellShock;
-                case InjuryEnum.HAND_INJURY:
+                case InjuryEnum.HandInjury:
                     return HasHandInjury;
-                case InjuryEnum.OLD_BATTLE_WOUND:
+                case InjuryEnum.OldBattleWound:
                     return HasOldBattleWound;
-                case InjuryEnum.FULL_RECOVERY:
+                case InjuryEnum.FullRecovery:
                     return NoStatsEffect;
-                case InjuryEnum.BITTER_ENMITY:
+                case InjuryEnum.BitterEnmity:
                     return HasBitterEnmity;
-                case InjuryEnum.CAPTURED:
+                case InjuryEnum.Captured:
                     return IsCaptured;
-                case InjuryEnum.HORRIBLE_SCARS:
+                case InjuryEnum.HorribleScars:
                     return HasHorribleScars;
-                case InjuryEnum.IMPRESSIVE_SCARS:
+                case InjuryEnum.ImpressiveScars:
                     return HasImpressiveScars;
-                case InjuryEnum.SURVIVES_AGAINST_THE_ODDS:
+                case InjuryEnum.SurvivesAgainstTheOdds:
                     return HasSurvivedAgainstTheOdds;
             }
 

@@ -213,18 +213,18 @@ namespace Hivemind.Services.Implementation
 
         public int GetLeaderBonus(Ganger ganger, GameType gameType, bool hasWon, bool isAttacker)
         {
-            if (ganger.GangerType != GangerType.LEADER)
+            if (ganger.GangerType != GangerType.Leader)
             {
                 return 0;
             }
             
             switch (gameType)
             {
-                case GameType.GANG_FIGHT:
-                case GameType.SCAVENGERS:
-                case GameType.AMBUSH:
+                case GameType.GangFight:
+                case GameType.Scavengers:
+                case GameType.Ambush:
                     return hasWon ? 10 : 0;
-                case GameType.RESCUE_MISSION:
+                case GameType.RescueMission:
                     return hasWon && !isAttacker ? 10 : 0;
                 default:
                     return 0;
@@ -240,10 +240,10 @@ namespace Hivemind.Services.Implementation
         {
             switch (gameType)
             {
-                case GameType.SCAVENGERS:
+                case GameType.Scavengers:
                     return objectives;
-                case GameType.THE_RAID:
-                case GameType.RESCUE_MISSION:
+                case GameType.TheRaid:
+                case GameType.RescueMission:
                     return objectives * 5;
                 default:
                     return 0;
@@ -252,7 +252,7 @@ namespace Hivemind.Services.Implementation
 
         public int GetWinningBonus(bool hasWon, GameType gameType)
         {
-            if (gameType == GameType.HIT_AND_RUN && hasWon)
+            if (gameType == GameType.HitAndRun && hasWon)
             {
                 return 10;
             }
@@ -269,105 +269,105 @@ namespace Hivemind.Services.Implementation
             SkillType[] skillList = new SkillType[0];
             switch (house)
             {
-                case GangHouse.CAWDOR:
+                case GangHouse.Cawdor:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.COMBAT, SkillType.FEROCITY };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Combat, SkillType.Ferocity };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.COMBAT, SkillType.FEROCITY, SkillType.AGILITY };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Combat, SkillType.Ferocity, SkillType.Agility };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.FEROCITY, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Techno };
                             break;
                     }
                     break;
-                case GangHouse.ESCHER:
+                case GangHouse.Escher:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.STEALTH };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Stealth };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.AGILITY, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Agility, SkillType.Muscle, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Shooting, SkillType.Stealth, SkillType.Techno };
                             break;
                     }
                     break;
-                case GangHouse.DELAQUE:
+                case GangHouse.Delaque:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.SHOOTING, SkillType.STEALTH };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Shooting, SkillType.Stealth };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.SHOOTING, SkillType.STEALTH };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Agility, SkillType.Shooting, SkillType.Stealth };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.MUSCLE, SkillType.STEALTH, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Muscle, SkillType.Stealth, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Shooting, SkillType.Stealth, SkillType.Techno };
                             break;
                     }
                     break;
-                case GangHouse.GOLIATH:
+                case GangHouse.Goliath:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.FEROCITY, SkillType.MUSCLE };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Ferocity, SkillType.Muscle };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.FEROCITY, SkillType.MUSCLE, SkillType.COMBAT };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Ferocity, SkillType.Muscle, SkillType.Combat };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.MUSCLE, SkillType.COMBAT, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Muscle, SkillType.Combat, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.COMBAT, SkillType.FEROCITY, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Stealth, SkillType.Techno };
                             break;
                     }
                     break;
-                case GangHouse.ORLOCK:
+                case GangHouse.Orlock:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.FEROCITY, SkillType.SHOOTING };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Ferocity, SkillType.Shooting };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.COMBAT, SkillType.FEROCITY, SkillType.SHOOTING };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Combat, SkillType.Ferocity, SkillType.Shooting };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.COMBAT, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Combat, SkillType.Muscle, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Shooting, SkillType.Stealth, SkillType.Techno };
                             break;
                     }
                     break;
-                case GangHouse.VAN_SAAR:
+                case GangHouse.VanSaar:
                     switch (type)
                     {
-                        case GangerType.JUVE:
-                            skillList = new[] { SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Juve:
+                            skillList = new[] { SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.GANGER:
-                            skillList = new[] { SkillType.COMBAT, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Ganger:
+                            skillList = new[] { SkillType.Combat, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.HEAVY:
-                            skillList = new[] { SkillType.COMBAT, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.TECHNO };
+                        case GangerType.Heavy:
+                            skillList = new[] { SkillType.Combat, SkillType.Muscle, SkillType.Shooting, SkillType.Techno };
                             break;
-                        case GangerType.LEADER:
-                            skillList = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO };
+                        case GangerType.Leader:
+                            skillList = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Shooting, SkillType.Stealth, SkillType.Techno };
                             break;
                     }
                     break;
@@ -392,7 +392,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = "Pick any skill",
                         GangerName = ganger.Name,
-                        NewSkillFromCategory = new[] { SkillType.AGILITY, SkillType.COMBAT, SkillType.FEROCITY, SkillType.MUSCLE, SkillType.SHOOTING, SkillType.STEALTH, SkillType.TECHNO }
+                        NewSkillFromCategory = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Stealth, SkillType.Techno }
                     };
                 case 3:
                 case 4:
@@ -405,7 +405,7 @@ namespace Hivemind.Services.Implementation
                         NewSkillFromCategory = GetGangSkill(ganger.GangerType, house)
                     };
                 case 5:
-                    stat = (statToIncrease <= 3) ? GangerStatistics.STRENGTH : GangerStatistics.ATTACK;
+                    stat = (statToIncrease <= 3) ? GangerStatistics.Strength : GangerStatistics.Attack;
                     _gangerManager.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
@@ -415,7 +415,7 @@ namespace Hivemind.Services.Implementation
                     };
                 case 6:
                 case 8:
-                    stat = (statToIncrease <= 3) ? GangerStatistics.WEAPON_SKILL : GangerStatistics.BALLISTIC_SKILL;
+                    stat = (statToIncrease <= 3) ? GangerStatistics.WeaponSkill : GangerStatistics.BallisticSkill;
                     _gangerManager.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
@@ -424,7 +424,7 @@ namespace Hivemind.Services.Implementation
                         NewSkillFromCategory = null
                     };
                 case 7:
-                    stat = (statToIncrease <= 3) ? GangerStatistics.INITIATIVE : GangerStatistics.LEADERSHIP;
+                    stat = (statToIncrease <= 3) ? GangerStatistics.Initiative : GangerStatistics.Leadership;
                     _gangerManager.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {
@@ -433,7 +433,7 @@ namespace Hivemind.Services.Implementation
                         NewSkillFromCategory = null
                     };
                 case 9:
-                    stat = (statToIncrease <= 3) ? GangerStatistics.WOUNDS : GangerStatistics.ATTACK;
+                    stat = (statToIncrease <= 3) ? GangerStatistics.Wounds : GangerStatistics.Attack;
                     _gangerManager.IncreaseStat(ganger, stat, null);
                     return new GangerLevelUpReport()
                     {

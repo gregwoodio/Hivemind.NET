@@ -3,11 +3,11 @@
  */
 
 export enum skillType {
-    AGILITY = 1,
-    COMBAT,
-    STEALTH,
-    MUSCLE,
-    FEROCITY,
-    TECHNO,
-    SHOOTING,
+    Agility = 1,
+    Combat,
+    Stealth,
+    Muscle,
+    Ferocity,
+    Techno,
+    Shooting,
 }

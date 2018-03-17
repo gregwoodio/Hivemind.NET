@@ -171,16 +171,16 @@ namespace Hivemind.Entities
             
             switch (GangerType)
             {
-                case GangerType.JUVE:
+                case GangerType.Juve:
                     Cost += 25;
                     break;
-                case GangerType.GANGER:
+                case GangerType.Ganger:
                     Cost += 50;
                     break;
-                case GangerType.HEAVY:
+                case GangerType.Heavy:
                     Cost += 60;
                     break;
-                case GangerType.LEADER:
+                case GangerType.Leader:
                     Cost += 120;
                     break;
                 default:

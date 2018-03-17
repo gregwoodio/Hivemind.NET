@@ -840,12 +840,12 @@
         },
         "gangHouse": {
           "enum": [
-            "CAWDOR",
-            "ESCHER",
-            "GOLIATH",
-            "VAN_SAAR",
-            "ORLOCK",
-            "DELAQUE"
+            "Cawdor",
+            "Escher",
+            "Goliath",
+            "VanSaar",
+            "Orlock",
+            "Delaque"
           ],
           "type": "string"
         },
@@ -882,10 +882,10 @@
         },
         "gangerType": {
           "enum": [
-            "JUVE",
-            "GANGER",
-            "HEAVY",
-            "LEADER"
+            "Juve",
+            "Ganger",
+            "Heavy",
+            "Leader"
           ],
           "type": "string"
         },
@@ -950,14 +950,14 @@
         },
         "title": {
           "enum": [
-            "GREEN_JUVE",
-            "JUVE",
-            "TOP_JUVE",
-            "NEW_GANGER",
-            "GANGER",
-            "GANG_CHAMPION",
-            "GANG_HERO",
-            "MIGHTY_GANGER"
+            "GreenJuve",
+            "Juve",
+            "TopJuve",
+            "NewGanger",
+            "Ganger",
+            "GangChampion",
+            "GangHero",
+            "MightyGanger"
           ],
           "type": "string"
         },
@@ -1049,13 +1049,13 @@
         },
         "skillType": {
           "enum": [
-            "AGILITY",
-            "COMBAT",
-            "STEALTH",
-            "MUSCLE",
-            "FEROCITY",
-            "TECHNO",
-            "SHOOTING"
+            "Agility",
+            "Combat",
+            "Stealth",
+            "Muscle",
+            "Ferocity",
+            "Techno",
+            "Shooting"
           ],
           "type": "string"
         },
@@ -1063,10 +1063,10 @@
           "type": "array",
           "items": {
             "enum": [
-              "JUVE",
-              "GANGER",
-              "HEAVY",
-              "LEADER"
+              "Juve",
+              "Ganger",
+              "Heavy",
+              "Leader"
             ],
             "type": "string"
           }
@@ -1078,24 +1078,24 @@
       "properties": {
         "injuryEnum": {
           "enum": [
-            "DEAD",
-            "MULTIPLE_INJURIES",
-            "CHEST_WOUND",
-            "LEG_WOUND",
-            "ARM_WOUND",
-            "HEAD_WOUND",
-            "BLINDED_IN_ONE_EYE",
-            "PARTIALLY_DEAFENED",
-            "SHELL_SHOCK",
-            "HAND_INJURY",
-            "OLD_BATTLE_WOUND",
-            "FULL_RECOVERY",
-            "BITTER_ENMITY",
-            "CAPTURED",
-            "HORRIBLE_SCARS",
-            "IMPRESSIVE_SCARS",
-            "SURVIVES_AGAINST_THE_ODDS",
-            "SPORE_SICKNESS"
+            "Dead",
+            "MultipleInjuries",
+            "ChestWound",
+            "LegWound",
+            "ArmWound",
+            "HeadWound",
+            "BlindedInOneEye",
+            "PartiallyDeafened",
+            "ShellShock",
+            "HandInjury",
+            "OldBattleWound",
+            "FullRecovery",
+            "BitterEnmity",
+            "Captured",
+            "HorribleScars",
+            "ImpressiveScars",
+            "SurvivesAgainstTheOdds",
+            "SporeSickness"
           ],
           "type": "string"
         },
@@ -1223,8 +1223,8 @@
         },
         "weaponAvailability": {
           "enum": [
-            "COMMON",
-            "RARE"
+            "Common",
+            "Rare"
           ],
           "type": "string"
         },
@@ -1291,13 +1291,13 @@
         },
         "gameType": {
           "enum": [
-            "GANG_FIGHT",
-            "SCAVENGERS",
-            "HIT_AND_RUN",
-            "AMBUSH",
-            "THE_RAID",
-            "RESCUE_MISSION",
-            "SHOOT_OUT"
+            "GangFight",
+            "Scavengers",
+            "HitAndRun",
+            "Ambush",
+            "TheRaid",
+            "RescueMission",
+            "Shootout"
           ],
           "type": "string"
         }
@@ -1407,13 +1407,13 @@
           "type": "array",
           "items": {
             "enum": [
-              "AGILITY",
-              "COMBAT",
-              "STEALTH",
-              "MUSCLE",
-              "FEROCITY",
-              "TECHNO",
-              "SHOOTING"
+              "Agility",
+              "Combat",
+              "Stealth",
+              "Muscle",
+              "Ferocity",
+              "Techno",
+              "Shooting"
             ],
             "type": "string"
           }

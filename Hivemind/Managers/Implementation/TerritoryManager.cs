@@ -28,24 +28,24 @@ namespace Hivemind.Managers.Implementation
 
             _territoryEffects = new Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>>
             {
-                { TerritoryEnum.CHEM_PIT, ChemPit },
-                { TerritoryEnum.OLD_RUINS, NoTerritoryEffect },
-                { TerritoryEnum.SLAG, NoTerritoryEffect },
-                { TerritoryEnum.MINERAL_OUTCROP, NoTerritoryEffect },
-                { TerritoryEnum.SETTLEMENT, Settlement },
-                { TerritoryEnum.MINE_WORKINGS, MineWorkings },
-                { TerritoryEnum.TUNNELS, NoTerritoryEffect },
-                { TerritoryEnum.VENTS, NoTerritoryEffect },
-                { TerritoryEnum.HOLESTEAD, NoTerritoryEffect },
-                { TerritoryEnum.WATER_STILL, NoTerritoryEffect },
-                { TerritoryEnum.DRINKING_HOLE, NoTerritoryEffect },
-                { TerritoryEnum.GUILDER_CONTRACT, GuilderContract },
-                { TerritoryEnum.FRIENDLY_DOC, FriendlyDoc },
-                { TerritoryEnum.WORKSHOP, NoTerritoryEffect },
-                { TerritoryEnum.GAMBLING_DEN, GamblingDen },
-                { TerritoryEnum.SPORE_CAVE, SporeCave },
-                { TerritoryEnum.ARCHEOTECH, Archeotech },
-                { TerritoryEnum.GREEN_HIVERS, NoTerritoryEffect }
+                { TerritoryEnum.Chempit, ChemPit },
+                { TerritoryEnum.OldRuins, NoTerritoryEffect },
+                { TerritoryEnum.Slag, NoTerritoryEffect },
+                { TerritoryEnum.MineralOutcrop, NoTerritoryEffect },
+                { TerritoryEnum.Settlement, Settlement },
+                { TerritoryEnum.MineWorkings, MineWorkings },
+                { TerritoryEnum.Tunnels, NoTerritoryEffect },
+                { TerritoryEnum.Vents, NoTerritoryEffect },
+                { TerritoryEnum.Holestead, NoTerritoryEffect },
+                { TerritoryEnum.Waterstill, NoTerritoryEffect },
+                { TerritoryEnum.DrinkingHole, NoTerritoryEffect },
+                { TerritoryEnum.GuilderContract, GuilderContract },
+                { TerritoryEnum.FriendlyDoc, FriendlyDoc },
+                { TerritoryEnum.Workshop, NoTerritoryEffect },
+                { TerritoryEnum.GamblingDen, GamblingDen },
+                { TerritoryEnum.SporeCave, SporeCave },
+                { TerritoryEnum.Archeotech, Archeotech },
+                { TerritoryEnum.GreenHivers, NoTerritoryEffect }
             };
         }
 
@@ -100,7 +100,7 @@ namespace Hivemind.Managers.Implementation
             if (status.Roll == 12)
             {
                 // ganger gets horrible scars
-                var scars = _injuryFactory.GetInjury((int)InjuryEnum.HORRIBLE_SCARS);
+                var scars = _injuryFactory.GetInjury((int)InjuryEnum.HorribleScars);
                 status.Ganger = scars.InjuryEffect(status.Ganger);
                 _gangerFactory.UpdateGanger(status.Ganger);
 
@@ -154,7 +154,7 @@ namespace Hivemind.Managers.Implementation
 
         private TerritoryIncomeReport GuilderContract(TerritoryWorkStatus status)
         {
-            if (status.PreviousBattleType == GameType.SCAVENGERS && status.Objectives > 0)
+            if (status.PreviousBattleType == GameType.Scavengers && status.Objectives > 0)
             {
                 int extraIncome = status.Objectives * 5;
                 return new TerritoryIncomeReport()
@@ -218,7 +218,7 @@ namespace Hivemind.Managers.Implementation
         {
             if (status.Roll == 20)
             {
-                var sporeSickness = _injuryFactory.GetInjury((int)InjuryEnum.SPORE_SICKNESS);
+                var sporeSickness = _injuryFactory.GetInjury((int)InjuryEnum.SporeSickness);
                 status.Ganger = sporeSickness.InjuryEffect(status.Ganger);
                 _gangerFactory.UpdateGanger(status.Ganger);
 

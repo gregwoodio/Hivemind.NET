@@ -8,13 +8,13 @@ namespace Hivemind.Enums
 {
     public enum GangerTitle
     {
-        GREEN_JUVE = 1,
-        JUVE,
-        TOP_JUVE,
-        NEW_GANGER,
-        GANGER,
-        GANG_CHAMPION,
-        GANG_HERO,
-        MIGHTY_GANGER
+        GreenJuve = 1,
+        Juve,
+        TopJuve,
+        NewGanger,
+        Ganger,
+        GangChampion,
+        GangHero,
+        MightyGanger
     }
 }

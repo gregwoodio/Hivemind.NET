@@ -67,7 +67,7 @@ namespace Hivemind.Services.Implementation
                 _gangerManager.UpdateGanger(report.TheGanger);
                 foreach (var injury in report.Injuries)
                 {
-                    if (injury.InjuryEnum != InjuryEnum.FULL_RECOVERY)
+                    if (injury.InjuryEnum != InjuryEnum.FullRecovery)
                     {
                         _gangerManager.AddGangerInjury(report.TheGanger.GangerId, injury.InjuryEnum);
                     }
@@ -95,10 +95,10 @@ namespace Hivemind.Services.Implementation
                 case 14:
                 case 15:
                 case 16:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.DEAD) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.Dead) };
                 case 21:
                     var injuries = new List<Injury>();
-                    injuries.Add(_injuryManager.GetInjury((int)InjuryEnum.MULTIPLE_INJURIES));
+                    injuries.Add(_injuryManager.GetInjury((int)InjuryEnum.MultipleInjuries));
                     var extraInjuries = DiceRoller.RollDie();
                     for (int i = 0; i < extraInjuries; i++)
                     {
@@ -106,25 +106,25 @@ namespace Hivemind.Services.Implementation
                     }
                     return injuries;
                 case 22:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.CHEST_WOUND) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.ChestWound) };
                 case 23:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.LEG_WOUND) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.LegWound) };
                 case 24:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.ARM_WOUND) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.ArmWound) };
                 case 25:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HEAD_WOUND) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HeadWound) };
                 case 26:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.BLINDED_IN_ONE_EYE) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.BlindedInOneEye) };
                 case 31:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.PARTIALLY_DEAFENED) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.PartiallyDeafened) };
                 case 32:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.SHELL_SHOCK) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.ShellShock) };
                 case 33:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HAND_INJURY) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HandInjury) };
                 case 34:
                 case 35:
                 case 36:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.OLD_BATTLE_WOUND) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.OldBattleWound) };
                 case 41:
                 case 42:
                 case 43:
@@ -136,19 +136,19 @@ namespace Hivemind.Services.Implementation
                 case 53:
                 case 54:
                 case 55:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.FULL_RECOVERY) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.FullRecovery) };
                 case 56:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.BITTER_ENMITY) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.BitterEnmity) };
                 case 61:
                 case 62:
                 case 63:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.CAPTURED) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.Captured) };
                 case 64:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HORRIBLE_SCARS) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.HorribleScars) };
                 case 65:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.IMPRESSIVE_SCARS) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.ImpressiveScars) };
                 case 66:
-                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.SURVIVES_AGAINST_THE_ODDS) };
+                    return new[] { _injuryManager.GetInjury((int)InjuryEnum.SurvivesAgainstTheOdds) };
                 default:
                     HivemindException.NoSuchInjuryException(roll.Value);
                     return new Injury[] { };
