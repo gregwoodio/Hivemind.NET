@@ -56,6 +56,7 @@ namespace Hivemind.Services.Implementation
             {
                 Gross = gross,
                 GiantKillerBonus = giantKillerBonus,
+                Upkeep = territoryGross + giantKillerBonus - incomeAfterUpkeep,
                 Income = incomeAfterUpkeep
             };
 

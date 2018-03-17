@@ -5,9 +5,6 @@ using Hivemind.Providers;
 using Hivemind.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Managers.Implementation
 {
@@ -15,7 +12,6 @@ namespace Hivemind.Managers.Implementation
     {
         private IInjuryManager _injuryFactory;
         private IGangerManager _gangerFactory;
-        private IGangManager _gangFactory;
         private TerritoryProvider _territoryProvider;
         private Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>> _territoryEffects;
 
@@ -23,7 +19,6 @@ namespace Hivemind.Managers.Implementation
         {
             _injuryFactory = injuryFactory ?? throw new ArgumentNullException(nameof(injuryFactory));
             _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));
-            _gangFactory = gangFactory ?? throw new ArgumentNullException(nameof(gangFactory));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
 
             _territoryEffects = new Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>>
@@ -86,6 +81,7 @@ namespace Hivemind.Managers.Implementation
             return _territoryEffects[(TerritoryEnum)territoryId];
         }
 
+        #region Territory effects
         private TerritoryIncomeReport NoTerritoryEffect(TerritoryWorkStatus status)
         {
             return new TerritoryIncomeReport()
@@ -246,5 +242,6 @@ namespace Hivemind.Managers.Implementation
                 Income = status.Roll
             };
         }
+        #endregion
     }
 }

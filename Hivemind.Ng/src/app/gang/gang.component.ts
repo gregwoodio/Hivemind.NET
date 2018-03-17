@@ -74,7 +74,7 @@ export class GangComponent implements OnInit {
     this._gangService.addGang(gang);
 
     this.addGangForm.controls['gangName'].setValue('');
-    this.addGangForm.contains['gangHouse'].setValue('');
+    this.addGangForm.controls['gangHouse'].setValue('');
 
     this.showAddNewGangModal = false;
   }

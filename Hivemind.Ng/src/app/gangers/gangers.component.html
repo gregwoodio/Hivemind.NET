@@ -81,7 +81,7 @@
   <div class="modal-content">
       <div class="modal-card">
           <header class="modal-card-head">
-              <h3 class="title">Login to Hivemind</h3>
+              <h3 class="title">Add Ganger</h3>
           </header>
           <section class="modal-card-body">
               <form [formGroup]="addGangerForm" (ngSubmit)="submitAddGangerForm()">
@@ -95,7 +95,7 @@
                       <div class="field">
                           <label class="label">Ganger Type</label>
                           <div class="select">
-                            <select [formControl]="addGangerForm.controls['gangerType']" (change)="checkAddGangerType()">
+                            <select [formControl]="addGangerForm.controls['gangerType']" (change)="checkAddGangerType()" [selectedIndex]="0">
                               <option value="JUVE">Juve - ¢25</option>
                               <option value="GANGER">Ganger - ¢50</option>
                               <option value="HEAVY">Heavy - ¢60</option>

@@ -9,6 +9,7 @@ export class IncomeReport {
     public gross: TerritoryIncomeReport[];
     public giantKillerBonus: number;
     public income: number;
+    public upkeep: number;
 
     public constructor(partial: Partial<IncomeReport>) {
         if (partial.gross) {
@@ -19,6 +20,9 @@ export class IncomeReport {
         }
         if (partial.income) {
             this.income = partial.income;
+        }
+        if (partial.upkeep) {
+            this.upkeep = partial.upkeep;
         }
     }
 
@@ -33,6 +37,9 @@ export class IncomeReport {
         }
         if (this.income) {
             properties.push('income');
+        }
+        if (this.upkeep) {
+            properties.push('upkeep');
         }
 
         properties.forEach(prop => {

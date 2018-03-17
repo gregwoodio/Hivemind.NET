@@ -44,13 +44,13 @@
                           <label class="label">Game Type</label>
                           <div class="select">
                             <select [formControl]="finishGameForm.controls['gameType']" [selectedIndex]="0">
-                              <option value="GANG_FIGHT">lbl_gametype_gang_fight</option>
-                              <option value="SCAVENGERS">lbl_gametype_scavengers</option>
-                              <option value="HIT_AND_RUN">lbl_gametype_hit_and_run</option>
-                              <option value="AMBUSH">lbl_gametype_ambush</option>
-                              <option value="THE_RAID">lbl_gametype_the_raid</option>
-                              <option value="RESCUE_MISSION">lbl_gametype_rescue_mission</option>
-                              <option value="SHOOT_OUT">lbl_gametype_shoot_out</option>
+                              <option value="GangFight">lbl_gametype_gang_fight</option>
+                              <option value="Scavengers">lbl_gametype_scavengers</option>
+                              <option value="HitAndRun">lbl_gametype_hit_and_run</option>
+                              <option value="Ambush">lbl_gametype_ambush</option>
+                              <option value="TheRaid">lbl_gametype_the_raid</option>
+                              <option value="RescueMission">lbl_gametype_rescue_mission</option>
+                              <option value="Shootout">lbl_gametype_shoot_out</option>
                             </select>
                           </div>
                       </div>
@@ -101,6 +101,7 @@
                 </li>
               </ul>
               <p><strong>Giant Killer Bonus:</strong> {{postGameReport.income.giantKillerBonus}}</p>
+              <p><strong>Upkeep:</strong> <span class="is-red">-{{postGameReport.income.upkeep}}</span></p>
               <p><strong>Income:</strong> {{postGameReport.income.income}}</p>
             </div>
           </section>

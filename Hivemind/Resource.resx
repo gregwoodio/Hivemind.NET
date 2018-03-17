@@ -132,15 +132,6 @@
   <data name="lbl_choose" xml:space="preserve">
     <value>Choose</value>
   </data>
-  <data name="lbl_dice_2d6" xml:space="preserve">
-    <value>2D6</value>
-  </data>
-  <data name="lbl_dice_2d6x10" xml:space="preserve">
-    <value>2D6*10</value>
-  </data>
-  <data name="lbl_dice_d6x10" xml:space="preserve">
-    <value>D6*10</value>
-  </data>
   <data name="lbl_injury_arm_wound_description" xml:space="preserve">
     <value>The fighter has smashed one arm. Although he recovers from his injury his strength is permanently reduced as a result. The fighter’s Strength characteristic is reduced by -1 when using that arm. Randomly determine which arm has been hit. Bear in mind that some hand-to-hand weapons use the fighter’s own Strength, eg swords.</value>
   </data>
