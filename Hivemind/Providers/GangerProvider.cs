@@ -134,6 +134,77 @@ namespace Hivemind.Providers
             }
         }
 
+        public void AddGangerSkill(string gangerId, int skillId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("GangerSkills_Add", connection))
+            {
+                connection.Open();
+
+                command.CommandType = CommandType.StoredProcedure;
+                var output = command.Parameters.Add("@GangerSkillId", SqlDbType.NVarChar, 100);
+                output.Direction = ParameterDirection.Output;
+                command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
+                command.Parameters.Add("@SkillId", SqlDbType.Int).Value = skillId;
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        #region Ganger Advancements
+        public bool CanLearnSkill(string gangerId, string advancementId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("GangerAdvancements_IsValid", connection))
+            {
+                connection.Open();
+
+                command.CommandType = CommandType.StoredProcedure;
+                var output = command.Parameters.Add("@Output", SqlDbType.Int);
+                output.Direction = ParameterDirection.Output;
+                command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
+                command.Parameters.Add("@AdvancementId", SqlDbType.NVarChar, 100).Value = advancementId;
+
+                command.ExecuteNonQuery();
+
+                return (int)output.Value > 0;
+            }
+        }
+
+        public string RegisterGangerAdvancement(string gangerId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("GangerAdvancements_Add", connection))
+            {
+                connection.Open();
+
+                command.CommandType = CommandType.StoredProcedure;
+                var advancementId = command.Parameters.Add("@AdvancementId", SqlDbType.NVarChar, 100);
+                advancementId.Direction = ParameterDirection.Output;
+                command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
+
+                command.ExecuteNonQuery();
+
+                return (string)advancementId.Value;
+            }
+        }
+
+        public void RemoveGangerAdvancement(string gangerId, string advancementId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("GangerAdvancements_Remove", connection))
+            {
+                connection.Open();
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@AdvancementId", SqlDbType.NVarChar, 100).Value = advancementId;
+                command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
+
+                command.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
         public void AddGangerInjury(string gangerId, InjuryEnum injury)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -145,7 +216,7 @@ namespace Hivemind.Providers
                     command.CommandType = CommandType.StoredProcedure;
                     var gangerInjuryId = command.Parameters.Add("@GangerInjuryId", SqlDbType.NVarChar, 100);
                     gangerInjuryId.Direction = ParameterDirection.Output;
-                    command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;;
+                    command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
                     command.Parameters.Add("@InjuryId", SqlDbType.Int).Value = (int)injury;
                     
                     command.ExecuteNonQuery();

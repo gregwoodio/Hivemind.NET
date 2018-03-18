@@ -12,5 +12,6 @@ namespace Hivemind.Contracts
         public string GangerName { get; set; }
         public string Description { get; set; }
         public IEnumerable<SkillType> NewSkillFromCategory { get; set; }
+        public string AdvancementId { get; set; }
     }
 }

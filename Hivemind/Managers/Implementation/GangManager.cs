@@ -13,7 +13,6 @@ namespace Hivemind.Managers.Implementation
         private readonly GangProvider _gangProvider;
         private readonly GangerProvider _gangerProvider;
         private readonly TerritoryProvider _territoryProvider;
-        private readonly ITerritoryManager _territoryManager;
         private readonly WeaponProvider _weaponProvider;
         private readonly InjuryProvider _injuryProvider;
 

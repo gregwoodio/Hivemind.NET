@@ -113,6 +113,12 @@
     <Build Include="dbo\Stored Procedures\Weapons_GetGangerWeaponsByGangId_1.sql" />
     <Build Include="dbo\Stored Procedures\GangerInjuries_Add.sql" />
     <Build Include="dbo\Stored Procedures\Injuries_GetByGangerId.sql" />
+    <Build Include="dbo\Tables\GangerAdvancements.sql" />
+    <Build Include="dbo\Stored Procedures\Skills_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\GangerSkills_Add.sql" />
+    <Build Include="dbo\Stored Procedures\GangerAdvancements_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\GangerAdvancements_IsValid.sql" />
+    <Build Include="dbo\Stored Procedures\GangerAdvancements_Add.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticValues\Injuries.csv" />

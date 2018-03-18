@@ -14,10 +14,12 @@ namespace Hivemind.Managers.Implementation
     public class GangerManager : IGangerManager
     {
         private GangerProvider _gangerProvider;
+        private ISkillManager _skillManager;
 
-        public GangerManager(GangerProvider gangerProvider)
+        public GangerManager(GangerProvider gangerProvider, ISkillManager skillManager)
         {
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
+            _skillManager = skillManager ?? throw new ArgumentNullException(nameof(skillManager));
         }
 
         public Ganger GetGanger(string id)
@@ -188,6 +190,41 @@ namespace Hivemind.Managers.Implementation
         public void AddGangerInjury(string gangerId, InjuryEnum injury)
         {
             _gangerProvider.AddGangerInjury(gangerId, injury);
+        }
+
+        public Ganger LearnSkill(Ganger ganger, string advancementId, SkillType type)
+        {
+            if (!_gangerProvider.CanLearnSkill(ganger.GangerId, advancementId))
+            {
+                throw new HivemindException("Invalid advancement ID.");
+            }
+
+            // TODO: If the ganger knows all the skills of that category, we return for now.
+            if (ganger.Skills.Where(s => s.SkillType == type).Count() >= 6)
+            {
+                return ganger;
+            }
+
+            var skill = _skillManager.GetRandomSkillByType(type);
+            while (ganger.Skills.Contains(skill))
+            {
+                skill = _skillManager.GetRandomSkillByType(type);
+            }
+
+            _gangerProvider.AddGangerSkill(ganger.GangerId, skill.SkillId);
+
+            _gangerProvider.RemoveGangerAdvancement(ganger.GangerId, advancementId);
+
+            var skills = ganger.Skills.ToList();
+            skills.Add(skill);
+            ganger.Skills = skills;
+
+            return ganger;
+        }
+
+        public string RegisterGangerAdvancement(string gangerId)
+        {
+            return _gangerProvider.RegisterGangerAdvancement(gangerId);
         }
     }
 }

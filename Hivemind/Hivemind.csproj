@@ -96,6 +96,7 @@
     <Compile Include="Managers\Implementation\TerritoryManager.cs" />
     <Compile Include="Managers\Implementation\WeaponManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\SkillProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Providers\WeaponProvider.cs" />
     <Compile Include="Providers\GangerProvider.cs" />

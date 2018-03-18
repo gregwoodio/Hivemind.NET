@@ -388,21 +388,25 @@ namespace Hivemind.Services.Implementation
             {
                 case 2:
                 case 12:
+                    var advancementId = _gangerManager.RegisterGangerAdvancement(ganger.GangerId);
                     return new GangerLevelUpReport()
                     {
                         Description = "Pick any skill",
                         GangerName = ganger.Name,
-                        NewSkillFromCategory = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Stealth, SkillType.Techno }
+                        NewSkillFromCategory = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Stealth, SkillType.Techno },
+                        AdvancementId = advancementId
                     };
                 case 3:
                 case 4:
                 case 10:
                 case 11:
+                    advancementId = _gangerManager.RegisterGangerAdvancement(ganger.GangerId);
                     return new GangerLevelUpReport()
                     {
                         Description = "New gang skill",
                         GangerName = ganger.Name,
-                        NewSkillFromCategory = GetGangSkill(ganger.GangerType, house)
+                        NewSkillFromCategory = GetGangSkill(ganger.GangerType, house),
+                        AdvancementId = advancementId
                     };
                 case 5:
                     stat = (statToIncrease <= 3) ? GangerStatistics.Strength : GangerStatistics.Attack;
