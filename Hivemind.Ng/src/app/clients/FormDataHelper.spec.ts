@@ -16,7 +16,7 @@ describe('FormDataHelper', () => {
   it('should encode arrays of objects properly', inject([FormDataHelper], (helper: FormDataHelper) => {
     const ganger = new Ganger({
         gangerId: '12345',
-        gangerType: gangerType.GANGER.toString(),
+        gangerType: gangerType.Ganger.toString(),
         isCaptured: true,
         cost: 123,
         weapons: [

@@ -15,19 +15,22 @@ namespace Hivemind.Managers.Implementation
         private readonly TerritoryProvider _territoryProvider;
         private readonly WeaponProvider _weaponProvider;
         private readonly InjuryProvider _injuryProvider;
+        private readonly SkillProvider _skillProvider;
 
         public GangManager(
             GangProvider gangProvider, 
             GangerProvider gangerProvider, 
             TerritoryProvider territoryProvider,
             WeaponProvider weaponProvider,
-            InjuryProvider injuryProvider)
+            InjuryProvider injuryProvider,
+            SkillProvider skillProvider)
         {
             _gangProvider = gangProvider ?? throw new ArgumentNullException(nameof(gangProvider));
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
             _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(InjuryProvider));
+            _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
         }
 
         public Gang GetGang(string gangId)
@@ -52,11 +55,19 @@ namespace Hivemind.Managers.Implementation
             }
 
             var injuries = _injuryProvider.GetInjuriesByGangId(gangId);
+            var skills = _skillProvider.GetAllSkills();
+            var gangerSkills = _gangerProvider.GetGangerSkills(gang.GangId);
+
             foreach (var ganger in gang.Gangers)
             {
                 ganger.Injuries = injuries.Where(gi => gi.GangerId == ganger.GangerId)
-                                        .Select(gi => gi.Injury)
-                                        .ToList();
+                    .Select(gi => gi.Injury)
+                    .ToList();
+
+                ganger.Skills = gangerSkills.Where(gs => gs.GangerId == ganger.GangerId)
+                    .Select(gs => gs.SkillId)
+                    .Select(id => skills.Where(skill => skill.SkillId == id).First())
+                    .ToList();
             }
 
             return gang;

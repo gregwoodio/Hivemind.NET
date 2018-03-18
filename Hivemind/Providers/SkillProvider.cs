@@ -2,6 +2,7 @@
 using Hivemind.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,16 @@ namespace Hivemind.Providers
     public class SkillProvider : HivemindProvider
     {
         private IEnumerable<Skill> _skills;
+
+        public IEnumerable<Skill> GetAllSkills()
+        {
+            if (_skills == null)
+            {
+                _skills = GetSkillsFromDatabase();
+            }
+
+            return _skills;
+        }
 
         public IEnumerable<Skill> GetSkillsByType(SkillType type)
         {
@@ -38,6 +49,9 @@ namespace Hivemind.Providers
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("Skills_GetAll", connection))
             {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+
                 var reader = command.ExecuteReader();
                 var skills = new List<Skill>();
 

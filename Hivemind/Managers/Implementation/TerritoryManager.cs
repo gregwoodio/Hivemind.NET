@@ -121,7 +121,7 @@ namespace Hivemind.Managers.Implementation
                 // gang gets a free Juve.
                 var juve = _gangerFactory.CreateJuve("New Juve");
                 juve.GangId = status.GangId;
-                _gangerFactory.UpdateGanger(juve);
+                _gangerFactory.AddGanger(juve);
 
                 return new TerritoryIncomeReport()
                 {

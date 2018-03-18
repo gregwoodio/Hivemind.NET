@@ -4,48 +4,34 @@
 
 import { HttpParams } from '@angular/common/http';
 
-export class GangerLevelUpReport {
-    public gangerName: string;
+export class GangerSkillUpRequest {
     public gangerId: string;
-    public description: string;
-    public newSkillFromCategory: any;
     public advancementId: string;
+    public skillCategory: string;
 
-    public constructor(partial: Partial<GangerLevelUpReport>) {
-        if (partial.gangerName) {
-            this.gangerName = partial.gangerName;
-        }
+    public constructor(partial: Partial<GangerSkillUpRequest>) {
         if (partial.gangerId) {
             this.gangerId = partial.gangerId;
         }
-        if (partial.description) {
-            this.description = partial.description;
-        }
-        if (partial.newSkillFromCategory) {
-            this.newSkillFromCategory = partial.newSkillFromCategory;
-        }
         if (partial.advancementId) {
             this.advancementId = partial.advancementId;
+        }
+        if (partial.skillCategory) {
+            this.skillCategory = partial.skillCategory;
         }
     }
 
     public toHttpParams(): HttpParams {
         let params = new HttpParams();
         let properties = [];
-        if (this.gangerName) {
-            properties.push('gangerName');
-        }
         if (this.gangerId) {
             properties.push('gangerId');
         }
-        if (this.description) {
-            properties.push('description');
-        }
-        if (this.newSkillFromCategory) {
-            properties.push('newSkillFromCategory');
-        }
         if (this.advancementId) {
             properties.push('advancementId');
+        }
+        if (this.skillCategory) {
+            properties.push('skillCategory');
         }
 
         properties.forEach(prop => {

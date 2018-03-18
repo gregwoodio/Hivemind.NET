@@ -1,4 +1,5 @@
 ﻿using Hivemind.Contracts;
+using Hivemind.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace Hivemind.Services
     {
         PreGameReport ProcessPreGame(string gangId);
         PostGameReport ProcessPostGame(BattleReport battleReport);
+        IEnumerable<GangerSkill> SkillUpGangers(GangSkillUpRequest skillUpRequest);
     }
 }

@@ -14,5 +14,15 @@ namespace Hivemind.Entities
         public string Description;
         public SkillType SkillType;
         public GangerType[] RestrictedTypes { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(Skill))
+            {
+                return this.SkillId == ((Skill)obj).SkillId;
+            }
+
+            return false;
+        }
     }
 }

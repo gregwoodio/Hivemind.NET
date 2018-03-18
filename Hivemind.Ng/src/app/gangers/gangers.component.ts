@@ -56,7 +56,7 @@ export class GangersComponent implements OnInit {
 
   public displayAddGangerDialog() {
     this.addGangerForm.controls['gangerName'].setValue('');
-    this.addGangerForm.controls['gangerType'].setValue('');
+    this.addGangerForm.controls['gangerType'].setValue('Juve');
     this.showAddGangerDialog = true;
   }
 
@@ -76,11 +76,24 @@ export class GangersComponent implements OnInit {
   }
 
   public parseGangerEquipment(ganger: Ganger): string {
+    if (!ganger.weapons) {
+      return '';
+    }
     return ganger.weapons.map(weapon => weapon.name).join(', ');
   }
 
   public parseGangerInjuries(ganger: Ganger): string {
+    if (!ganger.injuries) {
+      return '';
+    }
     return ganger.injuries.map(injury => injury.name).join(', ');
+  }
+
+  public parseGangerSkills(ganger: Ganger): string {
+    if (!ganger.skills) {
+      return '';
+    }
+    return ganger.skills.map(skill => skill.name).join(', ');
   }
 
   public setDown(gangerId: string, event: MouseEvent) {
@@ -104,21 +117,29 @@ export class GangersComponent implements OnInit {
   }
 
   public setKills(gangerId: string, event: KeyboardEvent) {
+    let value = parseInt((<HTMLInputElement>event.srcElement).value, 10);
+    if (value < 0) {
+      value = 0;
+    }
     this._ngRedux.dispatch({
       type: SET_KILL,
       payload: new GameData({
         gangerId: gangerId,
-        value: (<HTMLInputElement>event.srcElement).value
+        value: value
       })
     });
   }
 
   public setObjectives(gangerId: string, event: KeyboardEvent) {
+    let value = parseInt((<HTMLInputElement>event.srcElement).value, 10);
+    if (value < 0) {
+      value = 0;
+    }
     this._ngRedux.dispatch({
       type: SET_OBJECTIVE,
       payload: new GameData({
         gangerId: gangerId,
-        value: (<HTMLInputElement>event.srcElement).value
+        value: value
       })
     });
   }

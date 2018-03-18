@@ -17,9 +17,7 @@
       <th>I</th>
       <th>A</th>
       <th>Ld</th>
-      <th>Equipment</th>
-      <th>Skills</th>
-      <th>Injuries</th>
+      <th>Details</th>
       <th>Cost</th>
       <th>Exp.</th>
       <th *ngIf="isGameInProgress">Fleshwound</th>
@@ -53,9 +51,26 @@
     <td>{{ganger.initiative}}</td>
     <td>{{ganger.attack}}</td>
     <td>{{ganger.leadership}}</td>
-    <td><small>{{parseGangerEquipment(ganger)}}</small></td>
-    <td></td>
-    <td><small>{{parseGangerInjuries(ganger)}}</small></td>
+    <td>
+      <p>
+        <small>
+          <strong>Equipment: </strong> 
+          {{parseGangerEquipment(ganger)}}
+        </small>
+      </p>
+      <p>
+        <small>
+          <strong>Skills: </strong> 
+          {{parseGangerSkills(ganger)}}
+        </small>
+      </p>
+      <p>
+        <small>
+          <strong>Injuries: </strong> 
+          {{parseGangerInjuries(ganger)}}
+        </small>
+      </p>
+    </td>
     <td>{{ganger.cost}}</td>
     <td>{{ganger.experience}}</td>
     <td *ngIf="isGameInProgress">
@@ -96,10 +111,10 @@
                           <label class="label">Ganger Type</label>
                           <div class="select">
                             <select [formControl]="addGangerForm.controls['gangerType']" (change)="checkAddGangerType()" [selectedIndex]="0">
-                              <option value="JUVE">Juve - ¢25</option>
-                              <option value="GANGER">Ganger - ¢50</option>
-                              <option value="HEAVY">Heavy - ¢60</option>
-                              <option value="LEADER">Leader - ¢120</option>
+                              <option value="Juve">Juve - ¢25</option>
+                              <option value="Ganger">Ganger - ¢50</option>
+                              <option value="Heavy">Heavy - ¢60</option>
+                              <option value="Leader">Leader - ¢120</option>
                             </select>
                           </div>
                       </div>

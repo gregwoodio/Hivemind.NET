@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hivemind.Enums;
+using Hivemind.Managers;
+using Hivemind.Entities;
 
 namespace Hivemind.Services.Implementation
 {
@@ -13,12 +15,17 @@ namespace Hivemind.Services.Implementation
         private IInjuryService _injuryService;
         private IIncomeService _incomeService;
         private IExperienceService _experienceService;
+        private IGangerManager _gangerManager;
 
-        public GameService(IInjuryService injuryService, IIncomeService incomeService, IExperienceService experienceService)
+        public GameService(IInjuryService injuryService, 
+            IIncomeService incomeService, 
+            IExperienceService experienceService,
+            IGangerManager gangerManager)
         {
             _injuryService = injuryService ?? throw new ArgumentNullException(nameof(injuryService));
             _incomeService = incomeService ?? throw new ArgumentNullException(nameof(incomeService));
             _experienceService = experienceService ?? throw new ArgumentNullException(nameof(experienceService));
+            _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(gangerManager));
         }
 
         public PreGameReport ProcessPreGame(string gangId)
@@ -47,6 +54,19 @@ namespace Hivemind.Services.Implementation
                 Experience = experienceReport,
                 Income = incomeReport
             };
+        }
+
+        public IEnumerable<GangerSkill> SkillUpGangers(GangSkillUpRequest skillUpRequest)
+        {
+            var response = new List<GangerSkill>();
+
+            foreach (var request in skillUpRequest.GangerSkillUpRequests)
+            {
+                var ganger = _gangerManager.GetGanger(request.GangerId);
+                response.Add(_gangerManager.LearnSkill(ganger, request.AdvancementId, request.SkillCategory));
+            }
+
+            return response;
         }
     }
 }

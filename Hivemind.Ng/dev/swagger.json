@@ -91,6 +91,50 @@
         }
       }
     },
+    "/api/game/post/skills": {
+      "post": {
+        "tags": [
+          "Game"
+        ],
+        "operationId": "Game_LearnSkills",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "skillUpRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GangSkillUpRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GangerSkill"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/gangers/{gangerId}": {
       "get": {
         "tags": [
@@ -1404,6 +1448,9 @@
         "gangerName": {
           "type": "string"
         },
+        "gangerId": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -1421,6 +1468,9 @@
             ],
             "type": "string"
           }
+        },
+        "advancementId": {
+          "type": "string"
         }
       }
     },
@@ -1436,6 +1486,52 @@
         "income": {
           "format": "int32",
           "type": "integer"
+        }
+      }
+    },
+    "GangSkillUpRequest": {
+      "type": "object",
+      "properties": {
+        "gangerSkillUpRequests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GangerSkillUpRequest"
+          }
+        }
+      }
+    },
+    "GangerSkillUpRequest": {
+      "type": "object",
+      "properties": {
+        "gangerId": {
+          "type": "string"
+        },
+        "advancementId": {
+          "type": "string"
+        },
+        "skillCategory": {
+          "enum": [
+            "Agility",
+            "Combat",
+            "Stealth",
+            "Muscle",
+            "Ferocity",
+            "Techno",
+            "Shooting"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "GangerSkill": {
+      "type": "object",
+      "properties": {
+        "skillId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "gangerId": {
+          "type": "string"
         }
       }
     },

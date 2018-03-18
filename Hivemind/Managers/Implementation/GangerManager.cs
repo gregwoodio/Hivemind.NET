@@ -1,4 +1,5 @@
-﻿using Hivemind.Entities;
+﻿using Hivemind.Contracts;
+using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Exceptions;
 using Hivemind.Providers;
@@ -192,7 +193,7 @@ namespace Hivemind.Managers.Implementation
             _gangerProvider.AddGangerInjury(gangerId, injury);
         }
 
-        public Ganger LearnSkill(Ganger ganger, string advancementId, SkillType type)
+        public GangerSkill LearnSkill(Ganger ganger, string advancementId, SkillType type)
         {
             if (!_gangerProvider.CanLearnSkill(ganger.GangerId, advancementId))
             {
@@ -202,7 +203,7 @@ namespace Hivemind.Managers.Implementation
             // TODO: If the ganger knows all the skills of that category, we return for now.
             if (ganger.Skills.Where(s => s.SkillType == type).Count() >= 6)
             {
-                return ganger;
+                return null;
             }
 
             var skill = _skillManager.GetRandomSkillByType(type);
@@ -219,7 +220,11 @@ namespace Hivemind.Managers.Implementation
             skills.Add(skill);
             ganger.Skills = skills;
 
-            return ganger;
+            return new GangerSkill
+            {
+                SkillId = skill.SkillId,
+                GangerId = ganger.GangerId,
+            };
         }
 
         public string RegisterGangerAdvancement(string gangerId)

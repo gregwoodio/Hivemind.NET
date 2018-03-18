@@ -28,7 +28,7 @@ namespace Hivemind.Managers.Implementation
         {
             var skills = _skillProvider.GetSkillsByType(type).ToArray();
 
-            return skills[DiceRoller.RollDie()];
+            return skills[DiceRoller.RollDie() - 1];
         }
     }
 }

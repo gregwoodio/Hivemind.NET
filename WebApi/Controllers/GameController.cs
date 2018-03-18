@@ -36,9 +36,22 @@ namespace WebApi.Controllers
         [Authorize]
         [HttpPost]
         [Route("post")]
-        public PostGameReport ProcessPostGame(BattleReport battleReport)
+        public PostGameReport ProcessPostGame([FromBody] BattleReport battleReport)
         {
             return _gameService.ProcessPostGame(battleReport);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("post/skills")]
+        public IEnumerable<GangerSkill> LearnSkills([FromBody] GangSkillUpRequest skillUpRequest)
+        {
+            if (skillUpRequest == null)
+            {
+                return null;
+            }
+
+            return _gameService.SkillUpGangers(skillUpRequest);
         }
     }
 }

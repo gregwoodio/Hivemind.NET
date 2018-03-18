@@ -84,7 +84,7 @@
                   <p><strong>{{advancement.gangerName}}</strong>: {{advancement.description}}</p>
                   <div *ngIf="advancement.newSkillFromCategory && advancement.newSkillFromCategory.length > 0">
                     <div class="select">
-                      <select>
+                      <select (change)="changeSkillUpType(advancement.gangerId, $event)">
                         <option *ngFor="let newSkill of advancement.newSkillFromCategory" value="{{newSkill}}">{{newSkill}}</option>
                       </select>
                     </div>
@@ -101,7 +101,7 @@
                 </li>
               </ul>
               <p><strong>Giant Killer Bonus:</strong> {{postGameReport.income.giantKillerBonus}}</p>
-              <p><strong>Upkeep:</strong> <span class="is-red">-{{postGameReport.income.upkeep}}</span></p>
+              <p><strong>Upkeep:</strong> <span class="is-red">{{postGameReport.income.upkeep}}</span></p>
               <p><strong>Income:</strong> {{postGameReport.income.income}}</p>
             </div>
           </section>

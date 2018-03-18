@@ -393,6 +393,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = "Pick any skill",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = new[] { SkillType.Agility, SkillType.Combat, SkillType.Ferocity, SkillType.Muscle, SkillType.Shooting, SkillType.Stealth, SkillType.Techno },
                         AdvancementId = advancementId
                     };
@@ -405,6 +406,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = "New gang skill",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = GetGangSkill(ganger.GangerType, house),
                         AdvancementId = advancementId
                     };
@@ -415,6 +417,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = null
                     };
                 case 6:
@@ -425,6 +428,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = null
                     };
                 case 7:
@@ -434,6 +438,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = null
                     };
                 case 9:
@@ -443,6 +448,7 @@ namespace Hivemind.Services.Implementation
                     {
                         Description = Enum.GetName(typeof(GangerStatistics), stat) + " increased",
                         GangerName = ganger.Name,
+                        GangerId = ganger.GangerId,
                         NewSkillFromCategory = null
                     };
             }

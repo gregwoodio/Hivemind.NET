@@ -126,6 +126,8 @@ namespace Hivemind.Entities
             HasBitterEnmity = false;
             HasSporeSickness = false;
             Weapons = new Weapon[0];
+            Skills = new Skill[0];
+            Injuries = new Injury[0];
             Active = true;
             IsEnabled = true;
         }
@@ -154,6 +156,8 @@ namespace Hivemind.Entities
             HasBitterEnmity = ganger.HasBitterEnmity;
             HasSporeSickness = ganger.HasSporeSickness;
             Weapons = ganger.Weapons;
+            Skills = ganger.Skills;
+            Injuries = ganger.Injuries;
         }
 
         private int MinimumValues(int value)

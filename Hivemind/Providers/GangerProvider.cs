@@ -91,6 +91,36 @@ namespace Hivemind.Providers
             }
         }
 
+        public IEnumerable<GangerSkill> GetGangerSkills(string gangId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("GangerSkills_GetByGangId", connection))
+            {
+                connection.Open();
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
+
+                var reader = command.ExecuteReader();
+                var gangerSkills = new List<GangerSkill>();
+
+                while (reader.Read())
+                {
+                    var gangerSkill = new GangerSkill();
+
+                    var value = reader.GetOrdinal("gangerId");
+                    gangerSkill.GangerId = reader.GetString(value);
+
+                    value = reader.GetOrdinal("skillId");
+                    gangerSkill.SkillId = reader.GetInt32(value);
+
+                    gangerSkills.Add(gangerSkill);
+                }
+
+                return gangerSkills;
+            }
+        }
+
         public Ganger UpdateGanger(Ganger ganger)
         {
             using (var connection = new SqlConnection(_connectionString))
