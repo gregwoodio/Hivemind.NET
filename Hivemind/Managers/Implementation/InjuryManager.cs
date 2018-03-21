@@ -1,26 +1,43 @@
-﻿using Hivemind.Entities;
+﻿// <copyright file="InjuryManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
+using System.Collections.Generic;
+using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Exceptions;
 using Hivemind.Providers;
 using Hivemind.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// Injury Manager
+    /// </summary>
     public class InjuryManager : IInjuryManager
     {
-        public object HiveMindException { get; private set; }
         private InjuryProvider _injuryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InjuryManager"/> class.
+        /// </summary>
+        /// <param name="injuryProvider">Injury provider</param>
         public InjuryManager(InjuryProvider injuryProvider)
         {
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(injuryProvider));
         }
 
+        /// <summary>
+        /// Gets the hivmeind exception
+        /// </summary>
+        public object HiveMindException { get; private set; }
+
+        /// <summary>
+        /// Get Injury by ID
+        /// </summary>
+        /// <param name="injuryId">Injury ID</param>
+        /// <returns>Injury</returns>
         public Injury GetInjury(int injuryId)
         {
             var injury = _injuryProvider.GetInjuryById(injuryId);
@@ -29,16 +46,30 @@ namespace Hivemind.Managers.Implementation
             return injury;
         }
 
+        /// <summary>
+        /// Get all injuries
+        /// </summary>
+        /// <returns>Injuries</returns>
         public IEnumerable<Injury> GetAllInjuries()
         {
             return _injuryProvider.GetAllInjuries();
         }
 
+        /// <summary>
+        /// Get all injuries for a given gang
+        /// </summary>
+        /// <param name="gangId">Gang Id</param>
+        /// <returns>Injuries</returns>
         public IEnumerable<GangerInjury> GetInjuriesByGangId(string gangId)
         {
             return _injuryProvider.GetInjuriesByGangId(gangId);
         }
 
+        /// <summary>
+        /// Gets the effect of a given injury
+        /// </summary>
+        /// <param name="injuryId">Injury ID</param>
+        /// <returns>A function that alters a ganger based on injury criteria</returns>
         public Func<Ganger, Ganger> GetInjuryEffect(int injuryId)
         {
             switch ((InjuryEnum)injuryId)
@@ -163,8 +194,10 @@ namespace Hivemind.Managers.Implementation
                         ganger.Active = false;
                         return ganger;
                     }
+
                     ganger.IsOneHanded = true;
                 }
+
                 return ganger;
             }
             else
@@ -177,8 +210,10 @@ namespace Hivemind.Managers.Implementation
                         ganger.Active = false;
                         return ganger;
                     }
+
                     ganger.IsOneHanded = true;
                 }
+
                 return ganger;
             }
         }
@@ -208,6 +243,7 @@ namespace Hivemind.Managers.Implementation
             {
                 ganger.Leadership += 1;
             }
+
             ganger.HasImpressiveScars = true;
             return ganger;
         }

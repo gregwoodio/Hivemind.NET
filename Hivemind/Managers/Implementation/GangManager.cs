@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="GangManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
 using System.Linq;
 using Hivemind.Entities;
 using Hivemind.Enums;
@@ -8,6 +12,9 @@ using Hivemind.Utilities;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// Gang Manager
+    /// </summary>
     public class GangManager : IGangManager
     {
         private readonly GangProvider _gangProvider;
@@ -17,9 +24,18 @@ namespace Hivemind.Managers.Implementation
         private readonly InjuryProvider _injuryProvider;
         private readonly SkillProvider _skillProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GangManager"/> class.
+        /// </summary>
+        /// <param name="gangProvider">Gang provider</param>
+        /// <param name="gangerProvider">Ganger provider</param>
+        /// <param name="territoryProvider">Territory provider</param>
+        /// <param name="weaponProvider">Weapon provider</param>
+        /// <param name="injuryProvider">Injury provider</param>
+        /// <param name="skillProvider">Skill provider</param>
         public GangManager(
-            GangProvider gangProvider, 
-            GangerProvider gangerProvider, 
+            GangProvider gangProvider,
+            GangerProvider gangerProvider,
             TerritoryProvider territoryProvider,
             WeaponProvider weaponProvider,
             InjuryProvider injuryProvider,
@@ -33,6 +49,11 @@ namespace Hivemind.Managers.Implementation
             _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
         }
 
+        /// <summary>
+        /// Get gang
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>The requested gang</returns>
         public Gang GetGang(string gangId)
         {
             var gang = _gangProvider.GetGangById(gangId);
@@ -48,7 +69,7 @@ namespace Hivemind.Managers.Implementation
                 {
                     gangerWeapon.Weapon.Cost = gangerWeapon.Cost.ToString();
                 }
-                
+
                 ganger.Weapons = gangerWeapons.Select(gw => gw.Weapon);
 
                 ganger.GetCost();
@@ -73,6 +94,11 @@ namespace Hivemind.Managers.Implementation
             return gang;
         }
 
+        /// <summary>
+        /// Add gang
+        /// </summary>
+        /// <param name="gang">Gang to add</param>
+        /// <returns>Added gang</returns>
         public Gang AddGang(Gang gang)
         {
             var addedGang = _gangProvider.AddGang(gang);
@@ -86,11 +112,21 @@ namespace Hivemind.Managers.Implementation
             return addedGang;
         }
 
+        /// <summary>
+        /// Update a gang
+        /// </summary>
+        /// <param name="gang">Gang to update</param>
+        /// <returns>Updated gang</returns>
         public Gang UpdateGang(Gang gang)
         {
             return _gangProvider.UpdateGang(gang);
         }
 
+        /// <summary>
+        /// Associate gang to a user
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <param name="userId">User ID</param>
         public void AssociateGangToUser(string gangId, string userId)
         {
             _gangProvider.AssociateGangToUser(gangId, userId);
@@ -103,7 +139,7 @@ namespace Hivemind.Managers.Implementation
                 var gangTerritory = new GangTerritory()
                 {
                     GangId = gangId,
-                    Territory = GetRandomTerritory()
+                    Territory = GetRandomTerritory(),
                 };
 
                 _territoryProvider.AddGangTerritory(gangTerritory);
@@ -174,6 +210,5 @@ namespace Hivemind.Managers.Implementation
                     throw new HivemindException("Invalid territory ID");
             }
         }
-
     }
 }

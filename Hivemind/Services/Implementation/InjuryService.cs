@@ -67,9 +67,9 @@ namespace Hivemind.Services.Implementation
                 _gangerManager.UpdateGanger(report.TheGanger);
                 foreach (var injury in report.Injuries)
                 {
-                    if (injury.InjuryEnum != InjuryEnum.FullRecovery)
+                    if (injury.InjuryId != InjuryEnum.FullRecovery)
                     {
-                        _gangerManager.AddGangerInjury(report.TheGanger.GangerId, injury.InjuryEnum);
+                        _gangerManager.AddGangerInjury(report.TheGanger.GangerId, injury.InjuryId);
                     }
                 }
             }

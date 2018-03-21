@@ -42,7 +42,7 @@ namespace Hivemind.Services.Implementation
             var deaths = injuryReport.Injuries
                 .Select(gangerReport =>
                     gangerReport.Injuries.Select(
-                        injury => injury.InjuryEnum == InjuryEnum.Dead
+                        injury => injury.InjuryId == InjuryEnum.Dead
                     ).Count()
                 ).Count();
 

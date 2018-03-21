@@ -1,19 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="SkillType.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
 
 namespace Hivemind.Enums
 {
+    /// <summary>
+    /// Skill type
+    /// </summary>
     public enum SkillType
     {
+        /// <summary>
+        /// Agility
+        /// </summary>
         Agility = 1,
+
+        /// <summary>
+        /// Combat
+        /// </summary>
         Combat,
+
+        /// <summary>
+        /// Stealth
+        /// </summary>
         Stealth,
+
+        /// <summary>
+        /// Muscle
+        /// </summary>
         Muscle,
+
+        /// <summary>
+        /// Ferocity
+        /// </summary>
         Ferocity,
+
+        /// <summary>
+        /// Techno
+        /// </summary>
         Techno,
-        Shooting
+
+        /// <summary>
+        /// Shooting
+        /// </summary>
+        Shooting,
     }
 }

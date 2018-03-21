@@ -1,29 +1,47 @@
-﻿using Hivemind.Entities;
+﻿// <copyright file="SkillManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
+using System.Linq;
+using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Providers;
 using Hivemind.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// Skill manager
+    /// </summary>
     public class SkillManager : ISkillManager
     {
         private SkillProvider _skillProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkillManager"/> class.
+        /// </summary>
+        /// <param name="skillProvider">Skill provider</param>
         public SkillManager(SkillProvider skillProvider)
         {
             _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
         }
 
+        /// <summary>
+        /// Get Skill
+        /// </summary>
+        /// <param name="skillId">Skill ID</param>
+        /// <returns>Skill</returns>
         public Skill GetSkill(int skillId)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get random skill by type
+        /// </summary>
+        /// <param name="type">The skill type</param>
+        /// <returns>A random skill</returns>
         public Skill GetRandomSkillByType(SkillType type)
         {
             var skills = _skillProvider.GetSkillsByType(type).ToArray();

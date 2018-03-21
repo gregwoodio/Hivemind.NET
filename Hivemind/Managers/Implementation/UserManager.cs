@@ -1,26 +1,38 @@
-﻿using System;
+﻿// <copyright file="UserManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hivemind.Contracts;
 using Hivemind.Entities;
-using Hivemind.Providers;
 using Hivemind.Exceptions;
 using Hivemind.Managers.Extensions;
+using Hivemind.Providers;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// User manager
+    /// </summary>
     public class UserManager : IUserManager
     {
         private UserProvider _userProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserManager"/> class.
+        /// </summary>
+        /// <param name="userProvider">User provider</param>
         public UserManager(UserProvider userProvider)
         {
             _userProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
         }
 
-        public Contracts.User Login(Entities.Login user)
+        /// <summary>
+        /// Login
+        /// </summary>
+        /// <param name="user">The login credentials</param>
+        /// <returns>Logged in user</returns>
+        public Contracts.User Login(Login user)
         {
             ValidateInput(user);
 
@@ -35,7 +47,12 @@ namespace Hivemind.Managers.Implementation
             return userContract;
         }
 
-        public Contracts.User RegisterUser(Entities.Login user)
+        /// <summary>
+        /// Register a new user
+        /// </summary>
+        /// <param name="user">The credentials to register</param>
+        /// <returns>Registered user</returns>
+        public Contracts.User RegisterUser(Login user)
         {
             ValidateInput(user);
 
@@ -46,6 +63,11 @@ namespace Hivemind.Managers.Implementation
             return user.ToContract();
         }
 
+        /// <summary>
+        /// Get a user by ID
+        /// </summary>
+        /// <param name="userGuid">User GUID</param>
+        /// <returns>User</returns>
         public Contracts.User GetUser(string userGuid)
         {
             if (string.IsNullOrEmpty(userGuid))
@@ -60,6 +82,11 @@ namespace Hivemind.Managers.Implementation
             return userContract;
         }
 
+        /// <summary>
+        /// Get user gangs
+        /// </summary>
+        /// <param name="userGuid">User GUID</param>
+        /// <returns>Gangs belonging to specified user</returns>
         public IEnumerable<Gang> GetUserGangs(string userGuid)
         {
             return _userProvider.GetGangsByUserGuid(userGuid);

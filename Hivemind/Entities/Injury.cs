@@ -1,17 +1,35 @@
-﻿using Hivemind.Enums;
+﻿// <copyright file="Injury.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Enums;
 
 namespace Hivemind.Entities
 {
+    /// <summary>
+    /// Represents an Injury
+    /// </summary>
     public class Injury
     {
-        public InjuryEnum InjuryEnum { get; set; }
+        /// <summary>
+        /// Gets or sets the InjuryId,
+        /// </summary>
+        public InjuryEnum InjuryId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Name.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Description
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the function representing the injury's effect on a ganger.
+        /// </summary>
         public Func<Ganger, Ganger> InjuryEffect { get; set; }
     }
 }

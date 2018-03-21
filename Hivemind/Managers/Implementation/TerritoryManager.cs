@@ -1,24 +1,37 @@
-﻿using Hivemind.Contracts;
+﻿// <copyright file="TerritoryManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
+using System.Collections.Generic;
+using Hivemind.Contracts;
 using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Providers;
 using Hivemind.Utilities;
-using System;
-using System.Collections.Generic;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// Territory manager
+    /// </summary>
     public class TerritoryManager : ITerritoryManager
     {
-        private IInjuryManager _injuryFactory;
-        private IGangerManager _gangerFactory;
+        private IInjuryManager _injuryManager;
+        private IGangerManager _gangerManager;
         private TerritoryProvider _territoryProvider;
         private Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>> _territoryEffects;
 
-        public TerritoryManager(IInjuryManager injuryFactory, IGangerManager gangerFactory, IGangManager gangFactory, TerritoryProvider territoryProvider)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerritoryManager"/> class.
+        /// </summary>
+        /// <param name="injuryManager">Injury manager</param>
+        /// <param name="gangerManager">Ganger manager</param>
+        /// <param name="territoryProvider">Territory provider</param>
+        public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, TerritoryProvider territoryProvider)
         {
-            _injuryFactory = injuryFactory ?? throw new ArgumentNullException(nameof(injuryFactory));
-            _gangerFactory = gangerFactory ?? throw new ArgumentNullException(nameof(gangerFactory));
+            _injuryManager = injuryManager ?? throw new ArgumentNullException(nameof(injuryManager));
+            _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(gangerManager));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
 
             _territoryEffects = new Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>>
@@ -40,20 +53,34 @@ namespace Hivemind.Managers.Implementation
                 { TerritoryEnum.GamblingDen, GamblingDen },
                 { TerritoryEnum.SporeCave, SporeCave },
                 { TerritoryEnum.Archeotech, Archeotech },
-                { TerritoryEnum.GreenHivers, NoTerritoryEffect }
+                { TerritoryEnum.GreenHivers, NoTerritoryEffect },
             };
         }
 
+        /// <summary>
+        /// Get Territory
+        /// </summary>
+        /// <param name="territoryId">Territory ID</param>
+        /// <returns>Territory</returns>
         public Territory GetTerritory(int territoryId)
         {
             return _territoryProvider.GetTerritoryById(territoryId);
         }
 
+        /// <summary>
+        /// Get all territories
+        /// </summary>
+        /// <returns>All territories</returns>
         public IEnumerable<Territory> GetAllTerritories()
         {
             return _territoryProvider.GetAllTerritories();
         }
 
+        /// <summary>
+        /// Get territories by gang ID
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>Territories owned by a gang</returns>
         public IEnumerable<Territory> GetTerritoriesByGangId(string gangId)
         {
             var territories = _territoryProvider.GetTerritoryByGangId(gangId);
@@ -66,16 +93,30 @@ namespace Hivemind.Managers.Implementation
             return territories;
         }
 
+        /// <summary>
+        /// Add gang territory
+        /// </summary>
+        /// <param name="gangTerritory">Gang territory</param>
+        /// <returns>Added gang territory</returns>
         public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
         {
             return _territoryProvider.AddGangTerritory(gangTerritory);
         }
 
+        /// <summary>
+        /// Remove gang territory
+        /// </summary>
+        /// <param name="gangTerritoryId">Gang territory ID</param>
         public void RemoveGangTerritory(string gangTerritoryId)
         {
             _territoryProvider.RemoveGangTerritory(gangTerritoryId);
         }
 
+        /// <summary>
+        /// Get territory effect, representing the actions that occur when working a territory.
+        /// </summary>
+        /// <param name="territoryId">Territory ID</param>
+        /// <returns>Function that makes changes based on territory worked.</returns>
         public Func<TerritoryWorkStatus, TerritoryIncomeReport> GetTerritoryEffect(int territoryId)
         {
             return _territoryEffects[(TerritoryEnum)territoryId];
@@ -87,7 +128,7 @@ namespace Hivemind.Managers.Implementation
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
@@ -96,21 +137,22 @@ namespace Hivemind.Managers.Implementation
             if (status.Roll == 12)
             {
                 // ganger gets horrible scars
-                var scars = _injuryFactory.GetInjury((int)InjuryEnum.HorribleScars);
+                var scars = _injuryManager.GetInjury((int)InjuryEnum.HorribleScars);
                 status.Ganger = scars.InjuryEffect(status.Ganger);
-                _gangerFactory.UpdateGanger(status.Ganger);
+                _gangerManager.UpdateGanger(status.Ganger);
 
                 return new TerritoryIncomeReport()
                 {
                     TerritoryName = status.TerritoryName,
                     Description = $"{status.Ganger.Name} has fallen into the chem pits and now has Horrible Scars. No income is collected.",
-                    Income = 0
+                    Income = 0,
                 };
             }
+
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = 0
+                Income = 0,
             };
         }
 
@@ -119,21 +161,22 @@ namespace Hivemind.Managers.Implementation
             if (DiceRoller.RollDie() == 6)
             {
                 // gang gets a free Juve.
-                var juve = _gangerFactory.CreateJuve("New Juve");
+                var juve = _gangerManager.CreateJuve("New Juve");
                 juve.GangId = status.GangId;
-                _gangerFactory.AddGanger(juve);
+                _gangerManager.AddGanger(juve);
 
                 return new TerritoryIncomeReport()
                 {
                     TerritoryName = status.TerritoryName,
                     Description = "After working in the settlement, your gang has recruited a new Juve for free.",
-                    Income = status.Roll
+                    Income = status.Roll,
                 };
             }
+
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
@@ -144,7 +187,7 @@ namespace Hivemind.Managers.Implementation
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
@@ -157,13 +200,14 @@ namespace Hivemind.Managers.Implementation
                 {
                     TerritoryName = status.TerritoryName,
                     Description = $"You have sold some of your extra loot to guilders for {extraIncome} credits.",
-                    Income = status.Roll + extraIncome
+                    Income = status.Roll + extraIncome,
                 };
             }
+
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
@@ -176,13 +220,14 @@ namespace Hivemind.Managers.Implementation
                 {
                     TerritoryName = status.TerritoryName,
                     Description = $"You have sold the bodies of your fallen gangers to the friendly doc for an extra {extraIncome} credits.",
-                    Income = status.Roll + extraIncome
+                    Income = status.Roll + extraIncome,
                 };
             }
+
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
@@ -199,14 +244,14 @@ namespace Hivemind.Managers.Implementation
                 {
                     TerritoryName = status.TerritoryName,
                     Description = $"You've lost {income} credits at the gambling den.",
-                    Income = income * -1
+                    Income = income * -1,
                 };
             }
 
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = income
+                Income = income,
             };
         }
 
@@ -214,32 +259,33 @@ namespace Hivemind.Managers.Implementation
         {
             if (status.Roll == 20)
             {
-                var sporeSickness = _injuryFactory.GetInjury((int)InjuryEnum.SporeSickness);
+                var sporeSickness = _injuryManager.GetInjury((int)InjuryEnum.SporeSickness);
                 status.Ganger = sporeSickness.InjuryEffect(status.Ganger);
-                _gangerFactory.UpdateGanger(status.Ganger);
+                _gangerManager.UpdateGanger(status.Ganger);
 
                 return new TerritoryIncomeReport()
                 {
                     TerritoryName = status.TerritoryName,
                     Description = $"{status.Ganger.Name} has contracted Spore Sickness while harvesting in the Spore Cave.",
-                    Income = status.Roll
+                    Income = status.Roll,
                 };
             }
+
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
 
         private TerritoryIncomeReport Archeotech(TerritoryWorkStatus status)
         {
-            //TODO: need a good way to get a number of dice the player would like to use for archeotech harvesting.
+            // TODO: need a good way to get a number of dice the player would like to use for archeotech harvesting.
             // If they roll any doubles, the archeotech becomes an old ruins.
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll
+                Income = status.Roll,
             };
         }
         #endregion

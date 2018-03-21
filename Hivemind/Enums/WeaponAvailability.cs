@@ -1,14 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="WeaponAvailability.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
 
 namespace Hivemind.Enums
 {
+    /// <summary>
+    /// Weapon availability
+    /// </summary>
     public enum WeaponAvailability
     {
+        /// <summary>
+        /// Common
+        /// </summary>
         Common = 1,
-        Rare
+
+        /// <summary>
+        /// Rare
+        /// </summary>
+        Rare,
     }
 }

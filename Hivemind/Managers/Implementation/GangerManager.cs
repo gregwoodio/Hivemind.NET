@@ -1,38 +1,62 @@
-﻿using Hivemind.Contracts;
+﻿// <copyright file="GangerManager.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
+using System.Linq;
 using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Exceptions;
 using Hivemind.Providers;
 using Hivemind.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Managers.Implementation
 {
+    /// <summary>
+    /// Ganger manager
+    /// </summary>
     public class GangerManager : IGangerManager
     {
         private GangerProvider _gangerProvider;
         private ISkillManager _skillManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GangerManager"/> class.
+        /// </summary>
+        /// <param name="gangerProvider">Ganger provider</param>
+        /// <param name="skillManager">Skill manager</param>
         public GangerManager(GangerProvider gangerProvider, ISkillManager skillManager)
         {
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
             _skillManager = skillManager ?? throw new ArgumentNullException(nameof(skillManager));
         }
 
+        /// <summary>
+        /// Gets a ganger by ID
+        /// </summary>
+        /// <param name="id">Ganger Id</param>
+        /// <returns>Ganger corresponding to the ID</returns>
         public Ganger GetGanger(string id)
         {
             return _gangerProvider.GetByGangerId(id);
         }
 
+        /// <summary>
+        /// Update a ganger
+        /// </summary>
+        /// <param name="ganger">Ganger</param>
+        /// <returns>Updated Ganger</returns>
         public Ganger UpdateGanger(Ganger ganger)
         {
             return _gangerProvider.UpdateGanger(ganger);
         }
 
+        /// <summary>
+        /// Create a ganger with default stats for the specified type
+        /// </summary>
+        /// <param name="name">Ganger name</param>
+        /// <param name="type">Ganger type</param>
+        /// <returns>The ganger</returns>
         public Ganger CreateGanger(string name, GangerType type)
         {
             switch (type)
@@ -50,6 +74,11 @@ namespace Hivemind.Managers.Implementation
             }
         }
 
+        /// <summary>
+        /// Creates a Juve
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>Ganger</returns>
         public Ganger CreateJuve(string name)
         {
             return new Ganger()
@@ -68,10 +97,15 @@ namespace Hivemind.Managers.Implementation
                 Cost = 25,
                 Experience = 0,
                 Title = GangerTitle.GreenJuve,
-                Active = true
+                Active = true,
             };
         }
 
+        /// <summary>
+        /// Create ganger
+        /// </summary>
+        /// <param name="name">Ganger name</param>
+        /// <returns>Ganger</returns>
         public Ganger CreateGanger(string name)
         {
             return new Ganger()
@@ -90,10 +124,15 @@ namespace Hivemind.Managers.Implementation
                 Cost = 50,
                 Experience = 20 + DiceRoller.RollDie(),
                 Title = GangerTitle.NewGanger,
-                Active = true
+                Active = true,
             };
         }
 
+        /// <summary>
+        /// Create heavy
+        /// </summary>
+        /// <param name="name">Ganger name</param>
+        /// <returns>Ganger</returns>
         public Ganger CreateHeavy(string name)
         {
             return new Ganger()
@@ -112,10 +151,15 @@ namespace Hivemind.Managers.Implementation
                 Cost = 60,
                 Experience = 60 + DiceRoller.RollDie(),
                 Title = GangerTitle.GangChampion,
-                Active = true
+                Active = true,
             };
         }
 
+        /// <summary>
+        /// Create leader
+        /// </summary>
+        /// <param name="name">Ganger name</param>
+        /// <returns>Ganger</returns>
         public Ganger CreateLeader(string name)
         {
             return new Ganger()
@@ -134,10 +178,17 @@ namespace Hivemind.Managers.Implementation
                 Cost = 120,
                 Experience = 60 + DiceRoller.RollDie(),
                 Title = GangerTitle.GangChampion,
-                Active = true
+                Active = true,
             };
         }
 
+        /// <summary>
+        /// Increase a statistic
+        /// </summary>
+        /// <param name="ganger">Ganger</param>
+        /// <param name="stat">Statistic</param>
+        /// <param name="interval">Interval</param>
+        /// <returns>Updated ganger</returns>
         public Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval)
         {
             if (!interval.HasValue)
@@ -177,10 +228,16 @@ namespace Hivemind.Managers.Implementation
                 default:
                     break;
             }
+
             UpdateGanger(ganger);
             return ganger;
         }
 
+        /// <summary>
+        /// Add ganger
+        /// </summary>
+        /// <param name="ganger">Ganger</param>
+        /// <returns>Added Ganger</returns>
         public Ganger AddGanger(Ganger ganger)
         {
             var gangerWithStats = CreateGanger(ganger.Name, ganger.GangerType);
@@ -188,11 +245,24 @@ namespace Hivemind.Managers.Implementation
             return _gangerProvider.AddGanger(gangerWithStats);
         }
 
+        /// <summary>
+        /// Add ganger injury
+        /// </summary>
+        /// <param name="gangerId">Ganger's ID</param>
+        /// <param name="injury">Injury</param>
         public void AddGangerInjury(string gangerId, InjuryEnum injury)
         {
             _gangerProvider.AddGangerInjury(gangerId, injury);
         }
 
+        /// <summary>
+        /// Learn skill
+        /// </summary>
+        /// <param name="ganger">The ganger</param>
+        /// <param name="advancementId">The advancement ID. Used to verify that the
+        /// ganger is able to learn a new skill.</param>
+        /// <param name="type">Skill type</param>
+        /// <returns>Ganger skill</returns>
         public GangerSkill LearnSkill(Ganger ganger, string advancementId, SkillType type)
         {
             if (!_gangerProvider.CanLearnSkill(ganger.GangerId, advancementId))
@@ -227,6 +297,11 @@ namespace Hivemind.Managers.Implementation
             };
         }
 
+        /// <summary>
+        /// Register a ganger for advancement (able to learn a new skill)
+        /// </summary>
+        /// <param name="gangerId">Ganger Id</param>
+        /// <returns>The advancement ID</returns>
         public string RegisterGangerAdvancement(string gangerId)
         {
             return _gangerProvider.RegisterGangerAdvancement(gangerId);

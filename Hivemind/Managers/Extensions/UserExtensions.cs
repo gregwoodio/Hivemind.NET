@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UserExtensions.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
 
 namespace Hivemind.Managers.Extensions
 {
+    /// <summary>
+    /// User extensions
+    /// </summary>
     public static class UserExtensions
     {
-        public static Contracts.User ToContract(this Entities.Login user)
+        /// <summary>
+        /// Converts a login into a user
+        /// </summary>
+        /// <param name="login">The login</param>
+        /// <returns>User</returns>
+        public static Contracts.User ToContract(this Entities.Login login)
         {
             return new Contracts.User()
             {
-                Email = user.Email,
-                UserGUID = user.UserGUID
+                Email = login.Email,
+                UserGUID = login.UserGUID,
             };
         }
     }

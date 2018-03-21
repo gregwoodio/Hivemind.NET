@@ -1,22 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="WeaponType.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
 
 namespace Hivemind.Enums
 {
+    /// <summary>
+    /// Weapon type
+    /// </summary>
     public enum WeaponType
     {
-        HAND_TO_HAND = 1,
-        PISTOLS,
-        BASIC,
-        SPECIAL,
-        HEAVY,
-        GRENADES,
-        ARMOUR,
-        AMMUNITION_AND_GUNSIGHTS,
-        BIONICS,
-        MISCELLANEOUS
+        /// <summary>
+        /// Hand to hand
+        /// </summary>
+        HandToHand = 1,
+
+        /// <summary>
+        /// Pistols
+        /// </summary>
+        Pistols,
+
+        /// <summary>
+        /// Basic
+        /// </summary>
+        Basic,
+
+        /// <summary>
+        /// Special
+        /// </summary>
+        Special,
+
+        /// <summary>
+        /// Heavy
+        /// </summary>
+        Heavy,
+
+        /// <summary>
+        /// Grenades
+        /// </summary>
+        Grenades,
+
+        /// <summary>
+        /// Armour
+        /// </summary>
+        Armour,
+
+        /// <summary>
+        /// Ammunition and gunsights
+        /// </summary>
+        AmmunitionAndGunsights,
+
+        /// <summary>
+        /// Bionics
+        /// </summary>
+        Bionics,
+
+        /// <summary>
+        /// Miscellaneous
+        /// </summary>
+        Miscellaneous,
     }
 }
