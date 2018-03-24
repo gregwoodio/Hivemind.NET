@@ -24,13 +24,14 @@ namespace Hivemind.Tests
             container.RegisterType<ISkillManager, SkillManager>();
             container.RegisterType<IWeaponManager, WeaponManager>();
             container.RegisterType<ITerritoryManager, TerritoryManager>();
+            container.RegisterType<IUserManager, UserManager>();
 
             // services
             container.RegisterType<IExperienceService, ExperienceService>();
             container.RegisterType<IIncomeService, IncomeService>();
             container.RegisterType<IInjuryService, InjuryService>();
             container.RegisterType<IGameService, GameService>();
-
+            
             return container;
         }
     }

@@ -264,7 +264,7 @@ namespace Hivemind.Services.Implementation
             return DiceRoller.RollDie();
         }
 
-        private IEnumerable<SkillType> GetGangSkill(GangerType type, GangHouse house)
+        public IEnumerable<SkillType> GetGangSkill(GangerType type, GangHouse house)
         {
             SkillType[] skillList = new SkillType[0];
             switch (house)
@@ -378,7 +378,7 @@ namespace Hivemind.Services.Implementation
             return skillList;
         }
 
-        private GangerLevelUpReport DoAdvanceRoll(Ganger ganger, GangHouse house)
+        public GangerLevelUpReport DoAdvanceRoll(Ganger ganger, GangHouse house)
         {
             GangerStatistics stat = 0;
             int roll = DiceRoller.RollDice(6, 2);
