@@ -1,20 +1,28 @@
-﻿using Hivemind.Entities;
-using Hivemind.Enums;
-using System;
+﻿// <copyright file="InjuryProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
+using Hivemind.Enums;
 
 namespace Hivemind.Providers
 {
+    /// <summary>
+    /// Injury provider
+    /// </summary>
     public class InjuryProvider : HivemindProvider
     {
+        /// <summary>
+        /// Get Injury by ID
+        /// </summary>
+        /// <param name="injuryId">Injury ID</param>
+        /// <returns>Injury</returns>
         public Injury GetInjuryById(int injuryId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Injuries_GetById", connection))
                 {
@@ -29,9 +37,13 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get All Injuries
+        /// </summary>
+        /// <returns>Injuries</returns>
         public IEnumerable<Injury> GetAllInjuries()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Injuries_GetAll", connection))
                 {
@@ -64,9 +76,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get injuries for the specified ganger.
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <returns>Injury list</returns>
         public IEnumerable<Injury> GetInjuriesByGangerId(string gangerId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("Injuries_GetByGangerId", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
@@ -88,9 +105,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get injuries by Gang ID
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>List of GangerInjury</returns>
         public IEnumerable<GangerInjury> GetInjuriesByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Injuries_GetByGangId", connection))
                 {

@@ -1,19 +1,27 @@
-﻿using Hivemind.Entities;
-using System;
+﻿// <copyright file="UserProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
 
 namespace Hivemind.Providers
 {
+    /// <summary>
+    /// User provider
+    /// </summary>
     public class UserProvider : HivemindProvider
     {
+        /// <summary>
+        /// Add user
+        /// </summary>
+        /// <param name="login">User</param>
+        /// <returns>Added user</returns>
         public Login AddUser(Login login)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Users_Add", connection))
                 {
@@ -33,9 +41,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get user by GUID
+        /// </summary>
+        /// <param name="guid">GUID</param>
+        /// <returns>User</returns>
         public Login GetUserByGuid(string guid)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Users_GetUserByGuid", connection))
                 {
@@ -50,9 +63,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get User By Email
+        /// </summary>
+        /// <param name="email">Email address</param>
+        /// <returns>User</returns>
         public Login GetUserByEmail(string email)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Users_GetByEmail", connection))
                 {
@@ -67,9 +85,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get gangs by user ID
+        /// </summary>
+        /// <param name="guid">GUID</param>
+        /// <returns>List og gangs belonging to that user</returns>
         public IEnumerable<Gang> GetGangsByUserGuid(string guid)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("UserGangs_GetByUserGuid", connection))
                 {

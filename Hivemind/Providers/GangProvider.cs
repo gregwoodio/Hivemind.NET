@@ -1,21 +1,27 @@
-﻿using Hivemind.Contracts;
-using Hivemind.Entities;
-using Hivemind.Enums;
-using System;
-using System.Collections.Generic;
+﻿// <copyright file="GangProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
+using Hivemind.Enums;
 
 namespace Hivemind.Providers
 {
-    public class GangProvider: HivemindProvider
-    { 
+    /// <summary>
+    /// Gang provider
+    /// </summary>
+    public class GangProvider : HivemindProvider
+    {
+        /// <summary>
+        /// Get Gang by ID
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>Gang</returns>
         public Gang GetGangById(string gangId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangs_GetById", connection))
                 {
@@ -30,9 +36,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Associate a gang to a user
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <param name="userId">User ID</param>
         public void AssociateGangToUser(string gangId, string userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("UserGangs_AssociateGangToUser", connection))
                 {
@@ -46,9 +57,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Add a gang
+        /// </summary>
+        /// <param name="gang">Gang</param>
+        /// <returns>Added gang</returns>
         public Gang AddGang(Gang gang)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangs_AddGang", connection))
                 {
@@ -69,9 +85,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Update a gang
+        /// </summary>
+        /// <param name="gang">Gang</param>
+        /// <returns>Updated gang</returns>
         public Gang UpdateGang(Gang gang)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangs_UpdateGang", connection))
                 {
@@ -106,6 +127,7 @@ namespace Hivemind.Providers
                 value = reader.GetOrdinal("credits");
                 gang.Credits = reader.GetInt32(value);
             }
+
             return gang;
         }
     }

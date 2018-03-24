@@ -1,20 +1,28 @@
-﻿using Hivemind.Entities;
-using Hivemind.Enums;
-using System;
+﻿// <copyright file="GangerProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
+using Hivemind.Enums;
 
 namespace Hivemind.Providers
 {
+    /// <summary>
+    /// Ganger provider
+    /// </summary>
     public class GangerProvider : HivemindProvider
     {
+        /// <summary>
+        /// Get by Ganger ID
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <returns>Ganger</returns>
         public Ganger GetByGangerId(string gangerId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangers_GetById", connection))
                 {
@@ -29,9 +37,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get by Gang ID
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>List of gangers in the gang</returns>
         public IEnumerable<Ganger> GetByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangers_GetByGangId", connection))
                 {
@@ -45,9 +58,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Add ganger
+        /// </summary>
+        /// <param name="ganger">Ganger</param>
+        /// <returns>Added ganger</returns>
         public Ganger AddGanger(Ganger ganger)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangers_AddGanger", connection))
                 {
@@ -91,9 +109,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get ganger skills
+        /// </summary>
+        /// <param name="gangId">GangId</param>
+        /// <returns>List of GangerSkills</returns>
         public IEnumerable<GangerSkill> GetGangerSkills(string gangId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("GangerSkills_GetByGangId", connection))
             {
                 connection.Open();
@@ -121,9 +144,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Update ganger
+        /// </summary>
+        /// <param name="ganger">Ganger</param>
+        /// <returns>Updated ganger</returns>
         public Ganger UpdateGanger(Ganger ganger)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Gangers_UpdateGanger", connection))
                 {
@@ -164,9 +192,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Add ganger skill
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <param name="skillId">Skill ID</param>
         public void AddGangerSkill(string gangerId, int skillId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("GangerSkills_Add", connection))
             {
                 connection.Open();
@@ -182,9 +215,16 @@ namespace Hivemind.Providers
         }
 
         #region Ganger Advancements
+
+        /// <summary>
+        /// Can the ganger learn a skill? Check if advancement ID is valid for ganger.
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <param name="advancementId">Advancement ID</param>
+        /// <returns>Whether ganger can learn a skill or not</returns>
         public bool CanLearnSkill(string gangerId, string advancementId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("GangerAdvancements_IsValid", connection))
             {
                 connection.Open();
@@ -201,9 +241,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Register ganger advancement. Make a ganger eligible for an advance roll.
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <returns>The advancement ID</returns>
         public string RegisterGangerAdvancement(string gangerId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("GangerAdvancements_Add", connection))
             {
                 connection.Open();
@@ -219,9 +264,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Remove ganger advancment. Ganger has advanced.
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <param name="advancementId">Advancement ID</param>
         public void RemoveGangerAdvancement(string gangerId, string advancementId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("GangerAdvancements_Remove", connection))
             {
                 connection.Open();
@@ -235,9 +285,14 @@ namespace Hivemind.Providers
         }
         #endregion
 
+        /// <summary>
+        /// Add injury to ganger
+        /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
+        /// <param name="injury">Injury ID</param>
         public void AddGangerInjury(string gangerId, InjuryEnum injury)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("GangerInjuries_Add", connection))
                 {
@@ -248,7 +303,7 @@ namespace Hivemind.Providers
                     gangerInjuryId.Direction = ParameterDirection.Output;
                     command.Parameters.Add("@GangerId", SqlDbType.NVarChar, 100).Value = gangerId;
                     command.Parameters.Add("@InjuryId", SqlDbType.Int).Value = (int)injury;
-                    
+
                     command.ExecuteNonQuery();
                 }
             }
@@ -357,6 +412,7 @@ namespace Hivemind.Providers
             {
                 return null;
             }
+
             return ganger;
         }
     }

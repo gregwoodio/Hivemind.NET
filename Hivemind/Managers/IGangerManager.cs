@@ -8,7 +8,7 @@ using Hivemind.Enums;
 namespace Hivemind.Managers
 {
     /// <summary>
-    /// IGangerManager
+    /// Ganger manager interface
     /// </summary>
     public interface IGangerManager
     {

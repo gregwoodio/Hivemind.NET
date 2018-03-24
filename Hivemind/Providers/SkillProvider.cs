@@ -1,19 +1,27 @@
-﻿using Hivemind.Entities;
-using Hivemind.Enums;
-using System;
+﻿// <copyright file="SkillProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
+using Hivemind.Enums;
 
 namespace Hivemind.Providers
 {
+    /// <summary>
+    /// Skill provider
+    /// </summary>
     public class SkillProvider : HivemindProvider
     {
         private IEnumerable<Skill> _skills;
 
+        /// <summary>
+        /// Get all skills
+        /// </summary>
+        /// <returns>List of all skills</returns>
         public IEnumerable<Skill> GetAllSkills()
         {
             if (_skills == null)
@@ -24,6 +32,11 @@ namespace Hivemind.Providers
             return _skills;
         }
 
+        /// <summary>
+        /// Get skills by type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Skills</returns>
         public IEnumerable<Skill> GetSkillsByType(SkillType type)
         {
             if (_skills == null)
@@ -34,6 +47,11 @@ namespace Hivemind.Providers
             return _skills.Where(skill => skill.SkillType == type);
         }
 
+        /// <summary>
+        /// Get Skill by ID
+        /// </summary>
+        /// <param name="id">Skill ID</param>
+        /// <returns>Skill</returns>
         public Skill GetSkillById(int id)
         {
             if (_skills == null)
@@ -46,7 +64,7 @@ namespace Hivemind.Providers
 
         private IEnumerable<Skill> GetSkillsFromDatabase()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             using (var command = new SqlCommand("Skills_GetAll", connection))
             {
                 connection.Open();

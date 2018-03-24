@@ -1,20 +1,27 @@
-﻿using Hivemind.Entities;
-using Hivemind.Enums;
-using System;
+﻿// <copyright file="TerritoryProvider.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hivemind.Entities;
+using Hivemind.Enums;
 
 namespace Hivemind.Providers
 {
-    public class TerritoryProvider: HivemindProvider
+    /// <summary>
+    /// Territory provider
+    /// </summary>
+    public class TerritoryProvider : HivemindProvider
     {
+        /// <summary>
+        /// Get all territories
+        /// </summary>
+        /// <returns>All territories</returns>
         public IEnumerable<Territory> GetAllTerritories()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Territories_GetAll", connection))
                 {
@@ -28,14 +35,24 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get territory by ID
+        /// </summary>
+        /// <param name="territory">Territory ID</param>
+        /// <returns>Territory</returns>
         public Territory GetTerritoryById(TerritoryEnum territory)
         {
             return GetTerritoryById((int)territory);
         }
 
+        /// <summary>
+        /// Get Territory by ID
+        /// </summary>
+        /// <param name="territoryId">Territory ID</param>
+        /// <returns>Territory</returns>
         public Territory GetTerritoryById(int territoryId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Territories_GetById", connection))
                 {
@@ -50,9 +67,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Get territory by gang ID
+        /// </summary>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>List of territories</returns>
         public IEnumerable<Territory> GetTerritoryByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("Territories_GetByGangId", connection))
                 {
@@ -67,9 +89,14 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Add gang territory
+        /// </summary>
+        /// <param name="gangTerritory">Gang territory</param>
+        /// <returns>Added GangTerritory</returns>
         public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("GangTerritories_Add", connection))
                 {
@@ -89,9 +116,13 @@ namespace Hivemind.Providers
             }
         }
 
+        /// <summary>
+        /// Remove gang territory
+        /// </summary>
+        /// <param name="gangTerritoryId">Gang territory ID</param>
         public void RemoveGangTerritory(string gangTerritoryId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 using (var command = new SqlCommand("GangTerritories_Remove", connection))
                 {
