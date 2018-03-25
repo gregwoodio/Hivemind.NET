@@ -17,12 +17,12 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class GangManager : IGangManager
     {
-        private readonly GangProvider _gangProvider;
-        private readonly GangerProvider _gangerProvider;
-        private readonly TerritoryProvider _territoryProvider;
-        private readonly WeaponProvider _weaponProvider;
-        private readonly InjuryProvider _injuryProvider;
-        private readonly SkillProvider _skillProvider;
+        private readonly IGangProvider _gangProvider;
+        private readonly IGangerProvider _gangerProvider;
+        private readonly ITerritoryProvider _territoryProvider;
+        private readonly IWeaponProvider _weaponProvider;
+        private readonly IInjuryProvider _injuryProvider;
+        private readonly ISkillProvider _skillProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GangManager"/> class.
@@ -34,12 +34,12 @@ namespace Hivemind.Managers.Implementation
         /// <param name="injuryProvider">Injury provider</param>
         /// <param name="skillProvider">Skill provider</param>
         public GangManager(
-            GangProvider gangProvider,
-            GangerProvider gangerProvider,
-            TerritoryProvider territoryProvider,
-            WeaponProvider weaponProvider,
-            InjuryProvider injuryProvider,
-            SkillProvider skillProvider)
+            IGangProvider gangProvider,
+            IGangerProvider gangerProvider,
+            ITerritoryProvider territoryProvider,
+            IWeaponProvider weaponProvider,
+            IInjuryProvider injuryProvider,
+            ISkillProvider skillProvider)
         {
             _gangProvider = gangProvider ?? throw new ArgumentNullException(nameof(gangProvider));
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
@@ -70,7 +70,7 @@ namespace Hivemind.Managers.Implementation
                     gangerWeapon.Weapon.Cost = gangerWeapon.Cost.ToString();
                 }
 
-                ganger.Weapons = gangerWeapons.Select(gw => gw.Weapon);
+                ganger.Weapons = gangerWeapons;
 
                 ganger.GetCost();
             }

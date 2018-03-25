@@ -16,13 +16,13 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class SkillManager : ISkillManager
     {
-        private SkillProvider _skillProvider;
+        private ISkillProvider _skillProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkillManager"/> class.
         /// </summary>
         /// <param name="skillProvider">Skill provider</param>
-        public SkillManager(SkillProvider skillProvider)
+        public SkillManager(ISkillProvider skillProvider)
         {
             _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
         }

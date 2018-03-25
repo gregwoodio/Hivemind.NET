@@ -78,6 +78,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="Entities\GangerTest.cs" />
+    <Compile Include="Entities\GangTest.cs" />
+    <Compile Include="Entities\SkillTest.cs" />
+    <Compile Include="Entities\TerritoryTest.cs" />
+    <Compile Include="Exceptions\HivemindExceptionTests.cs" />
+    <Compile Include="Managers\SkillManagerTest.cs" />
+    <Compile Include="Managers\TerritoryManagerTest.cs" />
+    <Compile Include="Managers\UserExtensionsTest.cs" />
+    <Compile Include="Managers\WeaponManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ExperienceServiceTest.cs" />
     <Compile Include="Utilities\DiceRollerTest.cs" />

@@ -12,7 +12,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Gang provider
     /// </summary>
-    public class GangProvider : HivemindProvider
+    public class GangProvider : HivemindProvider, IGangProvider
     {
         /// <summary>
         /// Get Gang by ID

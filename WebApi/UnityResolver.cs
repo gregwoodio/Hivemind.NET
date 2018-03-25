@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Hivemind.Services.Implementation;
 using Hivemind.Managers.Implementation;
+using Hivemind.Providers;
 
 namespace WebApi
 {
@@ -81,6 +82,15 @@ namespace WebApi
             container.RegisterType<IIncomeService, IncomeService>();
             container.RegisterType<IInjuryService, InjuryService>();
             container.RegisterType<IGameService, GameService>();
+
+            // providers
+            container.RegisterType<IGangerProvider, GangerProvider>();
+            container.RegisterType<IGangProvider, GangProvider>();
+            container.RegisterType<IInjuryProvider, InjuryProvider>();
+            container.RegisterType<ISkillProvider, SkillProvider>();
+            container.RegisterType<ITerritoryProvider, TerritoryProvider>();
+            container.RegisterType<IUserProvider, UserProvider>();
+            container.RegisterType<IWeaponProvider, WeaponProvider>();
 
             return container;
         }

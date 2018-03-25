@@ -19,7 +19,7 @@ namespace Hivemind.Managers.Implementation
     {
         private IInjuryManager _injuryManager;
         private IGangerManager _gangerManager;
-        private TerritoryProvider _territoryProvider;
+        private ITerritoryProvider _territoryProvider;
         private Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>> _territoryEffects;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Hivemind.Managers.Implementation
         /// <param name="injuryManager">Injury manager</param>
         /// <param name="gangerManager">Ganger manager</param>
         /// <param name="territoryProvider">Territory provider</param>
-        public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, TerritoryProvider territoryProvider)
+        public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, ITerritoryProvider territoryProvider)
         {
             _injuryManager = injuryManager ?? throw new ArgumentNullException(nameof(injuryManager));
             _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(gangerManager));

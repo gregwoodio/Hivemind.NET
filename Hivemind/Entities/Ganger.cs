@@ -148,7 +148,7 @@ namespace Hivemind.Entities
         /// <summary>
         /// Gets or sets the ganger's weapons.
         /// </summary>
-        public IEnumerable<Weapon> Weapons { get; set; }
+        public IEnumerable<GangerWeapon> Weapons { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the ganger is enabled for the upcoming game.
@@ -240,7 +240,7 @@ namespace Hivemind.Entities
             IsCaptured = false;
             HasBitterEnmity = false;
             HasSporeSickness = false;
-            Weapons = new Weapon[0];
+            Weapons = new GangerWeapon[0];
             Skills = new Skill[0];
             Injuries = new Injury[0];
             Active = true;
@@ -305,10 +305,7 @@ namespace Hivemind.Entities
 
             foreach (var weapon in Weapons)
             {
-                if (int.TryParse(weapon.Cost, out int weaponCost))
-                {
-                    Cost += weaponCost;
-                }
+                Cost += weapon.Cost;
             }
         }
 

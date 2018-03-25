@@ -12,7 +12,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// User provider
     /// </summary>
-    public class UserProvider : HivemindProvider
+    public class UserProvider : HivemindProvider, IUserProvider
     {
         /// <summary>
         /// Add user

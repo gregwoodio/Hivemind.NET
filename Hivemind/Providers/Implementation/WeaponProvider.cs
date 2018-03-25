@@ -14,7 +14,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Weapon provider
     /// </summary>
-    public class WeaponProvider : HivemindProvider
+    public class WeaponProvider : HivemindProvider, IWeaponProvider
     {
         /// <summary>
         /// Get by weapon ID

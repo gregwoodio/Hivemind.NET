@@ -14,13 +14,13 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class WeaponManager : IWeaponManager
     {
-        private WeaponProvider _weaponProvider;
+        private IWeaponProvider _weaponProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WeaponManager"/> class.
         /// </summary>
         /// <param name="weaponProvider">Weapon provider</param>
-        public WeaponManager(WeaponProvider weaponProvider)
+        public WeaponManager(IWeaponProvider weaponProvider)
         {
             _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
         }

@@ -100,14 +100,21 @@
     <Compile Include="Managers\Implementation\TerritoryManager.cs" />
     <Compile Include="Managers\Implementation\WeaponManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\SkillProvider.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
-    <Compile Include="Providers\WeaponProvider.cs" />
-    <Compile Include="Providers\GangerProvider.cs" />
-    <Compile Include="Providers\GangProvider.cs" />
-    <Compile Include="Providers\HivemindProvider.cs" />
-    <Compile Include="Providers\InjuryProvider.cs" />
-    <Compile Include="Providers\TerritoryProvider.cs" />
+    <Compile Include="Providers\IGangerProvider.cs" />
+    <Compile Include="Providers\IGangProvider.cs" />
+    <Compile Include="Providers\IInjuryProvider.cs" />
+    <Compile Include="Providers\Implementation\SkillProvider.cs" />
+    <Compile Include="Providers\Implementation\UserProvider.cs" />
+    <Compile Include="Providers\Implementation\WeaponProvider.cs" />
+    <Compile Include="Providers\Implementation\GangerProvider.cs" />
+    <Compile Include="Providers\Implementation\GangProvider.cs" />
+    <Compile Include="Providers\Implementation\HivemindProvider.cs" />
+    <Compile Include="Providers\Implementation\InjuryProvider.cs" />
+    <Compile Include="Providers\Implementation\TerritoryProvider.cs" />
+    <Compile Include="Providers\ISkillProvider.cs" />
+    <Compile Include="Providers\ITerritoryProvider.cs" />
+    <Compile Include="Providers\IUserProvider.cs" />
+    <Compile Include="Providers\IWeaponProvider.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

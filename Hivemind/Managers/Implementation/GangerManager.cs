@@ -17,7 +17,7 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class GangerManager : IGangerManager
     {
-        private GangerProvider _gangerProvider;
+        private IGangerProvider _gangerProvider;
         private ISkillManager _skillManager;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Hivemind.Managers.Implementation
         /// </summary>
         /// <param name="gangerProvider">Ganger provider</param>
         /// <param name="skillManager">Skill manager</param>
-        public GangerManager(GangerProvider gangerProvider, ISkillManager skillManager)
+        public GangerManager(IGangerProvider gangerProvider, ISkillManager skillManager)
         {
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
             _skillManager = skillManager ?? throw new ArgumentNullException(nameof(skillManager));

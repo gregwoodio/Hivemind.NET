@@ -25,6 +25,11 @@ namespace Hivemind.Entities
         public Weapon Weapon { get; set; }
 
         /// <summary>
+        /// Gets or sets weapon cost (actual amount paid)
+        /// </summary>
+        public int Cost { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GangWeapon"/> class.
         /// </summary>
         public GangWeapon()

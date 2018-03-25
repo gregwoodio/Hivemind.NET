@@ -16,13 +16,13 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class UserManager : IUserManager
     {
-        private UserProvider _userProvider;
+        private IUserProvider _userProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserManager"/> class.
         /// </summary>
         /// <param name="userProvider">User provider</param>
-        public UserManager(UserProvider userProvider)
+        public UserManager(IUserProvider userProvider)
         {
             _userProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
         }

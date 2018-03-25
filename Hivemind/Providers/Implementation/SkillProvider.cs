@@ -14,7 +14,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Skill provider
     /// </summary>
-    public class SkillProvider : HivemindProvider
+    public class SkillProvider : HivemindProvider, ISkillProvider
     {
         private IEnumerable<Skill> _skills;
 

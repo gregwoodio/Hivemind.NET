@@ -13,7 +13,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Injury provider
     /// </summary>
-    public class InjuryProvider : HivemindProvider
+    public class InjuryProvider : HivemindProvider, IInjuryProvider
     {
         /// <summary>
         /// Get Injury by ID

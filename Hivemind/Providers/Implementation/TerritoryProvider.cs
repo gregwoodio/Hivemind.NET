@@ -13,7 +13,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Territory provider
     /// </summary>
-    public class TerritoryProvider : HivemindProvider
+    public class TerritoryProvider : HivemindProvider, ITerritoryProvider
     {
         /// <summary>
         /// Get all territories

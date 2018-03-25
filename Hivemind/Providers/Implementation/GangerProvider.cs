@@ -13,7 +13,7 @@ namespace Hivemind.Providers
     /// <summary>
     /// Ganger provider
     /// </summary>
-    public class GangerProvider : HivemindProvider
+    public class GangerProvider : HivemindProvider, IGangerProvider
     {
         /// <summary>
         /// Get by Ganger ID

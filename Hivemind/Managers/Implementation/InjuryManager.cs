@@ -17,13 +17,13 @@ namespace Hivemind.Managers.Implementation
     /// </summary>
     public class InjuryManager : IInjuryManager
     {
-        private InjuryProvider _injuryProvider;
+        private IInjuryProvider _injuryProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InjuryManager"/> class.
         /// </summary>
         /// <param name="injuryProvider">Injury provider</param>
-        public InjuryManager(InjuryProvider injuryProvider)
+        public InjuryManager(IInjuryProvider injuryProvider)
         {
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(injuryProvider));
         }
