@@ -14,9 +14,19 @@ namespace Hivemind.Providers
     /// <summary>
     /// Skill provider
     /// </summary>
-    public class SkillProvider : HivemindProvider, ISkillProvider
+    public class SkillProvider : ISkillProvider
     {
+        private string _connectionString;
         private IEnumerable<Skill> _skills;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkillProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public SkillProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         /// <summary>
         /// Get all skills
@@ -64,7 +74,7 @@ namespace Hivemind.Providers
 
         private IEnumerable<Skill> GetSkillsFromDatabase()
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("Skills_GetAll", connection))
             {
                 connection.Open();

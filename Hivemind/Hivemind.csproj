@@ -108,7 +108,6 @@
     <Compile Include="Providers\Implementation\WeaponProvider.cs" />
     <Compile Include="Providers\Implementation\GangerProvider.cs" />
     <Compile Include="Providers\Implementation\GangProvider.cs" />
-    <Compile Include="Providers\Implementation\HivemindProvider.cs" />
     <Compile Include="Providers\Implementation\InjuryProvider.cs" />
     <Compile Include="Providers\Implementation\TerritoryProvider.cs" />
     <Compile Include="Providers\ISkillProvider.cs" />

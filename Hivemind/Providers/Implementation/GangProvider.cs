@@ -12,8 +12,19 @@ namespace Hivemind.Providers
     /// <summary>
     /// Gang provider
     /// </summary>
-    public class GangProvider : HivemindProvider, IGangProvider
+    public class GangProvider : IGangProvider
     {
+        private string _connectionString;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GangProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public GangProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         /// <summary>
         /// Get Gang by ID
         /// </summary>
@@ -21,7 +32,7 @@ namespace Hivemind.Providers
         /// <returns>Gang</returns>
         public Gang GetGangById(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangs_GetById", connection))
                 {
@@ -43,7 +54,7 @@ namespace Hivemind.Providers
         /// <param name="userId">User ID</param>
         public void AssociateGangToUser(string gangId, string userId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("UserGangs_AssociateGangToUser", connection))
                 {
@@ -64,7 +75,7 @@ namespace Hivemind.Providers
         /// <returns>Added gang</returns>
         public Gang AddGang(Gang gang)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangs_AddGang", connection))
                 {
@@ -92,7 +103,7 @@ namespace Hivemind.Providers
         /// <returns>Updated gang</returns>
         public Gang UpdateGang(Gang gang)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangs_UpdateGang", connection))
                 {

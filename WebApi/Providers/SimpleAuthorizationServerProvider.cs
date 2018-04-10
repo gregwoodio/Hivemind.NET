@@ -35,7 +35,7 @@ namespace WebApi.Providers
                 var user = userManager.Login(new Login()
                 {
                     Email = context.UserName,
-                    Password = context.Password
+                    Password = context.Password,
                 });
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);

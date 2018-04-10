@@ -14,8 +14,19 @@ namespace Hivemind.Providers
     /// <summary>
     /// Weapon provider
     /// </summary>
-    public class WeaponProvider : HivemindProvider, IWeaponProvider
+    public class WeaponProvider : IWeaponProvider
     {
+        private string _connectionString;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeaponProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public WeaponProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         /// <summary>
         /// Get by weapon ID
         /// </summary>
@@ -23,7 +34,7 @@ namespace Hivemind.Providers
         /// <returns>Weapon</returns>
         public Weapon GetById(int weaponId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Weapons_GetById", connection))
                 {
@@ -46,7 +57,7 @@ namespace Hivemind.Providers
         /// <returns>Returns all weapons</returns>
         public IEnumerable<Weapon> GetAllWeapons()
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Weapons_GetAll", connection))
                 {
@@ -69,7 +80,7 @@ namespace Hivemind.Providers
         /// <returns>List of ganger weapons</returns>
         public IEnumerable<GangerWeapon> GetByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangerWeapons_GetByGangId", connection))
                 {
@@ -92,7 +103,7 @@ namespace Hivemind.Providers
         /// <returns>Added gang weapon</returns>
         public GangWeapon AddGangWeapon(GangWeapon gangWeapon)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangWeapons_AddGangWeapon", connection))
                 {
@@ -118,7 +129,7 @@ namespace Hivemind.Providers
         /// <param name="gangWeaponId">Gang weapon ID</param>
         public void RemoveGangWeapon(string gangWeaponId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangWeapons_RemoveGangWeapon", connection))
                 {
@@ -138,7 +149,7 @@ namespace Hivemind.Providers
         /// <returns>List of weapons</returns>
         public IEnumerable<Weapon> GetGangStash(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Weapons_GetGangStash", connection))
                 {
@@ -160,7 +171,7 @@ namespace Hivemind.Providers
         /// <returns>Weapons</returns>
         public IEnumerable<Weapon> GetGangerWeaponsByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Weapons_GetGangerWeaponsByGangId", connection))
                 {
@@ -182,7 +193,7 @@ namespace Hivemind.Providers
         /// <returns>Added ganger weapon</returns>
         public GangerWeapon AddGangerWeapon(GangerWeapon gangerWeapon)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangerWeapons_AddGangerWeapon", connection))
                 {
@@ -208,7 +219,7 @@ namespace Hivemind.Providers
         /// <param name="gangerWeaponId">Ganger weapon ID</param>
         public void RemoveGangerWeapon(string gangerWeaponId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangerWeapons_RemoveGangerWeapon", connection))
                 {
@@ -228,7 +239,7 @@ namespace Hivemind.Providers
         /// <returns>List of ganger weapons</returns>
         public IEnumerable<GangerWeapon> GetGangerWeapons(string gangerId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Weapons_GetByGangerId", connection))
                 {

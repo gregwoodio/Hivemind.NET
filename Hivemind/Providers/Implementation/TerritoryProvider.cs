@@ -13,15 +13,26 @@ namespace Hivemind.Providers
     /// <summary>
     /// Territory provider
     /// </summary>
-    public class TerritoryProvider : HivemindProvider, ITerritoryProvider
+    public class TerritoryProvider : ITerritoryProvider
     {
+        private string _connectionString;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TerritoryProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public TerritoryProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         /// <summary>
         /// Get all territories
         /// </summary>
         /// <returns>All territories</returns>
         public IEnumerable<Territory> GetAllTerritories()
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Territories_GetAll", connection))
                 {
@@ -52,7 +63,7 @@ namespace Hivemind.Providers
         /// <returns>Territory</returns>
         public Territory GetTerritoryById(int territoryId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Territories_GetById", connection))
                 {
@@ -74,7 +85,7 @@ namespace Hivemind.Providers
         /// <returns>List of territories</returns>
         public IEnumerable<Territory> GetTerritoryByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Territories_GetByGangId", connection))
                 {
@@ -96,7 +107,7 @@ namespace Hivemind.Providers
         /// <returns>Added GangTerritory</returns>
         public GangTerritory AddGangTerritory(GangTerritory gangTerritory)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangTerritories_Add", connection))
                 {
@@ -122,7 +133,7 @@ namespace Hivemind.Providers
         /// <param name="gangTerritoryId">Gang territory ID</param>
         public void RemoveGangTerritory(string gangTerritoryId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangTerritories_Remove", connection))
                 {

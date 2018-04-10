@@ -12,8 +12,19 @@ namespace Hivemind.Providers
     /// <summary>
     /// User provider
     /// </summary>
-    public class UserProvider : HivemindProvider, IUserProvider
+    public class UserProvider : IUserProvider
     {
+        private string _connectionString;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public UserProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         /// <summary>
         /// Add user
         /// </summary>
@@ -21,7 +32,7 @@ namespace Hivemind.Providers
         /// <returns>Added user</returns>
         public Login AddUser(Login login)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Users_Add", connection))
                 {
@@ -48,7 +59,7 @@ namespace Hivemind.Providers
         /// <returns>User</returns>
         public Login GetUserByGuid(string guid)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Users_GetUserByGuid", connection))
                 {
@@ -70,7 +81,7 @@ namespace Hivemind.Providers
         /// <returns>User</returns>
         public Login GetUserByEmail(string email)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Users_GetByEmail", connection))
                 {
@@ -92,7 +103,7 @@ namespace Hivemind.Providers
         /// <returns>List og gangs belonging to that user</returns>
         public IEnumerable<Gang> GetGangsByUserGuid(string guid)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("UserGangs_GetByUserGuid", connection))
                 {

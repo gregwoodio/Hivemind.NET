@@ -7,20 +7,24 @@ using System.Collections.Generic;
 using Hivemind.Services.Implementation;
 using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
+using System.Configuration;
 
 namespace WebApi
 {
     public class UnityResolver : IDependencyResolver
     {
         protected IUnityContainer container;
+        private string _connectionString;
 
         public UnityResolver(IUnityContainer container)
         {
+            _connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             this.container = container;
         }
 
         public UnityResolver()
         {
+            _connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             container = SetupContainer();
         }
 
@@ -84,13 +88,13 @@ namespace WebApi
             container.RegisterType<IGameService, GameService>();
 
             // providers
-            container.RegisterType<IGangerProvider, GangerProvider>();
-            container.RegisterType<IGangProvider, GangProvider>();
-            container.RegisterType<IInjuryProvider, InjuryProvider>();
-            container.RegisterType<ISkillProvider, SkillProvider>();
-            container.RegisterType<ITerritoryProvider, TerritoryProvider>();
-            container.RegisterType<IUserProvider, UserProvider>();
-            container.RegisterType<IWeaponProvider, WeaponProvider>();
+            container.RegisterType<IGangerProvider, GangerProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<IGangProvider, GangProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<IInjuryProvider, InjuryProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<ISkillProvider, SkillProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<ITerritoryProvider, TerritoryProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<IUserProvider, UserProvider>(new InjectionConstructor(_connectionString));
+            container.RegisterType<IWeaponProvider, WeaponProvider>(new InjectionConstructor(_connectionString));
 
             return container;
         }

@@ -13,8 +13,19 @@ namespace Hivemind.Providers
     /// <summary>
     /// Ganger provider
     /// </summary>
-    public class GangerProvider : HivemindProvider, IGangerProvider
+    public class GangerProvider : IGangerProvider
     {
+        private string _connectionString;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GangerProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">Connection string</param>
+        public GangerProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         /// <summary>
         /// Get by Ganger ID
         /// </summary>
@@ -22,7 +33,7 @@ namespace Hivemind.Providers
         /// <returns>Ganger</returns>
         public Ganger GetByGangerId(string gangerId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangers_GetById", connection))
                 {
@@ -44,7 +55,7 @@ namespace Hivemind.Providers
         /// <returns>List of gangers in the gang</returns>
         public IEnumerable<Ganger> GetByGangId(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangers_GetByGangId", connection))
                 {
@@ -65,7 +76,7 @@ namespace Hivemind.Providers
         /// <returns>Added ganger</returns>
         public Ganger AddGanger(Ganger ganger)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangers_AddGanger", connection))
                 {
@@ -116,7 +127,7 @@ namespace Hivemind.Providers
         /// <returns>List of GangerSkills</returns>
         public IEnumerable<GangerSkill> GetGangerSkills(string gangId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("GangerSkills_GetByGangId", connection))
             {
                 connection.Open();
@@ -151,7 +162,7 @@ namespace Hivemind.Providers
         /// <returns>Updated ganger</returns>
         public Ganger UpdateGanger(Ganger ganger)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("Gangers_UpdateGanger", connection))
                 {
@@ -199,7 +210,7 @@ namespace Hivemind.Providers
         /// <param name="skillId">Skill ID</param>
         public void AddGangerSkill(string gangerId, int skillId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("GangerSkills_Add", connection))
             {
                 connection.Open();
@@ -224,7 +235,7 @@ namespace Hivemind.Providers
         /// <returns>Whether ganger can learn a skill or not</returns>
         public bool CanLearnSkill(string gangerId, string advancementId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("GangerAdvancements_IsValid", connection))
             {
                 connection.Open();
@@ -248,7 +259,7 @@ namespace Hivemind.Providers
         /// <returns>The advancement ID</returns>
         public string RegisterGangerAdvancement(string gangerId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("GangerAdvancements_Add", connection))
             {
                 connection.Open();
@@ -271,7 +282,7 @@ namespace Hivemind.Providers
         /// <param name="advancementId">Advancement ID</param>
         public void RemoveGangerAdvancement(string gangerId, string advancementId)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("GangerAdvancements_Remove", connection))
             {
                 connection.Open();
@@ -292,7 +303,7 @@ namespace Hivemind.Providers
         /// <param name="injury">Injury ID</param>
         public void AddGangerInjury(string gangerId, InjuryEnum injury)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 using (var command = new SqlCommand("GangerInjuries_Add", connection))
                 {
