@@ -30,3 +30,6 @@ Hivemind.Api.Tests/obj/**/*
 /WebApi/Properties/PublishProfiles/HivemindApi20180402074737 - Web Deploy.pubxml
 /WebApi/Properties/PublishProfiles/FolderProfile.pubxml.user
 /WebApi/Properties/PublishProfiles/FolderProfile.pubxml
+
+# build config
+build/config/*.json
