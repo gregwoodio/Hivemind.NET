@@ -49,11 +49,11 @@ BEGIN
 	);
 
 	-- read from CSV into working table
-	BULK INSERT [dbo].[TempWeapons] FROM 'D:\Source\Hivemind\Hivemind\Database\StaticValues\Weapons.csv' WITH (
+	BULK INSERT [dbo].[TempWeapons] FROM '..\..\StaticValues\Weapons.csv' WITH (
 		FIRSTROW = 1,
 		FIELDTERMINATOR = ',',
 		ROWTERMINATOR = '\n',
-		ERRORFILE = 'D:\Source\Hivemind\Hivemind\Database\StaticValues\Weapons.Error.csv',
+		ERRORFILE = '..\..\StaticValues\Weapons.Error.csv',
 		DATAFILETYPE = 'widechar',
 		TABLOCK
 	);

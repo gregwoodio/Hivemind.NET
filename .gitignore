@@ -22,5 +22,11 @@ Hivemind.Tests/bin/**/*
 Hivemind.Tests/obj/**/*
 WebApi/bin/**/*
 WebApi/obj/**/*
+Hivemind.Api.Tests/bin/**/*
+Hivemind.Api.Tests/obj/**/*
 /.vs/Hivemind/v15/Server/sqlite3
 
+/WebApi/Properties/PublishProfiles/HivemindApi20180402074737 - Web Deploy.pubxml.user
+/WebApi/Properties/PublishProfiles/HivemindApi20180402074737 - Web Deploy.pubxml
+/WebApi/Properties/PublishProfiles/FolderProfile.pubxml.user
+/WebApi/Properties/PublishProfiles/FolderProfile.pubxml

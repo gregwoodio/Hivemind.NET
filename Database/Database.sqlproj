@@ -109,8 +109,6 @@
     <Build Include="dbo\Stored Procedures\Users_GetByEmail.sql" />
     <Build Include="dbo\Stored Procedures\UserGangs_AssociateGangToUser.sql" />
     <Build Include="dbo\Stored Procedures\GangerWeapons_GetByGangId.sql" />
-    <Build Include="dbo\Stored Procedures\Weapons_GetGangStash_1.sql" />
-    <Build Include="dbo\Stored Procedures\Weapons_GetGangerWeaponsByGangId_1.sql" />
     <Build Include="dbo\Stored Procedures\GangerInjuries_Add.sql" />
     <Build Include="dbo\Stored Procedures\Injuries_GetByGangerId.sql" />
     <Build Include="dbo\Tables\GangerAdvancements.sql" />
