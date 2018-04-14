@@ -11,7 +11,7 @@
                     <a class="navbar-item is-light" href="https://github.com/weirdvector/hivemind.net">GitHub</a>
                 </div>
             </div>
-            <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showSignUpDialog = true;">Sign up</a>
+            <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showSignUpModalDialog()">Sign up</a>
             <a class="navbar-item" *ngIf="!isLoggedIn" (click)="showLoginModalDialog()">Login</a>
             <div class="navbar-item has-dropdown is-hoverable" *ngIf="isLoggedIn">
                 <a class="navbar-link">{{user.email}}</a>
@@ -35,66 +35,7 @@
 </section>
 
 <!-- sign up modal dialog -->
-<div class="modal" *ngIf="showSignUpDialog" [ngClass]="{'is-active': showSignUpDialog}">
-    <div class="modal-background" (click)="showSignUpDialog = false;"></div>
-    <div class="modal-content">
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <h3 class="title">Sign up</h3>
-            </header>
-            <section class="modal-card-body">
-                <!--
-                You can sign up for Hivemind here, or use your existing Google or GitHub account.
-                <hr>
-                <section>
-                    <div>
-                        <h5 class="subtitle">External authentication</h5>
-                    </div>
-                    <div class="field is-group">
-                        <a class="button is-danger">
-                            <span class="icon fa fa-google"></span>
-                            <span>Google</span>
-                        </a>
-                        <a class="button is-link">
-                            <span class="icon fa fa-github"></span>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </section>
-                <hr>
-                -->
-                <section>
-                    <div>
-                        <h5 class="subtitle">Sign up with Hivemind</h5>
-                    </div>
-                    <div>
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control">
-                                <input class="input" type="text">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Password</label>
-                            <div class="control">
-                                <input class="input" type="password">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Confirm password</label>
-                            <div class="control">
-                                <input class="input" type="password">
-                            </div>
-                        </div>
-                        <button class="button is-primary">Submit</button>
-                    </div>
-                </section>
-            </section>
-        </div>
-    </div>
-    <button class="modal-close is-large" aria-label="close" (click)="showSignUpDialog = false;"></button>
-</div>
-
+<signup-modal #signupModal></signup-modal>
 
 <!-- login modal dialog -->
 <login-modal #loginModal></login-modal>

@@ -33,7 +33,11 @@ export class GangersComponent implements OnInit {
     this._ngRedux.subscribe(() => {
       const state = this._ngRedux.getState();
       this.gang = state.gang;
-      this.gangers = state.gang.gangers;
+
+      if (state.gang) {
+        this.gangers = state.gang.gangers;
+      }
+
       this.isGameInProgress = state.inGame;
     });
 
