@@ -6,6 +6,7 @@ using Hivemind.Services.Implementation;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Hivemind.Tests
     {
         public static UnityContainer GetContainer()
         {
+            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             UnityContainer container = new UnityContainer();
 
             // managers
@@ -34,13 +36,13 @@ namespace Hivemind.Tests
             container.RegisterType<IGameService, GameService>();
 
             // providers
-            container.RegisterType<IGangerProvider, GangerProvider>();
-            container.RegisterType<IGangProvider, GangProvider>();
-            container.RegisterType<IInjuryProvider, InjuryProvider>();
-            container.RegisterType<ISkillProvider, SkillProvider>();
-            container.RegisterType<ITerritoryProvider, TerritoryProvider>();
-            container.RegisterType<IUserProvider, UserProvider>();
-            container.RegisterType<IWeaponProvider, WeaponProvider>();
+            container.RegisterType<IGangerProvider, GangerProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<IGangProvider, GangProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<IInjuryProvider, InjuryProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<ISkillProvider, SkillProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<ITerritoryProvider, TerritoryProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<IUserProvider, UserProvider>(new InjectionConstructor(connectionString));
+            container.RegisterType<IWeaponProvider, WeaponProvider>(new InjectionConstructor(connectionString));
             
             return container;
         }
