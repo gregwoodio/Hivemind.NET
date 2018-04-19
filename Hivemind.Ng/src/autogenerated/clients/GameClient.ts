@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { PreGameReport } from '../entities/PreGameReport';
 import { Gang } from '../entities/Gang';
 import { PostGameReport } from '../entities/PostGameReport';
@@ -20,16 +21,21 @@ export class GameClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public ProcessPreGame(
         gang: Gang,
     ): Observable<PreGameReport> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(gang);
 
         return this._http.post<PreGameReport>(
-            'http://localhost:61774/api/game/pre'
+            this._path + '/api/game/pre'
             , body
             , {
                 headers: new HttpHeaders({
@@ -43,10 +49,13 @@ export class GameClient {
     public ProcessPostGame(
         battleReport: BattleReport,
     ): Observable<PostGameReport> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(battleReport);
 
         return this._http.post<PostGameReport>(
-            'http://localhost:61774/api/game/post'
+            this._path + '/api/game/post'
             , body
             , {
                 headers: new HttpHeaders({
@@ -60,10 +69,13 @@ export class GameClient {
     public LearnSkills(
         skillUpRequest: GangSkillUpRequest,
     ): Observable<GangerSkill[]> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(skillUpRequest);
 
         return this._http.post<GangerSkill[]>(
-            'http://localhost:61774/api/game/post/skills'
+            this._path + '/api/game/post/skills'
             , body
             , {
                 headers: new HttpHeaders({
@@ -74,4 +86,10 @@ export class GameClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

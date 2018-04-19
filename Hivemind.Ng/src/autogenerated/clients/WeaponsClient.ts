@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { Weapon } from '../entities/Weapon';
 
 @Injectable()
@@ -15,15 +16,20 @@ export class WeaponsClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public GetWeapon(
         weaponId: number,
     ): Observable<Weapon> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Weapon>(
-            'http://localhost:61774/api/weapons/' + weaponId + ''
+            this._path + '/api/weapons/' + weaponId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -36,8 +42,11 @@ export class WeaponsClient {
     public GetAllWeapons(
     ): Observable<Weapon[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Weapon[]>(
-            'http://localhost:61774/api/Weapons'
+            this._path + '/api/Weapons'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -47,4 +56,10 @@ export class WeaponsClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

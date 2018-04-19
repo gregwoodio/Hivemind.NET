@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { Ganger } from '../entities/Ganger';
 import { GangerWeapon } from '../entities/GangerWeapon';
 
@@ -16,15 +17,20 @@ export class GangersClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public GetGanger(
         gangerId: string,
     ): Observable<Ganger> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Ganger>(
-            'http://localhost:61774/api/gangers/' + gangerId + ''
+            this._path + '/api/gangers/' + gangerId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -38,8 +44,11 @@ export class GangersClient {
         gangerId: string,
     ): Observable<GangerWeapon[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<GangerWeapon[]>(
-            'http://localhost:61774/api/gangers/' + gangerId + '/weapons'
+            this._path + '/api/gangers/' + gangerId + '/weapons'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -54,8 +63,11 @@ export class GangersClient {
         gangWeaponId: string,
     ): Observable<GangerWeapon> {
 
+        this.ensurePathExists();
+
+
         return this._http.post<GangerWeapon>(
-            'http://localhost:61774/api/gangers/' + gangerId + '/weapons/' + gangWeaponId + ''
+            this._path + '/api/gangers/' + gangerId + '/weapons/' + gangWeaponId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -70,8 +82,11 @@ export class GangersClient {
         gangerWeaponId: string,
     ): Observable<string> {
 
+        this.ensurePathExists();
+
+
         return this._http.delete<string>(
-            'http://localhost:61774/api/gangers/' + gangerId + '/weapons/' + gangerWeaponId + ''
+            this._path + '/api/gangers/' + gangerId + '/weapons/' + gangerWeaponId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -84,10 +99,13 @@ export class GangersClient {
     public UpdateGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(ganger);
 
         return this._http.put<Ganger>(
-            'http://localhost:61774/api/Gangers'
+            this._path + '/api/Gangers'
             , body
             , {
                 headers: new HttpHeaders({
@@ -101,10 +119,13 @@ export class GangersClient {
     public AddGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(ganger);
 
         return this._http.post<Ganger>(
-            'http://localhost:61774/api/Gangers'
+            this._path + '/api/Gangers'
             , body
             , {
                 headers: new HttpHeaders({
@@ -115,4 +136,10 @@ export class GangersClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { Gang } from '../entities/Gang';
 import { Weapon } from '../entities/Weapon';
 import { GangWeapon } from '../entities/GangWeapon';
@@ -17,15 +18,20 @@ export class GangsClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public GetGang(
         gangId: string,
     ): Observable<Gang> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Gang>(
-            'http://localhost:61774/api/gangs/' + gangId + ''
+            this._path + '/api/gangs/' + gangId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -38,10 +44,13 @@ export class GangsClient {
     public AddGang(
         gang: Gang,
     ): Observable<Gang> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(gang);
 
         return this._http.post<Gang>(
-            'http://localhost:61774/api/gangs'
+            this._path + '/api/gangs'
             , body
             , {
                 headers: new HttpHeaders({
@@ -56,8 +65,11 @@ export class GangsClient {
         gangId: string,
     ): Observable<Weapon[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Weapon[]>(
-            'http://localhost:61774/api/gangs/' + gangId + '/weapons'
+            this._path + '/api/gangs/' + gangId + '/weapons'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -71,10 +83,13 @@ export class GangsClient {
         gangId: string,
         gangWeapon: GangWeapon,
     ): Observable<GangWeapon> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(gangWeapon);
 
         return this._http.post<GangWeapon>(
-            'http://localhost:61774/api/gangs/' + gangId + '/weapons'
+            this._path + '/api/gangs/' + gangId + '/weapons'
             , body
             , {
                 headers: new HttpHeaders({
@@ -89,8 +104,11 @@ export class GangsClient {
         gangId: string,
     ): Observable<Weapon[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Weapon[]>(
-            'http://localhost:61774/api/gangs/' + gangId + '/weapons/gangers'
+            this._path + '/api/gangs/' + gangId + '/weapons/gangers'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -103,10 +121,13 @@ export class GangsClient {
     public UpdateGang(
         gang: Gang,
     ): Observable<Gang> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(gang);
 
         return this._http.put<Gang>(
-            'http://localhost:61774/api/Gangs'
+            this._path + '/api/Gangs'
             , body
             , {
                 headers: new HttpHeaders({
@@ -117,4 +138,10 @@ export class GangsClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

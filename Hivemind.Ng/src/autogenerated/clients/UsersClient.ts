@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { User } from '../entities/User';
 import { Login } from '../entities/Login';
 
@@ -16,14 +17,19 @@ export class UsersClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public GetUser(
     ): Observable<User> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<User>(
-            'http://localhost:61774/api/user'
+            this._path + '/api/user'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -36,10 +42,13 @@ export class UsersClient {
     public Register(
         user: Login,
     ): Observable<User> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(user);
 
         return this._http.post<User>(
-            'http://localhost:61774/api/user'
+            this._path + '/api/user'
             , body
             , {
                 headers: new HttpHeaders({
@@ -50,4 +59,10 @@ export class UsersClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

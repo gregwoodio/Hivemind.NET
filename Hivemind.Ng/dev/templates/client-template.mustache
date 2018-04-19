@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 {{#imports}}
 import { {{import}} } from '../entities/{{import}}';
 {{/imports}}
@@ -17,7 +18,9 @@ export class {{name}} {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     {{#methods}}
@@ -29,12 +32,15 @@ export class {{name}} {
         {{name}}{{required}}: {{type}},
         {{/bodyParams}}
     ): Observable<{{returns}}> {
+
+        this.ensurePathExists();
+
         {{#bodyParams}}
         const body = this._formDataHelper.getFormData({{name}});
         {{/bodyParams}}
 
         return this._http.{{httpMethod}}<{{returns}}>(
-            'http://localhost:61774{{{path}}}'
+            this._path + '{{{path}}}'
             {{#bodyParams}}
             , body
             {{/bodyParams}}
@@ -48,4 +54,10 @@ export class {{name}} {
     }
 
     {{/methods}}
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }

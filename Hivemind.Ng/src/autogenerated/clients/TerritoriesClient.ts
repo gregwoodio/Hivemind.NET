@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
+import { ClientService } from './../../app/clients/ClientService';
 import { Territory } from '../entities/Territory';
 import { GangTerritory } from '../entities/GangTerritory';
 
@@ -16,15 +17,20 @@ export class TerritoriesClient {
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
-        private _formDataHelper: FormDataHelper
+        private _formDataHelper: FormDataHelper,
+        private _clientService: ClientService,
+        private _path: string
     ) {}
 
     public GetGangTerritoryById(
         gangId: string,
     ): Observable<Territory[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Territory[]>(
-            'http://localhost:61774/api/territories/' + gangId + ''
+            this._path + '/api/territories/' + gangId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -38,10 +44,13 @@ export class TerritoriesClient {
         gangId: string,
         territory: Territory,
     ): Observable<GangTerritory> {
+
+        this.ensurePathExists();
+
         const body = this._formDataHelper.getFormData(territory);
 
         return this._http.post<GangTerritory>(
-            'http://localhost:61774/api/territories/' + gangId + ''
+            this._path + '/api/territories/' + gangId + ''
             , body
             , {
                 headers: new HttpHeaders({
@@ -56,8 +65,11 @@ export class TerritoriesClient {
         gangTerritoryId: string,
     ): Observable<string> {
 
+        this.ensurePathExists();
+
+
         return this._http.delete<string>(
-            'http://localhost:61774/api/territories/' + gangTerritoryId + ''
+            this._path + '/api/territories/' + gangTerritoryId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -70,8 +82,11 @@ export class TerritoriesClient {
     public GetAllTerritories(
     ): Observable<Territory[]> {
 
+        this.ensurePathExists();
+
+
         return this._http.get<Territory[]>(
-            'http://localhost:61774/api/Territories'
+            this._path + '/api/Territories'
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,
@@ -81,4 +96,10 @@ export class TerritoriesClient {
         );
     }
 
+
+    private ensurePathExists() {
+        if (!this._path) {
+            this._path = this._clientService.getPath();
+        }
+    }
 }
