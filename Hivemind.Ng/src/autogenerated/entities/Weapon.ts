@@ -5,7 +5,7 @@
 import { HttpParams } from '@angular/common/http';
 
 export class Weapon {
-    public weaponEnum: string;
+    public weaponId: string;
     public name: string;
     public weaponType: string;
     public weaponAvailability: string;
@@ -22,8 +22,8 @@ export class Weapon {
     public effect: any;
 
     public constructor(partial: Partial<Weapon>) {
-        if (partial.weaponEnum) {
-            this.weaponEnum = partial.weaponEnum;
+        if (partial.weaponId) {
+            this.weaponId = partial.weaponId;
         }
         if (partial.name) {
             this.name = partial.name;
@@ -72,8 +72,8 @@ export class Weapon {
     public toHttpParams(): HttpParams {
         let params = new HttpParams();
         let properties = [];
-        if (this.weaponEnum) {
-            properties.push('weaponEnum');
+        if (this.weaponId) {
+            properties.push('weaponId');
         }
         if (this.name) {
             properties.push('name');

@@ -30,7 +30,7 @@ namespace Hivemind.Managers
         /// </summary>
         /// <param name="gangId">Gang ID</param>
         /// <returns>Weapon list</returns>
-        IEnumerable<Weapon> GetGangStash(string gangId);
+        IEnumerable<GangWeapon> GetGangStash(string gangId);
 
         /// <summary>
         /// Get ganger weapons by gang ID
@@ -47,17 +47,19 @@ namespace Hivemind.Managers
         IEnumerable<GangerWeapon> GetGangerWeapons(string gangerId);
 
         /// <summary>
-        /// Add ganger weapon (equip weapon to ganger)
+        /// Add ganger weapon (equip weapon to ganger from gang stash)
         /// </summary>
-        /// <param name="gangerWeapon">Ganger weapon</param>
+        /// <param name="gangerId">Ganger Id</param>
+        /// <param name="gangWeaponId">Gang weapon ID</param>
         /// <returns>Added ganger weapon</returns>
-        GangerWeapon AddGangerWeapon(GangerWeapon gangerWeapon);
+        GangerWeapon AddGangerWeapon(string gangerId, string gangWeaponId);
 
         /// <summary>
         /// Remove ganger weapon (unequip weapon from ganger)
         /// </summary>
+        /// <param name="gangerId">Ganger ID</param>
         /// <param name="gangerWeaponId">Ganger weapon ID to remove</param>
-        void RemoveGangerWeapon(string gangerWeaponId);
+        void RemoveGangerWeapon(string gangerId, string gangerWeaponId);
 
         /// <summary>
         /// Add gang weapon

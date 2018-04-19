@@ -38,5 +38,13 @@ namespace Hivemind.Managers
         /// <param name="gangId">Gang ID</param>
         /// <param name="userId">User ID</param>
         void AssociateGangToUser(string gangId, string userId);
+
+        /// <summary>
+        /// Spend gang's credits.
+        /// </summary>
+        /// <param name="gangId">Gang Id</param>
+        /// <param name="cost">Credits to spend</param>
+        /// <returns>True if gang had the required credits.</returns>
+        bool Spend(string gangId, int cost);
     }
 }

@@ -147,7 +147,7 @@ namespace Hivemind.Providers
         /// </summary>
         /// <param name="gangId">Gang ID</param>
         /// <returns>List of weapons</returns>
-        public IEnumerable<Weapon> GetGangStash(string gangId)
+        public IEnumerable<GangWeapon> GetGangStash(string gangId)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -159,7 +159,7 @@ namespace Hivemind.Providers
                     command.Parameters.Add("@GangId", SqlDbType.NVarChar, 100).Value = gangId;
 
                     var reader = command.ExecuteReader();
-                    return GetWeaponListFromReader(reader);
+                    return GetGangWeaponListFromReader(reader);
                 }
             }
         }

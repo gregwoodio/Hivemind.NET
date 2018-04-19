@@ -50,7 +50,7 @@ namespace Hivemind.Providers
         /// </summary>
         /// <param name="gangId">Gang ID</param>
         /// <returns>List of weapons</returns>
-        IEnumerable<Weapon> GetGangStash(string gangId);
+        IEnumerable<GangWeapon> GetGangStash(string gangId);
 
         /// <summary>
         /// Get ganger weapons by gang ID

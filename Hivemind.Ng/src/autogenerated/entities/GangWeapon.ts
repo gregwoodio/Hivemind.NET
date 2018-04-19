@@ -9,6 +9,7 @@ export class GangWeapon {
     public gangWeaponId: string;
     public gangId: string;
     public weapon: Weapon;
+    public cost: number;
 
     public constructor(partial: Partial<GangWeapon>) {
         if (partial.gangWeaponId) {
@@ -19,6 +20,9 @@ export class GangWeapon {
         }
         if (partial.weapon) {
             this.weapon = partial.weapon;
+        }
+        if (partial.cost) {
+            this.cost = partial.cost;
         }
     }
 
@@ -33,6 +37,9 @@ export class GangWeapon {
         }
         if (this.weapon) {
             properties.push('weapon');
+        }
+        if (this.cost) {
+            properties.push('cost');
         }
 
         properties.forEach(prop => {

@@ -9,7 +9,6 @@ import { TokenService } from './../../app/redux/TokenService';
 import { FormDataHelper } from '../../app/clients/FormDataHelper';
 import { Ganger } from '../entities/Ganger';
 import { GangerWeapon } from '../entities/GangerWeapon';
-import { Weapon } from '../entities/Weapon';
 
 @Injectable()
 export class GangersClient {
@@ -52,13 +51,11 @@ export class GangersClient {
 
     public AddGangerWeapon(
         gangerId: string,
-        weapon: Weapon,
+        gangWeaponId: string,
     ): Observable<GangerWeapon> {
-        const body = this._formDataHelper.getFormData(weapon);
 
         return this._http.post<GangerWeapon>(
-            'http://localhost:61774/api/gangers/' + gangerId + '/weapons'
-            , body
+            'http://localhost:61774/api/gangers/' + gangerId + '/weapons/' + gangWeaponId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

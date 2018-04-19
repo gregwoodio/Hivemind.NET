@@ -83,7 +83,7 @@ export class GangersComponent implements OnInit {
     if (!ganger.weapons) {
       return '';
     }
-    return ganger.weapons.map(weapon => weapon.name).join(', ');
+    return ganger.weapons.map(weapon => weapon.weapon.name).join(', ');
   }
 
   public parseGangerInjuries(ganger: Ganger): string {

@@ -4,7 +4,7 @@
 
 import { Skill } from './Skill';
 import { Injury } from './Injury';
-import { Weapon } from './Weapon';
+import { GangerWeapon } from './GangerWeapon';
 import { HttpParams } from '@angular/common/http';
 
 export class Ganger {
@@ -27,7 +27,7 @@ export class Ganger {
     public injuries: Injury[];
     public active: boolean;
     public title: string;
-    public weapons: Weapon[];
+    public weapons: GangerWeapon[];
     public isEnabled: boolean;
     public isOneEyed: boolean;
     public isDeafened: boolean;

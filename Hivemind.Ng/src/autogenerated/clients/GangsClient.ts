@@ -69,29 +69,13 @@ export class GangsClient {
 
     public AddGangWeapon(
         gangId: string,
-        weapon: Weapon,
+        gangWeapon: GangWeapon,
     ): Observable<GangWeapon> {
-        const body = this._formDataHelper.getFormData(weapon);
+        const body = this._formDataHelper.getFormData(gangWeapon);
 
         return this._http.post<GangWeapon>(
             'http://localhost:61774/api/gangs/' + gangId + '/weapons'
             , body
-            , {
-                headers: new HttpHeaders({
-                    'Authorization': 'Bearer ' + this._tokenService.token,
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                })
-            }
-        );
-    }
-
-    public RemoveGangWeapon(
-        gangId: string,
-        gangWeaponId: string,
-    ): Observable<string> {
-
-        return this._http.delete<string>(
-            'http://localhost:61774/api/gangs/' + gangId + '/weapons/' + gangWeaponId + ''
             , {
                 headers: new HttpHeaders({
                     'Authorization': 'Bearer ' + this._tokenService.token,

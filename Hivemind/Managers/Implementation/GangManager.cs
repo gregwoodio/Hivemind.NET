@@ -132,6 +132,31 @@ namespace Hivemind.Managers.Implementation
             _gangProvider.AssociateGangToUser(gangId, userId);
         }
 
+        /// <summary>
+        /// Spend gang's credits.
+        /// </summary>
+        /// <param name="gangId">Gang Id</param>
+        /// <param name="cost">Credits to spend</param>
+        /// <returns>True if gang had the required credits.</returns>
+        public bool Spend(string gangId, int cost)
+        {
+            if (cost < 0)
+            {
+                throw new ArgumentException("Cost must be greater than 0.");
+            }
+
+            var gang = GetGang(gangId);
+
+            if (gang.Credits >= cost)
+            {
+                gang.Credits -= cost;
+                UpdateGang(gang);
+                return true;
+            }
+
+            return false;
+        }
+
         private void InitialGangTerritories(string gangId)
         {
             for (int i = 0; i < 5; i++)

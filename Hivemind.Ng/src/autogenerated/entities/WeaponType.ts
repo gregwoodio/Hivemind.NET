@@ -3,14 +3,14 @@
  */
 
 export enum weaponType {
-    HAND_TO_HAND = 1,
-    PISTOLS,
-    BASIC,
-    SPECIAL,
-    HEAVY,
-    GRENADES,
-    ARMOUR,
-    AMMUNITION_AND_GUNSIGHTS,
-    BIONICS,
-    MISCELLANEOUS,
+    HandToHand = 1,
+    Pistols,
+    Basic,
+    Special,
+    Heavy,
+    Grenades,
+    Armour,
+    AmmunitionAndGunsights,
+    Bionics,
+    Miscellaneous,
 }

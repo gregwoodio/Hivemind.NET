@@ -4,6 +4,7 @@ using Hivemind.Managers;
 using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
 using Microsoft.Practices.Unity;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,12 @@ namespace Hivemind.Tests.Managers
     public class WeaponManagerTest
     {
         private IWeaponManager _weaponManager;
+        private Mock<IGangerProvider> _gangerProvider;
 
         public WeaponManagerTest()
         {
-            _weaponManager = new WeaponManager(new WeaponProviderMock());
+            _gangerProvider = new Mock<IGangerProvider>();
+            _weaponManager = new WeaponManager(new WeaponProviderMock(), _gangerProvider.Object);
         }
 
         [TestCase]
@@ -73,10 +76,17 @@ namespace Hivemind.Tests.Managers
         [TestCase]
         public void GangerWeaponsTest()
         {
-            var gangerId = "1";
-            var gangerWeapon = new GangerWeapon()
+            var gangId = "321";
+
+            var ganger = new Ganger()
             {
-                GangerId = gangerId,
+                GangerId = "123",
+                GangId = gangId
+            };
+
+            var gangWeapon = new GangWeapon()
+            {
+                GangId = gangId,
                 Weapon = new Weapon()
                 {
                     WeaponId = (WeaponEnum)1
@@ -84,14 +94,20 @@ namespace Hivemind.Tests.Managers
                 Cost = 10
             };
 
-            Assert.AreEqual(0, _weaponManager.GetGangerWeapons(gangerId).Count());
+            _gangerProvider.Setup(gp => gp.GetByGangerId(ganger.GangerId))
+                .Returns(ganger);
 
-            var returnedWeapon = _weaponManager.AddGangerWeapon(gangerWeapon);
+            var addedGangWeapon = _weaponManager.AddGangWeapon(gangWeapon);
+
+            Assert.AreEqual(0, _weaponManager.GetGangerWeapons(ganger.GangerId).Count());
+
+            var returnedWeapon = _weaponManager.AddGangerWeapon(ganger.GangerId, addedGangWeapon.GangWeaponId);
             Assert.AreEqual("AAAA-BBBB-CCCC", returnedWeapon.GangerWeaponId);
-            Assert.AreEqual(1, _weaponManager.GetGangerWeapons(gangerId).Count());
+            Assert.AreEqual(1, _weaponManager.GetGangerWeapons(ganger.GangerId).Count());
 
-            _weaponManager.RemoveGangerWeapon("AAAA-BBBB-CCCC");
-            Assert.AreEqual(0, _weaponManager.GetGangerWeapons(gangerId).Count());
+            _weaponManager.RemoveGangerWeapon(ganger.GangerId, "AAAA-BBBB-CCCC");
+            Assert.AreEqual(0, _weaponManager.GetGangerWeapons(ganger.GangerId).Count());
+            Assert.AreEqual(1, _weaponManager.GetGangStash(gangId).Count());
         }
 
         [TestCase]
@@ -190,6 +206,11 @@ namespace Hivemind.Tests.Managers
         {
             var gangWeapon = _gangWeapons.FirstOrDefault(gw => gw.GangWeaponId == gangWeaponId);
             _gangWeapons.Remove(gangWeapon);
+        }
+
+        IEnumerable<GangWeapon> IWeaponProvider.GetGangStash(string gangId)
+        {
+            return _gangWeapons.Where(gw => gw.GangId == gangId);
         }
     }
 }

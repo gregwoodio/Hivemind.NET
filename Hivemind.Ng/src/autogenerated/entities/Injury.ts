@@ -5,14 +5,14 @@
 import { HttpParams } from '@angular/common/http';
 
 export class Injury {
-    public injuryEnum: string;
+    public injuryId: string;
     public name: string;
     public description: string;
     public injuryEffect: any;
 
     public constructor(partial: Partial<Injury>) {
-        if (partial.injuryEnum) {
-            this.injuryEnum = partial.injuryEnum;
+        if (partial.injuryId) {
+            this.injuryId = partial.injuryId;
         }
         if (partial.name) {
             this.name = partial.name;
@@ -28,8 +28,8 @@ export class Injury {
     public toHttpParams(): HttpParams {
         let params = new HttpParams();
         let properties = [];
-        if (this.injuryEnum) {
-            properties.push('injuryEnum');
+        if (this.injuryId) {
+            properties.push('injuryId');
         }
         if (this.name) {
             properties.push('name');
