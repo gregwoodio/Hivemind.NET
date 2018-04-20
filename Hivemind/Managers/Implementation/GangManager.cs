@@ -24,6 +24,8 @@ namespace Hivemind.Managers.Implementation
         private readonly IInjuryProvider _injuryProvider;
         private readonly ISkillProvider _skillProvider;
 
+        private const int StartingGangTerritories = 5;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GangManager"/> class.
         /// </summary>
@@ -159,7 +161,7 @@ namespace Hivemind.Managers.Implementation
 
         private void InitialGangTerritories(string gangId)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < StartingGangTerritories; i++)
             {
                 var gangTerritory = new GangTerritory()
                 {
