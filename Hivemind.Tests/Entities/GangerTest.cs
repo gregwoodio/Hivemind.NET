@@ -1,5 +1,6 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Exceptions;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -60,6 +61,17 @@ namespace Hivemind.Tests.Entities
             ganger.GetCost();
 
             Assert.AreEqual(expectedCost, ganger.Cost);
+        }
+
+        [Test]
+        public void InvalidGetCostTest()
+        {
+            var ganger = new Ganger()
+            {
+                GangerType = (GangerType)(-1),
+            };
+
+            Assert.Throws<HivemindException>(() => ganger.GetCost());
         }
     }
 }

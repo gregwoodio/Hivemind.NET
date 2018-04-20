@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="Contracts\GangSkillUpRequestTest.cs" />
     <Compile Include="Entities\GangerTest.cs" />
     <Compile Include="Entities\GangTest.cs" />
     <Compile Include="Entities\SkillTest.cs" />

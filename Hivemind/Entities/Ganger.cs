@@ -248,38 +248,6 @@ namespace Hivemind.Entities
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Ganger"/> class.
-        /// </summary>
-        /// <param name="ganger">The ganger from which to copy parameters.</param>
-        public Ganger(Ganger ganger)
-        {
-            Move = ganger.Move;
-            WeaponSkill = ganger.WeaponSkill;
-            BallisticSkill = ganger.BallisticSkill;
-            Strength = ganger.Strength;
-            Toughness = ganger.Toughness;
-            Wounds = ganger.Wounds;
-            Initiative = ganger.Initiative;
-            Attack = ganger.Attack;
-            Leadership = ganger.Leadership;
-            IsOneEyed = ganger.IsOneEyed;
-            IsDeafened = ganger.IsDeafened;
-            IsOneHanded = ganger.IsOneHanded;
-            RightHandFingers = ganger.RightHandFingers;
-            LeftHandFingers = ganger.LeftHandFingers;
-            HasHorribleScars = ganger.HasHorribleScars;
-            HasImpressiveScars = ganger.HasImpressiveScars;
-            HasHeadWound = ganger.HasHeadWound;
-            HasOldBattleWound = ganger.HasOldBattleWound;
-            IsCaptured = ganger.IsCaptured;
-            HasBitterEnmity = ganger.HasBitterEnmity;
-            HasSporeSickness = ganger.HasSporeSickness;
-            Weapons = ganger.Weapons;
-            Skills = ganger.Skills;
-            Injuries = ganger.Injuries;
-        }
-
-        /// <summary>
         /// Calculates the cost of a ganger.
         /// </summary>
         public void GetCost()
