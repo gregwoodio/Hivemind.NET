@@ -20,7 +20,8 @@ namespace Hivemind.Tests.Managers
         private IWeaponManager _weaponManager;
         private Mock<IGangerProvider> _gangerProvider;
 
-        public WeaponManagerTest()
+        [SetUp]
+        public void Setup()
         {
             _gangerProvider = new Mock<IGangerProvider>();
             _weaponManager = new WeaponManager(new WeaponProviderMock(), _gangerProvider.Object);
