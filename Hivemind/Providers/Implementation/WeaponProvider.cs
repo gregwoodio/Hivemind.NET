@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Hivemind.Entities;
 using Hivemind.Enums;
 
@@ -17,6 +18,7 @@ namespace Hivemind.Providers
     public class WeaponProvider : IWeaponProvider
     {
         private string _connectionString;
+        private IEnumerable<Weapon> _weapons;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WeaponProvider"/> class.
@@ -34,21 +36,12 @@ namespace Hivemind.Providers
         /// <returns>Weapon</returns>
         public Weapon GetById(int weaponId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_weapons == null)
             {
-                using (var command = new SqlCommand("Weapons_GetById", connection))
-                {
-                    connection.Open();
-
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@WeaponId", SqlDbType.Int).Value = weaponId;
-                    var reader = command.ExecuteReader();
-
-                    var weapon = GetWeaponFromReader(reader);
-
-                    return weapon;
-                }
+                _weapons = GetAllWeaponsFromDatabase();
             }
+
+            return _weapons.FirstOrDefault(w => w.WeaponId == (WeaponEnum)weaponId);
         }
 
         /// <summary>
@@ -57,20 +50,12 @@ namespace Hivemind.Providers
         /// <returns>Returns all weapons</returns>
         public IEnumerable<Weapon> GetAllWeapons()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_weapons == null)
             {
-                using (var command = new SqlCommand("Weapons_GetAll", connection))
-                {
-                    connection.Open();
-
-                    command.CommandType = CommandType.StoredProcedure;
-                    var reader = command.ExecuteReader();
-
-                    var weapons = GetWeaponListFromReader(reader);
-
-                    return weapons;
-                }
+                _weapons = GetAllWeaponsFromDatabase();
             }
+
+            return _weapons;
         }
 
         /// <summary>
@@ -250,6 +235,24 @@ namespace Hivemind.Providers
 
                     var reader = command.ExecuteReader();
                     return GetGangerWeaponListFromReader(reader, GetGangerWeaponFromReader);
+                }
+            }
+        }
+
+        private IEnumerable<Weapon> GetAllWeaponsFromDatabase()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Weapons_GetAll", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var reader = command.ExecuteReader();
+
+                    var weapons = GetWeaponListFromReader(reader);
+
+                    return weapons;
                 }
             }
         }

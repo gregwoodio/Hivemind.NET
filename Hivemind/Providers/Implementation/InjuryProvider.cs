@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Hivemind.Entities;
 using Hivemind.Enums;
 
@@ -16,6 +17,7 @@ namespace Hivemind.Providers
     public class InjuryProvider : IInjuryProvider
     {
         private string _connectionString;
+        private IEnumerable<Injury> _injuries;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InjuryProvider"/> class.
@@ -33,19 +35,12 @@ namespace Hivemind.Providers
         /// <returns>Injury</returns>
         public Injury GetInjuryById(int injuryId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_injuries == null)
             {
-                using (var command = new SqlCommand("Injuries_GetById", connection))
-                {
-                    connection.Open();
-
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@InjuryId", SqlDbType.Int).Value = injuryId;
-
-                    var reader = command.ExecuteReader();
-                    return GetInjuryFromReader(reader);
-                }
+                _injuries = GetAllInjuriesFromDatabase();
             }
+
+            return _injuries.FirstOrDefault(injury => injury.InjuryId == (InjuryEnum)injuryId);
         }
 
         /// <summary>
@@ -54,37 +49,12 @@ namespace Hivemind.Providers
         /// <returns>Injuries</returns>
         public IEnumerable<Injury> GetAllInjuries()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_injuries == null)
             {
-                using (var command = new SqlCommand("Injuries_GetAll", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    connection.Open();
-                    using (var reader = command.ExecuteReader())
-                    {
-                        var injuries = new List<Injury>();
-
-                        while (reader.Read())
-                        {
-                            var injury = new Injury();
-
-                            var value = reader.GetOrdinal("injuryId");
-                            injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
-
-                            value = reader.GetOrdinal("injuryName");
-                            injury.Name = reader.GetString(value);
-
-                            value = reader.GetOrdinal("description");
-                            injury.Description = reader.GetString(value);
-
-                            injuries.Add(injury);
-                        }
-
-                        return injuries;
-                    }
-                }
+                _injuries = GetAllInjuriesFromDatabase();
             }
+
+            return _injuries;
         }
 
         /// <summary>
@@ -158,6 +128,39 @@ namespace Hivemind.Providers
 
                         return injuries;
                     }
+                }
+            }
+        }
+
+        private IEnumerable<Injury> GetAllInjuriesFromDatabase()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("Injuries_GetAll", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    var injuries = new List<Injury>();
+
+                    while (reader.Read())
+                    {
+                        var injury = new Injury();
+
+                        var value = reader.GetOrdinal("injuryId");
+                        injury.InjuryId = (InjuryEnum)reader.GetInt32(value);
+
+                        value = reader.GetOrdinal("injuryName");
+                        injury.Name = reader.GetString(value);
+
+                        value = reader.GetOrdinal("description");
+                        injury.Description = reader.GetString(value);
+
+                        injuries.Add(injury);
+                    }
+
+                    return injuries;
                 }
             }
         }

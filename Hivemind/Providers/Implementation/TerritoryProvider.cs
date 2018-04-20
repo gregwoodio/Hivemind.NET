@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Hivemind.Entities;
 using Hivemind.Enums;
 
@@ -16,6 +17,7 @@ namespace Hivemind.Providers
     public class TerritoryProvider : ITerritoryProvider
     {
         private string _connectionString;
+        private IEnumerable<Territory> _territories;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TerritoryProvider"/> class.
@@ -32,18 +34,12 @@ namespace Hivemind.Providers
         /// <returns>All territories</returns>
         public IEnumerable<Territory> GetAllTerritories()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_territories == null)
             {
-                using (var command = new SqlCommand("Territories_GetAll", connection))
-                {
-                    connection.Open();
-
-                    command.CommandType = CommandType.StoredProcedure;
-                    var reader = command.ExecuteReader();
-
-                    return GetTerritoryListFromReader(reader);
-                }
+                _territories = GetAllTerritoriesFromDatabase();
             }
+
+            return _territories;
         }
 
         /// <summary>
@@ -63,19 +59,12 @@ namespace Hivemind.Providers
         /// <returns>Territory</returns>
         public Territory GetTerritoryById(int territoryId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            if (_territories == null)
             {
-                using (var command = new SqlCommand("Territories_GetById", connection))
-                {
-                    connection.Open();
-
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@TerritoryId", SqlDbType.Int).Value = territoryId;
-                    var reader = command.ExecuteReader();
-
-                    return GetTerritoryFromReader(reader);
-                }
+                _territories = GetAllTerritoriesFromDatabase();
             }
+
+            return _territories.FirstOrDefault(t => t.TerritoryId == territoryId);
         }
 
         /// <summary>
@@ -142,6 +131,22 @@ namespace Hivemind.Providers
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@GangTerritoryId", SqlDbType.NVarChar, 100).Value = gangTerritoryId;
                     command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private IEnumerable<Territory> GetAllTerritoriesFromDatabase()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand("Territories_GetAll", connection))
+                {
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var reader = command.ExecuteReader();
+
+                    return GetTerritoryListFromReader(reader);
                 }
             }
         }
