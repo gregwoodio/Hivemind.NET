@@ -23,12 +23,14 @@ export class LoginClient {
         private _userService: UserService
     ) {
         this._loginSubject = new Subject<LoginResponse>();
-        this._path = this._clientService.getPath();
+        this._clientService.getPath().subscribe(path => {
+            this._path = path;
+        })
     }
 
     public Login(email: string, password: string): Observable<LoginResponse> {
         if (!this._path) {
-            this._path = this._clientService.getPath();
+            this._clientService.getPath();
         }
 
         let body = new HttpParams()

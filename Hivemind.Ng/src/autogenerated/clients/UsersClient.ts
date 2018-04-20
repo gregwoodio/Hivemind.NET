@@ -13,19 +13,22 @@ import { Login } from '../entities/Login';
 
 @Injectable()
 export class UsersClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public GetUser(
     ): Observable<User> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<User>(
@@ -43,8 +46,6 @@ export class UsersClient {
         user: Login,
     ): Observable<User> {
 
-        this.ensurePathExists();
-
         const body = this._formDataHelper.getFormData(user);
 
         return this._http.post<User>(
@@ -59,10 +60,4 @@ export class UsersClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

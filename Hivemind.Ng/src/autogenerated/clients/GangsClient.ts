@@ -14,20 +14,23 @@ import { GangWeapon } from '../entities/GangWeapon';
 
 @Injectable()
 export class GangsClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public GetGang(
         gangId: string,
     ): Observable<Gang> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<Gang>(
@@ -44,8 +47,6 @@ export class GangsClient {
     public AddGang(
         gang: Gang,
     ): Observable<Gang> {
-
-        this.ensurePathExists();
 
         const body = this._formDataHelper.getFormData(gang);
 
@@ -65,8 +66,6 @@ export class GangsClient {
         gangId: string,
     ): Observable<Weapon[]> {
 
-        this.ensurePathExists();
-
 
         return this._http.get<Weapon[]>(
             this._path + '/api/gangs/' + gangId + '/weapons'
@@ -83,8 +82,6 @@ export class GangsClient {
         gangId: string,
         gangWeapon: GangWeapon,
     ): Observable<GangWeapon> {
-
-        this.ensurePathExists();
 
         const body = this._formDataHelper.getFormData(gangWeapon);
 
@@ -104,8 +101,6 @@ export class GangsClient {
         gangId: string,
     ): Observable<Weapon[]> {
 
-        this.ensurePathExists();
-
 
         return this._http.get<Weapon[]>(
             this._path + '/api/gangs/' + gangId + '/weapons/gangers'
@@ -122,8 +117,6 @@ export class GangsClient {
         gang: Gang,
     ): Observable<Gang> {
 
-        this.ensurePathExists();
-
         const body = this._formDataHelper.getFormData(gang);
 
         return this._http.put<Gang>(
@@ -138,10 +131,4 @@ export class GangsClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

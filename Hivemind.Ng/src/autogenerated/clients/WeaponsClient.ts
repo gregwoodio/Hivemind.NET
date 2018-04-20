@@ -12,20 +12,23 @@ import { Weapon } from '../entities/Weapon';
 
 @Injectable()
 export class WeaponsClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public GetWeapon(
         weaponId: number,
     ): Observable<Weapon> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<Weapon>(
@@ -42,8 +45,6 @@ export class WeaponsClient {
     public GetAllWeapons(
     ): Observable<Weapon[]> {
 
-        this.ensurePathExists();
-
 
         return this._http.get<Weapon[]>(
             this._path + '/api/Weapons'
@@ -56,10 +57,4 @@ export class WeaponsClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

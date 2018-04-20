@@ -14,14 +14,19 @@ import { {{import}} } from '../entities/{{import}}';
 
 @Injectable()
 export class {{name}} {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     {{#methods}}
     public {{methodName}}(
@@ -32,8 +37,6 @@ export class {{name}} {
         {{name}}{{required}}: {{type}},
         {{/bodyParams}}
     ): Observable<{{returns}}> {
-
-        this.ensurePathExists();
 
         {{#bodyParams}}
         const body = this._formDataHelper.getFormData({{name}});
@@ -54,10 +57,4 @@ export class {{name}} {
     }
 
     {{/methods}}
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

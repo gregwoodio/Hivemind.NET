@@ -17,20 +17,23 @@ import { GangSkillUpRequest } from '../entities/GangSkillUpRequest';
 
 @Injectable()
 export class GameClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public ProcessPreGame(
         gang: Gang,
     ): Observable<PreGameReport> {
-
-        this.ensurePathExists();
 
         const body = this._formDataHelper.getFormData(gang);
 
@@ -50,8 +53,6 @@ export class GameClient {
         battleReport: BattleReport,
     ): Observable<PostGameReport> {
 
-        this.ensurePathExists();
-
         const body = this._formDataHelper.getFormData(battleReport);
 
         return this._http.post<PostGameReport>(
@@ -70,8 +71,6 @@ export class GameClient {
         skillUpRequest: GangSkillUpRequest,
     ): Observable<GangerSkill[]> {
 
-        this.ensurePathExists();
-
         const body = this._formDataHelper.getFormData(skillUpRequest);
 
         return this._http.post<GangerSkill[]>(
@@ -86,10 +85,4 @@ export class GameClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

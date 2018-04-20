@@ -13,20 +13,23 @@ import { GangerWeapon } from '../entities/GangerWeapon';
 
 @Injectable()
 export class GangersClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public GetGanger(
         gangerId: string,
     ): Observable<Ganger> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<Ganger>(
@@ -43,8 +46,6 @@ export class GangersClient {
     public GetWeapons(
         gangerId: string,
     ): Observable<GangerWeapon[]> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<GangerWeapon[]>(
@@ -63,8 +64,6 @@ export class GangersClient {
         gangWeaponId: string,
     ): Observable<GangerWeapon> {
 
-        this.ensurePathExists();
-
 
         return this._http.post<GangerWeapon>(
             this._path + '/api/gangers/' + gangerId + '/weapons/' + gangWeaponId + ''
@@ -82,8 +81,6 @@ export class GangersClient {
         gangerWeaponId: string,
     ): Observable<string> {
 
-        this.ensurePathExists();
-
 
         return this._http.delete<string>(
             this._path + '/api/gangers/' + gangerId + '/weapons/' + gangerWeaponId + ''
@@ -99,8 +96,6 @@ export class GangersClient {
     public UpdateGanger(
         ganger: Ganger,
     ): Observable<Ganger> {
-
-        this.ensurePathExists();
 
         const body = this._formDataHelper.getFormData(ganger);
 
@@ -120,8 +115,6 @@ export class GangersClient {
         ganger: Ganger,
     ): Observable<Ganger> {
 
-        this.ensurePathExists();
-
         const body = this._formDataHelper.getFormData(ganger);
 
         return this._http.post<Ganger>(
@@ -136,10 +129,4 @@ export class GangersClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

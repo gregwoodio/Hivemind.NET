@@ -13,20 +13,23 @@ import { GangTerritory } from '../entities/GangTerritory';
 
 @Injectable()
 export class TerritoriesClient {
+    private _path: string;
 
     constructor(
         private _http: HttpClient, 
         private _tokenService: TokenService,
         private _formDataHelper: FormDataHelper,
-        private _clientService: ClientService,
-        private _path: string
-    ) {}
+        private _clientService: ClientService
+    ) {
+        this._clientService.dataObs.subscribe(res => {
+            this._path = res;
+        });
+        this._clientService.getPath();
+    }
 
     public GetGangTerritoryById(
         gangId: string,
     ): Observable<Territory[]> {
-
-        this.ensurePathExists();
 
 
         return this._http.get<Territory[]>(
@@ -44,8 +47,6 @@ export class TerritoriesClient {
         gangId: string,
         territory: Territory,
     ): Observable<GangTerritory> {
-
-        this.ensurePathExists();
 
         const body = this._formDataHelper.getFormData(territory);
 
@@ -65,8 +66,6 @@ export class TerritoriesClient {
         gangTerritoryId: string,
     ): Observable<string> {
 
-        this.ensurePathExists();
-
 
         return this._http.delete<string>(
             this._path + '/api/territories/' + gangTerritoryId + ''
@@ -82,8 +81,6 @@ export class TerritoriesClient {
     public GetAllTerritories(
     ): Observable<Territory[]> {
 
-        this.ensurePathExists();
-
 
         return this._http.get<Territory[]>(
             this._path + '/api/Territories'
@@ -96,10 +93,4 @@ export class TerritoriesClient {
         );
     }
 
-
-    private ensurePathExists() {
-        if (!this._path) {
-            this._path = this._clientService.getPath();
-        }
-    }
 }

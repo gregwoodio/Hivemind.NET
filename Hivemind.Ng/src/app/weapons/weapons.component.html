@@ -1,3 +1,10 @@
+<section class="level">
+  <div class="level-item buttons has-addons">
+    <span class="button" [ngClass]='{"is-success": viewGang, "is-selected": viewGang}' (click)='setViewGang()'>Gang</span>
+    <span class="button" [ngClass]='{"is-primary": viewAll, "is-selected": viewAll}' (click)='setViewAll()'>All</span>
+  </div>
+</section>
+
 <table class="table is-striped is-fullwidth">
   <thead>
     <tr>
@@ -23,6 +30,6 @@
     <td>{{weapon?.damage}}</td>
     <td>{{weapon?.saveMod}}</td>
     <td>{{weapon?.ammoRoll}}</td>
-    <td>{{weapon?.specialRules}}</td>    
+    <td><small>{{weapon?.specialRules}}</small></td>
   </tr>
 </table>
