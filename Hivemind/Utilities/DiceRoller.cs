@@ -1,32 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// <copyright file="DiceRoller.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Utilities
 {
-    public static class DiceRoller
+    /// <summary>
+    /// Dice roller implementation.
+    /// </summary>
+    public class DiceRoller : IDiceRoller
     {
         private static int _seed;
 
-        public static int RollDie()
+        /// <summary>
+        /// Roll a standard D6 die.
+        /// </summary>
+        /// <returns>Result</returns>
+        public int RollDie()
         {
             return RollDice(6, 1);
         }
 
-        public static int RollDie(int numberOfSides)
+        /// <summary>
+        /// Roll a die with a specified number of sides.
+        /// </summary>
+        /// <param name="numberOfSides">Number of sides</param>
+        /// <returns>Results</returns>
+        public int RollDie(int numberOfSides)
         {
             return RollDice(numberOfSides, 1);
         }
 
-        public static int RollDice(int numberOfSides, int numberOfDice)
+        /// <summary>
+        /// Roll dice with specified number of sides.
+        /// </summary>
+        /// <param name="numberOfSides">Number of sides</param>
+        /// <param name="numberOfDice">Number of dice</param>
+        /// <returns>Results</returns>
+        public int RollDice(int numberOfSides, int numberOfDice)
         {
             if (numberOfSides < 2)
+            {
                 throw new ArgumentException("Dice must have at least two sides.");
+            }
 
             if (numberOfDice < 1)
+            {
                 throw new ArgumentException("Must roll at least one die.");
+            }
 
             var random = new Random(_seed);
             _seed = random.Next();
@@ -34,15 +57,23 @@ namespace Hivemind.Utilities
             return new int[numberOfDice].Select(die => random.Next(numberOfSides) + 1).Sum();
         }
 
-        public static int RollD66()
+        /// <summary>
+        /// Roll a D66.
+        /// </summary>
+        /// <returns>Result</returns>
+        public int RollD66()
         {
             var random = new Random(_seed);
             _seed = random.Next();
 
-            return (random.Next(6) + 1) * 10 + (random.Next(6) + 1);
+            return ((random.Next(6) + 1) * 10) + (random.Next(6) + 1);
         }
 
-        public static int MultipleInjuriesRoll()
+        /// <summary>
+        /// Do the multiple injuries roll.
+        /// </summary>
+        /// <returns>Result</returns>
+        public int MultipleInjuriesRoll()
         {
             // Rerolling after getting multiple injuries cannot be dead or full recovery, so no 11-16 or 41-55
             // We'll leave out additional Multiple Injuries rolls as well.
@@ -51,10 +82,16 @@ namespace Hivemind.Utilities
             {
                 roll = RollD66();
             }
+
             return roll;
         }
 
-        public static int ParseDiceString(string dice)
+        /// <summary>
+        /// Parse a dice string to a result (D6).
+        /// </summary>
+        /// <param name="dice">Dice string</param>
+        /// <returns>Result</returns>
+        public int ParseDiceString(string dice)
         {
             if (dice.Contains('*'))
             {
@@ -72,6 +109,7 @@ namespace Hivemind.Utilities
                         product *= value;
                     }
                 }
+
                 return product;
             }
             else if (dice.Contains('+'))
@@ -90,6 +128,7 @@ namespace Hivemind.Utilities
                         sum += value;
                     }
                 }
+
                 return sum;
             }
             else
@@ -106,7 +145,7 @@ namespace Hivemind.Utilities
             }
         }
 
-        private static int ParseDieString(string die)
+        private int ParseDieString(string die)
         {
             var parts = die.Split(new[] { 'D' }, StringSplitOptions.RemoveEmptyEntries);
 

@@ -3,6 +3,7 @@ using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
 using Hivemind.Services;
 using Hivemind.Services.Implementation;
+using Hivemind.Utilities;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,10 @@ namespace Hivemind.Tests
             container.RegisterType<ITerritoryProvider, TerritoryProvider>(new InjectionConstructor(connectionString));
             container.RegisterType<IUserProvider, UserProvider>(new InjectionConstructor(connectionString));
             container.RegisterType<IWeaponProvider, WeaponProvider>(new InjectionConstructor(connectionString));
-            
+
+            // utilities
+            container.RegisterType<IDiceRoller, DiceRoller>();
+
             return container;
         }
     }

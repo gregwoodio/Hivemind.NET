@@ -86,6 +86,7 @@
     <Compile Include="Entities\SkillTest.cs" />
     <Compile Include="Entities\TerritoryTest.cs" />
     <Compile Include="Exceptions\HivemindExceptionTests.cs" />
+    <Compile Include="Managers\GangerManagerTest.cs" />
     <Compile Include="Managers\GangManagerTest.cs" />
     <Compile Include="Managers\SkillManagerTest.cs" />
     <Compile Include="Managers\TerritoryManagerTest.cs" />

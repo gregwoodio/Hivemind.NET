@@ -17,11 +17,13 @@ namespace Hivemind.Services.Implementation
     {
         private IGangerManager _gangerManager;
         private IInjuryManager _injuryManager;
+        private IDiceRoller _diceRoller;
 
-        public InjuryService(IGangerManager gangerManager, IInjuryManager injuryManager)
+        public InjuryService(IGangerManager gangerManager, IInjuryManager injuryManager, IDiceRoller diceRoller)
         {
             _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(_gangerManager));
             _injuryManager = injuryManager ?? throw new ArgumentNullException(nameof(injuryManager));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         public InjuryReport ProcessInjuries(BattleReport battleReport)
@@ -30,7 +32,7 @@ namespace Hivemind.Services.Implementation
             var injuries = new List<GangerInjuryReport>();
             foreach (var stats in battleReport.GangBattleStats)
             {
-                if (stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
+                if (stats.OutOfAction || (stats.Down && _diceRoller.RollDie() <= 3))
                 {
                     injuries.Add(new GangerInjuryReport()
                     {
@@ -84,7 +86,7 @@ namespace Hivemind.Services.Implementation
         {
             if (!roll.HasValue)
             {
-                roll = DiceRoller.RollD66();
+                roll = _diceRoller.RollD66();
             }
 
             switch (roll.Value)
@@ -99,10 +101,10 @@ namespace Hivemind.Services.Implementation
                 case 21:
                     var injuries = new List<Injury>();
                     injuries.Add(_injuryManager.GetInjury((int)InjuryEnum.MultipleInjuries));
-                    var extraInjuries = DiceRoller.RollDie();
+                    var extraInjuries = _diceRoller.RollDie();
                     for (int i = 0; i < extraInjuries; i++)
                     {
-                        injuries.Add(DetermineInjury(DiceRoller.MultipleInjuriesRoll()).FirstOrDefault());
+                        injuries.Add(DetermineInjury(_diceRoller.MultipleInjuriesRoll()).FirstOrDefault());
                     }
                     return injuries;
                 case 22:

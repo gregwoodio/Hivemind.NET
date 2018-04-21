@@ -17,14 +17,17 @@ namespace Hivemind.Managers.Implementation
     public class SkillManager : ISkillManager
     {
         private ISkillProvider _skillProvider;
+        private IDiceRoller _diceRoller;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkillManager"/> class.
         /// </summary>
         /// <param name="skillProvider">Skill provider</param>
-        public SkillManager(ISkillProvider skillProvider)
+        /// <param name="diceRoller">Dice roller</param>
+        public SkillManager(ISkillProvider skillProvider, IDiceRoller diceRoller)
         {
             _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         /// <summary>
@@ -46,7 +49,7 @@ namespace Hivemind.Managers.Implementation
         {
             var skills = _skillProvider.GetSkillsByType(type).ToArray();
 
-            return skills[DiceRoller.RollDie() - 1];
+            return skills[_diceRoller.RollDie() - 1];
         }
     }
 }

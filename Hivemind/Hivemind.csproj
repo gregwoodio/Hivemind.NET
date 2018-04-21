@@ -129,6 +129,7 @@
     <Compile Include="Services\IGameService.cs" />
     <Compile Include="Services\Implementation\GameService.cs" />
     <Compile Include="Utilities\DiceRoller.cs" />
+    <Compile Include="Utilities\IDiceRoller.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource.resx">

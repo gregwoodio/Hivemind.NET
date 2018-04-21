@@ -20,6 +20,7 @@ namespace Hivemind.Managers.Implementation
         private IInjuryManager _injuryManager;
         private IGangerManager _gangerManager;
         private ITerritoryProvider _territoryProvider;
+        private IDiceRoller _diceRoller;
         private Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>> _territoryEffects;
 
         /// <summary>
@@ -28,11 +29,12 @@ namespace Hivemind.Managers.Implementation
         /// <param name="injuryManager">Injury manager</param>
         /// <param name="gangerManager">Ganger manager</param>
         /// <param name="territoryProvider">Territory provider</param>
-        public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, ITerritoryProvider territoryProvider)
+        public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, ITerritoryProvider territoryProvider, IDiceRoller diceRoller)
         {
             _injuryManager = injuryManager ?? throw new ArgumentNullException(nameof(injuryManager));
             _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(gangerManager));
             _territoryProvider = territoryProvider ?? throw new ArgumentNullException(nameof(territoryProvider));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
 
             _territoryEffects = new Dictionary<TerritoryEnum, Func<TerritoryWorkStatus, TerritoryIncomeReport>>
             {
@@ -158,7 +160,7 @@ namespace Hivemind.Managers.Implementation
 
         private TerritoryIncomeReport Settlement(TerritoryWorkStatus status)
         {
-            if (DiceRoller.RollDie() == 6)
+            if (_diceRoller.RollDie() == 6)
             {
                 // gang gets a free Juve.
                 var juve = _gangerManager.CreateJuve("New Juve");
@@ -215,7 +217,7 @@ namespace Hivemind.Managers.Implementation
         {
             if (status.Deaths > 0)
             {
-                int extraIncome = DiceRoller.RollDice(6, status.Deaths) * 5;
+                int extraIncome = _diceRoller.RollDice(6, status.Deaths) * 5;
                 return new TerritoryIncomeReport()
                 {
                     TerritoryName = status.TerritoryName,
@@ -234,8 +236,8 @@ namespace Hivemind.Managers.Implementation
         private TerritoryIncomeReport GamblingDen(TerritoryWorkStatus status)
         {
             // need to know the individual dice roll, so disregard what's in the status
-            int roll1 = DiceRoller.RollDie();
-            int roll2 = DiceRoller.RollDie();
+            int roll1 = _diceRoller.RollDie();
+            int roll2 = _diceRoller.RollDie();
             int income = (roll1 + roll2) * 10;
 
             if (roll1 == roll2)

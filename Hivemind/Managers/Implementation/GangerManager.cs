@@ -19,16 +19,19 @@ namespace Hivemind.Managers.Implementation
     {
         private IGangerProvider _gangerProvider;
         private ISkillManager _skillManager;
+        private IDiceRoller _diceRoller;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GangerManager"/> class.
         /// </summary>
         /// <param name="gangerProvider">Ganger provider</param>
         /// <param name="skillManager">Skill manager</param>
-        public GangerManager(IGangerProvider gangerProvider, ISkillManager skillManager)
+        /// <param name="diceRoller">Dice roller</param>
+        public GangerManager(IGangerProvider gangerProvider, ISkillManager skillManager, IDiceRoller diceRoller)
         {
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
             _skillManager = skillManager ?? throw new ArgumentNullException(nameof(skillManager));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         /// <summary>
@@ -122,7 +125,7 @@ namespace Hivemind.Managers.Implementation
                 Attack = 1,
                 Leadership = 7,
                 Cost = 50,
-                Experience = 20 + DiceRoller.RollDie(),
+                Experience = 20 + _diceRoller.RollDie(),
                 Title = GangerTitle.NewGanger,
                 Active = true,
             };
@@ -149,7 +152,7 @@ namespace Hivemind.Managers.Implementation
                 Attack = 1,
                 Leadership = 7,
                 Cost = 60,
-                Experience = 60 + DiceRoller.RollDie(),
+                Experience = 60 + _diceRoller.RollDie(),
                 Title = GangerTitle.GangChampion,
                 Active = true,
             };
@@ -176,7 +179,7 @@ namespace Hivemind.Managers.Implementation
                 Attack = 1,
                 Leadership = 8,
                 Cost = 120,
-                Experience = 60 + DiceRoller.RollDie(),
+                Experience = 60 + _diceRoller.RollDie(),
                 Title = GangerTitle.GangChampion,
                 Active = true,
             };
@@ -189,41 +192,36 @@ namespace Hivemind.Managers.Implementation
         /// <param name="stat">Statistic</param>
         /// <param name="interval">Interval</param>
         /// <returns>Updated ganger</returns>
-        public Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval)
+        public Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int interval = 1)
         {
-            if (!interval.HasValue)
-            {
-                interval = 1;
-            }
-
             switch (stat)
             {
                 case GangerStatistics.Move:
-                    ganger.Move += interval.Value;
+                    ganger.Move += interval;
                     break;
                 case GangerStatistics.WeaponSkill:
-                    ganger.WeaponSkill += interval.Value;
+                    ganger.WeaponSkill += interval;
                     break;
                 case GangerStatistics.BallisticSkill:
-                    ganger.BallisticSkill += interval.Value;
+                    ganger.BallisticSkill += interval;
                     break;
                 case GangerStatistics.Strength:
-                    ganger.Strength += interval.Value;
+                    ganger.Strength += interval;
                     break;
                 case GangerStatistics.Toughness:
-                    ganger.Toughness += interval.Value;
+                    ganger.Toughness += interval;
                     break;
                 case GangerStatistics.Attack:
-                    ganger.Attack += interval.Value;
+                    ganger.Attack += interval;
                     break;
                 case GangerStatistics.Wounds:
-                    ganger.Wounds += interval.Value;
+                    ganger.Wounds += interval;
                     break;
                 case GangerStatistics.Initiative:
-                    ganger.Initiative += interval.Value;
+                    ganger.Initiative += interval;
                     break;
                 case GangerStatistics.Leadership:
-                    ganger.Leadership += interval.Value;
+                    ganger.Leadership += interval;
                     break;
                 default:
                     break;

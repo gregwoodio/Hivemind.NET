@@ -8,6 +8,7 @@ using Hivemind.Services.Implementation;
 using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
 using System.Configuration;
+using Hivemind.Utilities;
 
 namespace WebApi
 {
@@ -95,6 +96,9 @@ namespace WebApi
             container.RegisterType<ITerritoryProvider, TerritoryProvider>(new InjectionConstructor(_connectionString));
             container.RegisterType<IUserProvider, UserProvider>(new InjectionConstructor(_connectionString));
             container.RegisterType<IWeaponProvider, WeaponProvider>(new InjectionConstructor(_connectionString));
+
+            // utilities
+            container.RegisterType<IDiceRoller, DiceRoller>();
 
             return container;
         }

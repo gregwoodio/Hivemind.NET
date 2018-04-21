@@ -3,7 +3,9 @@ using Hivemind.Enums;
 using Hivemind.Managers;
 using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
+using Hivemind.Utilities;
 using Microsoft.Practices.Unity;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,8 @@ namespace Hivemind.Tests.Managers
             _territoryManager = new TerritoryManager(
                 _container.Resolve<IInjuryManager>(),
                 _container.Resolve<IGangerManager>(),
-                new TerritoryProviderMock());
+                new TerritoryProviderMock(),
+                _container.Resolve<IDiceRoller>());
         }
 
         [TestCase]

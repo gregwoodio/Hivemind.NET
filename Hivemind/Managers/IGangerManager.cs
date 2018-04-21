@@ -69,7 +69,7 @@ namespace Hivemind.Managers
         /// <param name="stat">Statistic</param>
         /// <param name="interval">Interval</param>
         /// <returns>Updated ganger</returns>
-        Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int? interval);
+        Ganger IncreaseStat(Ganger ganger, GangerStatistics stat, int interval = 1);
 
         /// <summary>
         /// Add ganger

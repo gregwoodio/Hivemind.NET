@@ -18,14 +18,16 @@ namespace Hivemind.Managers.Implementation
     public class InjuryManager : IInjuryManager
     {
         private IInjuryProvider _injuryProvider;
+        private IDiceRoller _diceRoller;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InjuryManager"/> class.
         /// </summary>
         /// <param name="injuryProvider">Injury provider</param>
-        public InjuryManager(IInjuryProvider injuryProvider)
+        public InjuryManager(IInjuryProvider injuryProvider, IDiceRoller diceRoller)
         {
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(injuryProvider));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         /// <summary>
@@ -183,10 +185,10 @@ namespace Hivemind.Managers.Implementation
         private Ganger HasHandInjury(Ganger ganger)
         {
             ganger.WeaponSkill -= 1;
-            if (DiceRoller.RollDie() >= 3)
+            if (_diceRoller.RollDie() >= 3)
             {
                 // right hand
-                ganger.RightHandFingers -= DiceRoller.RollDice(3, 1);
+                ganger.RightHandFingers -= _diceRoller.RollDice(3, 1);
                 if (ganger.RightHandFingers <= 0)
                 {
                     if (ganger.IsOneHanded)
@@ -202,7 +204,7 @@ namespace Hivemind.Managers.Implementation
             }
             else
             {
-                ganger.LeftHandFingers -= DiceRoller.RollDice(3, 1);
+                ganger.LeftHandFingers -= _diceRoller.RollDice(3, 1);
                 if (ganger.LeftHandFingers <= 0)
                 {
                     if (ganger.IsOneHanded)
@@ -257,7 +259,7 @@ namespace Hivemind.Managers.Implementation
         private Ganger HasSurvivedAgainstTheOdds(Ganger ganger)
         {
             // TODO: Revisit this once experience is done
-            ganger.Experience += DiceRoller.RollDie();
+            ganger.Experience += _diceRoller.RollDie();
             return ganger;
         }
     }

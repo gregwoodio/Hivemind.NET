@@ -23,6 +23,7 @@ namespace Hivemind.Managers.Implementation
         private readonly IWeaponProvider _weaponProvider;
         private readonly IInjuryProvider _injuryProvider;
         private readonly ISkillProvider _skillProvider;
+        private readonly IDiceRoller _diceRoller;
 
         private const int StartingGangTerritories = 5;
 
@@ -35,13 +36,15 @@ namespace Hivemind.Managers.Implementation
         /// <param name="weaponProvider">Weapon provider</param>
         /// <param name="injuryProvider">Injury provider</param>
         /// <param name="skillProvider">Skill provider</param>
+        /// <param name="diceRoller">Dice roller</param>
         public GangManager(
             IGangProvider gangProvider,
             IGangerProvider gangerProvider,
             ITerritoryProvider territoryProvider,
             IWeaponProvider weaponProvider,
             IInjuryProvider injuryProvider,
-            ISkillProvider skillProvider)
+            ISkillProvider skillProvider,
+            IDiceRoller diceRoller)
         {
             _gangProvider = gangProvider ?? throw new ArgumentNullException(nameof(gangProvider));
             _gangerProvider = gangerProvider ?? throw new ArgumentNullException(nameof(gangerProvider));
@@ -49,6 +52,7 @@ namespace Hivemind.Managers.Implementation
             _weaponProvider = weaponProvider ?? throw new ArgumentNullException(nameof(weaponProvider));
             _injuryProvider = injuryProvider ?? throw new ArgumentNullException(nameof(InjuryProvider));
             _skillProvider = skillProvider ?? throw new ArgumentNullException(nameof(skillProvider));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         /// <summary>
@@ -175,7 +179,7 @@ namespace Hivemind.Managers.Implementation
 
         private Territory GetRandomTerritory()
         {
-            var roll = DiceRoller.RollD66();
+            var roll = _diceRoller.RollD66();
 
             switch (roll)
             {

@@ -14,13 +14,15 @@ namespace Hivemind.Services.Implementation
     {
         private IGangManager _gangManager;
         private ITerritoryManager _territoryManager;
+        private IDiceRoller _diceRoller;
 
         private const int MaximumTerritoriesWorked = 10;
 
-        public IncomeService(IGangManager gangManager, ITerritoryManager territoryManager)
+        public IncomeService(IGangManager gangManager, ITerritoryManager territoryManager, IDiceRoller diceRoller)
         {
             _gangManager = gangManager ?? throw new ArgumentNullException(nameof(gangManager));
             _territoryManager = territoryManager ?? throw new ArgumentNullException(nameof(territoryManager));
+            _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
         public IncomeReport ProcessIncome(BattleReport battleReport, int deaths)
@@ -42,7 +44,7 @@ namespace Hivemind.Services.Implementation
                     GangId = battleReport.GangId,
                     Objectives = battleReport.GangBattleStats.Select(stats => stats.Objectives).Sum(),
                     PreviousBattleType = battleReport.GameType,
-                    Roll = DiceRoller.ParseDiceString(territories[i].Income)
+                    Roll = _diceRoller.ParseDiceString(territories[i].Income),
                 };
                 
                 gross.Add(territories[i].WorkTerritory(status));

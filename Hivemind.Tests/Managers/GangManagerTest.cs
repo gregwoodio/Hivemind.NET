@@ -1,7 +1,9 @@
 ﻿using Hivemind.Entities;
 using Hivemind.Enums;
+using Hivemind.Exceptions;
 using Hivemind.Managers.Implementation;
 using Hivemind.Providers;
+using Hivemind.Utilities;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -22,6 +24,7 @@ namespace Hivemind.Tests.Managers
         private Mock<ITerritoryProvider> _mockTerritoryProvider;
         private Mock<IWeaponProvider> _mockWeaponProvider;
         private Mock<IInjuryProvider> _mockInjuryProvider;
+        private Mock<IDiceRoller> _mockDiceRoller;
 
         [SetUp]
         public void Setup()
@@ -32,18 +35,22 @@ namespace Hivemind.Tests.Managers
             _mockTerritoryProvider = new Mock<ITerritoryProvider>();
             _mockWeaponProvider = new Mock<IWeaponProvider>();
             _mockInjuryProvider = new Mock<IInjuryProvider>();
+            _mockDiceRoller = new Mock<IDiceRoller>();
 
             _gangManager = new GangManager(_mockGangProvider.Object,
                 _mockGangerProvider.Object,
                 _mockTerritoryProvider.Object,
                 _mockWeaponProvider.Object,
                 _mockInjuryProvider.Object,
-                _mockSkillProvider.Object);
+                _mockSkillProvider.Object,
+                _mockDiceRoller.Object);
         }
 
         [Test]
         public void AddGangTest()
         {
+            _mockDiceRoller.Setup(d => d.RollD66()).Returns(11);
+
             var gang = new Gang()
             {
                 Name = "New Gang",
@@ -290,6 +297,73 @@ namespace Hivemind.Tests.Managers
                 It.Is<string>(g => g == gangId), 
                 It.Is<string>(u => u == userId)
             ), Times.Once);
+        }
+
+        [TestCase(11, TerritoryEnum.Chempit)]
+        [TestCase(12, TerritoryEnum.OldRuins)]
+        [TestCase(13, TerritoryEnum.OldRuins)]
+        [TestCase(14, TerritoryEnum.OldRuins)]
+        [TestCase(15, TerritoryEnum.OldRuins)]
+        [TestCase(16, TerritoryEnum.OldRuins)]
+        [TestCase(21, TerritoryEnum.Slag)]
+        [TestCase(22, TerritoryEnum.Slag)]
+        [TestCase(23, TerritoryEnum.Slag)]
+        [TestCase(24, TerritoryEnum.Slag)]
+        [TestCase(25, TerritoryEnum.Slag)]
+        [TestCase(26, TerritoryEnum.MineralOutcrop)]
+        [TestCase(31, TerritoryEnum.Settlement)]
+        [TestCase(32, TerritoryEnum.Settlement)]
+        [TestCase(33, TerritoryEnum.Settlement)]
+        [TestCase(34, TerritoryEnum.Settlement)]
+        [TestCase(35, TerritoryEnum.Settlement)]
+        [TestCase(36, TerritoryEnum.MineWorkings)]
+        [TestCase(41, TerritoryEnum.Tunnels)]
+        [TestCase(42, TerritoryEnum.Tunnels)]
+        [TestCase(43, TerritoryEnum.Vents)]
+        [TestCase(44, TerritoryEnum.Vents)]
+        [TestCase(45, TerritoryEnum.Holestead)]
+        [TestCase(46, TerritoryEnum.Holestead)]
+        [TestCase(51, TerritoryEnum.Waterstill)]
+        [TestCase(52, TerritoryEnum.Waterstill)]
+        [TestCase(53, TerritoryEnum.DrinkingHole)]
+        [TestCase(54, TerritoryEnum.DrinkingHole)]
+        [TestCase(55, TerritoryEnum.GuilderContract)]
+        [TestCase(56, TerritoryEnum.GuilderContract)]
+        [TestCase(61, TerritoryEnum.FriendlyDoc)]
+        [TestCase(62, TerritoryEnum.Workshop)]
+        [TestCase(63, TerritoryEnum.GamblingDen)]
+        [TestCase(64, TerritoryEnum.SporeCave)]
+        [TestCase(65, TerritoryEnum.Archeotech)]
+        [TestCase(66, TerritoryEnum.GreenHivers)]
+        public void GetRandomTerritoryTest(int roll, TerritoryEnum territoryId)
+        {
+            _mockDiceRoller.Setup(m => m.RollD66()).Returns(roll);
+            _mockGangProvider.Setup(m => m.AddGang(It.IsAny<Gang>()))
+                .Returns((Gang g) => g);
+
+            var gang = new Gang()
+            {
+                Gangers = new Ganger[0]
+            };
+
+            var addedGang = _gangManager.AddGang(gang);
+
+            _mockTerritoryProvider.Verify(m => m.GetTerritoryById((int)territoryId), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public void GetRandomTerritoryFailureTest()
+        {
+            _mockDiceRoller.Setup(m => m.RollD66()).Returns(70);
+            _mockGangProvider.Setup(m => m.AddGang(It.IsAny<Gang>()))
+                .Returns((Gang g) => g);
+
+            var gang = new Gang()
+            {
+                Gangers = new Ganger[0]
+            };
+
+            Assert.Throws<HivemindException>(() => _gangManager.AddGang(gang));
         }
     }
 }
