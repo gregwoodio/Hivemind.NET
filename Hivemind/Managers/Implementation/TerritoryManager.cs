@@ -29,6 +29,7 @@ namespace Hivemind.Managers.Implementation
         /// <param name="injuryManager">Injury manager</param>
         /// <param name="gangerManager">Ganger manager</param>
         /// <param name="territoryProvider">Territory provider</param>
+        /// <param name="diceRoller">Dice roller</param>
         public TerritoryManager(IInjuryManager injuryManager, IGangerManager gangerManager, ITerritoryProvider territoryProvider, IDiceRoller diceRoller)
         {
             _injuryManager = injuryManager ?? throw new ArgumentNullException(nameof(injuryManager));
@@ -154,7 +155,7 @@ namespace Hivemind.Managers.Implementation
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = 0,
+                Income = status.Roll,
             };
         }
 
@@ -171,14 +172,14 @@ namespace Hivemind.Managers.Implementation
                 {
                     TerritoryName = status.TerritoryName,
                     Description = "After working in the settlement, your gang has recruited a new Juve for free.",
-                    Income = status.Roll,
+                    Income = 30,
                 };
             }
 
             return new TerritoryIncomeReport()
             {
                 TerritoryName = status.TerritoryName,
-                Income = status.Roll,
+                Income = 30,
             };
         }
 
@@ -217,7 +218,7 @@ namespace Hivemind.Managers.Implementation
         {
             if (status.Deaths > 0)
             {
-                int extraIncome = _diceRoller.RollDice(6, status.Deaths) * 5;
+                int extraIncome = _diceRoller.RollDie() * 5 * status.Deaths;
                 return new TerritoryIncomeReport()
                 {
                     TerritoryName = status.TerritoryName,

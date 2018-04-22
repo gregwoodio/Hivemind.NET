@@ -88,6 +88,7 @@
     <Compile Include="Exceptions\HivemindExceptionTests.cs" />
     <Compile Include="Managers\GangerManagerTest.cs" />
     <Compile Include="Managers\GangManagerTest.cs" />
+    <Compile Include="Managers\InjuryManagerTest.cs" />
     <Compile Include="Managers\SkillManagerTest.cs" />
     <Compile Include="Managers\TerritoryManagerTest.cs" />
     <Compile Include="Managers\UserExtensionsTest.cs" />

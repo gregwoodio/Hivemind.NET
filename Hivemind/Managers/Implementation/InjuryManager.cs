@@ -108,6 +108,8 @@ namespace Hivemind.Managers.Implementation
                     return HasHorribleScars;
                 case InjuryEnum.ImpressiveScars:
                     return HasImpressiveScars;
+                case InjuryEnum.SporeSickness:
+                    return SporeSickness;
                 case InjuryEnum.SurvivesAgainstTheOdds:
                     return HasSurvivedAgainstTheOdds;
             }
@@ -260,6 +262,12 @@ namespace Hivemind.Managers.Implementation
         {
             // TODO: Revisit this once experience is done
             ganger.Experience += _diceRoller.RollDie();
+            return ganger;
+        }
+
+        private Ganger SporeSickness(Ganger ganger)
+        {
+            ganger.HasSporeSickness = true;
             return ganger;
         }
     }

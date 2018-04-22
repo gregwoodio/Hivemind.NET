@@ -1,4 +1,5 @@
-﻿using Hivemind.Entities;
+﻿using Hivemind.Contracts;
+using Hivemind.Entities;
 using Hivemind.Enums;
 using Hivemind.Managers;
 using Hivemind.Managers.Implementation;
@@ -20,19 +21,23 @@ namespace Hivemind.Tests.Managers
     {
         private TerritoryManager _territoryManager;
         private UnityContainer _container;
+        private Mock<IGangerManager> _gangerManagerMock;
+        private Mock<IDiceRoller> _diceRollerMock;
 
         public TerritoryManagerTest()
         {
             _container = Container.GetContainer();
+            _gangerManagerMock = new Mock<IGangerManager>();
+            _diceRollerMock = new Mock<IDiceRoller>();
 
             _territoryManager = new TerritoryManager(
                 _container.Resolve<IInjuryManager>(),
-                _container.Resolve<IGangerManager>(),
+                _gangerManagerMock.Object,
                 new TerritoryProviderMock(),
-                _container.Resolve<IDiceRoller>());
+                _diceRollerMock.Object);
         }
 
-        [TestCase]
+        [Test]
         public void GetTerritoryTest()
         {
             var id = 1;
@@ -40,7 +45,7 @@ namespace Hivemind.Tests.Managers
             Assert.AreEqual(id, territory.TerritoryId);
         }
 
-        [TestCase]
+        [Test]
         public void GetAllTerritoriesTest()
         {
             var territories = _territoryManager.GetAllTerritories();
@@ -50,7 +55,7 @@ namespace Hivemind.Tests.Managers
             Assert.IsTrue(territories.Any(t => t.TerritoryId == 3));
         }
 
-        [TestCase]
+        [Test]
         public void GangTerritoryTest()
         {
             var gangId = "1";
@@ -70,6 +75,206 @@ namespace Hivemind.Tests.Managers
 
             _territoryManager.RemoveGangTerritory(addedTerritory.GangTerritoryId);
             Assert.IsTrue(_territoryManager.GetTerritoriesByGangId(gangId).Count() == 0);
+        }
+
+        [Test]
+        public void NoTerritoryEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.OldRuins);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Old Ruins",
+                Roll = 6
+            });
+
+            Assert.AreEqual("Old Ruins", report.TerritoryName);
+            Assert.AreEqual(6, report.Income);
+        }
+
+        [Test]
+        public void ChemPitEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.Chempit);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Chempit",
+                Roll = 6
+            });
+
+            Assert.AreEqual("Chempit", report.TerritoryName);
+            Assert.AreEqual(6, report.Income);
+
+            var ganger = new Ganger();
+            report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Chempit",
+                Roll = 12,
+                Ganger = ganger
+            });
+
+            Assert.AreEqual("Chempit", report.TerritoryName);
+            Assert.AreEqual(0, report.Income);
+            Assert.IsTrue(ganger.HasHorribleScars);
+            Assert.NotNull(report.Description);
+        }
+
+        [Test]
+        public void SettlementEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.Settlement);
+            _gangerManagerMock.Setup(m => m.CreateJuve(It.IsAny<string>())).Returns(new Ganger());
+            _diceRollerMock.Setup(m => m.RollDie()).Returns(1);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Settlement",
+                Roll = 6
+            });
+
+            Assert.AreEqual("Settlement", report.TerritoryName);
+            Assert.AreEqual(30, report.Income);
+
+            _diceRollerMock.Setup(m => m.RollDie()).Returns(6);
+            report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Settlement",
+                Roll = 6
+            });
+
+            Assert.AreEqual("Settlement", report.TerritoryName);
+            Assert.NotNull(report.Description);
+            Assert.AreEqual(30, report.Income);
+            _gangerManagerMock.Verify(m => m.AddGanger(It.IsAny<Ganger>()), Times.Once);
+        }
+
+        [Test]
+        public void MineWorkingsEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.MineWorkings);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Mine workings",
+                Roll = 60,
+            });
+
+            Assert.AreEqual("Mine workings", report.TerritoryName);
+            Assert.AreEqual(60, report.Income);
+        }
+
+        [Test]
+        public void GamblingDenEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.GamblingDen);
+
+            _diceRollerMock.Setup(m => m.RollDie()).Returns(3);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Gambling Den",
+            });
+
+            Assert.AreEqual("Gambling Den", report.TerritoryName);
+            Assert.AreEqual(-60, report.Income);
+            Assert.NotNull(report.Description);
+
+            _diceRollerMock.SetupSequence(m => m.RollDie())
+                .Returns(4)
+                .Returns(2);
+
+            report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Gambling Den",
+            });
+
+            Assert.AreEqual("Gambling Den", report.TerritoryName);
+            Assert.AreEqual(60, report.Income);
+        }
+
+        [Test]
+        public void SporeCaveEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.SporeCave);
+
+            var ganger = new Ganger();
+            var report = effect(new TerritoryWorkStatus()
+            {
+                Roll = 20,
+                Ganger = ganger,
+                TerritoryName = "Spore Cave"
+            });
+
+            Assert.AreEqual(20, report.Income);
+            Assert.AreEqual("Spore Cave", report.TerritoryName);
+            Assert.NotNull(report.Description);
+            Assert.IsTrue(ganger.HasSporeSickness);
+
+            report = effect(new TerritoryWorkStatus()
+            {
+                Roll = 30,
+                TerritoryName = "Spore Cave"
+            });
+
+            Assert.AreEqual(30, report.Income);
+            Assert.AreEqual("Spore Cave", report.TerritoryName);
+        }
+
+        [Test]
+        public void GuilderContractEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.GuilderContract);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Guilder Contract",
+                PreviousBattleType = GameType.GangFight,
+                Objectives = 0,
+                Roll = 60,
+            });
+
+            Assert.AreEqual("Guilder Contract", report.TerritoryName);
+            Assert.AreEqual(60, report.Income);
+
+            report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Guilder Contract",
+                PreviousBattleType = GameType.Scavengers,
+                Objectives = 2,
+                Roll = 60,
+            });
+
+            Assert.AreEqual("Guilder Contract", report.TerritoryName);
+            Assert.AreEqual(70, report.Income);
+            Assert.NotNull(report.Description);
+        }
+
+        [Test]
+        public void FriendlyDocEffectTest()
+        {
+            var effect = _territoryManager.GetTerritoryEffect((int)TerritoryEnum.FriendlyDoc);
+            _diceRollerMock.Setup(m => m.RollDie()).Returns(2);
+
+            var report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Friendly Doc",
+                Roll = 60,
+                Deaths = 1
+            });
+
+            Assert.AreEqual("Friendly Doc", report.TerritoryName);
+            Assert.AreEqual(70, report.Income);
+            Assert.NotNull(report.Description);
+
+            report = effect(new TerritoryWorkStatus()
+            {
+                TerritoryName = "Friendly Doc",
+                Roll = 60,
+            });
+
+            Assert.AreEqual("Friendly Doc", report.TerritoryName);
+            Assert.AreEqual(60, report.Income);
         }
     }
 
