@@ -94,6 +94,8 @@
     <Compile Include="Managers\Implementation\InjuryManager.cs" />
     <Compile Include="Managers\Implementation\UserManager.cs" />
     <Compile Include="Managers\ISkillManager.cs" />
+    <Compile Include="Services\Implementation\StoreService.cs" />
+    <Compile Include="Services\IStoreService.cs" />
     <Compile Include="Managers\ITerritoryManager.cs" />
     <Compile Include="Managers\IUserManager.cs" />
     <Compile Include="Managers\IWeaponManager.cs" />

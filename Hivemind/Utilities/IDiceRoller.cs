@@ -37,6 +37,14 @@ namespace Hivemind.Utilities
         int RollD66();
 
         /// <summary>
+        /// Roll a D66, specifying the seed. Used for rare item rolls to prevent refreshing the 
+        /// page to find new, better rares.
+        /// </summary>
+        /// <param name="seed">Seed for random</param>
+        /// <returns>Result</returns>
+        int RollD66(int seed);
+
+        /// <summary>
         /// Do the multiple injuries roll.
         /// </summary>
         /// <returns>Result</returns>
