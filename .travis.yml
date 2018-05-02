@@ -1,0 +1,10 @@
+language: csharp
+solution: Hivemind.sln
+install:
+  - nuget restore Hivemind.sln
+  - nuget install NUnit.ConsoleRunner -Version 3.8.0 -OutputDirectory testrunner
+  - mkdir ./testresults
+script:
+  - msbuild /p:Configuration=Release ./Hivemind/Hivemind.csproj
+  - msbuild /p:Configuration=Release ./Hivemind.Tests/Hivemind.Tests.csproj
+  - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./Hivemind.Tests/bin/Release/Hivemind.Tests.dll --result=./testresults/nunit_results.xml
