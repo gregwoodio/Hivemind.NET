@@ -20,18 +20,30 @@ namespace Hivemind.Tests.Managers
     public class TerritoryManagerTest
     {
         private TerritoryManager _territoryManager;
-        private UnityContainer _container;
+        private Mock<IInjuryProvider> _injuryProviderMock;
+        private IInjuryManager _injuryManager;
         private Mock<IGangerManager> _gangerManagerMock;
         private Mock<IDiceRoller> _diceRollerMock;
 
-        public TerritoryManagerTest()
+        [SetUp]
+        public void Setup()
         {
-            _container = Container.GetContainer();
-            _gangerManagerMock = new Mock<IGangerManager>();
             _diceRollerMock = new Mock<IDiceRoller>();
+            _injuryProviderMock = new Mock<IInjuryProvider>();
+            _injuryManager = new InjuryManager(_injuryProviderMock.Object, _diceRollerMock.Object);
+
+            _injuryProviderMock.Setup(m => m.GetInjuryById(It.IsAny<int>()))
+                .Returns((int id) => new Injury()
+                {
+                    Name = "Injury Name",
+                    Description = "Injury Description",
+                    InjuryId = (InjuryEnum)id,
+                });
+
+            _gangerManagerMock = new Mock<IGangerManager>();
 
             _territoryManager = new TerritoryManager(
-                _container.Resolve<IInjuryManager>(),
+                _injuryManager,
                 _gangerManagerMock.Object,
                 new TerritoryProviderMock(),
                 _diceRollerMock.Object);
