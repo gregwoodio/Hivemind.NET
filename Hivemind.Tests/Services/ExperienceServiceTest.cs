@@ -20,17 +20,20 @@ namespace Hivemind.Tests.Services
     public class ExperienceServiceTest
     {
         private IExperienceService _experienceService;
-        private UnityContainer _container;
-
-        public ExperienceServiceTest()
-        {
-            _container = Container.GetContainer();
-        }
+        private Mock<IGangerManager> _mockGangerManager;
+        private Mock<IGangManager> _mockGangManager;
+        private Mock<IDiceRoller> _mockDiceRoller;
 
         [SetUp]
         public void SetUp()
         {
-            _experienceService = _container.Resolve<IExperienceService>();
+            _mockGangerManager = new Mock<IGangerManager>();
+            _mockGangManager = new Mock<IGangManager>();
+            _mockDiceRoller = new Mock<IDiceRoller>();
+            _experienceService = new ExperienceService(
+                _mockGangerManager.Object,
+                _mockGangManager.Object,
+                _mockDiceRoller.Object);
         }
         
         [TestCase(0, 16, 3)]
@@ -132,8 +135,7 @@ namespace Hivemind.Tests.Services
         public void TestGetSurvivalBonus()
         {
             var result = _experienceService.GetSurvivalBonus();
-            Assert.GreaterOrEqual(result, 1);
-            Assert.LessOrEqual(result, 6);
+            _mockDiceRoller.Verify(m => m.RollDie(), Times.Once);
         }
 
         [TestCase(GangerType.Juve, GangHouse.Cawdor, new[] { SkillType.Combat, SkillType.Ferocity })]
@@ -165,21 +167,5 @@ namespace Hivemind.Tests.Services
             var skillList = _experienceService.GetGangSkill(gangerType, gangHouse);
             Assert.AreEqual(expectedSkillList, skillList);
         }
-
-        //[TestCase]
-        //public void DoAdvanceRollTestIncreaseStats()
-        //{
-        //    var gangerManagerMock = new Mock<IGangerManager>();
-
-        //    var diceRollerMock = new Mock<DiceRoller>();
-
-        //    var ganger = new Ganger()
-        //    {
-
-        //    };
-
-
-        //    gangerManagerMock.Verify(mock => mock.IncreaseStat(ganger, GangerStatistics.Attack, 1));
-        //}
     }
 }

@@ -1,24 +1,34 @@
-﻿using System;
+﻿// <copyright file="InjuryService.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hivemind.Contracts;
-using Hivemind.Providers;
-using Hivemind.Utilities;
 using Hivemind.Entities;
-using Hivemind.Managers;
 using Hivemind.Enums;
 using Hivemind.Exceptions;
+using Hivemind.Managers;
+using Hivemind.Utilities;
 
 namespace Hivemind.Services.Implementation
 {
+    /// <summary>
+    /// Injury service implementation
+    /// </summary>
     public class InjuryService : IInjuryService
     {
         private IGangerManager _gangerManager;
         private IInjuryManager _injuryManager;
         private IDiceRoller _diceRoller;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InjuryService"/> class.
+        /// </summary>
+        /// <param name="gangerManager">Ganger manager</param>
+        /// <param name="injuryManager">Injury manager</param>
+        /// <param name="diceRoller">Dice roller</param>
         public InjuryService(IGangerManager gangerManager, IInjuryManager injuryManager, IDiceRoller diceRoller)
         {
             _gangerManager = gangerManager ?? throw new ArgumentNullException(nameof(_gangerManager));
@@ -26,6 +36,11 @@ namespace Hivemind.Services.Implementation
             _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
+        /// <summary>
+        /// Process injuries
+        /// </summary>
+        /// <param name="battleReport">Battle report</param>
+        /// <returns>Injury report</returns>
         public InjuryReport ProcessInjuries(BattleReport battleReport)
         {
             // If a ganger is down, a roll less than three means they're injured.
@@ -37,11 +52,12 @@ namespace Hivemind.Services.Implementation
                     injuries.Add(new GangerInjuryReport()
                     {
                         TheGanger = _gangerManager.GetGanger(stats.GangerId),
-                        Injuries = DetermineInjury(null)
+                        Injuries = DetermineInjury(null),
                     });
                 }
             }
-            //var injuries = battleReport.GangBattleStats
+
+            // var injuries = battleReport.GangBattleStats
             //    .Where(stats => stats.OutOfAction || (stats.Down && DiceRoller.RollDie() <= 3))
             //    .Select(ganger => _gangerManager.GetGanger(ganger.GangerId))
             //    .Select(ganger => new GangerInjuryReport() { TheGanger = ganger, Injuries = DetermineInjury(null) })
@@ -56,10 +72,11 @@ namespace Hivemind.Services.Implementation
                 {
                     ganger = injury.InjuryEffect(ganger);
                 }
+
                 injuredGangers.Add(new GangerInjuryReport()
                 {
                     Injuries = injuries[i].Injuries,
-                    TheGanger = ganger
+                    TheGanger = ganger,
                 });
             }
 
@@ -78,10 +95,15 @@ namespace Hivemind.Services.Implementation
 
             return new InjuryReport()
             {
-                Injuries = injuries
+                Injuries = injuries,
             };
         }
 
+        /// <summary>
+        /// Determine injury
+        /// </summary>
+        /// <param name="roll">Dice roll</param>
+        /// <returns>List of injuries</returns>
         public IEnumerable<Injury> DetermineInjury(int? roll)
         {
             if (!roll.HasValue)
@@ -106,6 +128,7 @@ namespace Hivemind.Services.Implementation
                     {
                         injuries.Add(DetermineInjury(_diceRoller.MultipleInjuriesRoll()).FirstOrDefault());
                     }
+
                     return injuries;
                 case 22:
                     return new[] { _injuryManager.GetInjury((int)InjuryEnum.ChestWound) };

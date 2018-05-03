@@ -1,15 +1,20 @@
-﻿using System;
+﻿// <copyright file="IncomeService.cs" company="weirdvector">
+// Copyright (c) weirdvector. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hivemind.Contracts;
-using Hivemind.Managers;
 using Hivemind.Entities;
+using Hivemind.Managers;
 using Hivemind.Utilities;
 
 namespace Hivemind.Services.Implementation
 {
+    /// <summary>
+    /// Income service
+    /// </summary>
     public class IncomeService : IIncomeService
     {
         private IGangManager _gangManager;
@@ -18,6 +23,12 @@ namespace Hivemind.Services.Implementation
 
         private const int MaximumTerritoriesWorked = 10;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IncomeService"/> class.
+        /// </summary>
+        /// <param name="gangManager">Gang manager</param>
+        /// <param name="territoryManager">Territory manager</param>
+        /// <param name="diceRoller">Dice roller</param>
         public IncomeService(IGangManager gangManager, ITerritoryManager territoryManager, IDiceRoller diceRoller)
         {
             _gangManager = gangManager ?? throw new ArgumentNullException(nameof(gangManager));
@@ -25,6 +36,12 @@ namespace Hivemind.Services.Implementation
             _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
         }
 
+        /// <summary>
+        /// Process income
+        /// </summary>
+        /// <param name="battleReport">Battle reports</param>
+        /// <param name="deaths">Number of gangers who've died in the last battle.</param>
+        /// <returns>Income report</returns>
         public IncomeReport ProcessIncome(BattleReport battleReport, int deaths)
         {
             var gang = _gangManager.GetGang(battleReport.GangId);
@@ -46,7 +63,7 @@ namespace Hivemind.Services.Implementation
                     PreviousBattleType = battleReport.GameType,
                     Roll = _diceRoller.ParseDiceString(territories[i].Income),
                 };
-                
+
                 gross.Add(territories[i].WorkTerritory(status));
             }
 
@@ -59,7 +76,7 @@ namespace Hivemind.Services.Implementation
                 Gross = gross,
                 GiantKillerBonus = giantKillerBonus,
                 Upkeep = territoryGross + giantKillerBonus - incomeAfterUpkeep,
-                Income = incomeAfterUpkeep
+                Income = incomeAfterUpkeep,
             };
 
             gang.Credits += report.Income;
@@ -68,30 +85,59 @@ namespace Hivemind.Services.Implementation
             return report;
         }
 
+        /// <summary>
+        /// Get gang upkeep.
+        /// </summary>
+        /// <param name="gangSize">Gang size</param>
+        /// <param name="income">Income</param>
+        /// <returns>Upkeep</returns>
         public int GetGangUpkeep(int gangSize, int income)
         {
             int col = 0;
             int row = 0;
-            int[,] deductionTable = new int[,] {
-                { 15,  10,   5,   0,   0,   0,  0},
-                { 25,  20,  15,   5,   0,   0,  0},
-                { 35,  30,  25,  15,   5,   0,  0},
-                { 50,  45,  40,  30,  20,   5,  0},
-                { 65,  60,  55,  45,  35,  15,  0},
-                { 85,  80,  75,  65,  55,  35, 15},
-                {105, 100,  95,  85,  75,  55, 35},
-                {120, 115, 110, 100,  90,  65, 45},
-                {135, 130, 125, 115, 105,  80, 55},
-                {145, 140, 135, 125, 115,  90, 65},
-                {155, 150, 145, 135, 125, 100, 70}
+            int[,] deductionTable = new int[,]
+            {
+                {
+                    15,  10,   5,   0,   0,   0,  0,
+                },
+                {
+                    25,  20,  15,   5,   0,   0,  0,
+                },
+                {
+                    35,  30,  25,  15,   5,   0,  0,
+                },
+                {
+                    50,  45,  40,  30,  20,   5,  0,
+                },
+                {
+                    65,  60,  55,  45,  35,  15,  0,
+                },
+                {
+                    85,  80,  75,  65,  55,  35, 15,
+                },
+                {
+                    105, 100,  95,  85,  75,  55, 35,
+                },
+                {
+                    120, 115, 110, 100,  90,  65, 45,
+                },
+                {
+                    135, 130, 125, 115, 105,  80, 55,
+                },
+                {
+                    145, 140, 135, 125, 115,  90, 65,
+                },
+                {
+                    155, 150, 145, 135, 125, 100, 70,
+                },
             };
 
-            //get column
+            // get column
             if (gangSize < 4)
             {
                 col = 0;
             }
-            else if (gangSize < 7) 
+            else if (gangSize < 7)
             {
                 col = 1;
             }
@@ -116,7 +162,7 @@ namespace Hivemind.Services.Implementation
                 col = 6;
             }
 
-            //get row
+            // get row
             if (income <= 29)
             {
                 row = 0;
@@ -165,6 +211,12 @@ namespace Hivemind.Services.Implementation
             return deductionTable[row, col];
         }
 
+        /// <summary>
+        /// Get giant killer bonus
+        /// </summary>
+        /// <param name="gangRating">Gang rating</param>
+        /// <param name="opponentGangRating">Opponent gang rating</param>
+        /// <returns>Giant killer bonus</returns>
         public int GetGiantKillerBonus(int gangRating, int opponentGangRating)
         {
             if (gangRating > opponentGangRating)
@@ -176,7 +228,7 @@ namespace Hivemind.Services.Implementation
             if (difference < 50)
             {
                 return 5;
-            } 
+            }
             else if (difference < 100)
             {
                 return 10;
@@ -223,8 +275,8 @@ namespace Hivemind.Services.Implementation
         /// <summary>
         /// Only Gangers can work territories. Return a list of Gangers in the gang.
         /// </summary>
-        /// <param name="gangId"></param>
-        /// <returns></returns>
+        /// <param name="gangId">Gang ID</param>
+        /// <returns>List of gangers eligible for work.</returns>
         private IEnumerable<Ganger> GetGangers(string gangId)
         {
             return _gangManager.GetGang(gangId).Gangers.Where(ganger => ganger.GangerType == Enums.GangerType.Ganger);

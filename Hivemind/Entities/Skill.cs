@@ -3,7 +3,6 @@
 // </copyright>
 
 using Hivemind.Enums;
-using System.Collections.Generic;
 
 namespace Hivemind.Entities
 {
