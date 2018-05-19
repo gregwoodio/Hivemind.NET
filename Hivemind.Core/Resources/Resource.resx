@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lbl_as_user" xml:space="preserve">
+    <value>As user</value>
+  </data>
+  <data name="lbl_as_user_plus_1" xml:space="preserve">
+    <value>As user +1</value>
+  </data>
+  <data name="lbl_as_user_plus_2" xml:space="preserve">
+    <value>As user +2</value>
+  </data>
+  <data name="lbl_CC" xml:space="preserve">
+    <value>CC</value>
+  </data>
+  <data name="lbl_choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="lbl_injury_arm_wound_description" xml:space="preserve">
+    <value>The fighter has smashed one arm. Although he recovers from his injury his strength is permanently reduced as a result. The fighter’s Strength characteristic is reduced by -1 when using that arm. Randomly determine which arm has been hit. Bear in mind that some hand-to-hand weapons use the fighter’s own Strength, eg swords.</value>
+  </data>
+  <data name="lbl_injury_arm_wound_name" xml:space="preserve">
+    <value>Arm Wound</value>
+  </data>
+  <data name="lbl_injury_bitter_enmity_description" xml:space="preserve">
+    <value>Although he makes a full physical recovery, the fighter has been psychologically scarred by his experiences. He develops a bitter enmity for the gang that was responsible for his injury. From now on, the fighter hates the following (roll a D6).
+1-2 The individual enemy who inflicted the injury (if unknown, the gang leader).
+3-4 The leader of the gang who inflicted the injury.
+5 The entire gang responsible for his injury.
+6 All gangs from the same House as the gang that inflicted his injury. If the same House as the fighter, roll again.</value>
+  </data>
+  <data name="lbl_injury_bitter_enmity_name" xml:space="preserve">
+    <value>Bitter Enmity</value>
+  </data>
+  <data name="lbl_injury_blinded_description" xml:space="preserve">
+    <value>The fighter survives but loses the sight of one eye. Randomly determine which eye. A character with only one eye has his Ballistic Skill reduced by -1. If the fighter is subsequently blinded in his remaining good eye then he must retire from the gang.</value>
+  </data>
+  <data name="lbl_injury_blinded_name" xml:space="preserve">
+    <value>Blinded in One Eye</value>
+  </data>
+  <data name="lbl_injury_captured_description" xml:space="preserve">
+    <value>The fighter is captured. Captives may be exchanged, ransomed back or sold into slavery. If both gangs hold captives then they must be exchanged on a one-for-one basis, starting with models of the highest value. Any remaining captives must be ransomed back to their own gang if the player is willing to pay the captor’s asking price. There is no fixed value for ransom – it is a matter for the players to decide for themselves. Finally, fighters who are neither exchanged or ransomed may be sold to the Guilders as slaves earning the captor D6 x 5 Guilder credits. Captives who are exchanged or ransomed retain all of their weapons and equipment; if captives are sold their weaponry and equipment is kept by the captors.</value>
+  </data>
+  <data name="lbl_injury_captured_name" xml:space="preserve">
+    <value>Captured</value>
+  </data>
+  <data name="lbl_injury_chest_wound_description" xml:space="preserve">
+    <value>The fighter has been badly wounded in the chest. He recovers but is weakened by the injury and his Toughness characteristic is reduced by -1.</value>
+  </data>
+  <data name="lbl_injury_chest_wound_name" xml:space="preserve">
+    <value>Chest Wound</value>
+  </data>
+  <data name="lbl_injury_dead_description" xml:space="preserve">
+    <value>The fighter is killed in action and his body abandoned to the mutant rats of the Underhive. All the weapons and equipment carried by the fighter are lost.</value>
+  </data>
+  <data name="lbl_injury_dead_name" xml:space="preserve">
+    <value>Dead</value>
+  </data>
+  <data name="lbl_injury_deafened_description" xml:space="preserve">
+    <value>The fighter survives but is partially deafened as a result of his injuries. An individual suffers no penalty if he is partially deafened, but if he is deafened for a second time he suffers -1 from his Leadership characteristic.</value>
+  </data>
+  <data name="lbl_injury_deafened_name" xml:space="preserve">
+    <value>Partially Deafened</value>
+  </data>
+  <data name="lbl_injury_full_recovery_description" xml:space="preserve">
+    <value>The fighter has been knocked unconscious or suffers a mildly incapacitating wound from which he makes a full recovery.</value>
+  </data>
+  <data name="lbl_injury_full_recovery_name" xml:space="preserve">
+    <value>Full Recovery</value>
+  </data>
+  <data name="lbl_injury_hand_injury_description" xml:space="preserve">
+    <value>Wounds to a hand result in the loss of D3 fingers. Randomly determine which hand is affected. The fighter’s Weapon Skill is reduced by -1. If a fighter loses all five fingers on a hand then he may no longer use that hand: he may not carry anything in it, and is unable to use weapons that require two hands.</value>
+  </data>
+  <data name="lbl_injury_hand_injury_name" xml:space="preserve">
+    <value>Hand Injury</value>
+  </data>
+  <data name="lbl_injury_head_wound_description" xml:space="preserve">
+    <value>A serious head injury leaves the fighter somewhat unhinged. At the start of each game roll a D6 to determine how he is affected. On a 1-3 the fighter is dazed and confused – he is affected by the rules for stupidity. On a roll of 4-6 the fighter is enraged and uncontrollable – he is affected by the rules for frenzy.</value>
+  </data>
+  <data name="lbl_injury_head_wound_name" xml:space="preserve">
+    <value>Head Wound</value>
+  </data>
+  <data name="lbl_injury_horrible_scars_description" xml:space="preserve">
+    <value>The fighter recovers from his injuries but is left horribly disfigured. His scarred and distorted features inspire fear as described in the Advanced Rules section of the rulebook.</value>
+  </data>
+  <data name="lbl_injury_horrible_scars_name" xml:space="preserve">
+    <value>Horrible Scars</value>
+  </data>
+  <data name="lbl_injury_impressive_scars_description" xml:space="preserve">
+    <value>The fighter recovers and is left with impressive scars as testament to his bravery. Add +1 to the fighter’s Leadership characteristic. This bonus applies only once, further impressive scars have no additional effect.</value>
+  </data>
+  <data name="lbl_injury_impressive_scars_name" xml:space="preserve">
+    <value>Impressive Scars</value>
+  </data>
+  <data name="lbl_injury_leg_wound_description" xml:space="preserve">
+    <value>The fighter has smashed a leg. He recovers from his injuries but he can no longer move quickly. The fighter’s Movement characteristic is reduced by -1. Randomly determine which leg has been hurt.</value>
+  </data>
+  <data name="lbl_injury_leg_wound_name" xml:space="preserve">
+    <value>Leg Wound</value>
+  </data>
+  <data name="lbl_injury_multiple_injuries_description" xml:space="preserve">
+    <value>The fighter is not dead but has suffered many serious wounds. Roll a further D6 times on this chart.  Re-roll any ‘Dead’ and ‘Full Recovery’ results</value>
+  </data>
+  <data name="lbl_injury_multiple_injuries_name" xml:space="preserve">
+    <value>Multiple Injuries</value>
+  </data>
+  <data name="lbl_injury_old_battle_wound_description" xml:space="preserve">
+    <value>The fighter recovers but his old wound sometimes affects his health. Roll a D6 before each game. On the roll of a 1 the fighter’s old wound is playing up and he is unable to take part in the forthcoming battle.</value>
+  </data>
+  <data name="lbl_injury_old_battle_wound_name" xml:space="preserve">
+    <value>Old Battle Wound</value>
+  </data>
+  <data name="lbl_injury_shell_shock_description" xml:space="preserve">
+    <value>The fighter survives but is extremely nervous and jumpy as a result of the traumatic injuries he has suffered. His Initiative characteristic is reduced by -1.</value>
+  </data>
+  <data name="lbl_injury_shell_shock_name" xml:space="preserve">
+    <value>Shell Shock</value>
+  </data>
+  <data name="lbl_injury_spore_sickness_description" xml:space="preserve">
+    <value>This is a fungal disease in which plump and colourful fungi sprout from all over the victim’s body. Spore Sickness is not lethal and recovery is automatic, but the ganger will not be able to take part in future battles until he recovers by rolling a 4, 5 or 6 at the start of a game. Once recovered he may fight as normal.</value>
+  </data>
+  <data name="lbl_injury_spore_sickness_name" xml:space="preserve">
+    <value>Spore Sickness</value>
+  </data>
+  <data name="lbl_injury_survives_against_the_odds_name" xml:space="preserve">
+    <value>Survives Against the Odds</value>
+  </data>
+  <data name="lbl_injury_survives_against_the_odss_description" xml:space="preserve">
+    <value>The fighter regains consciousness alone in the darkness, given up for dead by his companions and overlooked by his enemies. Despite his injuries he makes his way back home. He recovers fully and his uncanny survival earns him an additional D6 Experience points.</value>
+  </data>
+  <data name="lbl_territory_archeotech_description" xml:space="preserve">
+    <value>Your gang has discovered a hidden entrance into a small unexplored dome. A ganger can collect remnants of ancient technical devices which can be sold for 2D6x10 credits.
+So long as your gang is careful not to sell too many items at once no one will suspect that you have discovered a new dome. No risk is incurred by collecting 2D6x10 credits. However, if you want to work the dome more intensely you can do so. A ganger can collect 3D6x10, 4D6x10, 5D6x10 or even 6D6x10 from the hoard, but if he rolls any doubles at all then he has been spotted entering the dome. You still collect the income rolled but the hoard is secret no longer and it is immediately stripped bare by treasure hunters. The territory then becomes an area of Old Ruins instead.</value>
+  </data>
+  <data name="lbl_territory_archeotech_name" xml:space="preserve">
+    <value>Archeotech</value>
+  </data>
+  <data name="lbl_territory_chem_pit_description" xml:space="preserve">
+    <value>An extensive and highly dangerous chemical pit lies nearby. The pit is a source of constantly changing chemicals, sulphurous deposits, and all kinds of poisonous and corrosive substances. If you want to collect chemicals from the pit you gain 2D6 credits.
+The work is extremely hazardous. If you roll a double or a 6 when working out your credits then the ganger falls into the chem pit but manages to haul himself free. He struggles back to base horrifically scarred, his skin covered with blisters. His appearance is so foul that from now on he causes fear. No income is collected.</value>
+  </data>
+  <data name="lbl_territory_chem_pit_name" xml:space="preserve">
+    <value>Chem Pit</value>
+  </data>
+  <data name="lbl_territory_drinking_hole_description" xml:space="preserve">
+    <value>Your gang leader has inherited an old drinking hole in payment of an outstanding gambling debt. The hole earns a small sum and also provides the gang with a convenient base in the local settlement. You can visit the drinking hole to collect your share of D6x10 credits.</value>
+  </data>
+  <data name="lbl_territory_drinking_hole_name" xml:space="preserve">
+    <value>Drinking Hole</value>
+  </data>
+  <data name="lbl_territory_friendly_doc_description" xml:space="preserve">
+    <value>One of the local medical practitioners has offered to patch up your wounded fighters at favourable rates in return for blood and tissue donations from your gangers. If a ganger wants to part with a few pints of blood or some other renewable tissue you gain D6x10 credits. The Doc will also give you D6x5 credits for the body of any of your fighters who dies in combat, providing him with a useful supply of organs and limbs for transplant.</value>
+  </data>
+  <data name="lbl_territory_friendly_doc_name" xml:space="preserve">
+    <value>Friendly Doc</value>
+  </data>
+  <data name="lbl_territory_gambling_den_description" xml:space="preserve">
+    <value>Your gang runs a gambling den in an old disused hole in your settlement. Although the income from running a game is good, it is a risky business because Underhivers are notorious cheats and bad losers too. If you decide to run a gambling session you receive 2D6x10 credits. However, if you roll a double you lose that number of credits from that turn’s income instead – eg, double 4 you lose 80 credits.
+Note that losses are deducted from your income before making reductions for basic running costs. If a gang is unable to pay gambling debts out of its income then the difference must be made up from its stash. If this still isn’t enough to cover the gang’s debts then weapons or equipment must be sold off.</value>
+  </data>
+  <data name="lbl_territory_gambling_den_name" xml:space="preserve">
+    <value>Gambling Den</value>
+  </data>
+  <data name="lbl_territory_green_hivers_description" xml:space="preserve">
+    <value>You befriend a group of settlers who have migrated from Hive City to the Underhive to start a new life. Possibly your gang has chanced upon the settlers lost or dying in the wastes. Maybe they are relatives or friends of one of your gang fighters who have deliberately sought him out. Thanks to your contacts and influence you are able to give the green hivers a good start, and naturally they are grateful for your assistance and only too pleased to help in the future. You may choose any type of territory from the chart. The territory represents the vocation of the settlers or a discovery they have chanced across in their journey tothe Underhive. The territory yields the appropriate income for its type.</value>
+  </data>
+  <data name="lbl_territory_green_hivers_name" xml:space="preserve">
+    <value>Green Hivers</value>
+  </data>
+  <data name="lbl_territory_guilder_contract_description" xml:space="preserve">
+    <value>A local Guilder has offered you favourable rates in return for your business. As a result you are able to increase your income substantially. If you wish to deal with your Guilder contact you gain an extra D6x10 credits.
+If you recover any loot during a fight you can trade it in to your Guilder contact for an extra +5 credits income for each item.</value>
+  </data>
+  <data name="lbl_territory_guilder_contract_name" xml:space="preserve">
+    <value>Guilder Contract</value>
+  </data>
+  <data name="lbl_territory_holestead_description" xml:space="preserve">
+    <value>One of the gang fighters comes from a holestead out in the wastes. The hole produces a crop of nutritious slime which the ganger can help his family carry to the local trade post in return for D6x10 credits’ cut of the proceeds.</value>
+  </data>
+  <data name="lbl_territory_holestead_name" xml:space="preserve">
+    <value>Holestead</value>
+  </data>
+  <data name="lbl_territory_mineral_outcrop_description" xml:space="preserve">
+    <value>Not far from your settlement there is an outcrop of mineral wastes where a ganger can collect valuable sparstones, adonite crystals, igneous adamantorite, or one of the many other kinds of mineral gems that are formed in the Underhive. You will earn D6x10 credits by searching the outcrop for precious stones.</value>
+  </data>
+  <data name="lbl_territory_mineral_outcrop_name" xml:space="preserve">
+    <value>Mineral Outcrop</value>
+  </data>
+  <data name="lbl_territory_mine_workings_description" xml:space="preserve">
+    <value>In a secret location in the wastes your gang has discovered a mine. The excavations yield carnotite gems or some other valuable ores or stones. Friends of the fighters are already working in return for a slice of the proceeds. You can collect D6x10 credits as your share of the profits to date.
+If you capture an enemy fighter then you can put him to work in your mine instead of selling him to slavers. Each captive worker adds +1 to your D6 dice roll for income from the mine.</value>
+  </data>
+  <data name="lbl_territory_mine_workings_name" xml:space="preserve">
+    <value>Mine Workings</value>
+  </data>
+  <data name="lbl_territory_old_ruins_description" xml:space="preserve">
+    <value>There is an exposed area of ancient ruins not far from your settlement. If a ganger searches through the ruins he may find scrap pieces of archeotech, bits of old metal, or interesting old curios – enough to sell for 10 credits.</value>
+  </data>
+  <data name="lbl_territory_old_ruins_name" xml:space="preserve">
+    <value>Old Ruins</value>
+  </data>
+  <data name="lbl_territory_settlement_description" xml:space="preserve">
+    <value>The families of your gang fighters own holes or workshops inside the settlement where the gang is based. These holdings help to support the gang by providing food, shelter, and a vital link with the local traders.
+If a ganger visits his family he collects 30 credits. In addition, whether the territory is used or not, there is a chance of a young relative leaving the settlement to join your gang. Roll a D6 after each game. On the roll of a 6 you may recruit a juve for free. You will have to pay for his weapons though.</value>
+  </data>
+  <data name="lbl_territory_settlement_name" xml:space="preserve">
+    <value>Settlement</value>
+  </data>
+  <data name="lbl_territory_slag_description" xml:space="preserve">
+    <value>Near your settlement there is an extensive network of tunnels and crawlholes full of iron slag and other solidified chemical wastes. A ganger can work the slag by breaking it up ready to sell to the local Guilders for 15 credits.</value>
+  </data>
+  <data name="lbl_territory_slag_name" xml:space="preserve">
+    <value>Slag</value>
+  </data>
+  <data name="lbl_territory_spore_cave_description" xml:space="preserve">
+    <value>Your gang has discovered a hidden cave where many kinds of rare fungi grow, such as pearl spore and iron mould. A ganger can harvest the fungi and sell it to local traders for 2D6x10 credits.
+If you roll double 1 when harvesting fungus the collecting ganger has contracted Spore Sickness. This is a fungal disease in which plump and colourful fungi sprout from all over the victim’s body. Spore Sickness is not lethal and recovery is automatic, but the ganger will not be able to take part in future battles until he recovers by rolling a 4, 5 or 6 at the start of a game. Once recovered he may fight as normal.</value>
+  </data>
+  <data name="lbl_territory_spore_cave_name" xml:space="preserve">
+    <value>Spore Cave</value>
+  </data>
+  <data name="lbl_territory_tunnels_description" xml:space="preserve">
+    <value>Your gang has found a buried entrance to a labyrinth of ancient service ducts beneath the dome floor. When the gang fights a battle it can use these ducts to position up to three fighters anywhere on the battlefield at ground level.
+Models are set up at the end of the player’s first turn and cannot be placed within 8" of enemy models. This represents the fighters working their way behind the enemy using their secret tunnels.</value>
+  </data>
+  <data name="lbl_territory_tunnels_name" xml:space="preserve">
+    <value>Tunnels</value>
+  </data>
+  <data name="lbl_territory_vents_description" xml:space="preserve">
+    <value>The gang has found a concealed entrance into a network of ancient ventilation shafts. When the gang fights a battle it can use these vents to position up to three fighters anywhere on the battlefield above ground level. Models are set up at the end of the player’s first turn and cannot be placed within 8" of enemy models. This represents the fighters working their way over and around the enemy using their secret air shafts.</value>
+  </data>
+  <data name="lbl_territory_vents_name" xml:space="preserve">
+    <value>Vents</value>
+  </data>
+  <data name="lbl_territory_water_still_description" xml:space="preserve">
+    <value>The gang has discovered and renovated an old water still out in the wastes. The still is worked by the family or friends of one of the gangers. Guilder slave trains carry the water to local settlers making the gang a share of the proceeds amounting to D6x10 credits.</value>
+  </data>
+  <data name="lbl_territory_water_still_name" xml:space="preserve">
+    <value>Water Still</value>
+  </data>
+  <data name="lbl_territory_workshop_description" xml:space="preserve">
+    <value>The family or friends of one of your gang fighters runs a workshop in the local settlement. You can trade in bits of scrap or other odds and ends in return for cheap repair work or cash. If you want to visit the workshop you earn D6x10 credits.
+In addition, thanks to your workshop’s meticulous care, you always ignore the first Ammo test during a battle. It is assumed you pass the test and no dice are rolled. Note that this only applies to the first test, not to subsequent ones.</value>
+  </data>
+  <data name="lbl_territory_workshop_name" xml:space="preserve">
+    <value>Workshop</value>
+  </data>
+  <data name="lbl_auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="lbl_blast" xml:space="preserve">
+    <value>Blast</value>
+  </data>
+  <data name="lbl_half_weapon_base_cost" xml:space="preserve">
+    <value>Half Weapon base cost</value>
+  </data>
+  <data name="lbl_special" xml:space="preserve">
+    <value>Special</value>
+  </data>
+  <data name="lbl_template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="lbl_weapon_times_2" xml:space="preserve">
+    <value>Weapon x2</value>
+  </data>
+</root>
