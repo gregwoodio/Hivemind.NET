@@ -13,6 +13,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Tests", "Hivemind.Api.Tests\Hivemind.Api.Tests.csproj", "{FE6CEC82-04E6-4844-AAAE-E7C972DAA66D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Core.Tests", "Hivemind.Core.Tests\Hivemind.Core.Tests.csproj", "{FE1200BB-9C63-4B2B-B804-CF12EB097D89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{FE6CEC82-04E6-4844-AAAE-E7C972DAA66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE6CEC82-04E6-4844-AAAE-E7C972DAA66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE6CEC82-04E6-4844-AAAE-E7C972DAA66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1200BB-9C63-4B2B-B804-CF12EB097D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1200BB-9C63-4B2B-B804-CF12EB097D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1200BB-9C63-4B2B-B804-CF12EB097D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1200BB-9C63-4B2B-B804-CF12EB097D89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
