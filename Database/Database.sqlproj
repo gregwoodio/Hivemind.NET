@@ -119,10 +119,14 @@
     <Build Include="dbo\Stored Procedures\GangerAdvancements_IsValid.sql" />
     <Build Include="dbo\Stored Procedures\GangerAdvancements_Add.sql" />
     <Build Include="dbo\Stored Procedures\GangerSkills_GetByGangId.sql" />
+    <Build Include="sqlcmdscript.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticValues\Injuries.csv" />
     <None Include="StaticValues\Territories.csv" />
     <None Include="StaticValues\Weapons.csv" />
+    <None Include="Dockerfile" />
+    <None Include="entrypoint.sh" />
+    <None Include="sqlcmdstartup.sh" />
   </ItemGroup>
 </Project>
