@@ -34,7 +34,7 @@ export class LoginClient {
         }
 
         let body = new HttpParams()
-            .set('UserName', email)
+            .set('Email', email)
             .set('Password', password)
             .set('grant_type', 'password');
 

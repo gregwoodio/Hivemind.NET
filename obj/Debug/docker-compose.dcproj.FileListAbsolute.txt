@@ -1,0 +1,1 @@
+D:\Source\Hivemind\Hivemind\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

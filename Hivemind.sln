@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Core.Tests", "Hive
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Core", "Hivemind.Core\Hivemind.Core.csproj", "{9290F089-8586-46C9-85A3-3B6ABDDB252E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Core", "Hivemind.Api.Core\Hivemind.Api.Core.csproj", "{F77BF44D-FC01-46CF-950F-7B51D0666BB6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{9290F089-8586-46C9-85A3-3B6ABDDB252E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9290F089-8586-46C9-85A3-3B6ABDDB252E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9290F089-8586-46C9-85A3-3B6ABDDB252E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

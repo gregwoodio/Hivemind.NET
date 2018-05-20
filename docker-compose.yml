@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  hivemind.api.core:
+    image: hivemind.api.core
+    build:
+      context: .
+      dockerfile: Hivemind.Api.Core/Dockerfile
