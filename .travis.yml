@@ -2,11 +2,11 @@ language: csharp
 solution: Hivemind.sln
 dotnet: 2.0.0
 install:
-  - dotnet restore .\Hivemind.Core\Hivemind.Core.csproj
-  - dotnet restore .\Hivemind.Core.Tests\Hivemind.Core.Tests.csproj
+  - dotnet restore ./Hivemind.Core/Hivemind.Core.csproj
+  - dotnet restore ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
   - mkdir ./testresults
 script:
-  - dotnet build -c Release .\Hivemind.Core\Hivemind.Core.csproj
-  - dotnet build -c Release .\Hivemind.Core.Tests\Hivemind.Core.Tests.csproj
+  - dotnet build -c Release ./Hivemind.Core/Hivemind.Core.csproj
+  - dotnet build -c Release ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
   - dotnet test .\Hivemind.Core.Tests\Hivemind.Core.Tests.csproj --results-diretory ../testresults --lgger 'trx;LogFileName=nunit_results.xml'
   - nuget push Hivemind.1.0.0.nupkg $myget_api_key -Source https://www.myget.org/F/hivemind/api/v2/package
