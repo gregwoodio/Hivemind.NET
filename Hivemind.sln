@@ -13,11 +13,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Tests", "Hivemind.Api.Tests\Hivemind.Api.Tests.csproj", "{FE6CEC82-04E6-4844-AAAE-E7C972DAA66D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Core.Tests", "Hivemind.Core.Tests\Hivemind.Core.Tests.csproj", "{FE1200BB-9C63-4B2B-B804-CF12EB097D89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hivemind.Core.Tests", "Hivemind.Core.Tests\Hivemind.Core.Tests.csproj", "{FE1200BB-9C63-4B2B-B804-CF12EB097D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Core", "Hivemind.Core\Hivemind.Core.csproj", "{9290F089-8586-46C9-85A3-3B6ABDDB252E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hivemind.Core", "Hivemind.Core\Hivemind.Core.csproj", "{9290F089-8586-46C9-85A3-3B6ABDDB252E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Core", "Hivemind.Api.Core\Hivemind.Api.Core.csproj", "{F77BF44D-FC01-46CF-950F-7B51D0666BB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hivemind.Api.Core", "Hivemind.Api.Core\Hivemind.Api.Core.csproj", "{F77BF44D-FC01-46CF-950F-7B51D0666BB6}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C5522A41-BF7A-44A2-AFB3-32DDB7AF0538}"
 EndProject

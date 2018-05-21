@@ -5,15 +5,14 @@ services:
     image: hivemind.api.core:dev
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_hivemind.api.core$
     volumes:
       - D:\Source\Hivemind\Hivemind\Hivemind.Api.Core:/app
       - C:\Users\Greg\vsdbg\vs2017u5:/remote_debugger:ro
-      - C:\Users\Greg\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+#$nuget_volume_mapping_hivemind.api.core$
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.0/Hivemind.Api.Core.dll"
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_hivemind.api.core$ bin/Debug/netcoreapp2.0/Hivemind.Api.Core.dll"
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""

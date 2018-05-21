@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hivemind.Core\Hivemind.Core.csproj" />
+    <ProjectReference Include="..\Hivemind.Api.Core\Hivemind.Api.Core.csproj" />
   </ItemGroup>
 
 </Project>

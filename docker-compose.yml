@@ -1,8 +1,17 @@
 version: '3'
 
 services:
-  hivemind.api.core:
-    image: hivemind.api.core
+  hivemindapi:
+    depends_on: [hiveminddb]
+    image: hivemindapi
     build:
-      context: .
-      dockerfile: Hivemind.Api.Core/Dockerfile
+      context: ./Hivemind.Api.Core
+      dockerfile: ./Dockerfile
+    ports: 
+      - "80:80"
+
+  hiveminddb:
+    image: hiveminddb
+    build:
+      context: ./Database
+      dockerfile: ./Dockerfile
