@@ -7,11 +7,22 @@ services:
     build:
       context: ./Hivemind.Api.Core
       dockerfile: ./Dockerfile
-    ports: 
-      - "80:80"
+    container_name: hivemindapi
+    ports:
+      - "8081:80"
 
   hiveminddb:
     image: hiveminddb
     build:
       context: ./Database
       dockerfile: ./Dockerfile
+    container_name: hiveminddb
+
+  hivemindng:
+    depends_on: [hivemindapi]
+    image: hivemindng
+    build:
+      context: ./Hivemind.Ng
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"

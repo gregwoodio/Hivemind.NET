@@ -26,3 +26,5 @@ Database/Database.dbmdl
 # build config
 build/config/*.json
 
+# Other Angular stuff
+/Hivemind.Ng/dist/**/*
