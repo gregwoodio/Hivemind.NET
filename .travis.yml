@@ -1,5 +1,6 @@
 language: csharp
 solution: Hivemind.sln
+dotnet: 2.0.0
 install:
   - dotnet restore .\Hivemind.Core\Hivemind.Core.csproj
   - dotnet restore .\Hivemind.Core.Tests\Hivemind.Core.Tests.csproj
