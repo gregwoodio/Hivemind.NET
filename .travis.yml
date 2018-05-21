@@ -9,7 +9,7 @@ script:
   - dotnet build -c Release ./Hivemind.Core/Hivemind.Core.csproj
   - dotnet build -c Release ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
   - dotnet test ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj --results-directory ../testresults --logger 'trx;LogFileName=nunit_results.xml'
-  - dotnet pack ./Hivemind.Core/Hivemind.Core.csproj -c Release --output ./nuget/ --verbosity detailed
+  - dotnet pack ./Hivemind.Core/Hivemind.Core.csproj -c Release --output ../nuget/ --verbosity normal
   - ls -la
   - ls -la ./nuget
   - pwd
