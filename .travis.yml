@@ -8,6 +8,6 @@ install:
 script:
   - dotnet build -c Release ./Hivemind.Core/Hivemind.Core.csproj
   - dotnet build -c Release ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
-  - dotnet test ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj --results-directory ../testresults --lgger 'trx;LogFileName=nunit_results.xml'
+  - dotnet test ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj --results-directory ../testresults --logger 'trx;LogFileName=nunit_results.xml'
   - dotnet pack ./Hivemind.Core/Hivemind.Core.csproj -o ../nuget/
-  - nuget push ./nuget/Hivemind.1.0.0.nupkg $myget_api_key -Source https://www.myget.org/F/hivemind/api/v2/package
+  - nuget push ../nuget/Hivemind.1.0.0.nupkg $myget_api_key -Source https://www.myget.org/F/hivemind/api/v2/package
