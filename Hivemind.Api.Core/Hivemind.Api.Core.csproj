@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.1.0-rc1-final" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="Hivemind.Core" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
