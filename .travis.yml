@@ -12,7 +12,9 @@ script:
   - dotnet pack ./Hivemind.Core/Hivemind.Core.csproj -c Release --output ../nuget/ --verbosity normal
   - nuget push ./nuget/Hivemind.Core.1.0.0.nupkg $myget_api_key -Source https://www.myget.org/F/hivemind/api/v2/package
   - cd ./Hivemind.Ng
-  - npm install 
+  - npm install
+  - npm install --dev
+  - npm install -g @angular/cli
   - ng test --watch=false
   - ng build
   - cd ..
