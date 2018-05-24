@@ -5,7 +5,6 @@ EXPOSE 80
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY . ./Hivemind.Api.Core
-WORKDIR /src/Hivemind.Api.Core
 RUN dotnet restore ./Hivemind.Api.Core/Hivemind.Api.Core.csproj
 RUN dotnet build ./Hivemind.Api.Core/Hivemind.Api.Core.csproj -c Release -o /app
 
