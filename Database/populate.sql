@@ -1,4 +1,4 @@
-USE HivemindDb;
+USE [$(DATABASE_NAME)];
 GO
 
 EXEC [dbo].[Weapons_Populate];
