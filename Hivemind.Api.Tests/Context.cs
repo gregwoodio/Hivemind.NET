@@ -1,8 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Hivemind.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +22,12 @@ namespace Hivemind.Api.Tests
         public Context()
         {
             _httpClient = new HttpClient();
-            _baseUrl = Properties.Resource.webApiPath;
+            _baseUrl = ConfigurationManager.AppSettings.Get("webApiPath");
+        }
+
+        public void SetTokenHeader(string token)
+        {
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
         }
 
         public TResponse Get<TResponse>(string path)
@@ -40,18 +49,19 @@ namespace Hivemind.Api.Tests
 
         public TResponse Post<TRequest, TResponse, TError>(string path, TRequest request)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var response = _httpClient.PostAsync(_baseUrl + path, content).Result;
+            var url = new Uri(_baseUrl + path);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                LastError = response;
-                return default(TResponse);
-            }
+            var content = request.GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .ToDictionary(prop => prop.Name, prop => prop.GetValue(request, null)?.ToString());
 
-            var responseString = response.Content.ReadAsStringAsync().Result;
+            var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(content) };
+            var result = _httpClient.SendAsync(req).Result;
+            
+            var responseString = result.Content.ReadAsStringAsync().Result;
             LastResult = JsonConvert.DeserializeObject<TResponse>(responseString);
             LastError = null;
+
             return (TResponse)LastResult;
         }
 

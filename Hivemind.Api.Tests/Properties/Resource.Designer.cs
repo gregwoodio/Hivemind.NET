@@ -59,14 +59,5 @@ namespace Hivemind.Api.Tests.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://localhost:61774.
-        /// </summary>
-        internal static string webApiPath {
-            get {
-                return ResourceManager.GetString("webApiPath", resourceCulture);
-            }
-        }
     }
 }

@@ -75,12 +75,21 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table1.AddRow(new string[] {
-                        "testuser@email.com",
+                        "testuser3@email.com",
                         "hunter2"});
 #line 4
  testRunner.When("I add a user as follows:", ((string)(null)), table1, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table2.AddRow(new string[] {
+                        "testuser3@email.com",
+                        "hunter2"});
 #line 7
- testRunner.Then("the user should be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I retrieve token with using:", ((string)(null)), table2, "When ");
+#line 10
+ testRunner.Then("I should receive a token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -90,17 +99,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TryToGetUserInformationWithoutLoggingIn()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get user information without logging in", ((string[])(null)));
-#line 9
+#line 12
 this.ScenarioSetup(scenarioInfo);
-#line 10
+#line 13
  testRunner.When("I get user information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "ErrorMessage"});
-            table2.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "Dang!"});
-#line 11
- testRunner.Then("I should receive an error as follow:", ((string)(null)), table2, "Then ");
+#line 14
+ testRunner.Then("I should receive an error as follow:", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
