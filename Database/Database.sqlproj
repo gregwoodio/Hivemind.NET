@@ -119,7 +119,9 @@
     <Build Include="dbo\Stored Procedures\GangerAdvancements_IsValid.sql" />
     <Build Include="dbo\Stored Procedures\GangerAdvancements_Add.sql" />
     <Build Include="dbo\Stored Procedures\GangerSkills_GetByGangId.sql" />
-    <Build Include="sqlcmdscript.sql" />
+    <None Include="sqlcmdscript.sql">
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticValues\Injuries.csv" />
