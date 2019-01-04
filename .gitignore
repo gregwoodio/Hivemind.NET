@@ -28,3 +28,4 @@ build/config/*.json
 
 # Other Angular stuff
 /Hivemind.Ng/dist/**/*
+/.vs/Hivemind/DesignTimeBuild/.dtbcache

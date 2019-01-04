@@ -17,9 +17,10 @@ ng build
 cd ..
 
 # start containers
-docker-compose up
+docker-compose up -d
 
-# run API tests here
+# run API tests
+
 
 # shutdown containers
 docker-compose down
