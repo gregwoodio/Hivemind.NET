@@ -105,11 +105,11 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I get user information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "ErrorMessage"});
+                        "StatusCode"});
             table3.AddRow(new string[] {
-                        "Dang!"});
+                        "Unauthorized"});
 #line 14
- testRunner.Then("I should receive an error as follow:", ((string)(null)), table3, "Then ");
+ testRunner.Then("I should receive an error as follows:", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

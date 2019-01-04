@@ -11,6 +11,6 @@ Scenario: Add new user
 
 Scenario: Try to get user information without logging in
 	When I get user information
-	Then I should receive an error as follow:
-		| ErrorMessage |
-		| Dang!        |
+	Then I should receive an error as follows:
+		| StatusCode   |
+		| Unauthorized |

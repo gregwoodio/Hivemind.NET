@@ -74,6 +74,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Steps\CommonSteps.cs" />
+    <Compile Include="Steps\Steps.cs" />
     <Compile Include="Steps\UserSteps.cs" />
   </ItemGroup>
   <ItemGroup>

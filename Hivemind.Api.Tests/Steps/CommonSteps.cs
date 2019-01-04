@@ -1,17 +1,31 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Configuration;
+using System.Linq;
+using System.Net;
+using TechTalk.SpecFlow;
 
 namespace Hivemind.Api.Tests.Steps
 {
-    public class CommonSteps
+    [Binding]
+    public class CommonSteps : Steps
     {
-        protected Context _context;
-        protected string _basePath;
-
-        public CommonSteps(Context context)
+        public CommonSteps(Context context) 
+            : base(context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _basePath = ConfigurationManager.AppSettings.Get("webApiPath");
+        }
+
+        [Then(@"I should receive an error as follows:")]
+        public void ThenIShouldReceiveAnErrorAsFollow(Table table)
+        {
+            var expectedErrorValue = table.ContainsColumn("StatusCode") 
+                ? table.Rows.FirstOrDefault()?["StatusCode"] 
+                : throw new ArgumentException();
+
+            Enum.TryParse(expectedErrorValue, out HttpStatusCode expectedErrorStatus);
+            var errorStatus = _context.LastError.StatusCode;
+
+            Assert.AreEqual(expectedErrorStatus, errorStatus);
         }
     }
 }

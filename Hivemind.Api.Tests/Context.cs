@@ -1,21 +1,16 @@
-﻿using Hivemind.Contracts;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hivemind.Api.Tests
 {
     public class Context
     {
         public object LastResult;
-        public object LastError;
+        public HttpResponseMessage LastError;
         private HttpClient _httpClient;
         private readonly string _baseUrl;
 
@@ -30,7 +25,7 @@ namespace Hivemind.Api.Tests
             _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
         }
 
-        public TResponse Get<TResponse>(string path)
+        public TResponse Get<TResponse>(string path) 
         {
             var url = new Uri(_baseUrl + path);
             var response =  _httpClient.GetAsync(url).Result;

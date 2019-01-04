@@ -9,7 +9,7 @@ using TechTalk.SpecFlow.Assist;
 namespace Hivemind.Api.Tests.Steps
 {
     [Binding]
-    public class UserSteps : CommonSteps
+    public class UserSteps : Steps
     {
         private const string UserPath = "api/user";
         private const string TokenPath = "api/login";
@@ -61,16 +61,6 @@ namespace Hivemind.Api.Tests.Steps
             _context.SetTokenHeader(token);
 
             _context.Get<User>(UserPath);
-        }
-
-        [Then(@"I should receive an error as follow:")]
-        public void ThenIShouldReceiveAnErrorAsFollow(Table table)
-        {
-            var expectedErrorMessage = table.ContainsColumn("ErrorMessage") ? table.Rows.FirstOrDefault()?["ErrorMessage"] : throw new ArgumentException();
-
-            var error = _context.LastResult;
-
-            Assert.AreEqual(expectedErrorMessage, error);
         }
 
         [Then(@"the user should be added")]
