@@ -4,6 +4,7 @@ dotnet: 2.0.0
 env: 
   - NODE_VERSION="8.9"
 before_install:
+  - chmod +x ./build/build.sh
   - nvm install $NODE_VERSION
 install:
   - nuget install NUnit.ConsoleRunner -Version 3.9.0 -OutputDirectory testrunner
