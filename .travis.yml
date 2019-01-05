@@ -9,7 +9,5 @@ install:
   - nuget install NUnit.ConsoleRunner -Version 3.9.0 -OutputDirectory testrunner
   - dotnet restore ./Hivemind.Core/Hivemind.Core.csproj
   - dotnet restore ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
-  - nuget restore ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj -PackagesDirectory ../packages/
-  - msbuild /p:Configuration=Release ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj
   - mkdir ./testresults ./nuget
 script: ./build/build.sh
