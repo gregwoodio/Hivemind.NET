@@ -7,6 +7,7 @@ before_install:
   - chmod +x ./build.sh
   - nvm install $NODE_VERSION
 install:
+  - nuget restore ./Hivemind.sln
   - dotnet restore ./Hivemind.Core/Hivemind.Core.csproj
   - dotnet restore ./Hivemind.Core.Tests/Hivemind.Core.Tests.csproj
   - mkdir ./testresults ./nuget
