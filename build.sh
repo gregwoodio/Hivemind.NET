@@ -27,7 +27,7 @@ echo "Starting docker containers..."
 docker-compose up -d
 
 echo "Building API test project..."
-nuget restore ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj -ConfigFile ./Hivemind.Api.Tests/NuGet.config -SolutionDirectory ./packages
+nuget restore ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj -ConfigFile ./Hivemind.Api.Tests/NuGet.config -SolutionDirectory ./
 msbuild /p:Configuration=Debug ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj
 echo "Running API tests..."
 ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./Hivemind.Api.Tests/bin/Debug/Hivemind.Api.Tests.dll
