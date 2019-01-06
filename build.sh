@@ -26,8 +26,10 @@ cd ..
 echo "Starting docker containers..."
 docker-compose up -d
 
-# run API tests
+echo "Building API test project..."
+msbuild /p:Configuration=Debug ./Hivemind.Api.Tests/Hivemind.Api.Tests.csproj
 echo "Running API tests..."
+./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./Hivemind.Api.Tests/bin/Debug/Hivemind.Api.Tests.dll
 echo "Done."
 
 echo "Shutting down docker containers..."
