@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hivemind.Core", "Hivemind.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hivemind.Api.Core", "Hivemind.Api.Core\Hivemind.Api.Core.csproj", "{F77BF44D-FC01-46CF-950F-7B51D0666BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Core.Tests", "Hivemind.Api.Core.Tests\Hivemind.Api.Core.Tests.csproj", "{E183A7D9-B18B-4011-9CA4-BE804E31F610}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hivemind.Api.Core.Tests", "Hivemind.Api.Core.Tests\Hivemind.Api.Core.Tests.csproj", "{B137DCCD-AA6A-4FCE-9130-022709B8D8BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +61,10 @@ Global
 		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F77BF44D-FC01-46CF-950F-7B51D0666BB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E183A7D9-B18B-4011-9CA4-BE804E31F610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E183A7D9-B18B-4011-9CA4-BE804E31F610}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E183A7D9-B18B-4011-9CA4-BE804E31F610}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E183A7D9-B18B-4011-9CA4-BE804E31F610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B137DCCD-AA6A-4FCE-9130-022709B8D8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B137DCCD-AA6A-4FCE-9130-022709B8D8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B137DCCD-AA6A-4FCE-9130-022709B8D8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B137DCCD-AA6A-4FCE-9130-022709B8D8BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
