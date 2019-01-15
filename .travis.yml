@@ -1,6 +1,6 @@
 language: csharp
 solution: Hivemind.sln
-dotnet: 2.0.0
+dotnet: 2.1
 env: 
   - NODE_VERSION="8.9"
 before_install:
